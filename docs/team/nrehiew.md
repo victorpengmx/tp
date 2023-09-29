@@ -1,27 +1,26 @@
-# Project Overview 
+### Project: Connectify
 Connectify is a networking platform designed to help professionals efficiently manage their connections and enhance their networking experiences.
 
-## Summary of Contributions
+Given below are my contributions to the project.
 
-### Code Contributed
-to be added soon
+* **Code contributed**: 
+  * To be added soon
 
-### Enhancements Implemented
-to be added soon
+* **Project management**:
+    * To be added soon
 
-### Contributions to the UG
-Moved to current repo
-<br>
-to be added soon
+* **Enhancements to existing features**:
+    * To be added soon
 
-### Contributions to the DG
-to be added soon
+* **Documentation**:
+    * User Guide:
+        * Added initial draft version of the User Guide
+        * To be added soon
+    * Developer Guide:
+        * To be added soon
 
-### Contributions to team-based tasks
-to be added soon
+* **Community**:
+    * To be added soon
 
-### Review/mentoring contributions to the team
-to be added soon
-
-### Contributions beyond the project team
-to be added soon
+* **Tools**:
+    * To be added soon
