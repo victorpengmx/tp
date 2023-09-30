@@ -18,15 +18,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Integration
 
-### Jane Doe
+### Peng Victor M X
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/victorpengmx.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/victorpengmx)]
 [[portfolio](team/nrehiew.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
 
 ### Johnny Doe
 
