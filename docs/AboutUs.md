@@ -9,13 +9,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### Gerald Ng
+### John Doe
 
-<img src="images/geraldngjx.png" width="200px">
+<img src="images/johndoe.png" width="200px">
 
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/geraldngjx)]
-[[portfolio](team/geraldngjx.md)]
+[[github](http://github.com/johndoe)]
+[[portfolio](team/johndoe.md)]
 
 * Role: Project Advisor
 
@@ -29,14 +29,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### Gerald Ng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/geraldngjx.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/geraldngjx)]
+[[portfolio](team/geraldngjx.md)]
 
 * Role: Developer
-* Responsibilities: Data
 
 ### Jean Doe
 
