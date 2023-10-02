@@ -18,15 +18,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Integration
 
-### Jane Doe
+### Ryan Tan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ryantzr.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/nrehiew.md)]
+[[github](https://github.com/ryantzr1)]
+[[portfolio](team/ryantzr1.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Product 
+* Responsibilities: In charge of UX and product functionality
+
 
 ### Johnny Doe
 
