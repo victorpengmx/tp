@@ -1,7 +1,6 @@
 package connectify.model;
 
 import static java.util.Objects.requireNonNull;
-import static connectify.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;

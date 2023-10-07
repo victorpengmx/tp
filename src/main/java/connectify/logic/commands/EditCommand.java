@@ -1,12 +1,12 @@
 package connectify.logic.commands;
 
-import static java.util.Objects.requireNonNull;
 import static connectify.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static connectify.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static connectify.logic.parser.CliSyntax.PREFIX_NAME;
 import static connectify.logic.parser.CliSyntax.PREFIX_PHONE;
 import static connectify.logic.parser.CliSyntax.PREFIX_TAG;
 import static connectify.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static java.util.Objects.requireNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -18,15 +18,15 @@ import java.util.Set;
 import connectify.commons.core.index.Index;
 import connectify.commons.util.CollectionUtil;
 import connectify.commons.util.ToStringBuilder;
-import connectify.logic.commands.exceptions.CommandException;
-import connectify.model.tag.Tag;
 import connectify.logic.Messages;
+import connectify.logic.commands.exceptions.CommandException;
 import connectify.model.Model;
 import connectify.model.person.Address;
 import connectify.model.person.Email;
 import connectify.model.person.Name;
 import connectify.model.person.Person;
 import connectify.model.person.Phone;
+import connectify.model.tag.Tag;
 
 /**
  * Edits the details of an existing person in the address book.

@@ -2,6 +2,9 @@ package connectify.testutil;
 
 import connectify.model.company.Company;
 
+/**
+ * A utility class to help with building Company objects.
+ */
 public class CompanyBuilder {
     public static final String DEFAULT_NAME = "Google";
     public static final String DEFAULT_INDUSTRY = "Technology";

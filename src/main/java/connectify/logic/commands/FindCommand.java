@@ -3,9 +3,9 @@ package connectify.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import connectify.commons.util.ToStringBuilder;
-import connectify.model.person.NameContainsKeywordsPredicate;
 import connectify.logic.Messages;
 import connectify.model.Model;
+import connectify.model.person.NameContainsKeywordsPredicate;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.

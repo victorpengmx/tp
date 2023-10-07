@@ -4,13 +4,13 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import connectify.model.AddressBook;
+import connectify.model.ReadOnlyAddressBook;
+import connectify.model.person.Address;
 import connectify.model.person.Email;
 import connectify.model.person.Name;
 import connectify.model.person.Person;
 import connectify.model.person.Phone;
-import connectify.model.AddressBook;
-import connectify.model.ReadOnlyAddressBook;
-import connectify.model.person.Address;
 import connectify.model.tag.Tag;
 
 /**

@@ -1,9 +1,8 @@
 package connectify.model.person;
 
-import connectify.commons.util.AppUtil;
-
 import static java.util.Objects.requireNonNull;
-import static connectify.commons.util.AppUtil.checkArgument;
+
+import connectify.commons.util.AppUtil;
 
 /**
  * Represents a Person's email in the address book.

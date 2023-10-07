@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
 
-import connectify.commons.exceptions.DataLoadingException;
 import connectify.commons.core.Config;
+import connectify.commons.exceptions.DataLoadingException;
 
 /**
  * A class for accessing the Config File.

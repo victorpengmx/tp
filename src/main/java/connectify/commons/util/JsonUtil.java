@@ -20,8 +20,8 @@ import com.fasterxml.jackson.databind.deser.std.FromStringDeserializer;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 
-import connectify.commons.exceptions.DataLoadingException;
 import connectify.commons.core.LogsCenter;
+import connectify.commons.exceptions.DataLoadingException;
 
 /**
  * Converts a Java object instance to JSON and vice versa

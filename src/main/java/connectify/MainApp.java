@@ -5,8 +5,6 @@ import java.nio.file.Path;
 import java.util.Optional;
 import java.util.logging.Logger;
 
-import javafx.application.Application;
-import javafx.stage.Stage;
 import connectify.commons.core.Config;
 import connectify.commons.core.LogsCenter;
 import connectify.commons.core.Version;
@@ -30,6 +28,8 @@ import connectify.storage.StorageManager;
 import connectify.storage.UserPrefsStorage;
 import connectify.ui.Ui;
 import connectify.ui.UiManager;
+import javafx.application.Application;
+import javafx.stage.Stage;
 
 /**
  * Runs the application.

@@ -2,8 +2,8 @@ package connectify;
 
 import java.util.logging.Logger;
 
-import javafx.application.Application;
 import connectify.commons.core.LogsCenter;
+import javafx.application.Application;
 
 /**
  * The main entry point to the application.

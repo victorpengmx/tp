@@ -1,7 +1,7 @@
 package connectify.logic.commands;
 
-import static java.util.Objects.requireNonNull;
 import static connectify.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static java.util.Objects.requireNonNull;
 
 import connectify.model.Model;
 

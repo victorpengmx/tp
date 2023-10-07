@@ -1,17 +1,17 @@
 package connectify.logic.commands;
 
-import static java.util.Objects.requireNonNull;
 import static connectify.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static connectify.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static connectify.logic.parser.CliSyntax.PREFIX_NAME;
 import static connectify.logic.parser.CliSyntax.PREFIX_PHONE;
 import static connectify.logic.parser.CliSyntax.PREFIX_TAG;
+import static java.util.Objects.requireNonNull;
 
 import connectify.commons.util.ToStringBuilder;
-import connectify.logic.commands.exceptions.CommandException;
-import connectify.model.person.Person;
 import connectify.logic.Messages;
+import connectify.logic.commands.exceptions.CommandException;
 import connectify.model.Model;
+import connectify.model.person.Person;
 
 /**
  * Adds a person to the address book.

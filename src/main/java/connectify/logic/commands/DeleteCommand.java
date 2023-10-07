@@ -6,10 +6,10 @@ import java.util.List;
 
 import connectify.commons.core.index.Index;
 import connectify.commons.util.ToStringBuilder;
-import connectify.logic.commands.exceptions.CommandException;
-import connectify.model.person.Person;
 import connectify.logic.Messages;
+import connectify.logic.commands.exceptions.CommandException;
 import connectify.model.Model;
+import connectify.model.person.Person;
 
 /**
  * Deletes a person identified using it's displayed index from the address book.
