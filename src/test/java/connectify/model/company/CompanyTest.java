@@ -44,5 +44,21 @@ public class CompanyTest {
         editedCompany1 = new CompanyBuilder(COMPANY_1).withAddress("Blk 456, Ang Mo Kio Ave 10, #-09-123").build();
         assertFalse(COMPANY_1.equals(editedCompany1));
         assertFalse(COMPANY_1.equals(editedCompany1));
+
+        // different industry -> returns false
+        editedCompany1 = new CompanyBuilder(COMPANY_1).withIndustry("Technology").build();
+        assertFalse(COMPANY_1.equals(editedCompany1));
+
+        // different location -> returns false
+        editedCompany1 = new CompanyBuilder(COMPANY_1).withLocation("Singapore").build();
+        assertFalse(COMPANY_1.equals(editedCompany1));
+
+        // different description -> returns false
+        editedCompany1 = new CompanyBuilder(COMPANY_1).withDescription("A company that sells phones").build();
+        assertFalse(COMPANY_1.equals(editedCompany1));
+
+        // different website -> returns false
+        editedCompany1 = new CompanyBuilder(COMPANY_1).withWebsite("www.apple.com").build();
+        assertFalse(COMPANY_1.equals(editedCompany1));
     }
 }
