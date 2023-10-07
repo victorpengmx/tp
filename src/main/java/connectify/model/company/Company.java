@@ -28,8 +28,8 @@ public class Company {
      * @param address Address of company
      */
     public Company(String name, String industry, String location, String description, String website, String email,
-                   String phone, String fax, String address) {
-        requireAllNonNull(name, industry, location, description, website, email, phone, fax, address);
+                   String phone, String address) {
+        requireAllNonNull(name, industry, location, description, website, email, phone, address);
         this.name = name;
         this.industry = industry;
         this.location = location;
