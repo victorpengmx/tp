@@ -2,6 +2,7 @@ package connectify.model.company;
 
 import static connectify.testutil.TypicalCompanies.COMPANY_1;
 import static connectify.testutil.TypicalCompanies.COMPANY_2;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -61,9 +62,20 @@ public class CompanyTest {
         assertFalse(COMPANY_1.equals(editedCompany1));
     }
 
+    @Test
     public void toStringMethod() {
         // same values -> returns true
+        String expected = Company.class.getCanonicalName() + "{name=" + COMPANY_1.getName() + ", phone="
+                + COMPANY_1.getPhone() + ", email=" + COMPANY_1.getEmail() + ", address=" + COMPANY_1.getAddress()
+                + ", industry=" + COMPANY_1.getIndustry() + ", location=" + COMPANY_1.getLocation()
+                + ", description=" + COMPANY_1.getDescription() + ", website=" + COMPANY_1.getWebsite() + "}";
+        assertEquals(expected, COMPANY_1.toString());
+    }
+
+    @Test
+    public void hashCodeMethod() {
+        // same values -> returns true
         Company companyCopy = new CompanyBuilder(COMPANY_1).build();
-        assertTrue(COMPANY_1.toString().equals(companyCopy.toString()));
+        assertEquals(COMPANY_1.hashCode(), companyCopy.hashCode());
     }
 }

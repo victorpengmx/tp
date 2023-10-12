@@ -1,5 +1,7 @@
 package connectify.model.company;
 
+import connectify.commons.util.ToStringBuilder;
+
 import static connectify.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
@@ -132,22 +134,15 @@ public class Company {
 
     @Override
     public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append(" Industry: ")
-                .append(getIndustry())
-                .append(" Location: ")
-                .append(getLocation())
-                .append(" Description: ")
-                .append(getDescription())
-                .append(" Website: ")
-                .append(getWebsite())
-                .append(" Email: ")
-                .append(getEmail())
-                .append(" Phone: ")
-                .append(getPhone())
-                .append(" Address: ")
-                .append(getAddress());
-        return builder.toString();
+        return new ToStringBuilder(this)
+                .add("name", name)
+                .add("phone", phone)
+                .add("email", email)
+                .add("address", address)
+                .add("industry", industry)
+                .add("location", location)
+                .add("description", description)
+                .add("website", website)
+                .toString();
     }
 }
