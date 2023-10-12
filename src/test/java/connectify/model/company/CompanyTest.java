@@ -41,8 +41,7 @@ public class CompanyTest {
         assertFalse(COMPANY_1.equals(editedCompany1));
 
         // different address -> returns false
-        editedCompany1 = new CompanyBuilder(COMPANY_1).withAddress("Blk 456, Ang Mo Kio Ave 10, #-09-123").build();
-        assertFalse(COMPANY_1.equals(editedCompany1));
+        editedCompany1 = new CompanyBuilder(COMPANY_1).withAddress("Blk 456, Woodlands Ave 10, #-09-123").build();
         assertFalse(COMPANY_1.equals(editedCompany1));
 
         // different industry -> returns false
