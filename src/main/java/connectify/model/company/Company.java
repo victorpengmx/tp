@@ -1,8 +1,8 @@
 package connectify.model.company;
 
-import connectify.commons.util.ToStringBuilder;
-
 import static connectify.commons.util.CollectionUtil.requireAllNonNull;
+
+import connectify.commons.util.ToStringBuilder;
 
 /**
  * Represents a Company in the address book.
