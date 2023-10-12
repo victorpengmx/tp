@@ -8,6 +8,7 @@ import connectify.logic.commands.exceptions.CommandException;
 import connectify.logic.parser.exceptions.ParseException;
 import connectify.model.Model;
 import connectify.model.ReadOnlyAddressBook;
+import connectify.model.company.Company;
 import connectify.model.person.Person;
 import javafx.collections.ObservableList;
 
@@ -48,4 +49,6 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    ObservableList<Company> getFilteredCompanyList();
 }
