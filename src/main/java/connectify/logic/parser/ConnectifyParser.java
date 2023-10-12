@@ -22,7 +22,7 @@ import connectify.logic.parser.exceptions.ParseException;
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class ConnectifyParser {
 
     /**
      * Used for initial separation of command word and args.
