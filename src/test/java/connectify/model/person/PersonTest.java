@@ -1,8 +1,5 @@
 package connectify.model.person;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static connectify.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static connectify.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static connectify.logic.commands.CommandTestUtil.VALID_NAME_BOB;
@@ -11,6 +8,9 @@ import static connectify.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static connectify.testutil.Assert.assertThrows;
 import static connectify.testutil.TypicalPersons.ALICE;
 import static connectify.testutil.TypicalPersons.BOB;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 

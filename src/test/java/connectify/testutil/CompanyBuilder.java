@@ -26,6 +26,9 @@ public class CompanyBuilder {
     private String address;
 
 
+    /**
+     * Creates a {@code CompanyBuilder} with the default details.
+     */
     public CompanyBuilder() {
         this.name = DEFAULT_NAME;
         this.industry = DEFAULT_INDUSTRY;
@@ -37,6 +40,10 @@ public class CompanyBuilder {
         this.address = DEFAULT_ADDRESS;
     }
 
+    /**
+     * Initializes the CompanyBuilder with the data of {@code companyToCopy}.
+     * @param companyToCopy
+     */
     public CompanyBuilder(Company companyToCopy) {
         this.name = companyToCopy.getName();
         this.industry = companyToCopy.getIndustry();

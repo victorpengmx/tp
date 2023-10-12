@@ -1,24 +1,20 @@
 package connectify.logic;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static connectify.logic.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static connectify.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static connectify.testutil.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
 import java.nio.file.AccessDeniedException;
 import java.nio.file.Path;
 
-import connectify.logic.commands.CommandTestUtil;
-import connectify.testutil.Assert;
-import connectify.testutil.PersonBuilder;
-import connectify.testutil.TypicalPersons;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import connectify.logic.commands.AddCommand;
 import connectify.logic.commands.CommandResult;
+import connectify.logic.commands.CommandTestUtil;
 import connectify.logic.commands.ListCommand;
 import connectify.logic.commands.exceptions.CommandException;
 import connectify.logic.parser.exceptions.ParseException;
@@ -30,7 +26,9 @@ import connectify.model.person.Person;
 import connectify.storage.JsonAddressBookStorage;
 import connectify.storage.JsonUserPrefsStorage;
 import connectify.storage.StorageManager;
-
+import connectify.testutil.Assert;
+import connectify.testutil.PersonBuilder;
+import connectify.testutil.TypicalPersons;
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy IO exception");
     private static final IOException DUMMY_AD_EXCEPTION = new AccessDeniedException("dummy access denied exception");

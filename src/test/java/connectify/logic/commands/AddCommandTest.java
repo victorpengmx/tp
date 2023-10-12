@@ -1,11 +1,11 @@
 package connectify.logic.commands;
 
+import static connectify.testutil.Assert.assertThrows;
+import static connectify.testutil.TypicalPersons.ALICE;
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static connectify.testutil.Assert.assertThrows;
-import static connectify.testutil.TypicalPersons.ALICE;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -14,7 +14,6 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
-import javafx.collections.ObservableList;
 import connectify.commons.core.GuiSettings;
 import connectify.logic.Messages;
 import connectify.logic.commands.exceptions.CommandException;
@@ -24,6 +23,7 @@ import connectify.model.ReadOnlyAddressBook;
 import connectify.model.ReadOnlyUserPrefs;
 import connectify.model.person.Person;
 import connectify.testutil.PersonBuilder;
+import javafx.collections.ObservableList;
 
 public class AddCommandTest {
 

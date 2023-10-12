@@ -2,16 +2,15 @@ package connectify.ui;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static connectify.testutil.Assert.assertThrows;
 
 import java.net.URL;
 import java.nio.file.Path;
 
-import connectify.MainApp;
-import connectify.testutil.Assert;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import connectify.MainApp;
+import connectify.testutil.Assert;
 import javafx.fxml.FXML;
 
 public class UiPartTest {

@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.nio.file.Path;
 
-import connectify.testutil.TypicalPersons;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -14,6 +13,7 @@ import connectify.commons.core.GuiSettings;
 import connectify.model.AddressBook;
 import connectify.model.ReadOnlyAddressBook;
 import connectify.model.UserPrefs;
+import connectify.testutil.TypicalPersons;
 
 public class StorageManagerTest {
 

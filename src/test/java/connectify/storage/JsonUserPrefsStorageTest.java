@@ -2,20 +2,19 @@ package connectify.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static connectify.testutil.Assert.assertThrows;
 
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Optional;
 
-import connectify.testutil.Assert;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import connectify.commons.core.GuiSettings;
 import connectify.commons.exceptions.DataLoadingException;
 import connectify.model.UserPrefs;
+import connectify.testutil.Assert;
 
 public class JsonUserPrefsStorageTest {
 

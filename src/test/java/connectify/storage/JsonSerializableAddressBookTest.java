@@ -1,18 +1,17 @@
 package connectify.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static connectify.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import connectify.testutil.Assert;
-import connectify.testutil.TypicalPersons;
 import org.junit.jupiter.api.Test;
 
 import connectify.commons.exceptions.IllegalValueException;
 import connectify.commons.util.JsonUtil;
 import connectify.model.AddressBook;
+import connectify.testutil.Assert;
+import connectify.testutil.TypicalPersons;
 
 public class JsonSerializableAddressBookTest {
 

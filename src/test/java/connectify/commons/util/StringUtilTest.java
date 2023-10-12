@@ -1,8 +1,8 @@
 package connectify.commons.util;
 
+import static connectify.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static connectify.testutil.Assert.assertThrows;
 
 import java.io.FileNotFoundException;
 

@@ -1,11 +1,11 @@
 package connectify.logic.parser;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static connectify.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static connectify.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static connectify.testutil.Assert.assertThrows;
 import static connectify.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.List;

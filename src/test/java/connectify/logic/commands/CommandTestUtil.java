@@ -1,13 +1,13 @@
 package connectify.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static connectify.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static connectify.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static connectify.logic.parser.CliSyntax.PREFIX_NAME;
 import static connectify.logic.parser.CliSyntax.PREFIX_PHONE;
 import static connectify.logic.parser.CliSyntax.PREFIX_TAG;
 import static connectify.testutil.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,7 +20,6 @@ import connectify.model.Model;
 import connectify.model.person.NameContainsKeywordsPredicate;
 import connectify.model.person.Person;
 import connectify.testutil.EditPersonDescriptorBuilder;
-
 /**
  * Contains helper methods for testing commands.
  */

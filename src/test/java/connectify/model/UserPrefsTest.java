@@ -1,9 +1,8 @@
 package connectify.model;
 
-import static connectify.testutil.Assert.assertThrows;
+import org.junit.jupiter.api.Test;
 
 import connectify.testutil.Assert;
-import org.junit.jupiter.api.Test;
 
 public class UserPrefsTest {
 

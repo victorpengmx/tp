@@ -1,15 +1,12 @@
 package connectify.storage;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static connectify.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT;
-import static connectify.testutil.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import connectify.testutil.Assert;
-import connectify.testutil.TypicalPersons;
 import org.junit.jupiter.api.Test;
 
 import connectify.commons.exceptions.IllegalValueException;
@@ -17,7 +14,8 @@ import connectify.model.person.Address;
 import connectify.model.person.Email;
 import connectify.model.person.Name;
 import connectify.model.person.Phone;
-
+import connectify.testutil.Assert;
+import connectify.testutil.TypicalPersons;
 public class JsonAdaptedPersonTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";

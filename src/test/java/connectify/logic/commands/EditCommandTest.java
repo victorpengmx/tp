@@ -1,8 +1,5 @@
 package connectify.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static connectify.logic.commands.CommandTestUtil.DESC_AMY;
 import static connectify.logic.commands.CommandTestUtil.DESC_BOB;
 import static connectify.logic.commands.CommandTestUtil.VALID_NAME_BOB;
@@ -14,6 +11,9 @@ import static connectify.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static connectify.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static connectify.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static connectify.testutil.TypicalPersons.getTypicalAddressBook;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 

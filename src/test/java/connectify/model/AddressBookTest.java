@@ -3,24 +3,22 @@ package connectify.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static connectify.testutil.Assert.assertThrows;
 
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+import org.junit.jupiter.api.Test;
+
 import connectify.logic.commands.CommandTestUtil;
+import connectify.model.person.Person;
+import connectify.model.person.exceptions.DuplicatePersonException;
 import connectify.testutil.Assert;
 import connectify.testutil.PersonBuilder;
 import connectify.testutil.TypicalPersons;
-import org.junit.jupiter.api.Test;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import connectify.model.person.Person;
-import connectify.model.person.exceptions.DuplicatePersonException;
-
 public class AddressBookTest {
 
     private final AddressBook addressBook = new AddressBook();
@@ -45,8 +43,8 @@ public class AddressBookTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
-        Person editedAlice = new PersonBuilder(TypicalPersons.ALICE).withAddress(CommandTestUtil.VALID_ADDRESS_BOB).withTags(CommandTestUtil.VALID_TAG_HUSBAND)
-                .build();
+        Person editedAlice = new PersonBuilder(TypicalPersons.ALICE).withAddress(CommandTestUtil.VALID_ADDRESS_BOB)
+                .withTags(CommandTestUtil.VALID_TAG_HUSBAND).build();
         List<Person> newPersons = Arrays.asList(TypicalPersons.ALICE, editedAlice);
         AddressBookStub newData = new AddressBookStub(newPersons);
 
@@ -72,8 +70,8 @@ public class AddressBookTest {
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
         addressBook.addPerson(TypicalPersons.ALICE);
-        Person editedAlice = new PersonBuilder(TypicalPersons.ALICE).withAddress(CommandTestUtil.VALID_ADDRESS_BOB).withTags(CommandTestUtil.VALID_TAG_HUSBAND)
-                .build();
+        Person editedAlice = new PersonBuilder(TypicalPersons.ALICE).withAddress(CommandTestUtil.VALID_ADDRESS_BOB)
+                .withTags(CommandTestUtil.VALID_TAG_HUSBAND).build();
         assertTrue(addressBook.hasPerson(editedAlice));
     }
 

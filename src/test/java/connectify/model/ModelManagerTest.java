@@ -1,22 +1,21 @@
 package connectify.model;
 
+import static connectify.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static connectify.model.Model.PREDICATE_SHOW_ALL_PERSONS;
-import static connectify.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 
-import connectify.testutil.AddressBookBuilder;
-import connectify.testutil.Assert;
-import connectify.testutil.TypicalPersons;
 import org.junit.jupiter.api.Test;
 
 import connectify.commons.core.GuiSettings;
 import connectify.model.person.NameContainsKeywordsPredicate;
+import connectify.testutil.AddressBookBuilder;
+import connectify.testutil.Assert;
+import connectify.testutil.TypicalPersons;
 
 public class ModelManagerTest {
 
@@ -90,12 +89,14 @@ public class ModelManagerTest {
 
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        Assert.assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+        Assert.assertThrows(UnsupportedOperationException.class, ()
+                -> modelManager.getFilteredPersonList().remove(0));
     }
 
     @Test
     public void equals() {
-        AddressBook addressBook = new AddressBookBuilder().withPerson(TypicalPersons.ALICE).withPerson(TypicalPersons.BENSON).build();
+        AddressBook addressBook = new AddressBookBuilder().withPerson(TypicalPersons.ALICE)
+                .withPerson(TypicalPersons.BENSON).build();
         AddressBook differentAddressBook = new AddressBook();
         UserPrefs userPrefs = new UserPrefs();
 

@@ -1,9 +1,9 @@
 package connectify.model.company;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static connectify.testutil.TypicalCompanies.COMPANY_1;
 import static connectify.testutil.TypicalCompanies.COMPANY_2;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 

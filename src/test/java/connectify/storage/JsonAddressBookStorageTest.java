@@ -2,20 +2,19 @@ package connectify.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static connectify.testutil.Assert.assertThrows;
 
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import connectify.testutil.Assert;
-import connectify.testutil.TypicalPersons;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import connectify.commons.exceptions.DataLoadingException;
 import connectify.model.AddressBook;
 import connectify.model.ReadOnlyAddressBook;
+import connectify.testutil.Assert;
+import connectify.testutil.TypicalPersons;
 
 public class JsonAddressBookStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonAddressBookStorageTest");

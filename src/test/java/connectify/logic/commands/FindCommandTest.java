@@ -1,14 +1,14 @@
 package connectify.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static connectify.logic.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static connectify.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static connectify.testutil.TypicalPersons.CARL;
 import static connectify.testutil.TypicalPersons.ELLE;
 import static connectify.testutil.TypicalPersons.FIONA;
 import static connectify.testutil.TypicalPersons.getTypicalAddressBook;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.Collections;

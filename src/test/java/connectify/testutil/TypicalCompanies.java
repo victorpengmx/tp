@@ -2,6 +2,9 @@ package connectify.testutil;
 
 import connectify.model.company.Company;
 
+/**
+ * A utility class to help with building Company objects.
+ */
 public class TypicalCompanies {
     public static final Company COMPANY_1 = new CompanyBuilder().withName("Apple").withPhone("12345678")
             .withEmail("company1@gmail.com").withAddress("Blk 456, Ang Mo Kio Ave 10, #-09-123").build();
