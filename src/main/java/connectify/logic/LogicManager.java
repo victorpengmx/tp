@@ -10,7 +10,7 @@ import connectify.commons.core.LogsCenter;
 import connectify.logic.commands.Command;
 import connectify.logic.commands.CommandResult;
 import connectify.logic.commands.exceptions.CommandException;
-import connectify.logic.parser.AddressBookParser;
+import connectify.logic.parser.ConnectifyParser;
 import connectify.logic.parser.exceptions.ParseException;
 import connectify.model.Model;
 import connectify.model.ReadOnlyAddressBook;
@@ -31,7 +31,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    private final ConnectifyParser connectifyParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -39,7 +39,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        connectifyParser = new ConnectifyParser();
     }
 
     @Override
@@ -47,7 +47,7 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = connectifyParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {

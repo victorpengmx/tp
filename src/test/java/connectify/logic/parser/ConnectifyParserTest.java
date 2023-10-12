@@ -29,9 +29,9 @@ import connectify.testutil.EditPersonDescriptorBuilder;
 import connectify.testutil.PersonBuilder;
 import connectify.testutil.PersonUtil;
 
-public class AddressBookParserTest {
+public class ConnectifyParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final ConnectifyParser parser = new ConnectifyParser();
 
     @Test
     public void parseCommand_add() throws Exception {
