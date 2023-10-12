@@ -4,6 +4,7 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 
 import connectify.commons.core.GuiSettings;
+import connectify.model.company.Company;
 import connectify.model.person.Person;
 import javafx.collections.ObservableList;
 
@@ -58,6 +59,11 @@ public interface Model {
     boolean hasPerson(Person person);
 
     /**
+     * Returns true if a company with the same identity as {@code company} exists in the address book.
+     */
+    boolean hasCompany(Company company);
+
+    /**
      * Deletes the given person.
      * The person must exist in the address book.
      */
@@ -69,6 +75,11 @@ public interface Model {
      */
     void addPerson(Person person);
 
+    /**
+     * Adds the given person.
+     * {@code person} must not already exist in the address book.
+     */
+    void addCompany(Company company);
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the address book.

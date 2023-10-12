@@ -132,6 +132,19 @@ public class Company {
         return name.hashCode();
     }
 
+    /**
+     * Returns true if both companies have the same name.
+     * This defines a weaker notion of equality between two companies.
+     */
+    public boolean isSameCompany(Company otherCompany) {
+        if (otherCompany == this) {
+            return true;
+        }
+
+        return otherCompany != null
+                && otherCompany.getName().equals(getName());
+    }
+
     @Override
     public String toString() {
         return new ToStringBuilder(this)
