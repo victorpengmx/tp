@@ -60,4 +60,10 @@ public class CompanyTest {
         editedCompany1 = new CompanyBuilder(COMPANY_1).withWebsite("www.apple.com").build();
         assertFalse(COMPANY_1.equals(editedCompany1));
     }
+
+    public void toStringMethod() {
+        // same values -> returns true
+        Company companyCopy = new CompanyBuilder(COMPANY_1).build();
+        assertTrue(COMPANY_1.toString().equals(companyCopy.toString()));
+    }
 }
