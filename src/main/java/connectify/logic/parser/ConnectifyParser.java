@@ -8,8 +8,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import connectify.commons.core.LogsCenter;
-import connectify.logic.commands.AddPersonCommand;
 import connectify.logic.commands.AddCompanyCommand;
+import connectify.logic.commands.AddPersonCommand;
 import connectify.logic.commands.ClearCommand;
 import connectify.logic.commands.Command;
 import connectify.logic.commands.DeletePersonCommand;
