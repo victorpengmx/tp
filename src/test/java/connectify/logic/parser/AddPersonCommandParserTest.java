@@ -11,7 +11,7 @@ import static connectify.testutil.TypicalPersons.BOB;
 import org.junit.jupiter.api.Test;
 
 import connectify.logic.Messages;
-import connectify.logic.commands.AddCommand;
+import connectify.logic.commands.AddPersonCommand;
 import connectify.logic.commands.CommandTestUtil;
 import connectify.model.person.Address;
 import connectify.model.person.Email;
@@ -21,8 +21,8 @@ import connectify.model.person.Phone;
 import connectify.model.tag.Tag;
 import connectify.testutil.PersonBuilder;
 
-public class AddCommandParserTest {
-    private AddCommandParser parser = new AddCommandParser();
+public class AddPersonCommandParserTest {
+    private AddPersonCommandParser parser = new AddPersonCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
@@ -32,7 +32,7 @@ public class AddCommandParserTest {
         CommandParserTestUtil.assertParseSuccess(parser, CommandTestUtil.PREAMBLE_WHITESPACE
                     + CommandTestUtil.NAME_DESC_BOB + CommandTestUtil.PHONE_DESC_BOB + CommandTestUtil.EMAIL_DESC_BOB
                     + CommandTestUtil.ADDRESS_DESC_BOB + CommandTestUtil.TAG_DESC_FRIEND,
-                    new AddCommand(expectedPerson));
+                    new AddPersonCommand(expectedPerson));
 
 
         // multiple tags - all accepted
@@ -41,7 +41,7 @@ public class AddCommandParserTest {
         CommandParserTestUtil.assertParseSuccess(parser,
             CommandTestUtil.NAME_DESC_BOB + CommandTestUtil.PHONE_DESC_BOB + CommandTestUtil.EMAIL_DESC_BOB
                     + CommandTestUtil.ADDRESS_DESC_BOB + CommandTestUtil.TAG_DESC_HUSBAND
-                    + CommandTestUtil.TAG_DESC_FRIEND, new AddCommand(expectedPersonMultipleTags));
+                    + CommandTestUtil.TAG_DESC_FRIEND, new AddPersonCommand(expectedPersonMultipleTags));
     }
 
     @Test
@@ -117,12 +117,12 @@ public class AddCommandParserTest {
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
         CommandParserTestUtil.assertParseSuccess(parser, CommandTestUtil.NAME_DESC_AMY
                     + CommandTestUtil.PHONE_DESC_AMY + CommandTestUtil.EMAIL_DESC_AMY
-                    + CommandTestUtil.ADDRESS_DESC_AMY, new AddCommand(expectedPerson));
+                    + CommandTestUtil.ADDRESS_DESC_AMY, new AddPersonCommand(expectedPerson));
     }
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPersonCommand.MESSAGE_USAGE);
 
         // missing name prefix
         CommandParserTestUtil.assertParseFailure(parser, CommandTestUtil.VALID_NAME_BOB
@@ -190,6 +190,6 @@ public class AddCommandParserTest {
                 + CommandTestUtil.NAME_DESC_BOB + CommandTestUtil.PHONE_DESC_BOB
                 + CommandTestUtil.EMAIL_DESC_BOB + CommandTestUtil.ADDRESS_DESC_BOB
                 + CommandTestUtil.TAG_DESC_HUSBAND + CommandTestUtil.TAG_DESC_FRIEND,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPersonCommand.MESSAGE_USAGE));
     }
 }

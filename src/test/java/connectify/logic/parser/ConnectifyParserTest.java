@@ -13,8 +13,8 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import connectify.logic.commands.AddCommand;
 import connectify.logic.commands.AddCompanyCommand;
+import connectify.logic.commands.AddPersonCommand;
 import connectify.logic.commands.ClearCommand;
 import connectify.logic.commands.DeletePersonCommand;
 import connectify.logic.commands.EditCommand;
@@ -40,8 +40,8 @@ public class ConnectifyParserTest {
     @Test
     public void parseCommand_add() throws Exception {
         Person person = new PersonBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
-        assertEquals(new AddCommand(person), command);
+        AddPersonCommand command = (AddPersonCommand) parser.parseCommand(PersonUtil.getAddPersonCommand(person));
+        assertEquals(new AddPersonCommand(person), command);
     }
 
     @Test

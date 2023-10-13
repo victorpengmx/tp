@@ -8,7 +8,7 @@ import static connectify.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 
-import connectify.logic.commands.AddCommand;
+import connectify.logic.commands.AddPersonCommand;
 import connectify.logic.commands.EditCommand.EditPersonDescriptor;
 import connectify.model.person.Person;
 import connectify.model.tag.Tag;
@@ -21,8 +21,8 @@ public class PersonUtil {
     /**
      * Returns an add command string for adding the {@code person}.
      */
-    public static String getAddCommand(Person person) {
-        return AddCommand.COMMAND_WORD + " " + getPersonDetails(person);
+    public static String getAddPersonCommand(Person person) {
+        return AddPersonCommand.COMMAND_WORD + " " + getPersonDetails(person);
     }
 
     /**
