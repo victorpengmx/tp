@@ -47,7 +47,7 @@ public class ConnectifyParserTest {
     @Test
     public void parseCommand_addCompany() throws Exception {
         Company company = new CompanyBuilder().build();
-        AddCompanyCommand command = (AddCompanyCommand) parser.parseCommand(CompanyUtil.getAddPersonCommand(company));
+        AddCompanyCommand command = (AddCompanyCommand) parser.parseCommand(CompanyUtil.getAddCommand(company));
         assertEquals(new AddCompanyCommand(company), command);
     }
 
