@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import connectify.logic.commands.AddCommand;
 import connectify.logic.commands.ClearCommand;
-import connectify.logic.commands.DeleteCommand;
+import connectify.logic.commands.DeletePersonCommand;
 import connectify.logic.commands.EditCommand;
 import connectify.logic.commands.EditCommand.EditPersonDescriptor;
 import connectify.logic.commands.ExitCommand;
@@ -48,9 +48,9 @@ public class ConnectifyParserTest {
 
     @Test
     public void parseCommand_delete() throws Exception {
-        DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+        DeletePersonCommand command = (DeletePersonCommand) parser.parseCommand(
+                DeletePersonCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new DeletePersonCommand(INDEX_FIRST_PERSON), command);
     }
 
     @Test
