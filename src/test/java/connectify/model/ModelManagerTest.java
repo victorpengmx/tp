@@ -1,6 +1,7 @@
 package connectify.model;
 
 import static connectify.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static connectify.model.Model.PREDICATE_SHOW_ALL_COMPANIES;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -12,6 +13,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import connectify.commons.core.GuiSettings;
+import connectify.model.company.CompanyNameContainsKeywordsPredicate;
 import connectify.model.person.NameContainsKeywordsPredicate;
 import connectify.testutil.AddressBookBuilder;
 import connectify.testutil.Assert;
@@ -141,8 +143,17 @@ public class ModelManagerTest {
         modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
 
+        // different filteredList -> returns false
+        String[] companyKeywords = TypicalCompanies.COMPANY_1.getName().split("\\s+");
+        modelManager
+                .updateFilteredCompanyList(new CompanyNameContainsKeywordsPredicate(Arrays.asList(companyKeywords)));
+        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
+
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+
+        // resets modelManager to initial state for upcoming tests
+        modelManager.updateFilteredCompanyList(PREDICATE_SHOW_ALL_COMPANIES);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();

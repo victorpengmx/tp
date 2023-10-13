@@ -1,6 +1,12 @@
 package connectify.testutil;
 
+import connectify.model.AddressBook;
 import connectify.model.company.Company;
+import connectify.model.person.Person;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * A utility class to help with building Company objects.
@@ -14,4 +20,19 @@ public class TypicalCompanies {
             .withIndustry("Retail").withLocation("Blk 234, Khatib Drive").build();
 
     private TypicalCompanies() {} // prevents instantiation
+
+    /**
+     * Returns an {@code AddressBook} with all the typical persons.
+     */
+    public static AddressBook getTypicalAddressBook() {
+        AddressBook ab = new AddressBook();
+        for (Company company : getTypicalCompanies()) {
+            ab.addCompany(company);
+        }
+        return ab;
+    }
+
+    public static List<Company> getTypicalCompanies() {
+        return new ArrayList<>(Arrays.asList(COMPANY_1, COMPANY_2));
+    }
 }

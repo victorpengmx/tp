@@ -4,6 +4,7 @@ import static connectify.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static connectify.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static connectify.testutil.Assert.assertThrows;
 import static connectify.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static connectify.testutil.TypicalIndexes.INDEX_FIRST_COMPANY;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -16,6 +17,7 @@ import org.junit.jupiter.api.Test;
 import connectify.logic.commands.AddCommand;
 import connectify.logic.commands.AddCompanyCommand;
 import connectify.logic.commands.ClearCommand;
+import connectify.logic.commands.DeleteCompanyCommand;
 import connectify.logic.commands.DeletePersonCommand;
 import connectify.logic.commands.EditCommand;
 import connectify.logic.commands.EditCommand.EditPersonDescriptor;
@@ -55,6 +57,13 @@ public class ConnectifyParserTest {
     public void parseCommand_clear() throws Exception {
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
+    }
+
+    @Test
+    public void parseCommand_deleteCompany() throws Exception {
+        DeleteCompanyCommand command = (DeleteCompanyCommand) parser.parseCommand(
+                DeleteCompanyCommand.COMMAND_WORD + " " + INDEX_FIRST_COMPANY.getOneBased());
+        assertEquals(new DeleteCompanyCommand(INDEX_FIRST_COMPANY), command);
     }
 
     @Test

@@ -164,6 +164,11 @@ public class AddCompanyCommandTest {
         }
 
         @Override
+        public void deleteCompany(Company target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setPerson(Person target, Person editedPerson) {
             throw new AssertionError("This method should not be called.");
         }
@@ -180,6 +185,11 @@ public class AddCompanyCommandTest {
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredCompanyList(Predicate<Company> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }
