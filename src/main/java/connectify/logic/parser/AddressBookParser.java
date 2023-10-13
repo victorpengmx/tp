@@ -8,7 +8,16 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import connectify.commons.core.LogsCenter;
-import connectify.logic.commands.*;
+import connectify.logic.commands.AddCommand;
+import connectify.logic.commands.AddCompanyCommand;
+import connectify.logic.commands.ClearCommand;
+import connectify.logic.commands.Command;
+import connectify.logic.commands.DeleteCommand;
+import connectify.logic.commands.EditCommand;
+import connectify.logic.commands.ExitCommand;
+import connectify.logic.commands.FindCommand;
+import connectify.logic.commands.HelpCommand;
+import connectify.logic.commands.ListCommand;
 import connectify.logic.parser.exceptions.ParseException;
 
 /**

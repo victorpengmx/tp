@@ -6,8 +6,8 @@ import java.util.List;
 
 import connectify.commons.util.ToStringBuilder;
 import connectify.model.company.Company;
-import connectify.model.person.Person;
 import connectify.model.company.UniqueCompanyList;
+import connectify.model.person.Person;
 import connectify.model.person.UniquePersonList;
 import javafx.collections.ObservableList;
 
@@ -53,12 +53,20 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the person list with {@code persons}.
+     * {@code persons} must not contain duplicate persons.
+     */
+    public void setCompanies(List<Company> companies) {
+        this.companies.setCompanies(companies);
+    }
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+        setCompanies(newData.getCompanyList());
     }
 
     //// person-level operations

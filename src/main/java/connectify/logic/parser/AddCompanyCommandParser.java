@@ -4,8 +4,8 @@ import static connectify.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.stream.Stream;
 
-import connectify.logic.parser.exceptions.ParseException;
 import connectify.logic.commands.AddCompanyCommand;
+import connectify.logic.parser.exceptions.ParseException;
 import connectify.model.company.Company;
 
 /**
@@ -32,22 +32,24 @@ public class AddCompanyCommandParser implements Parser<AddCompanyCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCompanyCommand.MESSAGE_USAGE));
         }
 
-        /*
-        Name name = ParserUtil.parseName(argMultimap.getValue(CliSyntax.PREFIX_NAME).get());
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(CliSyntax.PREFIX_PHONE).get());
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(CliSyntax.PREFIX_EMAIL).get());
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(CliSyntax.PREFIX_ADDRESS).get());
-        Website website = ParserUtil.parseWebsite(argMultimap.getValue(CliSyntax.PREFIX_WEBSITE).get());
-        Industry industry = ParserUtil.parseIndustry(argMultimap.getValue(CliSyntax.PREFIX_INDUSTRY).get());
-        Location location = ParserUtil.parseLocation(argMultimap.getValue(CliSyntax.PREFIX_LOCATION).get());
-        Description description = ParserUtil.parseDescription(
-        argMultimap.getValue(CliSyntax.PREFIX_DESCRIPTION).get());
-        *
-         */
+        String name = argMultimap.getValue(CliSyntax.PREFIX_NAME)
+                .orElseThrow(() -> new ParseException("Name is required"));
+        String industry = argMultimap.getValue(CliSyntax.PREFIX_INDUSTRY)
+                .orElseThrow(() -> new ParseException("Industry is required"));
+        String location = argMultimap.getValue(CliSyntax.PREFIX_LOCATION)
+                .orElseThrow(() -> new ParseException("Location is required"));
+        String description = argMultimap.getValue(CliSyntax.PREFIX_DESCRIPTION)
+                .orElseThrow(() -> new ParseException("Description is required"));
+        String website = argMultimap.getValue(CliSyntax.PREFIX_WEBSITE)
+                .orElseThrow(() -> new ParseException("Website is required"));
+        String email = argMultimap.getValue(CliSyntax.PREFIX_EMAIL)
+                .orElseThrow(() -> new ParseException("Email is required"));
+        String phone = argMultimap.getValue(CliSyntax.PREFIX_PHONE)
+                .orElseThrow(() -> new ParseException("Phone is required"));
+        String address = argMultimap.getValue(CliSyntax.PREFIX_ADDRESS)
+                .orElseThrow(() -> new ParseException("Address is required"));
 
-        Company company = new Company("Google", "tech",
-                "SG", "big tech", "cool.com", "hello@gmail.com",
-                "123323232", "SG");
+        Company company = new Company(name, industry, location, description, website, email, phone, address);
 
         return new AddCompanyCommand(company);
     }

@@ -28,7 +28,8 @@ public class JsonAdaptedCompany {
      */
     @JsonCreator
     public JsonAdaptedCompany(@JsonProperty("name") String name, @JsonProperty("industry") String industry,
-                              @JsonProperty("location") String location, @JsonProperty("description") String description,
+                              @JsonProperty("location") String location, @JsonProperty("description")
+                                  String description,
                               @JsonProperty("website") String website, @JsonProperty("email") String email,
                               @JsonProperty("phone") String phone, @JsonProperty("address") String address) {
         this.name = name;

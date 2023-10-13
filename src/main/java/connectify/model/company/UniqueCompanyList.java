@@ -6,8 +6,8 @@ import java.util.Iterator;
 import java.util.List;
 
 import connectify.commons.util.CollectionUtil;
-import connectify.model.company.exceptions.DuplicateCompanyException;
 import connectify.model.company.exceptions.CompanyNotFoundException;
+import connectify.model.company.exceptions.DuplicateCompanyException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -87,13 +87,13 @@ public class UniqueCompanyList implements Iterable<Company> {
      * Replaces the contents of this list with {@code Companies}.
      * {@code Companies} must not contain duplicate Companies.
      */
-    public void setCompanies(List<Company> Companies) {
-        CollectionUtil.requireAllNonNull(Companies);
-        if (!CompaniesAreUnique(Companies)) {
+    public void setCompanies(List<Company> companies) {
+        CollectionUtil.requireAllNonNull(companies);
+        if (!companiesAreUnique(companies)) {
             throw new DuplicateCompanyException();
         }
 
-        internalList.setAll(Companies);
+        internalList.setAll(companies);
     }
 
     /**
@@ -136,10 +136,10 @@ public class UniqueCompanyList implements Iterable<Company> {
     /**
      * Returns true if {@code Companies} contains only unique Companies.
      */
-    private boolean CompaniesAreUnique(List<Company> Companies) {
-        for (int i = 0; i < Companies.size() - 1; i++) {
-            for (int j = i + 1; j < Companies.size(); j++) {
-                if (Companies.get(i).isSameCompany(Companies.get(j))) {
+    private boolean companiesAreUnique(List<Company> companies) {
+        for (int i = 0; i < companies.size() - 1; i++) {
+            for (int j = i + 1; j < companies.size(); j++) {
+                if (companies.get(i).isSameCompany(companies.get(j))) {
                     return false;
                 }
             }

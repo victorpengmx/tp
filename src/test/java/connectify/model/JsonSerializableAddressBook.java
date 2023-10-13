@@ -11,8 +11,9 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import connectify.commons.exceptions.IllegalValueException;
 import connectify.model.AddressBook;
 import connectify.model.ReadOnlyAddressBook;
-import connectify.model.person.Person;
 import connectify.model.company.Company;
+import connectify.model.person.Person;
+
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.

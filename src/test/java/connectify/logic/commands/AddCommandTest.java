@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
 
-import connectify.model.company.Company;
 import org.junit.jupiter.api.Test;
 
 import connectify.commons.core.GuiSettings;
@@ -22,9 +21,11 @@ import connectify.model.AddressBook;
 import connectify.model.Model;
 import connectify.model.ReadOnlyAddressBook;
 import connectify.model.ReadOnlyUserPrefs;
+import connectify.model.company.Company;
 import connectify.model.person.Person;
 import connectify.testutil.PersonBuilder;
 import javafx.collections.ObservableList;
+
 
 public class AddCommandTest {
 
