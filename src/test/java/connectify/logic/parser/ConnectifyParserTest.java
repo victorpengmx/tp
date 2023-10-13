@@ -13,8 +13,8 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import connectify.logic.commands.AddPersonCommand;
 import connectify.logic.commands.AddCompanyCommand;
+import connectify.logic.commands.AddPersonCommand;
 import connectify.logic.commands.ClearCommand;
 import connectify.logic.commands.DeletePersonCommand;
 import connectify.logic.commands.EditCommand;
