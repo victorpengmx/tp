@@ -5,7 +5,7 @@ import static connectify.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import connectify.logic.commands.AddCommand;
+import connectify.logic.commands.AddPersonCommand;
 import connectify.logic.parser.exceptions.ParseException;
 import connectify.model.person.Address;
 import connectify.model.person.Email;
@@ -15,16 +15,16 @@ import connectify.model.person.Phone;
 import connectify.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new AddPersonCommand object
  */
-public class AddCommandParser implements Parser<AddCommand> {
+public class AddPersonCommandParser implements Parser<AddPersonCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddCommand
-     * and returns an AddCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AddPersonCommand
+     * and returns an AddPersonCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddCommand parse(String args) throws ParseException {
+    public AddPersonCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_NAME, CliSyntax.PREFIX_PHONE, CliSyntax.PREFIX_EMAIL,
                         CliSyntax.PREFIX_ADDRESS, CliSyntax.PREFIX_TAG);
@@ -32,7 +32,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         if (!arePrefixesPresent(argMultimap, CliSyntax.PREFIX_NAME, CliSyntax.PREFIX_ADDRESS,
                 CliSyntax.PREFIX_PHONE, CliSyntax.PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPersonCommand.MESSAGE_USAGE));
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(CliSyntax.PREFIX_NAME, CliSyntax.PREFIX_PHONE, CliSyntax.PREFIX_EMAIL,
@@ -45,7 +45,7 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         Person person = new Person(name, phone, email, address, tagList);
 
-        return new AddCommand(person);
+        return new AddPersonCommand(person);
     }
 
     /**
