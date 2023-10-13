@@ -17,6 +17,8 @@ import connectify.commons.core.index.Index;
 import connectify.logic.commands.exceptions.CommandException;
 import connectify.model.AddressBook;
 import connectify.model.Model;
+import connectify.model.company.Company;
+import connectify.model.company.CompanyNameContainsKeywordsPredicate;
 import connectify.model.person.NameContainsKeywordsPredicate;
 import connectify.model.person.Person;
 import connectify.testutil.EditPersonDescriptorBuilder;
@@ -122,6 +124,20 @@ public class CommandTestUtil {
         model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the company at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showCompanyAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredCompanyList().size());
+
+        Company company = model.getFilteredCompanyList().get(targetIndex.getZeroBased());
+        final String[] splitName = company.getName().split("\\s+");
+        model.updateFilteredCompanyList(new CompanyNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+
+        assertEquals(1, model.getFilteredCompanyList().size());
     }
 
 }

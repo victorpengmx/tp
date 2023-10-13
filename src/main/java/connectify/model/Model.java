@@ -15,6 +15,9 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Company> PREDICATE_SHOW_ALL_COMPANIES = unused -> true;
+
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -80,6 +83,13 @@ public interface Model {
      * {@code person} must not already exist in the address book.
      */
     void addCompany(Company company);
+
+    /**
+     * Deletes the given company.
+     * The company must exist in the address book.
+     */
+    void deleteCompany(Company target);
+
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the address book.
@@ -97,4 +107,10 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     ObservableList<Company> getFilteredCompanyList();
+
+    /**
+     * Updates the filter of the filtered company list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredCompanyList(Predicate<Company> predicate);
 }

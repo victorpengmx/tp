@@ -121,6 +121,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteCompany(Company target) {
+        addressBook.removeCompany(target);
+    }
+
+    @Override
     public void setPerson(Person target, Person editedPerson) {
         CollectionUtil.requireAllNonNull(target, editedPerson);
 
@@ -151,6 +156,12 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredCompanyList(Predicate<Company> predicate) {
+        requireNonNull(predicate);
+        filterCompanies.setPredicate(predicate);
     }
 
     @Override
