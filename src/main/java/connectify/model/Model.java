@@ -80,6 +80,13 @@ public interface Model {
      * {@code person} must not already exist in the address book.
      */
     void addCompany(Company company);
+
+    /**
+     * Deletes the given company.
+     * The company must exist in the address book.
+     */
+    void deleteCompany(Company target);
+
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the address book.
