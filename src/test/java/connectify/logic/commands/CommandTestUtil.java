@@ -19,8 +19,8 @@ import connectify.model.AddressBook;
 import connectify.model.Model;
 import connectify.model.company.Company;
 import connectify.model.company.CompanyNameContainsKeywordsPredicate;
-import connectify.model.person.Person;
 import connectify.model.person.NameContainsKeywordsPredicate;
+import connectify.model.person.Person;
 import connectify.testutil.EditPersonDescriptorBuilder;
 /**
  * Contains helper methods for testing commands.
