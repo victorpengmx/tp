@@ -14,7 +14,6 @@ import connectify.model.ReadOnlyAddressBook;
 import connectify.model.company.Company;
 import connectify.model.person.Person;
 
-
 /**
  * An Immutable AddressBook that is serializable to JSON format.
  */

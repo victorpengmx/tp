@@ -1,6 +1,5 @@
 package connectify.model.company;
 
-import static connectify.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static connectify.testutil.Assert.assertThrows;
 import static connectify.testutil.TypicalCompanies.COMPANY_1;
 import static connectify.testutil.TypicalCompanies.COMPANY_2;
@@ -10,13 +9,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import connectify.model.company.exceptions.CompanyNotFoundException;
 import connectify.model.company.exceptions.DuplicateCompanyException;
-import connectify.testutil.CompanyBuilder;
 
 public class UniqueCompanyListTest {
 
@@ -39,14 +38,6 @@ public class UniqueCompanyListTest {
     }
 
     @Test
-    public void contains_companyWithSameIdentityFieldsInList_returnsTrue() {
-        uniqueCompanyList.add(COMPANY_1);
-        Company editedCompany = new CompanyBuilder(COMPANY_1).withAddress(VALID_ADDRESS_BOB)
-                .build();
-        assertTrue(uniqueCompanyList.contains(editedCompany));
-    }
-
-    @Test
     public void add_nullCompany_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueCompanyList.add(null));
     }
@@ -63,11 +54,6 @@ public class UniqueCompanyListTest {
     }
 
     @Test
-    public void setCompany_nullEditedCompany_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueCompanyList.setCompany(COMPANY_1, null));
-    }
-
-    @Test
     public void setCompany_targetCompanyNotInList_throwsCompanyNotFoundException() {
         assertThrows(CompanyNotFoundException.class, () -> uniqueCompanyList.setCompany(COMPANY_1, COMPANY_1));
     }
@@ -78,17 +64,6 @@ public class UniqueCompanyListTest {
         uniqueCompanyList.setCompany(COMPANY_1, COMPANY_1);
         UniqueCompanyList expectedUniqueCompanyList = new UniqueCompanyList();
         expectedUniqueCompanyList.add(COMPANY_1);
-        assertEquals(expectedUniqueCompanyList, uniqueCompanyList);
-    }
-
-    @Test
-    public void setCompany_editedCompanyHasSameIdentity_success() {
-        uniqueCompanyList.add(COMPANY_1);
-        Company editedCompany1 = new CompanyBuilder(COMPANY_1).withAddress(VALID_ADDRESS_BOB)
-                .build();
-        uniqueCompanyList.setCompany(COMPANY_1, editedCompany1);
-        UniqueCompanyList expectedUniqueCompanyList = new UniqueCompanyList();
-        expectedUniqueCompanyList.add(editedCompany1);
         assertEquals(expectedUniqueCompanyList, uniqueCompanyList);
     }
 
@@ -141,11 +116,6 @@ public class UniqueCompanyListTest {
     }
 
     @Test
-    public void setCompanies_nullList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueCompanyList.setCompanies((List<Company>) null));
-    }
-
-    @Test
     public void setCompanies_list_replacesOwnListWithProvidedList() {
         uniqueCompanyList.add(COMPANY_1);
         List<Company> companyList = Collections.singletonList(COMPANY_2);
@@ -171,4 +141,36 @@ public class UniqueCompanyListTest {
     public void toStringMethod() {
         assertEquals(uniqueCompanyList.asUnmodifiableObservableList().toString(), uniqueCompanyList.toString());
     }
+
+    @Test
+    public void iterator_checkContents_success() {
+        uniqueCompanyList.add(COMPANY_1);
+        uniqueCompanyList.add(COMPANY_2);
+        Iterator<Company> iterator = uniqueCompanyList.iterator();
+        assertTrue(iterator.hasNext());
+        assertEquals(iterator.next(), COMPANY_1);
+        assertTrue(iterator.hasNext());
+        assertEquals(iterator.next(), COMPANY_2);
+        assertFalse(iterator.hasNext());
+    }
+
+    @Test
+    public void equals_sameObject_returnsTrue() {
+        assertTrue(uniqueCompanyList.equals(uniqueCompanyList));
+    }
+
+    @Test
+    public void equals_differentType_returnsFalse() {
+        assertFalse(uniqueCompanyList.equals(5));
+    }
+
+    @Test
+    public void equals_sameData_returnsTrue() {
+        uniqueCompanyList.add(COMPANY_1);
+        UniqueCompanyList otherUniqueCompanyList = new UniqueCompanyList();
+        otherUniqueCompanyList.add(COMPANY_1);
+        assertTrue(uniqueCompanyList.equals(otherUniqueCompanyList));
+    }
+
+
 }

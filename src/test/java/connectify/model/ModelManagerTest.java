@@ -15,6 +15,7 @@ import connectify.commons.core.GuiSettings;
 import connectify.model.person.NameContainsKeywordsPredicate;
 import connectify.testutil.AddressBookBuilder;
 import connectify.testutil.Assert;
+import connectify.testutil.TypicalCompanies;
 import connectify.testutil.TypicalPersons;
 
 public class ModelManagerTest {
@@ -88,9 +89,27 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void hasCompany_companyNotInAddressBook_returnsFalse() {
+        assertFalse(modelManager.hasCompany(TypicalCompanies.COMPANY_1));
+    }
+
+    @Test
+    public void hasCompany_companyInAddressBook_returnsTrue() {
+        modelManager.addCompany(TypicalCompanies.COMPANY_1);
+        assertTrue(modelManager.hasCompany(TypicalCompanies.COMPANY_1));
+    }
+
+
+    @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         Assert.assertThrows(UnsupportedOperationException.class, ()
                 -> modelManager.getFilteredPersonList().remove(0));
+    }
+
+    @Test
+    public void getFilteredCompanyList_modifyList_throwsUnsupportedOperationException() {
+        Assert.assertThrows(UnsupportedOperationException.class, ()
+                -> modelManager.getFilteredCompanyList().remove(0));
     }
 
     @Test

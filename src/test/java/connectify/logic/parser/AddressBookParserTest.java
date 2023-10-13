@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import connectify.logic.commands.AddCommand;
+import connectify.logic.commands.AddCompanyCommand;
 import connectify.logic.commands.ClearCommand;
 import connectify.logic.commands.DeleteCommand;
 import connectify.logic.commands.EditCommand;
@@ -23,11 +24,15 @@ import connectify.logic.commands.FindCommand;
 import connectify.logic.commands.HelpCommand;
 import connectify.logic.commands.ListCommand;
 import connectify.logic.parser.exceptions.ParseException;
+import connectify.model.company.Company;
 import connectify.model.person.NameContainsKeywordsPredicate;
 import connectify.model.person.Person;
+import connectify.testutil.CompanyBuilder;
+import connectify.testutil.CompanyUtil;
 import connectify.testutil.EditPersonDescriptorBuilder;
 import connectify.testutil.PersonBuilder;
 import connectify.testutil.PersonUtil;
+
 
 public class AddressBookParserTest {
 
@@ -38,6 +43,13 @@ public class AddressBookParserTest {
         Person person = new PersonBuilder().build();
         AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
         assertEquals(new AddCommand(person), command);
+    }
+
+    @Test
+    public void parseCommand_addCompany() throws Exception {
+        Company company = new CompanyBuilder().build();
+        AddCompanyCommand command = (AddCompanyCommand) parser.parseCommand(CompanyUtil.getAddCommand(company));
+        assertEquals(new AddCompanyCommand(company), command);
     }
 
     @Test
