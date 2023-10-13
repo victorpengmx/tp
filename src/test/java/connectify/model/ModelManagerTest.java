@@ -1,7 +1,7 @@
 package connectify.model;
 
-import static connectify.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static connectify.model.Model.PREDICATE_SHOW_ALL_COMPANIES;
+import static connectify.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;

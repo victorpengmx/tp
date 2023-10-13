@@ -1,12 +1,12 @@
 package connectify.testutil;
 
-import connectify.model.AddressBook;
-import connectify.model.company.Company;
-import connectify.model.person.Person;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import connectify.model.AddressBook;
+import connectify.model.company.Company;
+
 
 /**
  * A utility class to help with building Company objects.
