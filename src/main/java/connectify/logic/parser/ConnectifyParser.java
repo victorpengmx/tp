@@ -9,7 +9,6 @@ import java.util.regex.Pattern;
 
 import connectify.commons.core.LogsCenter;
 import connectify.logic.commands.AddCommand;
-import connectify.logic.commands.AddCompanyCommand;
 import connectify.logic.commands.ClearCommand;
 import connectify.logic.commands.Command;
 import connectify.logic.commands.DeletePersonCommand;
@@ -23,7 +22,7 @@ import connectify.logic.parser.exceptions.ParseException;
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class ConnectifyParser {
 
     /**
      * Used for initial separation of command word and args.
@@ -56,9 +55,6 @@ public class AddressBookParser {
 
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
-
-        case AddCompanyCommand.COMMAND_WORD:
-            return new AddCompanyCommandParser().parse(arguments);
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
