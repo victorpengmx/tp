@@ -8,7 +8,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import connectify.commons.core.LogsCenter;
-import connectify.logic.commands.AddCommand;
+import connectify.logic.commands.AddPersonCommand;
 import connectify.logic.commands.AddCompanyCommand;
 import connectify.logic.commands.ClearCommand;
 import connectify.logic.commands.Command;
@@ -54,8 +54,8 @@ public class ConnectifyParser {
 
         switch (commandWord) {
 
-        case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
+        case AddPersonCommand.COMMAND_WORD:
+            return new AddPersonCommandParser().parse(arguments);
 
         case AddCompanyCommand.COMMAND_WORD:
             return new AddCompanyCommandParser().parse(arguments);
