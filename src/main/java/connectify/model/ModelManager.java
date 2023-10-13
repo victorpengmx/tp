@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 import connectify.commons.core.GuiSettings;
 import connectify.commons.core.LogsCenter;
 import connectify.commons.util.CollectionUtil;
+import connectify.model.company.Company;
 import connectify.model.person.Person;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -22,6 +23,8 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Company> filterCompanies;
+
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -34,6 +37,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filterCompanies = new FilteredList<>(this.addressBook.getCompanyList());
     }
 
     public ModelManager() {
@@ -94,6 +98,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasCompany(Company company) {
+        requireNonNull(company);
+        return addressBook.hasCompany(company);
+    }
+
+    @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
     }
@@ -101,6 +111,12 @@ public class ModelManager implements Model {
     @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void addCompany(Company company) {
+        addressBook.addCompany(company);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -120,6 +136,15 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         return filteredPersons;
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Company> getFilteredCompanyList() {
+        return filterCompanies;
     }
 
     @Override

@@ -21,9 +21,11 @@ import connectify.model.AddressBook;
 import connectify.model.Model;
 import connectify.model.ReadOnlyAddressBook;
 import connectify.model.ReadOnlyUserPrefs;
+import connectify.model.company.Company;
 import connectify.model.person.Person;
 import connectify.testutil.PersonBuilder;
 import javafx.collections.ObservableList;
+
 
 public class AddCommandTest {
 
@@ -123,6 +125,17 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        /**
+         * Adds the given company.
+         * {@code company} must not already exist in the address book.
+         *
+         * @param company
+         */
+        @Override
+        public void addCompany(Company company) {
+            throw new AssertionError("This method should not be called.");
+        }
+
         @Override
         public void setAddressBook(ReadOnlyAddressBook newData) {
             throw new AssertionError("This method should not be called.");
@@ -135,6 +148,16 @@ public class AddCommandTest {
 
         @Override
         public boolean hasPerson(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        /**
+         * Returns true if a company with the same identity as {@code company} exists in the address book.
+         *
+         * @param company
+         */
+        @Override
+        public boolean hasCompany(Company company) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -155,6 +178,11 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Company> getFilteredCompanyList() {
             throw new AssertionError("This method should not be called.");
         }
     }
