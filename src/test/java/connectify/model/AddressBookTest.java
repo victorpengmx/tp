@@ -12,6 +12,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import connectify.logic.commands.CommandTestUtil;
+import connectify.model.company.Company;
 import connectify.model.person.Person;
 import connectify.model.person.exceptions.DuplicatePersonException;
 import connectify.testutil.Assert;
@@ -91,6 +92,7 @@ public class AddressBookTest {
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
+        private final ObservableList<Company> companies = FXCollections.observableArrayList();
 
         AddressBookStub(Collection<Person> persons) {
             this.persons.setAll(persons);
@@ -100,6 +102,10 @@ public class AddressBookTest {
         public ObservableList<Person> getPersonList() {
             return persons;
         }
-    }
 
+        @Override
+        public ObservableList<Company> getCompanyList() {
+            return companies;
+        }
+    }
 }

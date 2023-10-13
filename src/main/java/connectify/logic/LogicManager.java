@@ -14,6 +14,7 @@ import connectify.logic.parser.ConnectifyParser;
 import connectify.logic.parser.exceptions.ParseException;
 import connectify.model.Model;
 import connectify.model.ReadOnlyAddressBook;
+import connectify.model.company.Company;
 import connectify.model.person.Person;
 import connectify.storage.Storage;
 import javafx.collections.ObservableList;
@@ -70,6 +71,12 @@ public class LogicManager implements Logic {
     public ObservableList<Person> getFilteredPersonList() {
         return model.getFilteredPersonList();
     }
+
+    @Override
+    public ObservableList<Company> getFilteredCompanyList() {
+        return model.getFilteredCompanyList();
+    }
+
 
     @Override
     public Path getAddressBookFilePath() {

@@ -5,6 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import connectify.commons.util.ToStringBuilder;
+import connectify.model.company.Company;
+import connectify.model.company.UniqueCompanyList;
 import connectify.model.person.Person;
 import connectify.model.person.UniquePersonList;
 import javafx.collections.ObservableList;
@@ -16,6 +18,7 @@ import javafx.collections.ObservableList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final UniqueCompanyList companies;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -26,6 +29,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        companies = new UniqueCompanyList();
     }
 
     public AddressBook() {}
@@ -49,12 +53,20 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the person list with {@code persons}.
+     * {@code persons} must not contain duplicate persons.
+     */
+    public void setCompanies(List<Company> companies) {
+        this.companies.setCompanies(companies);
+    }
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+        setCompanies(newData.getCompanyList());
     }
 
     //// person-level operations
@@ -73,6 +85,14 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addPerson(Person p) {
         persons.add(p);
+    }
+
+    /**
+     * Adds a person to the address book.
+     * The person must not already exist in the address book.
+     */
+    public void addCompany(Company c) {
+        companies.add(c);
     }
 
     /**
@@ -106,6 +126,19 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
+    }
+
+
+    /**
+     * Returns true if a company with the same identity as {@code company} exists in the address book.
+     */
+    public boolean hasCompany(Company company) {
+        requireNonNull(company);
+        return companies.contains(company);
+    }
+
+    public ObservableList<Company> getCompanyList() {
+        return companies.asUnmodifiableObservableList();
     }
 
     @Override

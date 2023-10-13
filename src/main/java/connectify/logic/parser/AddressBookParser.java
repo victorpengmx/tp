@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 
 import connectify.commons.core.LogsCenter;
 import connectify.logic.commands.AddCommand;
+import connectify.logic.commands.AddCompanyCommand;
 import connectify.logic.commands.ClearCommand;
 import connectify.logic.commands.Command;
 import connectify.logic.commands.DeletePersonCommand;
@@ -55,6 +56,9 @@ public class AddressBookParser {
 
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
+
+        case AddCompanyCommand.COMMAND_WORD:
+            return new AddCompanyCommandParser().parse(arguments);
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
