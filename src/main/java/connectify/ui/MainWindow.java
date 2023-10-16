@@ -110,8 +110,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        entityListPanel = new EntityListPanel(logic.getFilteredEntityList());
-        entityListPanelPlaceholder.getChildren().add(entityListPanel.getRoot());
+        entityListPanelPlaceholder.getChildren().add(new EntityListPanel(logic.getFilteredEntityList()).getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
