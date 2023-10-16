@@ -136,6 +136,19 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void getFilteredEntityList_setCurrEntityToPeople_returnsCorrectList() {
+        modelManager.setCurrEntity("people");
+        assertEquals(modelManager.getFilteredPersonList(), modelManager.getFilteredEntityList());
+    }
+
+    @Test
+    public void getFilteredEntityList_setCurrEntityToCompanies_returnsCorrectList() {
+        modelManager.setCurrEntity("companies");
+        assertEquals(modelManager.getFilteredCompanyList(), modelManager.getFilteredEntityList());
+    }
+
+
+    @Test
     public void getFilteredEntityList_getAllList_returnsCorrectList() {
         modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         modelManager.setCurrEntity("people");

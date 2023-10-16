@@ -211,7 +211,7 @@ public class ModelManager implements Model {
         } else if (currEntity == EntityType.COMPANIES) {
             return filterCompanies;
         } else {
-            // Create a new ObservableList which contains all the elements from filteredPersons and filterCompanies
+            // Create a new ObservableList which contains all the elements from filteredCompanies and filteredPersons
             ObservableList<Entity> allEntityList = FXCollections.observableArrayList();
             allEntityList.addAll(filterCompanies);
             allEntityList.addAll(filteredPersons);
