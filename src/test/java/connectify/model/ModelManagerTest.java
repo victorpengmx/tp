@@ -216,7 +216,6 @@ public class ModelManagerTest {
     }
 
     @Test
-    // test public void updateToAllEntities() {
     public void updateToAllEntities_modifyEntityType_setsEntityType() {
         modelManager.updateToAllEntities();
         try {
@@ -225,6 +224,17 @@ public class ModelManagerTest {
             throw new AssertionError("InvalidEntityException should not be thrown.");
         }
     }
+
+    @Test
+    public void getCurrEntity_invalidEntityType_throwsInvalidEntityException() {
+        Assert.assertThrows(InvalidEntityException.class, () -> modelManager.setCurrEntity("invalid"));
+    }
+
+    @Test
+    public void setCurrEntity_invalidEntityType_throwsInvalidEntityException() {
+        Assert.assertThrows(InvalidEntityException.class, () -> modelManager.setCurrEntity("invalid"));
+    }
+
 
     @Test
     public void equals() {
