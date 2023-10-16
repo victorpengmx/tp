@@ -18,7 +18,6 @@ import javafx.scene.layout.Region;
  */
 public class EntityListPanel extends UiPart<Region> {
     public static final String FXML = "EntityListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(EntityListPanel.class);
 
     @FXML
     private ListView<Entity> entityListView;
@@ -30,10 +29,7 @@ public class EntityListPanel extends UiPart<Region> {
     public <T extends Entity> EntityListPanel(ObservableList<T> entityList) {
         super(FXML);
 
-        // Create a new ObservableList<Entity> and add elements from entityList
-        ObservableList<Entity> allEntityList = FXCollections.observableArrayList(entityList);
-
-        entityListView.setItems(allEntityList);
+        entityListView.setItems(FXCollections.observableArrayList(entityList));
         entityListView.setCellFactory(listView -> new EntityListViewCell());
     }
 
