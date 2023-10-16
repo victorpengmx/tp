@@ -7,13 +7,14 @@ import java.util.Set;
 
 import connectify.commons.util.CollectionUtil;
 import connectify.commons.util.ToStringBuilder;
+import connectify.model.Entity;
 import connectify.model.tag.Tag;
 
 /**
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person {
+public class Person extends Entity {
 
     // Identity fields
     private final Name name;

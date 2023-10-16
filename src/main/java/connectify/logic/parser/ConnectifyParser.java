@@ -19,6 +19,7 @@ import connectify.logic.commands.ExitCommand;
 import connectify.logic.commands.FindCommand;
 import connectify.logic.commands.HelpCommand;
 import connectify.logic.commands.ListCommand;
+import connectify.logic.commands.ListCompaniesCommand;
 import connectify.logic.parser.exceptions.ParseException;
 
 /**
@@ -75,6 +76,9 @@ public class ConnectifyParser {
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
+
+        case ListCompaniesCommand.COMMAND_WORD:
+            return new ListCompaniesCommand();
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();

@@ -113,4 +113,7 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredCompanyList(Predicate<Company> predicate);
+
+    /** Returns an unmodifiable view of the filtered entity (either person or company) list */
+    ObservableList<? extends Entity> getFilteredEntityList();
 }

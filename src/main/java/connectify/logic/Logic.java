@@ -6,6 +6,7 @@ import connectify.commons.core.GuiSettings;
 import connectify.logic.commands.CommandResult;
 import connectify.logic.commands.exceptions.CommandException;
 import connectify.logic.parser.exceptions.ParseException;
+import connectify.model.Entity;
 import connectify.model.Model;
 import connectify.model.ReadOnlyAddressBook;
 import connectify.model.company.Company;
@@ -51,4 +52,6 @@ public interface Logic {
     void setGuiSettings(GuiSettings guiSettings);
 
     ObservableList<Company> getFilteredCompanyList();
+
+    ObservableList<? extends Entity> getFilteredEntityList();
 }

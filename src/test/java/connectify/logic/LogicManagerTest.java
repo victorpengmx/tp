@@ -89,6 +89,11 @@ public class LogicManagerTest {
 
     }
 
+    @Test
+    public void getFilteredEntityList_modifyList_throwsUnsupportedOperationException() {
+        Assert.assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredEntityList().remove(0));
+    }
+
 
     /**
      * Executes the command and confirms that

@@ -24,6 +24,10 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Company> filterCompanies;
+    private enum EntityType {
+        PEOPLE, COMPANIES
+    }
+    private EntityType currEntity = EntityType.COMPANIES;
 
 
     /**
@@ -106,23 +110,27 @@ public class ModelManager implements Model {
     @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
+        currEntity = EntityType.PEOPLE;
     }
 
     @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        currEntity = EntityType.PEOPLE;
     }
 
     @Override
     public void addCompany(Company company) {
         addressBook.addCompany(company);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        currEntity = EntityType.COMPANIES;
     }
 
     @Override
     public void deleteCompany(Company target) {
         addressBook.removeCompany(target);
+        currEntity = EntityType.COMPANIES;
     }
 
     @Override
@@ -130,9 +138,10 @@ public class ModelManager implements Model {
         CollectionUtil.requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
+        currEntity = EntityType.PEOPLE;
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
@@ -156,12 +165,24 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+        currEntity = EntityType.PEOPLE;
     }
 
     @Override
     public void updateFilteredCompanyList(Predicate<Company> predicate) {
         requireNonNull(predicate);
         filterCompanies.setPredicate(predicate);
+        currEntity = EntityType.COMPANIES;
+    }
+
+    @Override
+    public ObservableList<? extends Entity> getFilteredEntityList() {
+        System.out.println(currEntity);
+        if (currEntity == EntityType.PEOPLE) {
+            return filteredPersons;
+        } else {
+            return filterCompanies;
+        }
     }
 
     @Override

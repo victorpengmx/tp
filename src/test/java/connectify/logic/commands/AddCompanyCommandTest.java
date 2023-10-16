@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 import connectify.commons.core.GuiSettings;
 import connectify.logic.commands.exceptions.CommandException;
 import connectify.model.AddressBook;
+import connectify.model.Entity;
 import connectify.model.Model;
 import connectify.model.ReadOnlyAddressBook;
 import connectify.model.ReadOnlyUserPrefs;
@@ -192,6 +193,11 @@ public class AddCompanyCommandTest {
         public void updateFilteredCompanyList(Predicate<Company> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public ObservableList<? extends Entity> getFilteredEntityList() {
+            throw new AssertionError("This method should not be called.");
+        };
     }
 
     private class ModelStubWithCompany extends ModelStub {
