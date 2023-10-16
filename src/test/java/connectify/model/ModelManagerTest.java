@@ -115,6 +115,12 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void getFilteredEntityList_modifyList_throwsUnsupportedOperationException() {
+        Assert.assertThrows(UnsupportedOperationException.class, ()
+                -> modelManager.getFilteredEntityList().remove(0));
+    }
+
+    @Test
     public void equals() {
         AddressBook addressBook = new AddressBookBuilder().withPerson(TypicalPersons.ALICE)
                 .withPerson(TypicalPersons.BENSON).build();

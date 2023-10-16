@@ -31,9 +31,9 @@ public class EntityListPanel extends UiPart<Region> {
         super(FXML);
 
         // Create a new ObservableList<Entity> and add elements from entityList
-        ObservableList<Entity> castedEntityList = FXCollections.observableArrayList(entityList);
+        ObservableList<Entity> allEntityList = FXCollections.observableArrayList(entityList);
 
-        entityListView.setItems(castedEntityList);
+        entityListView.setItems(allEntityList);
         entityListView.setCellFactory(listView -> new EntityListViewCell());
     }
 

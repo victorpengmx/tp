@@ -202,6 +202,11 @@ public class AddPersonCommandTest {
         public ObservableList<? extends Entity> getFilteredEntityList() {
             throw new AssertionError("This method should not be called.");
         };
+
+        @Override
+        public void updateToAllEntities() {
+            throw new AssertionError("This method should not be called.");
+        };
     }
 
     /**

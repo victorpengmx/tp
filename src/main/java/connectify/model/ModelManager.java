@@ -11,6 +11,7 @@ import connectify.commons.core.LogsCenter;
 import connectify.commons.util.CollectionUtil;
 import connectify.model.company.Company;
 import connectify.model.person.Person;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 
@@ -25,7 +26,7 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Company> filterCompanies;
     private enum EntityType {
-        PEOPLE, COMPANIES
+        PEOPLE, COMPANIES, ALL
     }
     private EntityType currEntity = EntityType.COMPANIES;
 
@@ -176,11 +177,22 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void updateToAllEntities() {
+        currEntity = EntityType.ALL;
+    }
+
+    @Override
     public ObservableList<? extends Entity> getFilteredEntityList() {
         if (currEntity == EntityType.PEOPLE) {
             return filteredPersons;
-        } else {
+        } else if (currEntity == EntityType.COMPANIES) {
             return filterCompanies;
+        } else {
+            // Create a new ObservableList which contains all the elements from filteredPersons and filterCompanies
+            ObservableList<Entity> allEntityList = FXCollections.observableArrayList();
+            allEntityList.addAll(filteredPersons);
+            allEntityList.addAll(filterCompanies);
+            return allEntityList;
         }
     }
 
