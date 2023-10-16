@@ -119,4 +119,10 @@ public interface Model {
 
     /** Sets the current entity to be displayed to be all the entities*/
     void updateToAllEntities();
+
+    /** Get the current entity type */
+    String getCurrEntity();
+
+    /** Set the current entity type */
+    void setCurrEntity(String currEntity);
 }

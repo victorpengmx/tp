@@ -182,10 +182,7 @@ public class ModelManager implements Model {
     public void updateToAllEntities() {
         currEntity = EntityType.ALL;
     }
-
-    /**
-     * Returns the current entity type as a string.
-     */
+    @Override
     public String getCurrEntity() {
         if (currEntity == EntityType.PEOPLE) {
             return "people";
@@ -196,6 +193,7 @@ public class ModelManager implements Model {
         }
     }
 
+    @Override
     public void setCurrEntity(String entityType) {
         if (entityType.equals("people")) {
             currEntity = EntityType.PEOPLE;
