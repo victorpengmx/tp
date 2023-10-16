@@ -19,6 +19,7 @@ import connectify.testutil.AddressBookBuilder;
 import connectify.testutil.Assert;
 import connectify.testutil.TypicalCompanies;
 import connectify.testutil.TypicalPersons;
+import javafx.collections.ObservableList;
 
 public class ModelManagerTest {
 
@@ -118,6 +119,45 @@ public class ModelManagerTest {
     public void getFilteredEntityList_modifyList_throwsUnsupportedOperationException() {
         Assert.assertThrows(UnsupportedOperationException.class, ()
                 -> modelManager.getFilteredEntityList().remove(0));
+    }
+
+    @Test
+    public void getFilteredEntityList_getPersonList_returnsCorrectList() {
+        modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        assertEquals(modelManager.getFilteredPersonList(), modelManager.getFilteredEntityList());
+    }
+
+    @Test
+    public void getFilteredEntityList_getCompaniesList_returnsCorrectList() {
+        modelManager.updateFilteredCompanyList(PREDICATE_SHOW_ALL_COMPANIES);
+        assertEquals(modelManager.getFilteredCompanyList(), modelManager.getFilteredEntityList());
+    }
+
+    @Test
+    public void getFilteredEntityList_getAllList_returnsCorrectList() {
+        modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        ObservableList<?> personList = modelManager.getFilteredEntityList();
+        modelManager.updateFilteredCompanyList(PREDICATE_SHOW_ALL_COMPANIES);
+        ObservableList<?> companyList = modelManager.getFilteredEntityList();
+
+        modelManager.updateToAllEntities();
+        assertEquals(personList.size() + companyList.size(), modelManager.getFilteredEntityList().size());
+
+        // check items
+        for (int i = 0; i < companyList.size(); i++) {
+            assertEquals(companyList.get(i), modelManager.getFilteredEntityList().get(i));
+        }
+
+        for (int i = 0; i < personList.size(); i++) {
+            assertEquals(personList.get(i), modelManager.getFilteredEntityList().get(i + companyList.size()));
+        }
+    }
+
+    @Test
+    // test public void updateToAllEntities() {
+    public void updateToAllEntities_modifyEntityType_setsEntityType() {
+        modelManager.updateToAllEntities();
+        assertEquals("all", modelManager.getCurrEntity());
     }
 
     @Test

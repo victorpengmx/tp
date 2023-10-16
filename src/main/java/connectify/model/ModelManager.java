@@ -181,6 +181,19 @@ public class ModelManager implements Model {
         currEntity = EntityType.ALL;
     }
 
+    /**
+     * Returns the current entity type as a string.
+     */
+    public String getCurrEntity() {
+        if (currEntity == EntityType.PEOPLE) {
+            return "people";
+        } else if (currEntity == EntityType.COMPANIES) {
+            return "companies";
+        } else {
+            return "all";
+        }
+    }
+
     @Override
     public ObservableList<? extends Entity> getFilteredEntityList() {
         if (currEntity == EntityType.PEOPLE) {
@@ -190,8 +203,8 @@ public class ModelManager implements Model {
         } else {
             // Create a new ObservableList which contains all the elements from filteredPersons and filterCompanies
             ObservableList<Entity> allEntityList = FXCollections.observableArrayList();
-            allEntityList.addAll(filteredPersons);
             allEntityList.addAll(filterCompanies);
+            allEntityList.addAll(filteredPersons);
             return allEntityList;
         }
     }
