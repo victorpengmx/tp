@@ -263,4 +263,12 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(otherModelManager.filteredPersons);
     }
 
+    @Override
+    public String toString() {
+        String msg = "There are " + getNumberOfEntities() + " entities in the address book.\n";
+        msg += "There are " + getNumberOfPeople() + " people in the address book.\n";
+        msg += "There are " + getNumberOfCompanies() + " companies in the address book.\n";
+        return msg;
+    }
+
 }

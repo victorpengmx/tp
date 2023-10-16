@@ -283,6 +283,28 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void toString_emptyAddressBook_returnsZero() {
+        assertEquals("There are 0 entities in the address book.\n"
+                + "There are 0 people in the address book.\n"
+                + "There are 0 companies in the address book.\n", modelManager.toString());
+    }
+
+    @Test
+    public void toString_nonEmptyAddressBook_returnsCorrectNumber() {
+        try {
+            modelManager.addPerson(TypicalPersons.ALICE);
+            modelManager.addCompany(TypicalCompanies.COMPANY_1);
+            modelManager.setCurrEntity("all");
+        } catch (InvalidEntityException e) {
+            throw new AssertionError("InvalidEntityException should not be thrown.");
+        }
+        assertEquals("There are 2 entities in the address book.\n"
+                + "There are 1 people in the address book.\n"
+                + "There are 1 companies in the address book.\n", modelManager.toString());
+        modelManager = new ModelManager();
+    }
+
+    @Test
     public void equals() {
         AddressBook addressBook = new AddressBookBuilder().withPerson(TypicalPersons.ALICE)
                 .withPerson(TypicalPersons.BENSON).build();
