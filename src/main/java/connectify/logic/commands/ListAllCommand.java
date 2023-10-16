@@ -9,7 +9,7 @@ import connectify.model.Model;
 /**
  * Lists all entities (both persons and companies) in the address book to the user.
  */
-public class ListCommand extends Command {
+public class ListAllCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
 

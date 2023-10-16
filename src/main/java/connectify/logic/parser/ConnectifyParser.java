@@ -18,7 +18,7 @@ import connectify.logic.commands.EditCommand;
 import connectify.logic.commands.ExitCommand;
 import connectify.logic.commands.FindCommand;
 import connectify.logic.commands.HelpCommand;
-import connectify.logic.commands.ListCommand;
+import connectify.logic.commands.ListAllCommand;
 import connectify.logic.commands.ListCompaniesCommand;
 import connectify.logic.commands.ListPeopleCommand;
 import connectify.logic.parser.exceptions.ParseException;
@@ -84,8 +84,8 @@ public class ConnectifyParser {
         case ListPeopleCommand.COMMAND_WORD:
             return new ListPeopleCommand();
 
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+        case ListAllCommand.COMMAND_WORD:
+            return new ListAllCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

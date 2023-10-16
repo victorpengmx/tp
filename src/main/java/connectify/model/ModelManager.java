@@ -17,6 +17,8 @@ import javafx.collections.transformation.FilteredList;
 
 /**
  * Represents the in-memory model of the address book data.
+ * A key flag in this model is the current entity type, which can be either people, companies or all.
+ * Depending on the current entity type, the filtered list will be updated accordingly.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -207,11 +209,14 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<? extends Entity> getFilteredEntityList() {
         if (currEntity == EntityType.PEOPLE) {
+            logger.info("Returning list of filtered persons");
             return filteredPersons;
         } else if (currEntity == EntityType.COMPANIES) {
+            logger.info("Returning list of filtered companies");
             return filterCompanies;
         } else {
             // Create a new ObservableList which contains all the elements from filteredCompanies and filteredPersons
+            logger.info("Returning list of all entities");
             ObservableList<Entity> allEntityList = FXCollections.observableArrayList();
             allEntityList.addAll(filterCompanies);
             allEntityList.addAll(filteredPersons);
