@@ -1,8 +1,5 @@
 package connectify.ui;
 
-import java.util.logging.Logger;
-
-import connectify.commons.core.LogsCenter;
 import connectify.model.Entity;
 import connectify.model.company.Company;
 import connectify.model.person.Person;
