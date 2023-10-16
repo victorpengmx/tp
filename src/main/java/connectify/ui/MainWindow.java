@@ -113,7 +113,7 @@ public class MainWindow extends UiPart<Stage> {
         entityListPanelPlaceholder.getChildren().add(new EntityListPanel(logic.getFilteredEntityList()).getRoot());
 
         resultDisplay = new ResultDisplay();
-        resultDisplayPlaceholder.getChildren().add(new ResultDisplay().getRoot());
+        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
