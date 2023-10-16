@@ -14,8 +14,6 @@ public class CompanyCard extends UiPart<Region> {
 
     private static final String FXML = "CompanyListCard.fxml";
 
-    public final Company company;
-
     @FXML
     private HBox cardPane;
 
@@ -47,7 +45,6 @@ public class CompanyCard extends UiPart<Region> {
 
     public CompanyCard(Company company, int displayedIndex) {
         super(FXML);
-        this.company = company;
         id.setText(displayedIndex + ". ");
         name.setText(company.getName());
         area.setText(company.getLocation());

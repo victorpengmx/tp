@@ -33,17 +33,16 @@ public class ListAllCommandTest {
 
     @Test
     public void equals() {
-        ListAllCommand listAllCommand1 = new ListAllCommand();
-        ListAllCommand listAllCommand2 = new ListAllCommand();
+        ListAllCommand listAllCommand = new ListAllCommand();
 
         // same object -> returns true
-        assertTrue(listAllCommand1.equals(listAllCommand1));
+        assertTrue(listAllCommand.equals(listAllCommand));
 
         // all list all command objects are the same -> returns true
-        assertTrue(listAllCommand1.equals(listAllCommand2));
+        assertTrue(listAllCommand.equals(new ListAllCommand()));
 
         // null -> returns false
-        assertFalse(listAllCommand1.equals(null));
+        assertFalse(listAllCommand.equals(null));
 
     }
 }

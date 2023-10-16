@@ -183,24 +183,30 @@ public class ModelManager implements Model {
         currEntity = EntityType.ALL;
     }
     @Override
-    public String getCurrEntity() {
+    public String getCurrEntity() throws InvalidEntityException {
         if (currEntity == EntityType.PEOPLE) {
             return "people";
         } else if (currEntity == EntityType.COMPANIES) {
             return "companies";
-        } else {
+        } else if (currEntity == EntityType.ALL) {
             return "all";
+        } else {
+            throw new InvalidEntityException("Invalid entity type: " + currEntity + ". Please enter either "
+                    + "people, companies or all.");
         }
     }
 
     @Override
-    public void setCurrEntity(String entityType) {
+    public void setCurrEntity(String entityType) throws InvalidEntityException {
         if (entityType.equals("people")) {
             currEntity = EntityType.PEOPLE;
         } else if (entityType.equals("companies")) {
             currEntity = EntityType.COMPANIES;
-        } else {
+        } else if (entityType.equals("all")) {
             currEntity = EntityType.ALL;
+        } else {
+            throw new InvalidEntityException("Invalid entity type: " + entityType + ". Please enter either "
+                    + "people, companies or all.");
         }
     }
 

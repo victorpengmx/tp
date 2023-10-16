@@ -121,8 +121,8 @@ public interface Model {
     void updateToAllEntities();
 
     /** Get the current entity type */
-    String getCurrEntity();
+    String getCurrEntity() throws InvalidEntityException;
 
     /** Set the current entity type */
-    void setCurrEntity(String currEntity);
+    void setCurrEntity(String currEntity) throws InvalidEntityException;
 }

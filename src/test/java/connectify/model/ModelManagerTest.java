@@ -104,20 +104,32 @@ public class ModelManagerTest {
 
     @Test
     public void getCurrEntity_people_returnsPeople() {
-        modelManager.setCurrEntity("people");
-        assertEquals("people", modelManager.getCurrEntity());
+        try {
+            modelManager.setCurrEntity("people");
+            assertEquals("people", modelManager.getCurrEntity());
+        } catch (InvalidEntityException e) {
+            throw new AssertionError("InvalidEntityException should not be thrown.");
+        }
     }
 
     @Test
     public void getCurrEntity_companies_returnsCompanies() {
-        modelManager.setCurrEntity("companies");
-        assertEquals("companies", modelManager.getCurrEntity());
+        try {
+            modelManager.setCurrEntity("companies");
+            assertEquals("companies", modelManager.getCurrEntity());
+        } catch (InvalidEntityException e) {
+            throw new AssertionError("InvalidEntityException should not be thrown.");
+        }
     }
 
     @Test
     public void getCurrEntity_all_returnsAll() {
-        modelManager.setCurrEntity("all");
-        assertEquals("all", modelManager.getCurrEntity());
+        try {
+            modelManager.setCurrEntity("all");
+            assertEquals("all", modelManager.getCurrEntity());
+        } catch (InvalidEntityException e) {
+            throw new AssertionError("InvalidEntityException should not be thrown.");
+        }
     }
 
 
@@ -142,34 +154,49 @@ public class ModelManagerTest {
     @Test
     public void getFilteredEntityList_getPersonList_returnsCorrectList() {
         modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        modelManager.setCurrEntity("people");
-        assertEquals(modelManager.getFilteredPersonList(), modelManager.getFilteredEntityList());
+        try {
+            modelManager.setCurrEntity("people");
+            assertEquals(modelManager.getFilteredPersonList(), modelManager.getFilteredEntityList());
+        } catch (InvalidEntityException e) {
+            throw new AssertionError("InvalidEntityException should not be thrown.");
+        }
     }
 
     @Test
     public void getFilteredEntityList_getCompaniesList_returnsCorrectList() {
         modelManager.updateFilteredCompanyList(PREDICATE_SHOW_ALL_COMPANIES);
-        modelManager.setCurrEntity("companies");
-        assertEquals(modelManager.getFilteredCompanyList(), modelManager.getFilteredEntityList());
+        try {
+            modelManager.setCurrEntity("companies");
+            assertEquals(modelManager.getFilteredCompanyList(), modelManager.getFilteredEntityList());
+        } catch (InvalidEntityException e) {
+            throw new AssertionError("InvalidEntityException should not be thrown.");
+        }
     }
 
     @Test
     public void getFilteredEntityList_setCurrEntityToPeople_returnsCorrectList() {
-        modelManager.setCurrEntity("people");
-        assertEquals(modelManager.getFilteredPersonList(), modelManager.getFilteredEntityList());
+        try {
+            modelManager.setCurrEntity("people");
+            assertEquals(modelManager.getFilteredPersonList(), modelManager.getFilteredEntityList());
+        } catch (InvalidEntityException e) {
+            throw new AssertionError("InvalidEntityException should not be thrown.");
+        }
     }
 
     @Test
     public void getFilteredEntityList_setCurrEntityToCompanies_returnsCorrectList() {
-        modelManager.setCurrEntity("companies");
-        assertEquals(modelManager.getFilteredCompanyList(), modelManager.getFilteredEntityList());
+        try {
+            modelManager.setCurrEntity("companies");
+            assertEquals(modelManager.getFilteredCompanyList(), modelManager.getFilteredEntityList());
+        } catch (InvalidEntityException e) {
+            throw new AssertionError("InvalidEntityException should not be thrown.");
+        }
     }
 
 
     @Test
     public void getFilteredEntityList_getAllList_returnsCorrectList() {
         modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        modelManager.setCurrEntity("people");
         ObservableList<?> personList = modelManager.getFilteredEntityList();
 
         modelManager.updateFilteredCompanyList(PREDICATE_SHOW_ALL_COMPANIES);
@@ -192,7 +219,11 @@ public class ModelManagerTest {
     // test public void updateToAllEntities() {
     public void updateToAllEntities_modifyEntityType_setsEntityType() {
         modelManager.updateToAllEntities();
-        assertEquals("all", modelManager.getCurrEntity());
+        try {
+            assertEquals("all", modelManager.getCurrEntity());
+        } catch (InvalidEntityException e) {
+            throw new AssertionError("InvalidEntityException should not be thrown.");
+        }
     }
 
     @Test
