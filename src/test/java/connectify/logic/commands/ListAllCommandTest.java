@@ -2,6 +2,7 @@ package connectify.logic.commands;
 
 import static connectify.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static connectify.testutil.TypicalCompanies.getTypicalAddressBook;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -37,6 +38,11 @@ public class ListAllCommandTest {
         assertCommandSuccess(new ListAllCommand(), emptyModel, ListAllCommand.EMPTY_LIST_MESSAGE, emptyModel);
     }
 
+    @Test
+    public void toStringTest() {
+        ListAllCommand listAllCommand = new ListAllCommand();
+        assertEquals(listAllCommand.toString(), "ListAllCommand");
+    }
 
     @Test
     public void equals() {

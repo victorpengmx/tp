@@ -37,4 +37,9 @@ public class ListCompaniesCommand extends Command {
             return false;
         }
     }
+
+    @Override
+    public String toString() {
+        return "ListCompaniesCommand";
+    }
 }

@@ -45,4 +45,9 @@ public class ListAllCommand extends Command {
 
         return false;
     }
+
+    @Override
+    public String toString() {
+        return "ListAllCommand";
+    }
 }

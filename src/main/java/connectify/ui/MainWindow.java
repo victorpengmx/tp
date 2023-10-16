@@ -176,8 +176,7 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-            entityListPanel = new EntityListPanel(logic.getFilteredEntityList());
-            entityListPanelPlaceholder.getChildren().add(entityListPanel.getRoot());
+            entityListPanelPlaceholder.getChildren().add(new EntityListPanel(logic.getFilteredEntityList()).getRoot());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

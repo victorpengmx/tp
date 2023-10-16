@@ -38,4 +38,9 @@ public class ListPeopleCommand extends Command {
             return true;
         }
     }
+
+    @Override
+    public String toString() {
+        return "ListPeopleCommand";
+    }
 }

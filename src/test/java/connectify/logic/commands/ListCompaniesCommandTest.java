@@ -4,6 +4,7 @@ import static connectify.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static connectify.logic.commands.CommandTestUtil.showCompanyAtIndex;
 import static connectify.testutil.TypicalCompanies.getTypicalAddressBook;
 import static connectify.testutil.TypicalIndexes.INDEX_FIRST_COMPANY;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -44,6 +45,12 @@ public class ListCompaniesCommandTest {
         model = new ModelManager();
         expectedModel = new ModelManager();
         assertCommandSuccess(new ListCompaniesCommand(), model, ListCompaniesCommand.EMPTY_LIST_MESSAGE, expectedModel);
+    }
+
+    @Test
+    public void toStringTest() {
+        ListCompaniesCommand listCompaniesCommand = new ListCompaniesCommand();
+        assertEquals(listCompaniesCommand.toString(), "ListCompaniesCommand");
     }
 
     @Test

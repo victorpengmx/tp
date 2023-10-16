@@ -4,6 +4,7 @@ import static connectify.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static connectify.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static connectify.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static connectify.testutil.TypicalPersons.getTypicalAddressBook;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -43,6 +44,12 @@ public class ListPeopleCommandTest {
     public void execute_emptyList_showsEmptyList() {
         Model emptyModel = new ModelManager();
         assertCommandSuccess(new ListPeopleCommand(), emptyModel, ListPeopleCommand.EMPTY_LIST_MESSAGE, emptyModel);
+    }
+
+    @Test
+    public void toStringTest() {
+        ListPeopleCommand listPeopleCommand = new ListPeopleCommand();
+        assertEquals(listPeopleCommand.toString(), "ListPeopleCommand");
     }
 
     @Test
