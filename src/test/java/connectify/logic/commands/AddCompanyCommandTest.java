@@ -203,6 +203,15 @@ public class AddCompanyCommandTest {
         public void updateToAllEntities() {
             throw new AssertionError("This method should not be called.");
         };
+        @Override
+        public void setCurrEntity(String s) {
+            throw new AssertionError("This method should not be called.");
+        };
+
+        @Override
+        public String getCurrEntity() {
+            throw new AssertionError("This method should not be called.");
+        };
     }
 
     private class ModelStubWithCompany extends ModelStub {
