@@ -177,7 +177,6 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<? extends Entity> getFilteredEntityList() {
-        System.out.println(currEntity);
         if (currEntity == EntityType.PEOPLE) {
             return filteredPersons;
         } else {
