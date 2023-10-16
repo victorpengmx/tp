@@ -102,6 +102,24 @@ public class ModelManagerTest {
         assertTrue(modelManager.hasCompany(TypicalCompanies.COMPANY_1));
     }
 
+    @Test
+    public void getCurrEntity_people_returnsPeople() {
+        modelManager.setCurrEntity("people");
+        assertEquals("people", modelManager.getCurrEntity());
+    }
+
+    @Test
+    public void getCurrEntity_companies_returnsCompanies() {
+        modelManager.setCurrEntity("companies");
+        assertEquals("companies", modelManager.getCurrEntity());
+    }
+
+    @Test
+    public void getCurrEntity_all_returnsAll() {
+        modelManager.setCurrEntity("all");
+        assertEquals("all", modelManager.getCurrEntity());
+    }
+
 
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
