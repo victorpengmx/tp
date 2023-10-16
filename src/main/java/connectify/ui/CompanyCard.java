@@ -3,6 +3,7 @@ package connectify.ui;
 import connectify.model.company.Company;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 
@@ -20,8 +21,9 @@ public class CompanyCard extends UiPart<Region> {
 
     @FXML
     private Label name;
+
     @FXML
-    private Label industry;
+    private Label id;
     @FXML
     private Label area; // "location" is a reserved keyword
     @FXML
@@ -35,6 +37,10 @@ public class CompanyCard extends UiPart<Region> {
     @FXML
     private Label address;
 
+    @FXML
+    private FlowPane tags;
+
+
     /**
      * Creates a {@code CompanyCard} with the given {@code Company} and index to display.
      */
@@ -42,13 +48,17 @@ public class CompanyCard extends UiPart<Region> {
     public CompanyCard(Company company, int displayedIndex) {
         super(FXML);
         this.company = company;
+        id.setText(displayedIndex + ". ");
         name.setText(company.getName());
-        industry.setText(company.getIndustry());
         area.setText(company.getLocation());
         description.setText(company.getDescription());
         website.setText(company.getWebsite());
         email.setText(company.getEmail());
         phone.setText(company.getPhone());
         address.setText(company.getAddress());
+        Label label = new Label("Company");
+        label.setStyle("-fx-background-color: #FF4F79");
+        tags.getChildren().add(label);
+        tags.getChildren().add(new Label(company.getIndustry()));
     }
 }
