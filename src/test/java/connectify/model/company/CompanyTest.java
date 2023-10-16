@@ -60,6 +60,9 @@ public class CompanyTest {
         // different website -> returns false
         editedCompany1 = new CompanyBuilder(COMPANY_1).withWebsite("www.apple.com").build();
         assertFalse(COMPANY_1.equals(editedCompany1));
+
+        // check with null
+        assertFalse(COMPANY_1.isSameCompany(null));
     }
 
     @Test

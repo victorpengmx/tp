@@ -183,16 +183,13 @@ public class ModelManager implements Model {
         currEntity = EntityType.ALL;
     }
     @Override
-    public String getCurrEntity() throws InvalidEntityException {
+    public String getCurrEntity() {
         if (currEntity == EntityType.PEOPLE) {
             return "people";
         } else if (currEntity == EntityType.COMPANIES) {
             return "companies";
-        } else if (currEntity == EntityType.ALL) {
-            return "all";
         } else {
-            throw new InvalidEntityException("Invalid entity type: " + currEntity + ". Please enter either "
-                    + "people, companies or all.");
+            return "all";
         }
     }
 

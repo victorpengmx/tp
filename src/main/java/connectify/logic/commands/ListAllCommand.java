@@ -27,12 +27,14 @@ public class ListAllCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        if (other instanceof ListAllCommand) {
-            return true;
-        } else if (other == this) {
-            return true;
-        } else {
+        if (other == null) {
             return false;
         }
+
+        if (other instanceof ListAllCommand) {
+            return true;
+        }
+
+        return false;
     }
 }

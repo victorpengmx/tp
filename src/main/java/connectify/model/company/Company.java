@@ -142,8 +142,11 @@ public class Company extends Entity {
             return true;
         }
 
-        return otherCompany != null
-                && otherCompany.getName().equals(getName());
+        if (otherCompany == null) {
+            return false;
+        }
+
+        return otherCompany.getName().equals(getName());
     }
 
     @Override

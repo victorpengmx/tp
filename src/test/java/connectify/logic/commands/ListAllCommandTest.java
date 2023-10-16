@@ -44,5 +44,9 @@ public class ListAllCommandTest {
         // null -> returns false
         assertFalse(listAllCommand.equals(null));
 
+        // different types -> returns false
+        Object differentObject = new Object();
+        assertFalse(listAllCommand.equals(differentObject));
     }
+
 }
