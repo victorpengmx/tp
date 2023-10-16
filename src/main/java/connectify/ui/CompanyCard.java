@@ -25,12 +25,6 @@ public class CompanyCard extends UiPart<Region> {
     @FXML
     private Label area; // "location" is a reserved keyword
     @FXML
-    private Label description;
-    @FXML
-    private Label website;
-    @FXML
-    private Label email;
-    @FXML
     private Label phone;
     @FXML
     private Label address;
@@ -47,10 +41,6 @@ public class CompanyCard extends UiPart<Region> {
         super(FXML);
         id.setText(displayedIndex + ". ");
         name.setText(company.getName());
-        area.setText(company.getLocation());
-        description.setText(company.getDescription());
-        website.setText(company.getWebsite());
-        email.setText(company.getEmail());
         phone.setText(company.getPhone());
         address.setText(company.getAddress());
         Label label = new Label("Company");
