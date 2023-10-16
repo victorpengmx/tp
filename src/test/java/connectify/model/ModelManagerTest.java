@@ -311,7 +311,7 @@ public class ModelManagerTest {
         AddressBook differentAddressBook = new AddressBook();
         UserPrefs userPrefs = new UserPrefs();
 
-        // same values -> returns true
+        // same people values -> returns true
         modelManager = new ModelManager(addressBook, userPrefs);
         ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
@@ -349,5 +349,15 @@ public class ModelManagerTest {
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
         assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
+
+        // same companies values -> returns true
+        addressBook = new AddressBookBuilder().withCompany(TypicalCompanies.COMPANY_1)
+                .withCompany(TypicalCompanies.COMPANY_2).build();
+
+        modelManager = new ModelManager(addressBook, userPrefs);
+        modelManagerCopy = new ModelManager(addressBook, userPrefs);
+        assertTrue(modelManager.equals(modelManagerCopy));
+
+        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
     }
 }

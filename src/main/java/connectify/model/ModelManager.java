@@ -227,7 +227,6 @@ public class ModelManager implements Model {
 
     @Override
     public Integer getNumberOfEntities() {
-        System.out.println(getFilteredEntityList());
         return getFilteredEntityList().size();
     }
 
@@ -260,7 +259,8 @@ public class ModelManager implements Model {
         ModelManager otherModelManager = (ModelManager) other;
         return addressBook.equals(otherModelManager.addressBook)
                 && userPrefs.equals(otherModelManager.userPrefs)
-                && filteredPersons.equals(otherModelManager.filteredPersons);
+                && filteredPersons.equals(otherModelManager.filteredPersons)
+                && filterCompanies.equals(otherModelManager.filterCompanies);
     }
 
     @Override
