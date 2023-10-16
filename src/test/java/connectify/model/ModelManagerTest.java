@@ -124,19 +124,23 @@ public class ModelManagerTest {
     @Test
     public void getFilteredEntityList_getPersonList_returnsCorrectList() {
         modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        modelManager.setCurrEntity("people");
         assertEquals(modelManager.getFilteredPersonList(), modelManager.getFilteredEntityList());
     }
 
     @Test
     public void getFilteredEntityList_getCompaniesList_returnsCorrectList() {
         modelManager.updateFilteredCompanyList(PREDICATE_SHOW_ALL_COMPANIES);
+        modelManager.setCurrEntity("companies");
         assertEquals(modelManager.getFilteredCompanyList(), modelManager.getFilteredEntityList());
     }
 
     @Test
     public void getFilteredEntityList_getAllList_returnsCorrectList() {
         modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        modelManager.setCurrEntity("people");
         ObservableList<?> personList = modelManager.getFilteredEntityList();
+
         modelManager.updateFilteredCompanyList(PREDICATE_SHOW_ALL_COMPANIES);
         ObservableList<?> companyList = modelManager.getFilteredEntityList();
 

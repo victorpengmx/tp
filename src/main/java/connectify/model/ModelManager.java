@@ -194,6 +194,16 @@ public class ModelManager implements Model {
         }
     }
 
+    public void setCurrEntity(String entityType) {
+        if (entityType.equals("people")) {
+            currEntity = EntityType.PEOPLE;
+        } else if (entityType.equals("companies")) {
+            currEntity = EntityType.COMPANIES;
+        } else {
+            currEntity = EntityType.ALL;
+        }
+    }
+
     @Override
     public ObservableList<? extends Entity> getFilteredEntityList() {
         if (currEntity == EntityType.PEOPLE) {
