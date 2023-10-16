@@ -46,6 +46,9 @@ public class ListCompaniesCommandTest {
         // same object -> returns true
         assertTrue(listCompaniesCommand.equals(listCompaniesCommand));
 
+        // all listCompaniesCommand -> returns true
+        assertTrue(listCompaniesCommand.equals(new ListCompaniesCommand()));
+
         // null -> returns false
         assertFalse(listCompaniesCommand.equals(null));
 

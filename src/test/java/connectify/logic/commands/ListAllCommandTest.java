@@ -39,6 +39,9 @@ public class ListAllCommandTest {
         // same object -> returns true
         assertTrue(listAllCommand1.equals(listAllCommand1));
 
+        // all list all command objects are the same -> returns true
+        assertTrue(listAllCommand1.equals(listAllCommand2));
+
         // null -> returns false
         assertFalse(listAllCommand1.equals(null));
 

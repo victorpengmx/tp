@@ -27,7 +27,12 @@ public class ListAllCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || other instanceof ListAllCommand; // instanceof handles nulls
+        if (other instanceof ListAllCommand) {
+            return true;
+        } else if (other == this) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

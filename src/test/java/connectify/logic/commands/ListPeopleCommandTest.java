@@ -42,9 +42,13 @@ public class ListPeopleCommandTest {
     @Test
     public void equals() {
         Command listPeopleCommand = new ListPeopleCommand();
+        Command listPeopleCommand2 = new ListPeopleCommand();
 
         // same object -> returns true
         assertTrue(listPeopleCommand.equals(listPeopleCommand));
+
+        // same values -> returns true
+        assertTrue(listPeopleCommand.equals(listPeopleCommand2));
 
         // null -> returns false
         assertFalse(listPeopleCommand.equals(null));

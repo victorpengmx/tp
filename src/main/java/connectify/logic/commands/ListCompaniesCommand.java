@@ -24,7 +24,12 @@ public class ListCompaniesCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || other instanceof ListCompaniesCommand; // instanceof handles nulls
+        if (other == this) {
+            return true; // short circuit if same object
+        } else if (other instanceof ListCompaniesCommand) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
