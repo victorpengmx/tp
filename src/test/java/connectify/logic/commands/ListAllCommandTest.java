@@ -32,6 +32,13 @@ public class ListAllCommandTest {
     }
 
     @Test
+    public void execute_emptyList_showsEmptyList() {
+        Model emptyModel = new ModelManager();
+        assertCommandSuccess(new ListAllCommand(), emptyModel, ListAllCommand.EMPTY_LIST_MESSAGE, emptyModel);
+    }
+
+
+    @Test
     public void equals() {
         ListAllCommand listAllCommand = new ListAllCommand();
 

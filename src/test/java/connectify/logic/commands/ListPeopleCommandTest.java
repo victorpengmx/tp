@@ -40,6 +40,12 @@ public class ListPeopleCommandTest {
     }
 
     @Test
+    public void execute_emptyList_showsEmptyList() {
+        Model emptyModel = new ModelManager();
+        assertCommandSuccess(new ListPeopleCommand(), emptyModel, ListPeopleCommand.EMPTY_LIST_MESSAGE, emptyModel);
+    }
+
+    @Test
     public void equals() {
         Command listPeopleCommand = new ListPeopleCommand();
         Command listPeopleCommand2 = new ListPeopleCommand();

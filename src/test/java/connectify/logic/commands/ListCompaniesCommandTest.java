@@ -40,6 +40,13 @@ public class ListCompaniesCommandTest {
     }
 
     @Test
+    public void execute_listIsEmpty_showsEmptyList() {
+        model = new ModelManager();
+        expectedModel = new ModelManager();
+        assertCommandSuccess(new ListCompaniesCommand(), model, ListCompaniesCommand.EMPTY_LIST_MESSAGE, expectedModel);
+    }
+
+    @Test
     public void equals() {
         Command listCompaniesCommand = new ListCompaniesCommand();
 

@@ -15,6 +15,8 @@ public class ListAllCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all persons and companies";
 
+    public static final String EMPTY_LIST_MESSAGE = "There are no entities in Connectify";
+
 
     @Override
     public CommandResult execute(Model model) {
@@ -22,7 +24,13 @@ public class ListAllCommand extends Command {
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         model.updateFilteredCompanyList(PREDICATE_SHOW_ALL_COMPANIES);
         model.updateToAllEntities();
-        return new CommandResult(MESSAGE_SUCCESS);
+        Integer numberOfEntities = model.getFilteredEntityList().size();
+        if (numberOfEntities == 0) {
+            return new CommandResult(EMPTY_LIST_MESSAGE);
+        } else {
+            return new CommandResult(MESSAGE_SUCCESS);
+        }
+
     }
 
     @Override
