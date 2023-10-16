@@ -20,7 +20,7 @@ public class ListCompaniesCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredCompanyList(PREDICATE_SHOW_ALL_COMPANIES);
-        Integer size = model.getFilteredCompanyList().size();
+        Integer size = model.getNumberOfCompanies();
         if (size == 0) {
             return new CommandResult(EMPTY_LIST_MESSAGE);
         }

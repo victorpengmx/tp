@@ -226,6 +226,27 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Integer getNumberOfEntities() {
+        System.out.println(getFilteredEntityList());
+        return getFilteredEntityList().size();
+    }
+
+    @Override
+    public Integer getNumberOfPeople() {
+        return filteredPersons.size();
+    }
+
+    @Override
+    public Integer getNumberOfCompanies() {
+        return filterCompanies.size();
+    }
+
+    @Override
+    public Boolean isEmpty() {
+        return getNumberOfEntities() == 0;
+    }
+
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;

@@ -21,7 +21,7 @@ public class ListPeopleCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        Integer size = model.getFilteredPersonList().size();
+        Integer size = model.getNumberOfPeople();
         if (size == 0) {
             return new CommandResult(EMPTY_LIST_MESSAGE);
         }

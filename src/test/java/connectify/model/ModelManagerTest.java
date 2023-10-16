@@ -226,6 +226,61 @@ public class ModelManagerTest {
         Assert.assertThrows(InvalidEntityException.class, () -> modelManager.setCurrEntity("invalid"));
     }
 
+    @Test
+    public void getNumberOfEntities_emptyAddressBook_returnsZero() {
+        assertEquals(0, modelManager.getNumberOfEntities());
+    }
+
+    @Test
+    public void getNumberOfEntities_nonEmptyAddressBook_returnsCorrectNumber() {
+        try {
+            modelManager.addPerson(TypicalPersons.ALICE);
+            modelManager.addCompany(TypicalCompanies.COMPANY_1);
+            modelManager.setCurrEntity("all");
+        } catch (InvalidEntityException e) {
+            throw new AssertionError("InvalidEntityException should not be thrown.");
+        }
+        assertEquals(2, modelManager.getNumberOfEntities());
+        modelManager = new ModelManager();
+    }
+
+    @Test
+    public void getNumberOfPeople_emptyAddressBook_returnsZero() {
+        assertEquals(0, modelManager.getNumberOfPeople());
+    }
+
+    @Test
+    public void getNumberOfPeople_nonEmptyAddressBook_returnsCorrectNumber() {
+        modelManager.addPerson(TypicalPersons.ALICE);
+        modelManager.addPerson(TypicalPersons.BENSON);
+        assertEquals(2, modelManager.getNumberOfPeople());
+        modelManager = new ModelManager();
+    }
+
+    @Test
+    public void getNumberOfCompanies_emptyAddressBook_returnsZero() {
+        assertEquals(0, modelManager.getNumberOfCompanies());
+    }
+
+    @Test
+    public void getNumberOfCompanies_nonEmptyAddressBook_returnsCorrectNumber() {
+        modelManager.addCompany(TypicalCompanies.COMPANY_1);
+        modelManager.addCompany(TypicalCompanies.COMPANY_2);
+        assertEquals(2, modelManager.getNumberOfCompanies());
+        modelManager = new ModelManager();
+    }
+
+    @Test
+    public void isEmpty_emptyAddressBook_returnsTrue() {
+        assertTrue(modelManager.isEmpty());
+    }
+
+    @Test
+    public void isEmpty_nonEmptyAddressBook_returnsFalse() {
+        modelManager.addPerson(TypicalPersons.ALICE);
+        assertFalse(modelManager.isEmpty());
+        modelManager = new ModelManager();
+    }
 
     @Test
     public void equals() {

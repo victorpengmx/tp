@@ -24,8 +24,7 @@ public class ListAllCommand extends Command {
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         model.updateFilteredCompanyList(PREDICATE_SHOW_ALL_COMPANIES);
         model.updateToAllEntities();
-        Integer numberOfEntities = model.getFilteredEntityList().size();
-        if (numberOfEntities == 0) {
+        if (model.isEmpty()) {
             return new CommandResult(EMPTY_LIST_MESSAGE);
         } else {
             return new CommandResult(MESSAGE_SUCCESS);

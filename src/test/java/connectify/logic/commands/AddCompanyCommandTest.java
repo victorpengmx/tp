@@ -212,6 +212,26 @@ public class AddCompanyCommandTest {
         public String getCurrEntity() {
             throw new AssertionError("This method should not be called.");
         };
+
+        @Override
+        public Integer getNumberOfPeople() {
+            throw new AssertionError("This method should not be called.");
+        };
+
+        @Override
+        public Integer getNumberOfCompanies() {
+            throw new AssertionError("This method should not be called.");
+        };
+
+        @Override
+        public Integer getNumberOfEntities() {
+            throw new AssertionError("This method should not be called.");
+        };
+
+        @Override
+        public Boolean isEmpty() {
+            throw new AssertionError("This method should not be called.");
+        };
     }
 
     private class ModelStubWithCompany extends ModelStub {

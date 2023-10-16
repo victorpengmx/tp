@@ -125,4 +125,16 @@ public interface Model {
 
     /** Set the current entity type */
     void setCurrEntity(String currEntity) throws InvalidEntityException;
+
+    /** Get number of entities */
+    Integer getNumberOfEntities();
+
+    /** Get number of people */
+    Integer getNumberOfPeople();
+
+    /** Get number of companies */
+    Integer getNumberOfCompanies();
+
+    /** Check if there is no entities */
+    Boolean isEmpty();
 }
