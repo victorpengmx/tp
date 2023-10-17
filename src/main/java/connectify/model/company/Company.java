@@ -4,6 +4,7 @@ import static connectify.commons.util.CollectionUtil.requireAllNonNull;
 
 import connectify.commons.util.ToStringBuilder;
 import connectify.model.Entity;
+import connectify.model.person.PersonList;
 
 /**
  * Represents a Company in the address book.
@@ -18,6 +19,8 @@ public class Company extends Entity {
     private String email;
     private String phone;
     private String address;
+
+    private PersonList personList;
 
     /**
      * Constructor for Company.

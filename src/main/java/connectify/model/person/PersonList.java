@@ -3,29 +3,31 @@ package connectify.model.person;
 import static java.util.Objects.requireNonNull;
 import static connectify.commons.util.CollectionUtil.requireAllNonNull;
 
+import connectify.model.person.exceptions.PersonNotFoundException;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-public class PeopleList {
+public class PersonList {
     private final List<Person> people = new ArrayList<>();
 
     /**
      * Constructs a {@code PeopleList}.
      * {@code people} must be present and all people must be not null.
      *
-     * @param peopleList The list of people.
+     * @param personList The list of people.
      */
-    public PeopleList(PeopleList peopleList) {
-        requireAllNonNull(peopleList);
-        people.addAll(peopleList.people);
+    public PersonList(PersonList personList) {
+        requireAllNonNull(personList);
+        people.addAll(personList.people);
     }
 
     /**
      * Constructs an empty {@code PeopleList}.
      */
-    public PeopleList() {}
+    public PersonList() {}
 
     /**
      * Returns true if the list contains an equivalent person as the given argument.
@@ -44,9 +46,9 @@ public class PeopleList {
      * @param toAdd The person to add to the list.
      * @return The modified person list.
      */
-    public PeopleList addPerson(Person toAdd) {
+    public PersonList addPerson(Person toAdd) {
         requireNonNull(toAdd);
-        PeopleList edited = new PeopleList(this);
+        PersonList edited = new PersonList(this);
         edited.people.add(toAdd);
         return edited;
     }
@@ -57,12 +59,12 @@ public class PeopleList {
      * @param toRemove The person to remove from the list.
      * @return The modified person list.
      */
-    public PeopleList removePerson(Person toRemove) {
+    public PersonList removePerson(Person toRemove) {
         requireNonNull(toRemove);
-//        if (!contains(toRemove)) {
-//            throw new PersonNotFoundException();
-//        }
-        PeopleList edited = new PeopleList(this);
+        if (!contains(toRemove)) {
+            throw new PersonNotFoundException();
+        }
+        PersonList edited = new PersonList(this);
         edited.people.remove(toRemove);
         return edited;
     }
@@ -83,10 +85,10 @@ public class PeopleList {
      * @param list The list of {@code Person}s to use.
      * @return The new PeopleList.
      */
-    public static PeopleList fromList(List<Person> list) {
-        PeopleList peopleList = new PeopleList();
-        peopleList.people.addAll(list);
-        return peopleList;
+    public static PersonList fromList(List<Person> list) {
+        PersonList personList = new PersonList();
+        personList.people.addAll(list);
+        return personList;
     }
 
     /**
@@ -101,11 +103,11 @@ public class PeopleList {
             return true;
         }
 
-        if (!(other instanceof PeopleList)) {
+        if (!(other instanceof PersonList)) {
             return false;
         }
 
-        PeopleList otherPeople = (PeopleList) other;
+        PersonList otherPeople = (PersonList) other;
         return otherPeople.asList().equals(asList());
     }
 
