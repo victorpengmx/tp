@@ -18,6 +18,7 @@ import connectify.commons.core.GuiSettings;
 import connectify.logic.Messages;
 import connectify.logic.commands.exceptions.CommandException;
 import connectify.model.AddressBook;
+import connectify.model.Entity;
 import connectify.model.Model;
 import connectify.model.ReadOnlyAddressBook;
 import connectify.model.ReadOnlyUserPrefs;
@@ -194,6 +195,46 @@ public class AddPersonCommandTest {
 
         @Override
         public void updateFilteredCompanyList(Predicate<Company> predicate) {
+            throw new AssertionError("This method should not be called.");
+        };
+
+        @Override
+        public ObservableList<? extends Entity> getFilteredEntityList() {
+            throw new AssertionError("This method should not be called.");
+        };
+
+        @Override
+        public void updateToAllEntities() {
+            throw new AssertionError("This method should not be called.");
+        };
+
+        @Override
+        public void setCurrEntity(String s) {
+            throw new AssertionError("This method should not be called.");
+        };
+
+        @Override
+        public String getCurrEntity() {
+            throw new AssertionError("This method should not be called.");
+        };
+
+        @Override
+        public Integer getNumberOfPeople() {
+            throw new AssertionError("This method should not be called.");
+        };
+
+        @Override
+        public Integer getNumberOfCompanies() {
+            throw new AssertionError("This method should not be called.");
+        };
+
+        @Override
+        public Integer getNumberOfEntities() {
+            throw new AssertionError("This method should not be called.");
+        };
+
+        @Override
+        public Boolean isEmpty() {
             throw new AssertionError("This method should not be called.");
         };
     }

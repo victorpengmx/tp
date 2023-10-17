@@ -24,7 +24,9 @@ import connectify.logic.commands.EditCommand.EditPersonDescriptor;
 import connectify.logic.commands.ExitCommand;
 import connectify.logic.commands.FindCommand;
 import connectify.logic.commands.HelpCommand;
-import connectify.logic.commands.ListCommand;
+import connectify.logic.commands.ListAllCommand;
+import connectify.logic.commands.ListCompaniesCommand;
+import connectify.logic.commands.ListPeopleCommand;
 import connectify.logic.parser.exceptions.ParseException;
 import connectify.model.company.Company;
 import connectify.model.person.NameContainsKeywordsPredicate;
@@ -103,9 +105,21 @@ public class ConnectifyParserTest {
     }
 
     @Test
-    public void parseCommand_list() throws Exception {
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    public void parseCommand_listCompanies() throws Exception {
+        assertTrue(parser.parseCommand(ListCompaniesCommand.COMMAND_WORD) instanceof ListCompaniesCommand);
+        assertTrue(parser.parseCommand(ListCompaniesCommand.COMMAND_WORD + " 3") instanceof ListCompaniesCommand);
+    }
+
+    @Test
+    public void parseCommand_listPeople() throws Exception {
+        assertTrue(parser.parseCommand(ListPeopleCommand.COMMAND_WORD) instanceof ListPeopleCommand);
+        assertTrue(parser.parseCommand(ListPeopleCommand.COMMAND_WORD + " 3") instanceof ListPeopleCommand);
+    }
+
+    @Test
+    public void parseCommand_listAllEntities() throws Exception {
+        assertTrue(parser.parseCommand(ListAllCommand.COMMAND_WORD) instanceof ListAllCommand);
+        assertTrue(parser.parseCommand(ListAllCommand.COMMAND_WORD + " 3") instanceof ListAllCommand);
     }
 
     @Test

@@ -12,6 +12,7 @@ import connectify.logic.commands.CommandResult;
 import connectify.logic.commands.exceptions.CommandException;
 import connectify.logic.parser.ConnectifyParser;
 import connectify.logic.parser.exceptions.ParseException;
+import connectify.model.Entity;
 import connectify.model.Model;
 import connectify.model.ReadOnlyAddressBook;
 import connectify.model.company.Company;
@@ -77,6 +78,10 @@ public class LogicManager implements Logic {
         return model.getFilteredCompanyList();
     }
 
+    @Override
+    public ObservableList<? extends Entity> getFilteredEntityList() {
+        return model.getFilteredEntityList();
+    }
 
     @Override
     public Path getAddressBookFilePath() {

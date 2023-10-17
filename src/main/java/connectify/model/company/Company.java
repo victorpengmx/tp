@@ -3,12 +3,13 @@ package connectify.model.company;
 import static connectify.commons.util.CollectionUtil.requireAllNonNull;
 
 import connectify.commons.util.ToStringBuilder;
+import connectify.model.Entity;
 
 /**
  * Represents a Company in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Company {
+public class Company extends Entity {
     private String name;
     private String industry;
     private String location;
@@ -141,8 +142,11 @@ public class Company {
             return true;
         }
 
-        return otherCompany != null
-                && otherCompany.getName().equals(getName());
+        if (otherCompany == null) {
+            return false;
+        }
+
+        return otherCompany.getName().equals(getName());
     }
 
     @Override

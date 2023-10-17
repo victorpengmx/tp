@@ -113,4 +113,28 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredCompanyList(Predicate<Company> predicate);
+
+    /** Returns an unmodifiable view of the filtered entity (either person or company) list */
+    ObservableList<? extends Entity> getFilteredEntityList();
+
+    /** Sets the current entity to be displayed to be all the entities*/
+    void updateToAllEntities();
+
+    /** Get the current entity type */
+    String getCurrEntity();
+
+    /** Set the current entity type */
+    void setCurrEntity(String currEntity) throws InvalidEntityException;
+
+    /** Get number of entities */
+    Integer getNumberOfEntities();
+
+    /** Get number of people */
+    Integer getNumberOfPeople();
+
+    /** Get number of companies */
+    Integer getNumberOfCompanies();
+
+    /** Check if there is no entities */
+    Boolean isEmpty();
 }

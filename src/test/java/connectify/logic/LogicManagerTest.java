@@ -15,7 +15,7 @@ import org.junit.jupiter.api.io.TempDir;
 import connectify.logic.commands.AddPersonCommand;
 import connectify.logic.commands.CommandResult;
 import connectify.logic.commands.CommandTestUtil;
-import connectify.logic.commands.ListCommand;
+import connectify.logic.commands.ListPeopleCommand;
 import connectify.logic.commands.exceptions.CommandException;
 import connectify.logic.parser.exceptions.ParseException;
 import connectify.model.Model;
@@ -62,8 +62,8 @@ public class LogicManagerTest {
 
     @Test
     public void execute_validCommand_success() throws Exception {
-        String listCommand = ListCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
+        String listCommand = ListPeopleCommand.COMMAND_WORD;
+        assertCommandSuccess(listCommand, ListPeopleCommand.EMPTY_LIST_MESSAGE, model);
     }
 
     @Test
@@ -87,6 +87,11 @@ public class LogicManagerTest {
     public void getFilteredCompanyList_modifyList_throwsUnsupportedOperationException() {
         Assert.assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredCompanyList().remove(0));
 
+    }
+
+    @Test
+    public void getFilteredEntityList_modifyList_throwsUnsupportedOperationException() {
+        Assert.assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredEntityList().remove(0));
     }
 
 

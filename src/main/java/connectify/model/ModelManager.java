@@ -11,11 +11,14 @@ import connectify.commons.core.LogsCenter;
 import connectify.commons.util.CollectionUtil;
 import connectify.model.company.Company;
 import connectify.model.person.Person;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 
 /**
  * Represents the in-memory model of the address book data.
+ * A key flag in this model is the current entity type, which can be either people, companies or all.
+ * Depending on the current entity type, the filtered list will be updated accordingly.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -24,6 +27,10 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Company> filterCompanies;
+    private enum EntityType {
+        PEOPLE, COMPANIES, ALL
+    }
+    private EntityType currEntity = EntityType.COMPANIES;
 
 
     /**
@@ -106,23 +113,27 @@ public class ModelManager implements Model {
     @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
+        currEntity = EntityType.PEOPLE;
     }
 
     @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        currEntity = EntityType.PEOPLE;
     }
 
     @Override
     public void addCompany(Company company) {
         addressBook.addCompany(company);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        currEntity = EntityType.COMPANIES;
     }
 
     @Override
     public void deleteCompany(Company target) {
         addressBook.removeCompany(target);
+        currEntity = EntityType.COMPANIES;
     }
 
     @Override
@@ -130,9 +141,10 @@ public class ModelManager implements Model {
         CollectionUtil.requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
+        currEntity = EntityType.PEOPLE;
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
@@ -156,12 +168,81 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+        currEntity = EntityType.PEOPLE;
     }
 
     @Override
     public void updateFilteredCompanyList(Predicate<Company> predicate) {
         requireNonNull(predicate);
         filterCompanies.setPredicate(predicate);
+        currEntity = EntityType.COMPANIES;
+    }
+
+    @Override
+    public void updateToAllEntities() {
+        currEntity = EntityType.ALL;
+    }
+    @Override
+    public String getCurrEntity() {
+        if (currEntity == EntityType.PEOPLE) {
+            return "people";
+        } else if (currEntity == EntityType.COMPANIES) {
+            return "companies";
+        } else {
+            return "all";
+        }
+    }
+
+    @Override
+    public void setCurrEntity(String entityType) throws InvalidEntityException {
+        if (entityType.equals("people")) {
+            currEntity = EntityType.PEOPLE;
+        } else if (entityType.equals("companies")) {
+            currEntity = EntityType.COMPANIES;
+        } else if (entityType.equals("all")) {
+            currEntity = EntityType.ALL;
+        } else {
+            throw new InvalidEntityException("Invalid entity type: " + entityType + ". Please enter either "
+                    + "people, companies or all.");
+        }
+    }
+
+    @Override
+    public ObservableList<? extends Entity> getFilteredEntityList() {
+        if (currEntity == EntityType.PEOPLE) {
+            logger.info("Returning list of filtered persons");
+            return filteredPersons;
+        } else if (currEntity == EntityType.COMPANIES) {
+            logger.info("Returning list of filtered companies");
+            return filterCompanies;
+        } else {
+            // Create a new ObservableList which contains all the elements from filteredCompanies and filteredPersons
+            logger.info("Returning list of all entities");
+            ObservableList<Entity> allEntityList = FXCollections.observableArrayList();
+            allEntityList.addAll(filterCompanies);
+            allEntityList.addAll(filteredPersons);
+            return allEntityList;
+        }
+    }
+
+    @Override
+    public Integer getNumberOfEntities() {
+        return getFilteredEntityList().size();
+    }
+
+    @Override
+    public Integer getNumberOfPeople() {
+        return filteredPersons.size();
+    }
+
+    @Override
+    public Integer getNumberOfCompanies() {
+        return filterCompanies.size();
+    }
+
+    @Override
+    public Boolean isEmpty() {
+        return getNumberOfEntities() == 0;
     }
 
     @Override
@@ -178,7 +259,16 @@ public class ModelManager implements Model {
         ModelManager otherModelManager = (ModelManager) other;
         return addressBook.equals(otherModelManager.addressBook)
                 && userPrefs.equals(otherModelManager.userPrefs)
-                && filteredPersons.equals(otherModelManager.filteredPersons);
+                && filteredPersons.equals(otherModelManager.filteredPersons)
+                && filterCompanies.equals(otherModelManager.filterCompanies);
+    }
+
+    @Override
+    public String toString() {
+        String msg = "There are " + getNumberOfEntities() + " entities in the address book.\n";
+        msg += "There are " + getNumberOfPeople() + " people in the address book.\n";
+        msg += "There are " + getNumberOfCompanies() + " companies in the address book.\n";
+        return msg;
     }
 
 }
