@@ -2,6 +2,7 @@ package connectify.model.company;
 
 import static connectify.testutil.TypicalCompanies.COMPANY_1;
 import static connectify.testutil.TypicalCompanies.COMPANY_2;
+import static connectify.testutil.TypicalPersons.BENSON;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -9,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import connectify.testutil.CompanyBuilder;
+import connectify.testutil.PersonListBuilder;
 
 public class CompanyTest {
     @Test
@@ -61,6 +63,11 @@ public class CompanyTest {
         editedCompany1 = new CompanyBuilder(COMPANY_1).withWebsite("www.apple.com").build();
         assertFalse(COMPANY_1.equals(editedCompany1));
 
+        // different person list -> returns false
+        editedCompany1 = new CompanyBuilder(COMPANY_1).withPersonList(new PersonListBuilder()
+                .withPerson(BENSON).build()).build();
+        assertFalse(COMPANY_1.equals(editedCompany1));
+
         // check with null
         assertFalse(COMPANY_1.isSameCompany(null));
     }
@@ -71,7 +78,8 @@ public class CompanyTest {
         String expected = Company.class.getCanonicalName() + "{name=" + COMPANY_1.getName() + ", phone="
                 + COMPANY_1.getPhone() + ", email=" + COMPANY_1.getEmail() + ", address=" + COMPANY_1.getAddress()
                 + ", industry=" + COMPANY_1.getIndustry() + ", location=" + COMPANY_1.getLocation()
-                + ", description=" + COMPANY_1.getDescription() + ", website=" + COMPANY_1.getWebsite() + "}";
+                + ", description=" + COMPANY_1.getDescription() + ", website=" + COMPANY_1.getWebsite()
+                + ", people=" + COMPANY_1.getPersonList() + "}";
         assertEquals(expected, COMPANY_1.toString());
     }
 

@@ -4,6 +4,7 @@ import static connectify.commons.util.CollectionUtil.requireAllNonNull;
 
 import connectify.commons.util.ToStringBuilder;
 import connectify.model.Entity;
+import connectify.model.person.PersonList;
 
 /**
  * Represents a Company in the address book.
@@ -18,6 +19,33 @@ public class Company extends Entity {
     private String email;
     private String phone;
     private String address;
+
+    private PersonList personList;
+
+    /**
+     * Constructor for Company.
+     * @param name Name of company
+     * @param industry Industry of company
+     * @param location Location of company
+     * @param description Description of company
+     * @param website Website of company
+     * @param email Email of company
+     * @param phone Phone of company
+     * @param address Address of company
+     */
+    public Company(String name, String industry, String location, String description, String website, String email,
+                   String phone, String address, PersonList personList) {
+        requireAllNonNull(name, industry, location, description, website, email, phone, address);
+        this.name = name;
+        this.industry = industry;
+        this.location = location;
+        this.description = description;
+        this.website = website;
+        this.email = email;
+        this.phone = phone;
+        this.address = address;
+        this.personList = personList;
+    }
 
     /**
      * Constructor for Company.
@@ -41,6 +69,15 @@ public class Company extends Entity {
         this.email = email;
         this.phone = phone;
         this.address = address;
+        this.personList = new PersonList();
+    }
+
+    /**
+     * Returns the person list of the company.
+     * @return Person list of company
+     */
+    public PersonList getPersonList() {
+        return personList;
     }
 
     /**
@@ -125,7 +162,8 @@ public class Company extends Entity {
                 && otherCompany.getWebsite().equals(getWebsite())
                 && otherCompany.getEmail().equals(getEmail())
                 && otherCompany.getPhone().equals(getPhone())
-                && otherCompany.getAddress().equals(getAddress());
+                && otherCompany.getAddress().equals(getAddress())
+                && otherCompany.getPersonList().equals(getPersonList());
     }
 
     @Override
@@ -151,7 +189,7 @@ public class Company extends Entity {
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this)
+        ToStringBuilder string = new ToStringBuilder(this)
                 .add("name", name)
                 .add("phone", phone)
                 .add("email", email)
@@ -160,6 +198,7 @@ public class Company extends Entity {
                 .add("location", location)
                 .add("description", description)
                 .add("website", website)
-                .toString();
+                .add("people", personList);
+        return string.toString();
     }
 }
