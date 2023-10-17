@@ -1,6 +1,7 @@
 package connectify.testutil;
 
 import connectify.model.company.Company;
+import connectify.model.person.PersonList;
 
 /**
  * A utility class to help with building Company objects.
@@ -25,6 +26,7 @@ public class CompanyBuilder {
     private String phone;
     private String address;
 
+    private PersonList personList;
 
     /**
      * Creates a {@code CompanyBuilder} with the default details.
@@ -38,6 +40,7 @@ public class CompanyBuilder {
         this.email = DEFAULT_EMAIL;
         this.phone = DEFAULT_PHONE;
         this.address = DEFAULT_ADDRESS;
+        this.personList = new PersonList();
     }
 
     /**
@@ -53,6 +56,7 @@ public class CompanyBuilder {
         this.email = companyToCopy.getEmail();
         this.phone = companyToCopy.getPhone();
         this.address = companyToCopy.getAddress();
+        this.personList = companyToCopy.getPersonList();
     }
 
     /**
@@ -120,10 +124,18 @@ public class CompanyBuilder {
     }
 
     /**
+     * Sets the {@code PersonList} of the {@code Company} that we are building.
+     */
+    public CompanyBuilder withPersonList(PersonList personList) {
+        this.personList = personList;
+        return this;
+    }
+
+    /**
      * Builds a company.
      * @return Company
      */
     public Company build() {
-        return new Company(name, industry, location, description, website, email, phone, address);
+        return new Company(name, industry, location, description, website, email, phone, address, personList);
     }
 }

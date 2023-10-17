@@ -2,10 +2,12 @@ package connectify.model.company;
 
 import static connectify.testutil.TypicalCompanies.COMPANY_1;
 import static connectify.testutil.TypicalCompanies.COMPANY_2;
+import static connectify.testutil.TypicalPersons.ALICE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import connectify.model.person.PersonList;
 import org.junit.jupiter.api.Test;
 
 import connectify.testutil.CompanyBuilder;
@@ -59,6 +61,11 @@ public class CompanyTest {
 
         // different website -> returns false
         editedCompany1 = new CompanyBuilder(COMPANY_1).withWebsite("www.apple.com").build();
+        assertFalse(COMPANY_1.equals(editedCompany1));
+
+        // different person list -> returns false
+        PersonList testPersonList = new PersonList();
+        editedCompany1 = new CompanyBuilder(COMPANY_1).withPersonList(testPersonList.addPerson(ALICE)).build();
         assertFalse(COMPANY_1.equals(editedCompany1));
 
         // check with null
