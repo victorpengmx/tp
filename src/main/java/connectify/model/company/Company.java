@@ -2,11 +2,8 @@ package connectify.model.company;
 
 import static connectify.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.List;
-
 import connectify.commons.util.ToStringBuilder;
 import connectify.model.Entity;
-import connectify.model.person.Person;
 import connectify.model.person.PersonList;
 
 /**
@@ -200,16 +197,8 @@ public class Company extends Entity {
                 .add("industry", industry)
                 .add("location", location)
                 .add("description", description)
-                .add("website", website);
-
-        List<Person> peopleList = getPersonList().asList();
-        if (peopleList.size() > 0) {
-            StringBuilder peopleString = new StringBuilder();
-            for (Person person : peopleList) {
-                peopleString.append(person.toString());
-            }
-            string.add("people: ", peopleString);
-        }
+                .add("website", website)
+                .add("people", personList);
         return string.toString();
     }
 }
