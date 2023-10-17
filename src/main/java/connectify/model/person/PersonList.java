@@ -115,6 +115,10 @@ public class PersonList {
         return otherPeople.asList().equals(asList());
     }
 
+    /**
+     * Returns the hashcode of the PersonList.
+     * @return The hashcode of the PersonList.
+     */
     @Override
     public int hashCode() {
         return Objects.hash(people);

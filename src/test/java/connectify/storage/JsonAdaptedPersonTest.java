@@ -16,6 +16,7 @@ import connectify.model.person.Name;
 import connectify.model.person.Phone;
 import connectify.testutil.Assert;
 import connectify.testutil.TypicalPersons;
+
 public class JsonAdaptedPersonTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
