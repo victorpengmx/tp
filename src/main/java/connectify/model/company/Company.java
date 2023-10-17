@@ -4,7 +4,10 @@ import static connectify.commons.util.CollectionUtil.requireAllNonNull;
 
 import connectify.commons.util.ToStringBuilder;
 import connectify.model.Entity;
+import connectify.model.person.Person;
 import connectify.model.person.PersonList;
+
+import java.util.List;
 
 /**
  * Represents a Company in the address book.
@@ -34,7 +37,7 @@ public class Company extends Entity {
      * @param address Address of company
      */
     public Company(String name, String industry, String location, String description, String website, String email,
-                   String phone, String address) {
+                   String phone, String address, PersonList personList) {
         requireAllNonNull(name, industry, location, description, website, email, phone, address);
         this.name = name;
         this.industry = industry;
@@ -44,6 +47,15 @@ public class Company extends Entity {
         this.email = email;
         this.phone = phone;
         this.address = address;
+        this.personList = personList;
+    }
+
+    /**
+     * Returns the person list of the company.
+     * @return Person list of company
+     */
+    public PersonList getPersonList() {
+        return personList;
     }
 
     /**
@@ -128,7 +140,8 @@ public class Company extends Entity {
                 && otherCompany.getWebsite().equals(getWebsite())
                 && otherCompany.getEmail().equals(getEmail())
                 && otherCompany.getPhone().equals(getPhone())
-                && otherCompany.getAddress().equals(getAddress());
+                && otherCompany.getAddress().equals(getAddress())
+                && otherCompany.getPersonList().equals(getPersonList());
     }
 
     @Override
@@ -154,7 +167,7 @@ public class Company extends Entity {
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this)
+        ToStringBuilder string = new ToStringBuilder(this)
                 .add("name", name)
                 .add("phone", phone)
                 .add("email", email)
@@ -162,7 +175,16 @@ public class Company extends Entity {
                 .add("industry", industry)
                 .add("location", location)
                 .add("description", description)
-                .add("website", website)
-                .toString();
+                .add("website", website);
+
+        List<Person> peopleList = getPersonList().asList();
+        if (peopleList.size() > 0) {
+            StringBuilder peopleString = new StringBuilder();
+            for (Person person : peopleList) {
+                peopleString.append(person.toString());
+            }
+            string.add("people: ", peopleString);
+        }
+        return string.toString();
     }
 }
