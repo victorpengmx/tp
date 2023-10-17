@@ -1,15 +1,19 @@
 package connectify.model.person;
 
-import static java.util.Objects.requireNonNull;
 import static connectify.commons.util.CollectionUtil.requireAllNonNull;
-
-import connectify.model.person.exceptions.PersonNotFoundException;
+import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
+import connectify.model.person.exceptions.PersonNotFoundException;
+
+/**
+ * Represents a list of people.
+ * Guarantees: details are present and not null, field values are validated, immutable.
+ */
 public class PersonList {
     private final List<Person> people = new ArrayList<>();
 

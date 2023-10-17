@@ -7,6 +7,10 @@ import java.util.List;
 
 import connectify.model.person.Person;
 import connectify.model.person.PersonList;
+
+/**
+ * A utility class to help with building {@code PersonList} objects.
+ */
 public class PersonListBuilder {
     public static final Person DEFAULT_PERSON = ALICE;
 
@@ -34,6 +38,9 @@ public class PersonListBuilder {
         return this;
     }
 
+    /**
+     * Builds the {@code PersonList}.
+     */
     public PersonList build() {
         return PersonList.fromList(personList);
     }

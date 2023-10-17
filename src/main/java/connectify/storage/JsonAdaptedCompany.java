@@ -1,5 +1,9 @@
 package connectify.storage;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -7,10 +11,6 @@ import connectify.commons.exceptions.IllegalValueException;
 import connectify.model.company.Company;
 import connectify.model.person.Person;
 import connectify.model.person.PersonList;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * A Jackson-friendly version of {@link Company}.

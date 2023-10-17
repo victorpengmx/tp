@@ -2,12 +2,12 @@ package connectify.model.company;
 
 import static connectify.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.List;
+
 import connectify.commons.util.ToStringBuilder;
 import connectify.model.Entity;
 import connectify.model.person.Person;
 import connectify.model.person.PersonList;
-
-import java.util.List;
 
 /**
  * Represents a Company in the address book.
@@ -48,6 +48,31 @@ public class Company extends Entity {
         this.phone = phone;
         this.address = address;
         this.personList = personList;
+    }
+
+    /**
+     * Constructor for Company.
+     * @param name Name of company
+     * @param industry Industry of company
+     * @param location Location of company
+     * @param description Description of company
+     * @param website Website of company
+     * @param email Email of company
+     * @param phone Phone of company
+     * @param address Address of company
+     */
+    public Company(String name, String industry, String location, String description, String website, String email,
+                   String phone, String address) {
+        requireAllNonNull(name, industry, location, description, website, email, phone, address);
+        this.name = name;
+        this.industry = industry;
+        this.location = location;
+        this.description = description;
+        this.website = website;
+        this.email = email;
+        this.phone = phone;
+        this.address = address;
+        this.personList = new PersonList();
     }
 
     /**
