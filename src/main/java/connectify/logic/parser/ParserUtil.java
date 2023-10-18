@@ -9,7 +9,10 @@ import java.util.Set;
 import connectify.commons.core.index.Index;
 import connectify.commons.util.StringUtil;
 import connectify.logic.parser.exceptions.ParseException;
-import connectify.model.person.*;
+import connectify.model.person.Address;
+import connectify.model.person.Email;
+import connectify.model.person.Name;
+import connectify.model.person.Phone;
 import connectify.model.tag.Tag;
 
 /**

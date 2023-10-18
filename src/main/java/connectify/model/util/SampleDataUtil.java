@@ -43,7 +43,8 @@ public class SampleDataUtil {
 
     public static Company[] getSampleCompanies() {
         return new Company[] {
-            new Company("Unassigned", "Unassigned", "Unassigned", "Unassigned",                    "Unassigned", "Unassigned",
+            new Company("Unassigned", "Unassigned", "Unassigned", "Unassigned",
+                    "Unassigned", "Unassigned",
                 "Unassigned", "Unassigned"), // To be protected from deletion in future
         };
     }
@@ -67,5 +68,4 @@ public class SampleDataUtil {
                 .map(Tag::new)
                 .collect(Collectors.toSet());
     }
-
 }

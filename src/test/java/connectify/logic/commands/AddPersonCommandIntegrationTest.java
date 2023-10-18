@@ -1,6 +1,7 @@
 package connectify.logic.commands;
 
 import static connectify.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static connectify.testutil.TypicalIndexes.INDEX_FIRST_COMPANY;
 import static connectify.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -32,7 +33,7 @@ public class AddPersonCommandIntegrationTest {
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.addPerson(validPerson);
 
-        assertCommandSuccess(new AddPersonCommand(validPerson), model,
+        assertCommandSuccess(new AddPersonCommand(validPerson, INDEX_FIRST_COMPANY), model,
                 String.format(AddPersonCommand.MESSAGE_SUCCESS, Messages.format(validPerson)),
                 expectedModel);
     }
@@ -40,7 +41,7 @@ public class AddPersonCommandIntegrationTest {
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
         Person personInList = model.getAddressBook().getPersonList().get(0);
-        CommandTestUtil.assertCommandFailure(new AddPersonCommand(personInList), model,
+        CommandTestUtil.assertCommandFailure(new AddPersonCommand(personInList, INDEX_FIRST_COMPANY), model,
                 AddPersonCommand.MESSAGE_DUPLICATE_PERSON);
     }
 

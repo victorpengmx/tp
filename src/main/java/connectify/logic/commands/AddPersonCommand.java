@@ -8,6 +8,8 @@ import static connectify.logic.parser.CliSyntax.PREFIX_PHONE;
 import static connectify.logic.parser.CliSyntax.PREFIX_TAG;
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
+
 import connectify.commons.core.index.Index;
 import connectify.commons.util.ToStringBuilder;
 import connectify.logic.Messages;
@@ -15,8 +17,6 @@ import connectify.logic.commands.exceptions.CommandException;
 import connectify.model.Model;
 import connectify.model.company.Company;
 import connectify.model.person.Person;
-
-import java.util.List;
 
 /**
  * Adds a person to the address book.
@@ -56,7 +56,6 @@ public class AddPersonCommand extends Command {
         this.toAdd = person;
         this.companyIndex = companyIndex;
     }
-
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);

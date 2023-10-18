@@ -28,6 +28,7 @@ import connectify.storage.JsonUserPrefsStorage;
 import connectify.storage.StorageManager;
 import connectify.testutil.Assert;
 import connectify.testutil.PersonBuilder;
+import connectify.testutil.TypicalCompanies;
 import connectify.testutil.TypicalPersons;
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy IO exception");
@@ -170,6 +171,7 @@ public class LogicManagerTest {
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ExceptionUserPrefs.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
 
+        model.addCompany(TypicalCompanies.DUMMY_COMPANY); // To be removed in future
         logic = new LogicManager(model, storage);
 
         // Triggers the saveAddressBook method by executing an add command
@@ -178,6 +180,7 @@ public class LogicManagerTest {
                 + CommandTestUtil.EMAIL_DESC_AMY + CommandTestUtil.ADDRESS_DESC_AMY;
         Person expectedPerson = new PersonBuilder(TypicalPersons.AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
+        expectedModel.addCompany(TypicalCompanies.DUMMY_COMPANY); // To be removed in future
         expectedModel.addPerson(expectedPerson);
         assertCommandFailure(addPersonCommand, CommandException.class, expectedMessage, expectedModel);
     }

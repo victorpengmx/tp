@@ -42,6 +42,8 @@ public class ModelManager implements Model {
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
+        // Add a default company to the address book - To be implemented in future
+        // this.addressBook.addCompany(new Company("Unassigned"));
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filterCompanies = new FilteredList<>(this.addressBook.getCompanyList());
