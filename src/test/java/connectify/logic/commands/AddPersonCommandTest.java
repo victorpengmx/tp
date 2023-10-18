@@ -33,19 +33,10 @@ public class AddPersonCommandTest {
         assertThrows(NullPointerException.class, () -> new AddPersonCommand(null, INDEX_FIRST_COMPANY));
     }
 
-    // Temporary removal of test due to change in AddPersonCommand
-    // To be added in future when dummy company "Unassigned" is instantiated
-    //    @Test
-    //    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-    //        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-    //        Person validPerson = new PersonBuilder().build();
-    //
-    //        CommandResult commandResult = new AddPersonCommand(validPerson, INDEX_FIRST_COMPANY).execute(modelStub);
-    //
-    //        assertEquals(String.format(AddPersonCommand.MESSAGE_SUCCESS, Messages.format(validPerson)),
-    //                commandResult.getFeedbackToUser());
-    //        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
-    //    }
+    @Test
+    public void execute_addPersonToCompany_success() {
+        // To be added in the future iterations
+    }
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
@@ -188,6 +179,11 @@ public class AddPersonCommandTest {
 
         @Override
         public void setPerson(Person target, Person editedPerson) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setCompany(Company target, Company editedCompany) {
             throw new AssertionError("This method should not be called.");
         }
 

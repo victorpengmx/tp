@@ -4,6 +4,8 @@ import static connectify.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static connectify.testutil.TypicalIndexes.INDEX_FIRST_COMPANY;
 import static connectify.testutil.TypicalPersons.getTypicalAddressBook;
 
+import java.util.List;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -11,6 +13,7 @@ import connectify.logic.Messages;
 import connectify.model.Model;
 import connectify.model.ModelManager;
 import connectify.model.UserPrefs;
+import connectify.model.company.Company;
 import connectify.model.person.Person;
 import connectify.testutil.PersonBuilder;
 
@@ -32,6 +35,12 @@ public class AddPersonCommandIntegrationTest {
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.addPerson(validPerson);
+
+        List<Company> companies = expectedModel.getFilteredCompanyList();
+        Company targetCompany = companies.get(INDEX_FIRST_COMPANY.getZeroBased());
+        Company editedCompany = targetCompany.addPersonToCompany(validPerson);
+
+        expectedModel.setCompany(targetCompany, editedCompany);
 
         assertCommandSuccess(new AddPersonCommand(validPerson, INDEX_FIRST_COMPANY), model,
                 String.format(AddPersonCommand.MESSAGE_SUCCESS, Messages.format(validPerson)),

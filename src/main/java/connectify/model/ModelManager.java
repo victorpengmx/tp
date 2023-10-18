@@ -146,6 +146,14 @@ public class ModelManager implements Model {
         currEntity = EntityType.PEOPLE;
     }
 
+    @Override
+    public void setCompany(Company target, Company editedCompany) {
+        CollectionUtil.requireAllNonNull(target, editedCompany);
+
+        addressBook.setCompany(target, editedCompany);
+        currEntity = EntityType.COMPANIES;
+    }
+
     //=========== Filtered List Accessors =============================================================
 
     /**

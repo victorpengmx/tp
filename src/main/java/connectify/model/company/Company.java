@@ -102,8 +102,10 @@ public class Company extends Entity {
      * Adds a person to the company.
      * @param person Person to be added
      */
-    public void addPersonToCompany(Person person) {
-        personList.addPerson(person);
+    public Company addPersonToCompany(Person person) {
+        requireAllNonNull(person);
+        PersonList edited = new PersonList(personList).addPerson(person);
+        return new Company(name, industry, location, description, website, email, phone, address, edited);
     }
 
     /**

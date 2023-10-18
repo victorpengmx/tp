@@ -70,11 +70,16 @@ public class AddPersonCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_COMPANY_DISPLAYED_INDEX);
         }
 
-        Company affiliatedCompany = lastShownList.get(companyIndex.getZeroBased());
+        Company affiliatedCompanyToEdit = lastShownList.get(companyIndex.getZeroBased());
 
-        affiliatedCompany.addPersonToCompany(toAdd);
+        Company editedAffliatedCompany = affiliatedCompanyToEdit.addPersonToCompany(toAdd);
 
+        System.out.println(editedAffliatedCompany.getPersonList());
+
+        model.setCompany(affiliatedCompanyToEdit, editedAffliatedCompany);
+        model.updateFilteredCompanyList(Model.PREDICATE_SHOW_ALL_COMPANIES);
         model.addPerson(toAdd);
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
 

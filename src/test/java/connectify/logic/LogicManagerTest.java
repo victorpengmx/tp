@@ -2,11 +2,13 @@ package connectify.logic;
 
 import static connectify.logic.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static connectify.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static connectify.testutil.TypicalIndexes.INDEX_FIRST_COMPANY;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
 import java.nio.file.AccessDeniedException;
 import java.nio.file.Path;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,6 +24,7 @@ import connectify.model.Model;
 import connectify.model.ModelManager;
 import connectify.model.ReadOnlyAddressBook;
 import connectify.model.UserPrefs;
+import connectify.model.company.Company;
 import connectify.model.person.Person;
 import connectify.storage.JsonAddressBookStorage;
 import connectify.storage.JsonUserPrefsStorage;
@@ -179,9 +182,17 @@ public class LogicManagerTest {
                 + CommandTestUtil.NAME_DESC_AMY + CommandTestUtil.PHONE_DESC_AMY
                 + CommandTestUtil.EMAIL_DESC_AMY + CommandTestUtil.ADDRESS_DESC_AMY;
         Person expectedPerson = new PersonBuilder(TypicalPersons.AMY).withTags().build();
+
         ModelManager expectedModel = new ModelManager();
         expectedModel.addCompany(TypicalCompanies.DUMMY_COMPANY); // To be removed in future
+
+        List<Company> companies = expectedModel.getFilteredCompanyList();
+        Company targetCompany = companies.get(INDEX_FIRST_COMPANY.getZeroBased());
+        Company editedCompany = targetCompany.addPersonToCompany(expectedPerson);
+
+        expectedModel.setCompany(targetCompany, editedCompany);
         expectedModel.addPerson(expectedPerson);
+
         assertCommandFailure(addPersonCommand, CommandException.class, expectedMessage, expectedModel);
     }
 }
