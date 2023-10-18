@@ -38,7 +38,7 @@ public class AddPersonCommand extends Command {
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney"
+            + PREFIX_TAG + "owesMoney "
             + PREFIX_COMPANY + "1";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
@@ -74,8 +74,6 @@ public class AddPersonCommand extends Command {
         Company affiliatedCompany = lastShownList.get(companyIndex.getZeroBased());
 
         affiliatedCompany.addPersonToCompany(toAdd);
-
-        toAdd.addCompanyToPerson(affiliatedCompany);
 
         model.addPerson(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
