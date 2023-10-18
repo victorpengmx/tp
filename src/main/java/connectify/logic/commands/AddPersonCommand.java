@@ -1,17 +1,22 @@
 package connectify.logic.commands;
 
 import static connectify.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static connectify.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static connectify.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static connectify.logic.parser.CliSyntax.PREFIX_NAME;
 import static connectify.logic.parser.CliSyntax.PREFIX_PHONE;
 import static connectify.logic.parser.CliSyntax.PREFIX_TAG;
 import static java.util.Objects.requireNonNull;
 
+import connectify.commons.core.index.Index;
 import connectify.commons.util.ToStringBuilder;
 import connectify.logic.Messages;
 import connectify.logic.commands.exceptions.CommandException;
 import connectify.model.Model;
+import connectify.model.company.Company;
 import connectify.model.person.Person;
+
+import java.util.List;
 
 /**
  * Adds a person to the address book.
@@ -33,19 +38,23 @@ public class AddPersonCommand extends Command {
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_TAG + "owesMoney"
+            + PREFIX_COMPANY + "1";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
 
     private final Person toAdd;
 
+    private final Index companyIndex;
+
     /**
      * Creates an AddPersonCommand to add the specified {@code Person}
      */
-    public AddPersonCommand(Person person) {
+    public AddPersonCommand(Person person, Index companyIndex) {
         requireNonNull(person);
-        toAdd = person;
+        this.toAdd = person;
+        this.companyIndex = companyIndex;
     }
 
     @Override
@@ -55,6 +64,18 @@ public class AddPersonCommand extends Command {
         if (model.hasPerson(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
+
+        List<Company> lastShownList = model.getFilteredCompanyList();
+
+        if (companyIndex.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_COMPANY_DISPLAYED_INDEX);
+        }
+
+        Company affiliatedCompany = lastShownList.get(companyIndex.getZeroBased());
+
+        affiliatedCompany.addPersonToCompany(toAdd);
+
+        toAdd.addCompanyToPerson(affiliatedCompany);
 
         model.addPerson(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));

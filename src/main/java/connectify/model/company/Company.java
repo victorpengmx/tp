@@ -4,6 +4,7 @@ import static connectify.commons.util.CollectionUtil.requireAllNonNull;
 
 import connectify.commons.util.ToStringBuilder;
 import connectify.model.Entity;
+import connectify.model.person.Person;
 import connectify.model.person.PersonList;
 
 /**
@@ -78,6 +79,14 @@ public class Company extends Entity {
      */
     public PersonList getPersonList() {
         return personList;
+    }
+
+    /**
+     * Adds a person to the company.
+     * @param person Person to be added
+     */
+    public void addPersonToCompany(Person person) {
+        personList.addPerson(person);
     }
 
     /**
