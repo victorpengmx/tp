@@ -74,23 +74,6 @@ public class Company extends Entity {
     }
 
     /**
-     * Constructor for Company.
-     * @param name Name of company
-     */
-    public Company(String name) {
-        requireAllNonNull(name);
-        this.name = name;
-        this.industry = "";
-        this.location = "";
-        this.description = "";
-        this.website = "";
-        this.email = "";
-        this.phone = "";
-        this.address = "";
-        this.personList = new PersonList();
-    }
-
-    /**
      * Returns the person list of the company.
      * @return Person list of company
      */
