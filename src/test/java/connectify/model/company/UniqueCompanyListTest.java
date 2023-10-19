@@ -21,16 +21,25 @@ public class UniqueCompanyListTest {
 
     private final UniqueCompanyList uniqueCompanyList = new UniqueCompanyList();
 
+    /**
+     * Tests that checking containment of a null company throws a {@code NullPointerException}.
+     */
     @Test
     public void contains_nullCompany_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueCompanyList.contains(null));
     }
 
+    /**
+     * Tests that checking containment of a company not in the list returns false.
+     */
     @Test
     public void contains_companyNotInList_returnsFalse() {
         assertFalse(uniqueCompanyList.contains(COMPANY_1));
     }
 
+    /**
+     * Tests that checking containment of a company in the list returns true.
+     */
     @Test
     public void contains_companyInList_returnsTrue() {
         uniqueCompanyList.add(COMPANY_1);
@@ -142,6 +151,9 @@ public class UniqueCompanyListTest {
         assertEquals(uniqueCompanyList.asUnmodifiableObservableList().toString(), uniqueCompanyList.toString());
     }
 
+    /**
+     * Tests the iteration over the list's contents.
+     */
     @Test
     public void iterator_checkContents_success() {
         uniqueCompanyList.add(COMPANY_1);
