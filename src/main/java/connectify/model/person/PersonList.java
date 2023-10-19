@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
@@ -14,7 +15,7 @@ import connectify.model.person.exceptions.PersonNotFoundException;
  * Represents a list of people.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class PersonList {
+public class PersonList implements Iterable<Person> {
     private final List<Person> people = new ArrayList<>();
 
     /**
@@ -122,5 +123,10 @@ public class PersonList {
     @Override
     public int hashCode() {
         return Objects.hash(people);
+    }
+
+    @Override
+    public Iterator<Person> iterator() {
+        return people.iterator();
     }
 }
