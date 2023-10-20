@@ -4,15 +4,15 @@ import static connectify.testutil.Assert.assertThrows;
 import static connectify.testutil.TypicalPersons.ALICE;
 import static connectify.testutil.TypicalPersons.BOB;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.Iterator;
 
 import org.junit.jupiter.api.Test;
 
 import connectify.testutil.PersonBuilder;
 import connectify.testutil.PersonListBuilder;
-
-import java.util.Iterator;
 
 public class PersonListTest {
 
