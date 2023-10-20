@@ -2,6 +2,7 @@ package connectify.logic.commands;
 
 import static connectify.testutil.Assert.assertThrows;
 import static connectify.testutil.TypicalIndexes.INDEX_FIRST_COMPANY;
+import static connectify.testutil.TypicalIndexes.INDEX_SECOND_COMPANY;
 import static connectify.testutil.TypicalPersons.ALICE;
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -10,17 +11,17 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.function.Predicate;
 
+import connectify.logic.Messages;
+import connectify.model.*;
+import connectify.testutil.TypicalCompanies;
+import javafx.collections.transformation.FilteredList;
 import org.junit.jupiter.api.Test;
 
 import connectify.commons.core.GuiSettings;
 import connectify.logic.commands.exceptions.CommandException;
-import connectify.model.AddressBook;
-import connectify.model.Entity;
-import connectify.model.Model;
-import connectify.model.ReadOnlyAddressBook;
-import connectify.model.ReadOnlyUserPrefs;
 import connectify.model.company.Company;
 import connectify.model.person.Person;
 import connectify.testutil.PersonBuilder;
@@ -38,6 +39,31 @@ public class AddPersonCommandTest {
         // To be added in the future iterations
     }
 
+    //  Commented out test temporarily due to changes in AddPersonCommand - will be added back in future iterations
+        @Test
+        public void execute_personAcceptedByModel_addSuccessful() throws Exception {
+            ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
+            Person validPerson = new PersonBuilder().build();
+            modelStub.addCompany(TypicalCompanies.DUMMY_COMPANY);
+
+            CommandResult commandResult = new AddPersonCommand(validPerson, INDEX_FIRST_COMPANY).execute(modelStub);
+
+            assertEquals(String.format(AddPersonCommand.MESSAGE_SUCCESS, Messages.format(validPerson)),
+                    commandResult.getFeedbackToUser());
+            assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+        }
+
+    @Test
+    public void execute_invalidCompanyIndex_throwsCommandException() {
+        Person validPerson = new PersonBuilder().build();
+        AddPersonCommand addPersonCommand = new AddPersonCommand(validPerson, INDEX_SECOND_COMPANY);
+        ModelStub modelStub = new ModelStubAcceptingPersonAdded();
+        modelStub.addCompany(TypicalCompanies.DUMMY_COMPANY);
+
+        assertThrows(CommandException.class, Messages.MESSAGE_INVALID_COMPANY_DISPLAYED_INDEX, () ->
+                addPersonCommand.execute(modelStub));
+    }
+
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
         Person validPerson = new PersonBuilder().build();
@@ -47,19 +73,6 @@ public class AddPersonCommandTest {
         assertThrows(CommandException.class, AddPersonCommand.MESSAGE_DUPLICATE_PERSON, () ->
                      addPersonCommand.execute(modelStub));
     }
-
-    // To be added in the future iterations
-    //    @Test
-    //    public void addPersonToCompany_success() throws Exception {
-    //        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-    //        Person validPerson = new PersonBuilder().build();
-    //
-    //        AddPersonCommand addPersonCommand = new AddPersonCommand(validPerson, INDEX_FIRST_COMPANY);
-    //        addPersonCommand.execute(modelStub);
-    //        List<Company> lastShownList = modelStub.getFilteredCompanyList();
-    //        Company affiliatedCompany = lastShownList.get(INDEX_FIRST_COMPANY.getZeroBased());
-    //        assertTrue(affiliatedCompany.getPersonList().contains(validPerson));
-    //    }
 
     @Test
     public void equals() {
@@ -271,6 +284,13 @@ public class AddPersonCommandTest {
      */
     private class ModelStubAcceptingPersonAdded extends ModelStub {
         final ArrayList<Person> personsAdded = new ArrayList<>();
+        final AddressBook addressBook;
+        final FilteredList<Company> filterCompanies;
+
+        ModelStubAcceptingPersonAdded() {
+            addressBook = new AddressBook();
+            filterCompanies = new FilteredList<>(addressBook.getCompanyList());
+        }
 
         @Override
         public boolean hasPerson(Person person) {
@@ -285,8 +305,29 @@ public class AddPersonCommandTest {
         }
 
         @Override
+        public void addCompany(Company company) {
+            requireNonNull(company);
+            addressBook.addCompany(company);
+        }
+
+        public void setCompany(Company target, Company editedCompany) {
+            requireNonNull(editedCompany);
+            addressBook.setCompany(target, editedCompany);
+        }
+
+        public void updateFilteredCompanyList(Predicate<Company> predicate) {
+            requireNonNull(predicate);
+            filterCompanies.setPredicate(predicate);
+        }
+
+        @Override
         public ReadOnlyAddressBook getAddressBook() {
             return new AddressBook();
+        }
+
+        @Override
+        public ObservableList<Company> getFilteredCompanyList() {
+            return filterCompanies;
         }
     }
 
