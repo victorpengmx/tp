@@ -26,12 +26,17 @@ public class JsonAdaptedCompanyTest {
             .map(JsonAdaptedPerson::new)
             .collect(Collectors.toList());
 
+    /**
+     * Tests if a valid company is successfully converted to its model type.
+     */
     @Test
     public void toModelType_validCompanyDetails_returnsCompany() throws Exception {
         JsonAdaptedCompany company = new JsonAdaptedCompany(COMPANY_1);
         assertEquals(COMPANY_1, company.toModelType());
     }
-
+    /**
+     * Tests if a null name in the company throws an {@code IllegalValueException}.
+     */
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
         JsonAdaptedCompany company =
@@ -40,7 +45,9 @@ public class JsonAdaptedCompanyTest {
         String expectedMessage = String.format(JsonAdaptedCompany.MISSING_FIELD_MESSAGE_FORMAT, "Name");
         Assert.assertThrows(IllegalValueException.class, expectedMessage, company::toModelType);
     }
-
+    /**
+     * Tests if a null name in the company throws an {@code IllegalValueException}.
+     */
     @Test
     public void toModelType_nullPhone_throwsIllegalValueException() {
         JsonAdaptedCompany company =
@@ -49,7 +56,9 @@ public class JsonAdaptedCompanyTest {
         String expectedMessage = String.format(JsonAdaptedCompany.MISSING_FIELD_MESSAGE_FORMAT, "Phone");
         Assert.assertThrows(IllegalValueException.class, expectedMessage, company::toModelType);
     }
-
+    /**
+     * Tests if a null name in the company throws an {@code IllegalValueException}.
+     */
     @Test
     public void toModelType_nullIndustry_throwsIllegalValueException() {
         JsonAdaptedCompany company =
@@ -58,7 +67,9 @@ public class JsonAdaptedCompanyTest {
         String expectedMessage = String.format(JsonAdaptedCompany.MISSING_FIELD_MESSAGE_FORMAT, "Industry");
         Assert.assertThrows(IllegalValueException.class, expectedMessage, company::toModelType);
     }
-
+    /**
+     * Tests if a null name in the company throws an {@code IllegalValueException}.
+     */
     @Test
     public void toModelType_nullLocation_throwsIllegalValueException() {
         JsonAdaptedCompany company =
@@ -67,7 +78,9 @@ public class JsonAdaptedCompanyTest {
         String expectedMessage = String.format(JsonAdaptedCompany.MISSING_FIELD_MESSAGE_FORMAT, "Location");
         Assert.assertThrows(IllegalValueException.class, expectedMessage, company::toModelType);
     }
-
+    /**
+     * Tests if a null name in the company throws an {@code IllegalValueException}.
+     */
     @Test
     public void toModelType_nullDescription_throwsIllegalValueException() {
         JsonAdaptedCompany company =
@@ -76,7 +89,9 @@ public class JsonAdaptedCompanyTest {
         String expectedMessage = String.format(JsonAdaptedCompany.MISSING_FIELD_MESSAGE_FORMAT, "Description");
         Assert.assertThrows(IllegalValueException.class, expectedMessage, company::toModelType);
     }
-
+    /**
+     * Tests if a null name in the company throws an {@code IllegalValueException}.
+     */
     @Test
     public void toModelType_nullWebsite_throwsIllegalValueException() {
         JsonAdaptedCompany company =
@@ -85,7 +100,9 @@ public class JsonAdaptedCompanyTest {
         String expectedMessage = String.format(JsonAdaptedCompany.MISSING_FIELD_MESSAGE_FORMAT, "Website");
         Assert.assertThrows(IllegalValueException.class, expectedMessage, company::toModelType);
     }
-
+    /**
+     * Tests if a null name in the company throws an {@code IllegalValueException}.
+     */
     @Test
     public void toModelType_nullEmail_throwsIllegalValueException() {
         JsonAdaptedCompany company =
@@ -94,7 +111,9 @@ public class JsonAdaptedCompanyTest {
         String expectedMessage = String.format(JsonAdaptedCompany.MISSING_FIELD_MESSAGE_FORMAT, "Email");
         Assert.assertThrows(IllegalValueException.class, expectedMessage, company::toModelType);
     }
-
+    /**
+     * Tests if a null name in the company throws an {@code IllegalValueException}.
+     */
     @Test
     public void toModelType_nullAddress_throwsIllegalValueException() {
         JsonAdaptedCompany company =
