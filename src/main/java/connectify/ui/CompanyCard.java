@@ -49,11 +49,9 @@ public class CompanyCard extends UiPart<Region> {
         address.setText(company.getAddress());
 
         PersonList personList = company.getPersonList();
-        StringBuilder str = new StringBuilder();
-        str.append("People:\n");
+        StringBuilder str = new StringBuilder("People:\n");
         for (Person person : personList) {
-            str.append(person.getName());
-            str.append("\n");
+            str.append(person.getName() + "\n");
         }
         people.setText(str.toString());
 
