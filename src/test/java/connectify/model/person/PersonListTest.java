@@ -2,15 +2,20 @@ package connectify.model.person;
 
 import static connectify.testutil.Assert.assertThrows;
 import static connectify.testutil.TypicalPersons.ALICE;
+import static connectify.testutil.TypicalPersons.BOB;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import org.junit.jupiter.api.Test;
 
 import connectify.testutil.PersonBuilder;
 import connectify.testutil.PersonListBuilder;
 
+import java.util.Iterator;
+
 public class PersonListTest {
+
     @Test
     public void addPerson_personAdded() {
         PersonList persons = new PersonList();
@@ -38,5 +43,18 @@ public class PersonListTest {
     public void asList_modifyList_throwsUnsupportedOperationException() {
         PersonList persons = new PersonListBuilder().build();
         assertThrows(UnsupportedOperationException.class, () -> persons.asList().remove(0));
+    }
+
+    @Test
+    public void iterator_checkContents_success() {
+        PersonList personList = new PersonList();
+        personList.addPerson(ALICE);
+        personList.addPerson(BOB);
+        Iterator<Person> iterator = personList.iterator();
+        assertTrue(iterator.hasNext());
+        assertEquals(iterator.next(), ALICE);
+        assertTrue(iterator.hasNext());
+        assertEquals(iterator.next(), BOB);
+        assertFalse(iterator.hasNext());
     }
 }
