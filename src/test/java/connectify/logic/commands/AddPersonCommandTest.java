@@ -14,18 +14,22 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
 
-import connectify.logic.Messages;
-import connectify.model.*;
-import connectify.testutil.TypicalCompanies;
-import javafx.collections.transformation.FilteredList;
 import org.junit.jupiter.api.Test;
 
 import connectify.commons.core.GuiSettings;
+import connectify.logic.Messages;
 import connectify.logic.commands.exceptions.CommandException;
+import connectify.model.AddressBook;
+import connectify.model.Entity;
+import connectify.model.Model;
+import connectify.model.ReadOnlyAddressBook;
+import connectify.model.ReadOnlyUserPrefs;
 import connectify.model.company.Company;
 import connectify.model.person.Person;
 import connectify.testutil.PersonBuilder;
+import connectify.testutil.TypicalCompanies;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 
 public class AddPersonCommandTest {
 
@@ -35,23 +39,30 @@ public class AddPersonCommandTest {
     }
 
     @Test
-    public void execute_addPersonToCompany_success() {
-        // To be added in the future iterations
+    public void execute_addPersonToCompany_success() throws Exception {
+        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
+        Person validPerson = new PersonBuilder().build();
+        modelStub.addCompany(TypicalCompanies.DUMMY_COMPANY);
+
+        CommandResult commandResult = new AddPersonCommand(validPerson, INDEX_FIRST_COMPANY).execute(modelStub);
+
+        assertEquals(String.format(AddPersonCommand.MESSAGE_SUCCESS, Messages.format(validPerson)),
+                commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
     }
 
-    //  Commented out test temporarily due to changes in AddPersonCommand - will be added back in future iterations
-        @Test
-        public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-            ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-            Person validPerson = new PersonBuilder().build();
-            modelStub.addCompany(TypicalCompanies.DUMMY_COMPANY);
+    @Test
+    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
+        Person validPerson = new PersonBuilder().build();
+        modelStub.addCompany(TypicalCompanies.DUMMY_COMPANY);
 
-            CommandResult commandResult = new AddPersonCommand(validPerson, INDEX_FIRST_COMPANY).execute(modelStub);
+        CommandResult commandResult = new AddPersonCommand(validPerson, INDEX_FIRST_COMPANY).execute(modelStub);
 
-            assertEquals(String.format(AddPersonCommand.MESSAGE_SUCCESS, Messages.format(validPerson)),
-                    commandResult.getFeedbackToUser());
-            assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
-        }
+        assertEquals(String.format(AddPersonCommand.MESSAGE_SUCCESS, Messages.format(validPerson)),
+                commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+    }
 
     @Test
     public void execute_invalidCompanyIndex_throwsCommandException() {
