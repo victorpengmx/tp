@@ -121,4 +121,10 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+    public static Index parseCompany(String s) {
+        requireNonNull(s);
+        String trimmedCompany = s.trim();
+        return Index.fromOneBased(Integer.parseInt(trimmedCompany));
+    }
 }

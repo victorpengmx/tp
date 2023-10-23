@@ -9,7 +9,7 @@ import static connectify.logic.parser.CliSyntax.PREFIX_TAG;
 import java.util.Set;
 
 import connectify.logic.commands.AddPersonCommand;
-import connectify.logic.commands.EditCommand.EditPersonDescriptor;
+import connectify.logic.commands.EditPersonCommand.EditPersonDescriptor;
 import connectify.model.person.Person;
 import connectify.model.tag.Tag;
 
