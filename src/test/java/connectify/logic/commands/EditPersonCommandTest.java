@@ -190,6 +190,20 @@ public class EditPersonCommandTest {
     }
 
     @Test
+    public void execute_noCompanyProvided_failure() {
+        EditPersonCommand editPersonCommand = new EditPersonCommand(INDEX_FIRST_PERSON, null, DESC_AMY);
+        assertCommandFailure(editPersonCommand, model, EditPersonCommand.MESSAGE_NO_COMPANY_PROVIDED);
+    }
+
+    @Test
+    public void execute_invalidPersonIndex_failure() {
+        Index outOfBoundIndex = Index.fromOneBased(
+                model.getFilteredCompanyList().get(0).getPersonList().size() + 1);
+        EditPersonCommand editPersonCommand = new EditPersonCommand(outOfBoundIndex, INDEX_FIRST_COMPANY, DESC_AMY);
+        assertCommandFailure(editPersonCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
+    @Test
     public void toStringMethod() {
         Index index = Index.fromOneBased(1);
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
