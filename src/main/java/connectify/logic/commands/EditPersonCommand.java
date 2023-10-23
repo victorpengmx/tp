@@ -48,12 +48,15 @@ public class EditPersonCommand extends Command {
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
+            + PREFIX_COMPANY + "1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+
+    public static final String MESSAGE_NO_COMPANY_PROVIDED = "No company provided.";
 
     private final Index index;
 
@@ -64,26 +67,27 @@ public class EditPersonCommand extends Command {
      * @param index of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
-    public EditPersonCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public EditPersonCommand(Index index, Index companyIndex, EditPersonDescriptor editPersonDescriptor) {
         requireNonNull(index);
         requireNonNull(editPersonDescriptor);
 
         this.index = index;
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
-        this.companyIndex = editPersonDescriptor.getCompany().orElse(null);
+        this.companyIndex = companyIndex;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Company> lastShownList = model.getFilteredCompanyList();
-
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
+        if (this.companyIndex == null) {
+            throw new CommandException(MESSAGE_NO_COMPANY_PROVIDED);
+        }
 
         Company affiliatedCompanyToEdit = lastShownList.get(companyIndex.getZeroBased());
-
         if (index.getZeroBased() >= affiliatedCompanyToEdit.getPersonList().asList().size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
@@ -96,8 +100,9 @@ public class EditPersonCommand extends Command {
         }
 
         Company deletedPersonFromCompany = affiliatedCompanyToEdit.deletePersonFromCompany(personToEdit);
+        Company editedAffliatedCompany = deletedPersonFromCompany.addPersonToCompany(editedPerson);
 
-
+        model.setCompany(affiliatedCompanyToEdit, editedAffliatedCompany);
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)));
@@ -168,7 +173,6 @@ public class EditPersonCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
-            setCompany(toCopy.companyIndex);
         }
 
         /**
@@ -227,22 +231,6 @@ public class EditPersonCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
-        /**
-         * Sets the company index to this object's {@code companyIndex}.
-         * @param companyIndex
-         */
-        public void setCompany(Index companyIndex) {
-            this.companyIndex = companyIndex;
-        }
-
-        /**
-         * Returns an optional company index.
-         * @return companyIndex
-         */
-        public Optional<Index> getCompany() {
-            return Optional.ofNullable(companyIndex);
-        }
-
         @Override
         public boolean equals(Object other) {
             if (other == this) {
@@ -266,7 +254,6 @@ public class EditPersonCommand extends Command {
         public String toString() {
             return new ToStringBuilder(this)
                     .add("name", name)
-                    .add("company", companyIndex")
                     .add("phone", phone)
                     .add("email", email)
                     .add("address", address)

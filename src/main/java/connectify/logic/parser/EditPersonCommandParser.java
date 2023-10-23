@@ -40,20 +40,27 @@ public class EditPersonCommandParser implements Parser<EditPersonCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditPersonCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditPersonCommand.MESSAGE_USAGE), pe);
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_COMPANY, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_COMPANY, PREFIX_NAME,
+                PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
 
         EditPersonCommand.EditPersonDescriptor editPersonDescriptor = new EditPersonCommand.EditPersonDescriptor();
 
+        Index companyIndex;
         if (argMultimap.getValue(PREFIX_COMPANY).isPresent()) {
-            editPersonDescriptor.setCompany(ParserUtil.parseCompany(argMultimap.getValue(PREFIX_COMPANY).get()));
+            companyIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_COMPANY).get());
+        } else {
+            throw new ParseException(String.format(EditPersonCommand.MESSAGE_NO_COMPANY_PROVIDED,
+                    EditPersonCommand.MESSAGE_USAGE));
         }
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
+
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
             editPersonDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
         }
@@ -69,7 +76,7 @@ public class EditPersonCommandParser implements Parser<EditPersonCommand> {
             throw new ParseException(EditPersonCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new EditPersonCommand(index, editPersonDescriptor);
+        return new EditPersonCommand(index, companyIndex, editPersonDescriptor);
     }
 
     /**

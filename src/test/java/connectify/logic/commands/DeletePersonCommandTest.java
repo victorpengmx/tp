@@ -7,6 +7,7 @@ import static connectify.testutil.TypicalIndexes.INDEX_FIRST_COMPANY;
 import static connectify.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static connectify.testutil.TypicalIndexes.INDEX_SECOND_COMPANY;
 import static connectify.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static connectify.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
 import static connectify.testutil.TypicalPersons.getTypicalAddressBook;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -79,7 +80,7 @@ public class DeletePersonCommandTest {
     public void execute_invalidIndexFilteredList_throwsCommandException() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
-        Index outOfBoundPersonIndex = INDEX_SECOND_PERSON;
+        Index outOfBoundPersonIndex = INDEX_THIRD_PERSON; // Typical address book has only 2 persons
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundPersonIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
 

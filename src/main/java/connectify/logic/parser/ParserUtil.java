@@ -122,6 +122,11 @@ public class ParserUtil {
         return tagSet;
     }
 
+    /**
+     * Parses a {@code String company} into an {@code Index}.
+     * @param s String to be parsed
+     * @return Index
+     */
     public static Index parseCompany(String s) {
         requireNonNull(s);
         String trimmedCompany = s.trim();
