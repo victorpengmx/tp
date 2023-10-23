@@ -71,9 +71,12 @@ public class ConnectifyParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeletePersonCommand command = (DeletePersonCommand) parser.parseCommand(
-                DeletePersonCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeletePersonCommand(INDEX_FIRST_PERSON), command);
+                DeletePersonCommand.COMMAND_WORD + " " + INDEX_FIRST_COMPANY.getOneBased()
+                        +
+                        " " + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new DeletePersonCommand(INDEX_FIRST_COMPANY, INDEX_FIRST_PERSON), command);
     }
+
 
     @Test
     public void parseCommand_edit() throws Exception {

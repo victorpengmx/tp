@@ -1,6 +1,6 @@
 package connectify.logic;
 
-import static connectify.logic.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import static connectify.logic.Messages.MESSAGE_INVALID_COMPANY_DISPLAYED_INDEX;
 import static connectify.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static connectify.testutil.TypicalIndexes.INDEX_FIRST_COMPANY;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -60,8 +60,8 @@ public class LogicManagerTest {
 
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
-        String deletePersonCommand = "deletePerson 9";
-        assertCommandException(deletePersonCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        String deletePersonCommand = "deletePerson 1 9";
+        assertCommandException(deletePersonCommand, MESSAGE_INVALID_COMPANY_DISPLAYED_INDEX);
     }
 
     @Test

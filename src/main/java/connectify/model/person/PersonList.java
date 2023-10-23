@@ -131,4 +131,24 @@ public class PersonList implements Iterable<Person> {
     public Iterator<Person> iterator() {
         return people.iterator();
     }
+
+    /**
+     * Returns the number of persons in the list.
+     *
+     * @return The number of persons.
+     */
+    public int size() {
+        return people.size();
+    }
+
+    /**
+     * Retrieves a person from the list using the provided index.
+     *
+     * @param index The zero-based index of the person to retrieve.
+     * @return The person at the specified index.
+     */
+    public Person get(int index) {
+        return people.get(index);
+    }
+
 }
