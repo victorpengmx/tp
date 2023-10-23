@@ -99,8 +99,8 @@ public class EditPersonCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        Company deletedPersonFromCompany = affiliatedCompanyToEdit.deletePersonFromCompany(personToEdit);
-        Company editedAffliatedCompany = deletedPersonFromCompany.addPersonToCompany(editedPerson);
+        Company companyWithPersonDeleted = affiliatedCompanyToEdit.deletePersonFromCompany(personToEdit);
+        Company editedAffliatedCompany = companyWithPersonDeleted.addPersonToCompany(editedPerson);
 
         model.setCompany(affiliatedCompanyToEdit, editedAffliatedCompany);
         model.setPerson(personToEdit, editedPerson);

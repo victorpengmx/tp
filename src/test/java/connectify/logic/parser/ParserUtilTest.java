@@ -205,7 +205,7 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseCompny_null_throwsNullPointerException() {
+    public void parseCompany_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseCompany((String) null));
     }
 }
