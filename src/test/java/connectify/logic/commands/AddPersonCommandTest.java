@@ -1,6 +1,8 @@
 package connectify.logic.commands;
 
 import static connectify.testutil.Assert.assertThrows;
+import static connectify.testutil.TypicalIndexes.INDEX_FIRST_COMPANY;
+import static connectify.testutil.TypicalIndexes.INDEX_SECOND_COMPANY;
 import static connectify.testutil.TypicalPersons.ALICE;
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -25,22 +27,24 @@ import connectify.model.ReadOnlyUserPrefs;
 import connectify.model.company.Company;
 import connectify.model.person.Person;
 import connectify.testutil.PersonBuilder;
+import connectify.testutil.TypicalCompanies;
 import javafx.collections.ObservableList;
-
+import javafx.collections.transformation.FilteredList;
 
 public class AddPersonCommandTest {
 
     @Test
     public void constructor_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddPersonCommand(null));
+        assertThrows(NullPointerException.class, () -> new AddPersonCommand(null, INDEX_FIRST_COMPANY));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
+    public void execute_addPersonToCompany_success() throws Exception {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
         Person validPerson = new PersonBuilder().build();
+        modelStub.addCompany(TypicalCompanies.DUMMY_COMPANY);
 
-        CommandResult commandResult = new AddPersonCommand(validPerson).execute(modelStub);
+        CommandResult commandResult = new AddPersonCommand(validPerson, INDEX_FIRST_COMPANY).execute(modelStub);
 
         assertEquals(String.format(AddPersonCommand.MESSAGE_SUCCESS, Messages.format(validPerson)),
                 commandResult.getFeedbackToUser());
@@ -48,9 +52,33 @@ public class AddPersonCommandTest {
     }
 
     @Test
+    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
+        Person validPerson = new PersonBuilder().build();
+        modelStub.addCompany(TypicalCompanies.DUMMY_COMPANY);
+
+        CommandResult commandResult = new AddPersonCommand(validPerson, INDEX_FIRST_COMPANY).execute(modelStub);
+
+        assertEquals(String.format(AddPersonCommand.MESSAGE_SUCCESS, Messages.format(validPerson)),
+                commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+    }
+
+    @Test
+    public void execute_invalidCompanyIndex_throwsCommandException() {
+        Person validPerson = new PersonBuilder().build();
+        AddPersonCommand addPersonCommand = new AddPersonCommand(validPerson, INDEX_SECOND_COMPANY);
+        ModelStub modelStub = new ModelStubAcceptingPersonAdded();
+        modelStub.addCompany(TypicalCompanies.DUMMY_COMPANY);
+
+        assertThrows(CommandException.class, Messages.MESSAGE_INVALID_COMPANY_DISPLAYED_INDEX, () ->
+                addPersonCommand.execute(modelStub));
+    }
+
+    @Test
     public void execute_duplicatePerson_throwsCommandException() {
         Person validPerson = new PersonBuilder().build();
-        AddPersonCommand addPersonCommand = new AddPersonCommand(validPerson);
+        AddPersonCommand addPersonCommand = new AddPersonCommand(validPerson, INDEX_FIRST_COMPANY);
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
 
         assertThrows(CommandException.class, AddPersonCommand.MESSAGE_DUPLICATE_PERSON, () ->
@@ -61,14 +89,14 @@ public class AddPersonCommandTest {
     public void equals() {
         Person alice = new PersonBuilder().withName("Alice").build();
         Person bob = new PersonBuilder().withName("Bob").build();
-        AddPersonCommand addAliceCommand = new AddPersonCommand(alice);
-        AddPersonCommand addBobCommand = new AddPersonCommand(bob);
+        AddPersonCommand addAliceCommand = new AddPersonCommand(alice, INDEX_FIRST_COMPANY);
+        AddPersonCommand addBobCommand = new AddPersonCommand(bob, INDEX_FIRST_COMPANY);
 
         // same object -> returns true
         assertTrue(addAliceCommand.equals(addAliceCommand));
 
         // same values -> returns true
-        AddPersonCommand addAliceCommandCopy = new AddPersonCommand(alice);
+        AddPersonCommand addAliceCommandCopy = new AddPersonCommand(alice, INDEX_FIRST_COMPANY);
         assertTrue(addAliceCommand.equals(addAliceCommandCopy));
 
         // different types -> returns false
@@ -83,7 +111,7 @@ public class AddPersonCommandTest {
 
     @Test
     public void toStringMethod() {
-        AddPersonCommand addPersonCommand = new AddPersonCommand(ALICE);
+        AddPersonCommand addPersonCommand = new AddPersonCommand(ALICE, INDEX_FIRST_COMPANY);
         String expected = AddPersonCommand.class.getCanonicalName() + "{toAdd=" + ALICE + "}";
         assertEquals(expected, addPersonCommand.toString());
     }
@@ -179,6 +207,11 @@ public class AddPersonCommandTest {
         }
 
         @Override
+        public void setCompany(Company target, Company editedCompany) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Person> getFilteredPersonList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -262,6 +295,13 @@ public class AddPersonCommandTest {
      */
     private class ModelStubAcceptingPersonAdded extends ModelStub {
         final ArrayList<Person> personsAdded = new ArrayList<>();
+        final AddressBook addressBook;
+        final FilteredList<Company> filterCompanies;
+
+        ModelStubAcceptingPersonAdded() {
+            addressBook = new AddressBook();
+            filterCompanies = new FilteredList<>(addressBook.getCompanyList());
+        }
 
         @Override
         public boolean hasPerson(Person person) {
@@ -276,8 +316,29 @@ public class AddPersonCommandTest {
         }
 
         @Override
+        public void addCompany(Company company) {
+            requireNonNull(company);
+            addressBook.addCompany(company);
+        }
+
+        public void setCompany(Company target, Company editedCompany) {
+            requireNonNull(editedCompany);
+            addressBook.setCompany(target, editedCompany);
+        }
+
+        public void updateFilteredCompanyList(Predicate<Company> predicate) {
+            requireNonNull(predicate);
+            filterCompanies.setPredicate(predicate);
+        }
+
+        @Override
         public ReadOnlyAddressBook getAddressBook() {
             return new AddressBook();
+        }
+
+        @Override
+        public ObservableList<Company> getFilteredCompanyList() {
+            return filterCompanies;
         }
     }
 

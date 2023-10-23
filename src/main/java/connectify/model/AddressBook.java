@@ -107,6 +107,18 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the given company {@code target} in the list with {@code editedCompany}.
+     * {@code target} must exist in the address book.
+     * The company identity of {@code editedCompany} must not be the same as another existing company in
+     * the address book.
+     */
+    public void setCompany(Company target, Company editedCompany) {
+        requireNonNull(editedCompany);
+
+        companies.setCompany(target, editedCompany);
+    }
+
+    /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */

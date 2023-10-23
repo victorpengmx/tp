@@ -59,6 +59,7 @@ public class TypicalPersons {
         for (Person person : getTypicalPersons()) {
             ab.addPerson(person);
         }
+        ab.addCompany(TypicalCompanies.DUMMY_COMPANY);
         return ab;
     }
 

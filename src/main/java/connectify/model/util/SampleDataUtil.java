@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import connectify.model.AddressBook;
 import connectify.model.ReadOnlyAddressBook;
+import connectify.model.company.Company;
 import connectify.model.person.Address;
 import connectify.model.person.Email;
 import connectify.model.person.Name;
@@ -40,10 +41,21 @@ public class SampleDataUtil {
         };
     }
 
+    public static Company[] getSampleCompanies() {
+        return new Company[] {
+            new Company("Unassigned", "Unassigned", "Unassigned", "Unassigned",
+                    "Unassigned", "Unassigned",
+                "Unassigned", "Unassigned"), // To be protected from deletion in future
+        };
+    }
+
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
+        }
+        for (Company sampleCompany : getSampleCompanies()) {
+            sampleAb.addCompany(sampleCompany);
         }
         return sampleAb;
     }
@@ -56,5 +68,4 @@ public class SampleDataUtil {
                 .map(Tag::new)
                 .collect(Collectors.toSet());
     }
-
 }

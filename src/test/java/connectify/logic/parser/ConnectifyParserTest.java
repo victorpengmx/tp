@@ -45,7 +45,7 @@ public class ConnectifyParserTest {
     public void parseCommand_add() throws Exception {
         Person person = new PersonBuilder().build();
         AddPersonCommand command = (AddPersonCommand) parser.parseCommand(PersonUtil.getAddPersonCommand(person));
-        assertEquals(new AddPersonCommand(person), command);
+        assertEquals(new AddPersonCommand(person, INDEX_FIRST_COMPANY), command);
     }
 
     @Test
