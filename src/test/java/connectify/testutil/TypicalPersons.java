@@ -60,6 +60,7 @@ public class TypicalPersons {
             ab.addPerson(person);
         }
         ab.addCompany(TypicalCompanies.DUMMY_COMPANY);
+        ab.addCompany(TypicalCompanies.COMPANY_1);
         return ab;
     }
 
