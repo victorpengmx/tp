@@ -2,6 +2,7 @@ package connectify.logic.parser;
 
 import static connectify.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static connectify.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static connectify.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static connectify.testutil.Assert.assertThrows;
 import static connectify.testutil.TypicalIndexes.INDEX_FIRST_COMPANY;
 import static connectify.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -19,8 +20,8 @@ import connectify.logic.commands.AddPersonCommand;
 import connectify.logic.commands.ClearCommand;
 import connectify.logic.commands.DeleteCompanyCommand;
 import connectify.logic.commands.DeletePersonCommand;
-import connectify.logic.commands.EditCommand;
-import connectify.logic.commands.EditCommand.EditPersonDescriptor;
+import connectify.logic.commands.EditPersonCommand;
+import connectify.logic.commands.EditPersonCommand.EditPersonDescriptor;
 import connectify.logic.commands.ExitCommand;
 import connectify.logic.commands.FindCommand;
 import connectify.logic.commands.HelpCommand;
@@ -82,9 +83,11 @@ public class ConnectifyParserTest {
     public void parseCommand_edit() throws Exception {
         Person person = new PersonBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
-        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+        EditPersonCommand command = (EditPersonCommand) parser.parseCommand(EditPersonCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_COMPANY
+                + INDEX_FIRST_COMPANY.getOneBased() + " "
+                + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+        assertEquals(new EditPersonCommand(INDEX_FIRST_PERSON, INDEX_FIRST_COMPANY, descriptor), command);
     }
 
     @Test

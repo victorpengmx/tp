@@ -4,7 +4,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import connectify.logic.commands.EditCommand.EditPersonDescriptor;
+import connectify.logic.commands.EditPersonCommand.EditPersonDescriptor;
 import connectify.model.person.Address;
 import connectify.model.person.Email;
 import connectify.model.person.Name;
