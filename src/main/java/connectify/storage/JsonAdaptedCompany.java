@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import connectify.commons.exceptions.IllegalValueException;
+import connectify.model.Note;
 import connectify.model.company.Company;
 import connectify.model.person.Person;
 import connectify.model.person.PersonList;
@@ -29,6 +30,7 @@ public class JsonAdaptedCompany {
     private final String email;
     private final String phone;
     private final String address;
+    private final String note;
 
     private final List<JsonAdaptedPerson> personList = new ArrayList<>();
 
@@ -54,6 +56,7 @@ public class JsonAdaptedCompany {
                               @JsonProperty("email") String email,
                               @JsonProperty("phone") String phone,
                               @JsonProperty("address") String address,
+                              @JsonProperty("note") String note,
                               @JsonProperty("personList") List<JsonAdaptedPerson> personList) {
         this.name = name;
         this.industry = industry;
@@ -63,6 +66,7 @@ public class JsonAdaptedCompany {
         this.email = email;
         this.phone = phone;
         this.address = address;
+        this.note = note;
         if (personList != null) {
             this.personList.addAll(personList);
         }
@@ -82,6 +86,7 @@ public class JsonAdaptedCompany {
         email = source.getEmail();
         phone = source.getPhone();
         address = source.getAddress();
+        note = source.getNote().getContent();
         personList.addAll(source.getPersonList().asList().stream().map(JsonAdaptedPerson::new)
                 .collect(Collectors.toList()));
     }
@@ -129,6 +134,12 @@ public class JsonAdaptedCompany {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Address"));
         }
 
-        return new Company(name, industry, location, description, website, email, phone, address, modelPersonList);
+        if (note == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Note"));
+        }
+        final Note modelNote = new Note (note);
+
+        return new Company(name, industry, location, description, website, email, phone, address, modelNote,
+                modelPersonList);
     }
 }
