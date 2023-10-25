@@ -3,6 +3,7 @@ package connectify.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import connectify.model.Note;
 import connectify.model.person.Address;
 import connectify.model.person.Email;
 import connectify.model.person.Name;
@@ -20,11 +21,13 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_NOTE = "Appreciates a good sense of humour";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
+    private Note note;
     private Set<Tag> tags;
 
     /**
@@ -35,6 +38,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        note = new Note(DEFAULT_NOTE);
         tags = new HashSet<>();
     }
 
@@ -46,6 +50,7 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
+        note = personToCopy.getNote();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -90,11 +95,21 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Note} of the {@code Person} that we are building.
+     * @param note
+     * @return PersonBuilder
+     */
+    public PersonBuilder withNote (String note) {
+        this.note = new Note (note);
+        return this;
+    }
+
+    /**
      * Builds a person object.
      * @return Person object
      */
     public Person build() {
-        return new Person(name, phone, email, address, tags);
+        return new Person(name, phone, email, address, note, tags);
     }
 
 }
