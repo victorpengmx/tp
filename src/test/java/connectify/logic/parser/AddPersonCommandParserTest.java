@@ -32,7 +32,8 @@ public class AddPersonCommandParserTest {
         // whitespace only preamble
         CommandParserTestUtil.assertParseSuccess(parser, CommandTestUtil.PREAMBLE_WHITESPACE
                     + CommandTestUtil.NAME_DESC_BOB + CommandTestUtil.PHONE_DESC_BOB + CommandTestUtil.EMAIL_DESC_BOB
-                    + CommandTestUtil.ADDRESS_DESC_BOB + CommandTestUtil.TAG_DESC_FRIEND,
+                    + CommandTestUtil.ADDRESS_DESC_BOB + CommandTestUtil.TAG_DESC_FRIEND
+                        + CommandTestUtil.PRIORITY_DESC_BOB,
                     new AddPersonCommand(expectedPerson, INDEX_FIRST_COMPANY));
 
 
@@ -42,15 +43,15 @@ public class AddPersonCommandParserTest {
         CommandParserTestUtil.assertParseSuccess(parser,
             CommandTestUtil.NAME_DESC_BOB + CommandTestUtil.PHONE_DESC_BOB + CommandTestUtil.EMAIL_DESC_BOB
                     + CommandTestUtil.ADDRESS_DESC_BOB + CommandTestUtil.TAG_DESC_HUSBAND
-                    + CommandTestUtil.TAG_DESC_FRIEND, new AddPersonCommand(expectedPersonMultipleTags,
-                        INDEX_FIRST_COMPANY));
+                    + CommandTestUtil.TAG_DESC_FRIEND + CommandTestUtil.PRIORITY_DESC_BOB,
+                new AddPersonCommand(expectedPersonMultipleTags, INDEX_FIRST_COMPANY));
     }
 
     @Test
     public void parse_repeatedNonTagValue_failure() {
         String validExpectedPersonString = CommandTestUtil.NAME_DESC_BOB + CommandTestUtil.PHONE_DESC_BOB
                     + CommandTestUtil.EMAIL_DESC_BOB + CommandTestUtil.ADDRESS_DESC_BOB
-                    + CommandTestUtil.TAG_DESC_FRIEND;
+                    + CommandTestUtil.TAG_DESC_FRIEND + CommandTestUtil.PRIORITY_DESC_BOB;
 
         // multiple names
         CommandParserTestUtil.assertParseFailure(parser, CommandTestUtil.NAME_DESC_AMY
@@ -119,7 +120,8 @@ public class AddPersonCommandParserTest {
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
         CommandParserTestUtil.assertParseSuccess(parser, CommandTestUtil.NAME_DESC_AMY
                     + CommandTestUtil.PHONE_DESC_AMY + CommandTestUtil.EMAIL_DESC_AMY
-                    + CommandTestUtil.ADDRESS_DESC_AMY, new AddPersonCommand(expectedPerson, INDEX_FIRST_COMPANY));
+                    + CommandTestUtil.ADDRESS_DESC_AMY + CommandTestUtil.PRIORITY_DESC_AMY,
+                new AddPersonCommand(expectedPerson, INDEX_FIRST_COMPANY));
     }
 
     @Test
@@ -157,41 +159,48 @@ public class AddPersonCommandParserTest {
         // invalid name
         CommandParserTestUtil.assertParseFailure(parser, CommandTestUtil.INVALID_NAME_DESC
                 + CommandTestUtil.PHONE_DESC_BOB + CommandTestUtil.EMAIL_DESC_BOB + CommandTestUtil.ADDRESS_DESC_BOB
-                + CommandTestUtil.TAG_DESC_HUSBAND + CommandTestUtil.TAG_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
+                + CommandTestUtil.TAG_DESC_HUSBAND + CommandTestUtil.TAG_DESC_FRIEND
+                + CommandTestUtil.PRIORITY_DESC_BOB + CommandTestUtil.PRIORITY_DESC_BOB, Name.MESSAGE_CONSTRAINTS);
 
         // invalid phone
         CommandParserTestUtil.assertParseFailure(parser, CommandTestUtil.NAME_DESC_BOB
                 + CommandTestUtil.INVALID_PHONE_DESC + CommandTestUtil.EMAIL_DESC_BOB
                 + CommandTestUtil.ADDRESS_DESC_BOB
-                + CommandTestUtil.TAG_DESC_HUSBAND + CommandTestUtil.TAG_DESC_FRIEND, Phone.MESSAGE_CONSTRAINTS);
+                + CommandTestUtil.TAG_DESC_HUSBAND + CommandTestUtil.TAG_DESC_FRIEND
+                + CommandTestUtil.PRIORITY_DESC_BOB, Phone.MESSAGE_CONSTRAINTS);
 
         // invalid email
         CommandParserTestUtil.assertParseFailure(parser, CommandTestUtil.NAME_DESC_BOB
                 + CommandTestUtil.PHONE_DESC_BOB + CommandTestUtil.INVALID_EMAIL_DESC
                 + CommandTestUtil.ADDRESS_DESC_BOB
-                + CommandTestUtil.TAG_DESC_HUSBAND + CommandTestUtil.TAG_DESC_FRIEND, Email.MESSAGE_CONSTRAINTS);
+                + CommandTestUtil.TAG_DESC_HUSBAND + CommandTestUtil.TAG_DESC_FRIEND
+                + CommandTestUtil.PRIORITY_DESC_BOB, Email.MESSAGE_CONSTRAINTS);
 
         // invalid address
         CommandParserTestUtil.assertParseFailure(parser, CommandTestUtil.NAME_DESC_BOB
                 + CommandTestUtil.PHONE_DESC_BOB + CommandTestUtil.EMAIL_DESC_BOB
                 + CommandTestUtil.INVALID_ADDRESS_DESC
-                + CommandTestUtil.TAG_DESC_HUSBAND + CommandTestUtil.TAG_DESC_FRIEND, Address.MESSAGE_CONSTRAINTS);
+                + CommandTestUtil.TAG_DESC_HUSBAND + CommandTestUtil.TAG_DESC_FRIEND
+                + CommandTestUtil.PRIORITY_DESC_BOB, Address.MESSAGE_CONSTRAINTS);
 
         // invalid tag
         CommandParserTestUtil.assertParseFailure(parser, CommandTestUtil.NAME_DESC_BOB
                 + CommandTestUtil.PHONE_DESC_BOB + CommandTestUtil.EMAIL_DESC_BOB + CommandTestUtil.ADDRESS_DESC_BOB
-                + CommandTestUtil.INVALID_TAG_DESC + CommandTestUtil.VALID_TAG_FRIEND, Tag.MESSAGE_CONSTRAINTS);
+                + CommandTestUtil.INVALID_TAG_DESC + CommandTestUtil.VALID_TAG_FRIEND
+                + CommandTestUtil.PRIORITY_DESC_BOB, Tag.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         CommandParserTestUtil.assertParseFailure(parser, CommandTestUtil.INVALID_NAME_DESC
                 + CommandTestUtil.PHONE_DESC_BOB + CommandTestUtil.EMAIL_DESC_BOB
-                + CommandTestUtil.INVALID_ADDRESS_DESC, Name.MESSAGE_CONSTRAINTS);
+                + CommandTestUtil.INVALID_ADDRESS_DESC
+                + CommandTestUtil.PRIORITY_DESC_BOB, Name.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         CommandParserTestUtil.assertParseFailure(parser, CommandTestUtil.PREAMBLE_NON_EMPTY
                 + CommandTestUtil.NAME_DESC_BOB + CommandTestUtil.PHONE_DESC_BOB
                 + CommandTestUtil.EMAIL_DESC_BOB + CommandTestUtil.ADDRESS_DESC_BOB
-                + CommandTestUtil.TAG_DESC_HUSBAND + CommandTestUtil.TAG_DESC_FRIEND,
+                + CommandTestUtil.TAG_DESC_HUSBAND + CommandTestUtil.TAG_DESC_FRIEND
+                + CommandTestUtil.PRIORITY_DESC_BOB,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPersonCommand.MESSAGE_USAGE));
     }
 }

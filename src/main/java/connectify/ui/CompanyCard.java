@@ -50,8 +50,10 @@ public class CompanyCard extends UiPart<Region> {
 
         PersonList personList = company.getPersonList();
         StringBuilder str = new StringBuilder("People:\n");
+        int count = 0;
         for (Person person : personList) {
-            str.append(person.getName() + "\n");
+            str.append(count + 1).append(". ").append(person.getName()).append("\n");
+            count++;
         }
         people.setText(str.toString());
 

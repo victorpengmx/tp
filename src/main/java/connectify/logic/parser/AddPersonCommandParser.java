@@ -12,6 +12,7 @@ import connectify.model.person.Address;
 import connectify.model.person.Email;
 import connectify.model.person.Name;
 import connectify.model.person.Person;
+import connectify.model.person.PersonPriority;
 import connectify.model.person.Phone;
 import connectify.model.tag.Tag;
 
@@ -28,10 +29,11 @@ public class AddPersonCommandParser implements Parser<AddPersonCommand> {
     public AddPersonCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_NAME, CliSyntax.PREFIX_PHONE, CliSyntax.PREFIX_EMAIL,
-                        CliSyntax.PREFIX_ADDRESS, CliSyntax.PREFIX_TAG, CliSyntax.PREFIX_COMPANY);
+                        CliSyntax.PREFIX_ADDRESS, CliSyntax.PREFIX_TAG,
+                        CliSyntax.PREFIX_COMPANY, CliSyntax.PREFIX_PRIORITY);
 
         if (!arePrefixesPresent(argMultimap, CliSyntax.PREFIX_NAME, CliSyntax.PREFIX_ADDRESS,
-                CliSyntax.PREFIX_PHONE, CliSyntax.PREFIX_EMAIL)
+                CliSyntax.PREFIX_PHONE, CliSyntax.PREFIX_EMAIL, CliSyntax.PREFIX_PRIORITY)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPersonCommand.MESSAGE_USAGE));
         }
@@ -43,9 +45,11 @@ public class AddPersonCommandParser implements Parser<AddPersonCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(CliSyntax.PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(CliSyntax.PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(CliSyntax.PREFIX_TAG));
-        Index companyIndex = ParserUtil.parseIndex(argMultimap.getValue(CliSyntax.PREFIX_COMPANY).orElse("1"));
 
-        Person person = new Person(name, phone, email, address, tagList);
+        // Defaults to first company if no company index is provided
+        Index companyIndex = ParserUtil.parseIndex(argMultimap.getValue(CliSyntax.PREFIX_COMPANY).orElse("1"));
+        PersonPriority priority = ParserUtil.parsePersonPriority(argMultimap.getValue(CliSyntax.PREFIX_PRIORITY).get());
+        Person person = new Person(name, phone, email, address, tagList, priority);
 
         return new AddPersonCommand(person, companyIndex);
     }

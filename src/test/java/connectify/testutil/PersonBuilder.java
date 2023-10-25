@@ -7,6 +7,7 @@ import connectify.model.person.Address;
 import connectify.model.person.Email;
 import connectify.model.person.Name;
 import connectify.model.person.Person;
+import connectify.model.person.PersonPriority;
 import connectify.model.person.Phone;
 import connectify.model.tag.Tag;
 import connectify.model.util.SampleDataUtil;
@@ -21,11 +22,15 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
+    public static final String DEFAULT_PRIORITY = "1";
+
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
     private Set<Tag> tags;
+
+    private PersonPriority priority;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -36,6 +41,8 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
+        priority = new PersonPriority(DEFAULT_PRIORITY);
+
     }
 
     /**
@@ -47,6 +54,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
+        priority = personToCopy.getPriority();
     }
 
     /**
@@ -90,11 +98,19 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Priority} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withPriority(String priority) {
+        this.priority = new PersonPriority(priority);
+        return this;
+    }
+
+    /**
      * Builds a person object.
      * @return Person object
      */
     public Person build() {
-        return new Person(name, phone, email, address, tags);
+        return new Person(name, phone, email, address, tags, priority);
     }
 
 }

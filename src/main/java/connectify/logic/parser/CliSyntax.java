@@ -18,4 +18,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_WEBSITE = new Prefix("w/");
     public static final Prefix PREFIX_COMPANY = new Prefix("c/");
 
+    public static final Prefix PREFIX_PRIORITY = new Prefix("pr/");
+
 }

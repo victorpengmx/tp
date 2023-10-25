@@ -25,16 +25,19 @@ public class Person extends Entity {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
+    private final PersonPriority priority;
+
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        CollectionUtil.requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, PersonPriority priority) {
+        CollectionUtil.requireAllNonNull(name, phone, email, address, tags, priority);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.priority = priority;
     }
 
     public Name getName() {
@@ -51,6 +54,10 @@ public class Person extends Entity {
 
     public Address getAddress() {
         return address;
+    }
+
+    public PersonPriority getPriority() {
+        return priority;
     }
 
     /**
@@ -94,7 +101,9 @@ public class Person extends Entity {
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
-                && tags.equals(otherPerson.tags);
+                && tags.equals(otherPerson.tags)
+                && priority.equals(otherPerson.priority);
+
     }
 
     @Override
@@ -111,6 +120,7 @@ public class Person extends Entity {
                 .add("email", email)
                 .add("address", address)
                 .add("tags", tags)
+                .add("priority", priority)
                 .toString();
     }
 
