@@ -6,6 +6,7 @@ import static connectify.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static connectify.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static connectify.logic.parser.CliSyntax.PREFIX_NAME;
 import static connectify.logic.parser.CliSyntax.PREFIX_PHONE;
+import static connectify.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static connectify.logic.parser.CliSyntax.PREFIX_TAG;
 import static java.util.Objects.requireNonNull;
 
@@ -33,7 +34,7 @@ public class EditPersonCommandParser implements Parser<EditPersonCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_COMPANY, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-                            PREFIX_ADDRESS, PREFIX_TAG);
+                            PREFIX_ADDRESS, PREFIX_TAG, PREFIX_PRIORITY);
 
         Index index;
 
@@ -72,10 +73,14 @@ public class EditPersonCommandParser implements Parser<EditPersonCommand> {
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
+        if (argMultimap.getValue(PREFIX_PRIORITY).isPresent()) {
+            editPersonDescriptor.setPersonPriority(ParserUtil.parsePersonPriority(
+                    argMultimap.getValue(PREFIX_PRIORITY).get()));
+        }
+
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditPersonCommand.MESSAGE_NOT_EDITED);
         }
-
         return new EditPersonCommand(index, companyIndex, editPersonDescriptor);
     }
 

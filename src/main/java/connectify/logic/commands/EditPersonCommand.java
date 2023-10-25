@@ -61,6 +61,7 @@ public class EditPersonCommand extends Command {
 
     public static final String MESSAGE_NO_COMPANY_PROVIDED = "No company provided.";
 
+
     private final Index index;
 
     private final Index companyIndex;
@@ -73,7 +74,6 @@ public class EditPersonCommand extends Command {
     public EditPersonCommand(Index index, Index companyIndex, EditPersonDescriptor editPersonDescriptor) {
         requireNonNull(index);
         requireNonNull(editPersonDescriptor);
-
         this.index = index;
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
         this.companyIndex = companyIndex;
@@ -187,7 +187,7 @@ public class EditPersonCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, personPriority);
         }
 
         public void setName(Name name) {
@@ -274,6 +274,7 @@ public class EditPersonCommand extends Command {
                     .add("email", email)
                     .add("address", address)
                     .add("tags", tags)
+                    .add("priority", personPriority)
                     .toString();
         }
     }

@@ -116,16 +116,18 @@ public class EditPersonCommandParserTest {
         String userInput = targetIndex.getOneBased() + " " + PREFIX_COMPANY + INDEX_FIRST_COMPANY.getOneBased()
                 + CommandTestUtil.PHONE_DESC_BOB
                 + CommandTestUtil.TAG_DESC_HUSBAND + CommandTestUtil.EMAIL_DESC_AMY + CommandTestUtil.ADDRESS_DESC_AMY
-                + CommandTestUtil.NAME_DESC_AMY + CommandTestUtil.TAG_DESC_FRIEND;
+                + CommandTestUtil.NAME_DESC_AMY + CommandTestUtil.TAG_DESC_FRIEND + CommandTestUtil.PRIORITY_DESC_AMY;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_AMY)
                 .withPhone(CommandTestUtil.VALID_PHONE_BOB).withEmail(CommandTestUtil.VALID_EMAIL_AMY)
                 .withAddress(CommandTestUtil.VALID_ADDRESS_AMY).withTags(CommandTestUtil.VALID_TAG_HUSBAND,
-                        CommandTestUtil.VALID_TAG_FRIEND).build();
+                        CommandTestUtil.VALID_TAG_FRIEND)
+                .withPersonPriority(CommandTestUtil.VALID_PRIORITY_AMY).build();
         EditPersonCommand expectedCommand = new EditPersonCommand(targetIndex, INDEX_FIRST_COMPANY, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
+
 
     @Test
     public void parse_someFieldsSpecified_success() {

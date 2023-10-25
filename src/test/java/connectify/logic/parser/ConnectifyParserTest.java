@@ -3,6 +3,7 @@ package connectify.logic.parser;
 import static connectify.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static connectify.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static connectify.logic.parser.CliSyntax.PREFIX_COMPANY;
+import static connectify.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static connectify.testutil.Assert.assertThrows;
 import static connectify.testutil.TypicalIndexes.INDEX_FIRST_COMPANY;
 import static connectify.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -85,7 +86,7 @@ public class ConnectifyParserTest {
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
         EditPersonCommand command = (EditPersonCommand) parser.parseCommand(EditPersonCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_COMPANY
-                + INDEX_FIRST_COMPANY.getOneBased() + " "
+                + INDEX_FIRST_COMPANY.getOneBased() + " " + PREFIX_PRIORITY + "1 "
                 + PersonUtil.getEditPersonDescriptorDetails(descriptor));
         assertEquals(new EditPersonCommand(INDEX_FIRST_PERSON, INDEX_FIRST_COMPANY, descriptor), command);
     }

@@ -9,6 +9,7 @@ import connectify.model.person.Address;
 import connectify.model.person.Email;
 import connectify.model.person.Name;
 import connectify.model.person.Person;
+import connectify.model.person.PersonPriority;
 import connectify.model.person.Phone;
 import connectify.model.tag.Tag;
 
@@ -37,6 +38,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
         descriptor.setTags(person.getTags());
+        descriptor.setPersonPriority(person.getPriority());
     }
 
     /**
@@ -78,6 +80,17 @@ public class EditPersonDescriptorBuilder {
     public EditPersonDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
+        return this;
+    }
+
+    /**
+     * Sets the {@code PersonPriority} of the {@code EditPersonDescriptor} that we are building.
+     * @return
+     */
+
+    public EditPersonDescriptorBuilder withPersonPriority(String priority) {
+        PersonPriority converted = new PersonPriority(priority);
+        descriptor.setPersonPriority(converted);
         return this;
     }
 
