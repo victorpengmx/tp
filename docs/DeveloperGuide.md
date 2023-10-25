@@ -291,11 +291,14 @@ _{Explain here how the data archiving feature will be implemented}_
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​                                | I want to …​                 | So that I can…​                                                         |
-| -------- |----------------------------------------|------------------------------|-------------------------------------------------------------------------|
+|----------|----------------------------------------|------------------------------|-------------------------------------------------------------------------|
 | `* * *`  | new user                               | see usage instructions       | refer to instructions when I forget how to use the App                  |
 | `* * *`  | user                                   | add a new contact            |                                                                         |
 | `* * *`  | user                                   | delete a contact             | remove contacts that I no longer need                                   |
 | `* * *`  | user                                   | find a contact by name       | locate details of contacts without having to go through the entire list |
+| `* * *`  | user                                   | list all contacts            | know what people and companies I have contacts of                       |
+| `* * *`  | user                                   | list all companies           | know what companies I have contacts of                                  |
+| `* * *`  | user                                   | list all people              | know who are the people I have contacts with                            |
 | `* *`    | user                                   | hide private contact details | minimize chance of someone else seeing them by accident                 |
 | `*`      | user with many contacts in Connnectify | sort contacts by name        | locate a contact easily                                                 |
 
