@@ -166,7 +166,7 @@ Consider a scenario where the user wishes to add a new contact to a specific com
 
 To ensure that a contact is added to the correct company, the command also takes an `Index` parameter specifying the company where the contact should be added. This ensures that the contact is associated with the intended company.
 
-<img src="images/addPersonObjectDiagram.png" width="450" />
+<img src="images/addPersonObjectDiagram.png" width="600" />
 
 Consider an example of a valid `addPerson` command:
 
@@ -180,7 +180,7 @@ The following activity diagrams detail the behavior of Connectify when a user in
 
 The AddPersonCommand also handles scenarios where a person with the same details already exists in the address book or the company specified via the company index parameter does not exist. In such cases, the command throws a CommandException with an error message to inform the user.
 
-<img src="images/addPersonActivityDiagram.png" width="450" />
+<img src="images/addPersonActivityDiagram.png" width="600" />
 
 <div style="page-break-after: always;"></div>
 
@@ -304,6 +304,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | -------- |----------------------------------------|------------------------------|-------------------------------------------------------------------------|
 | `* * *`  | new user                               | see usage instructions       | refer to instructions when I forget how to use the App                  |
 | `* * *`  | user                                   | add a new contact            |                                                                         |
+| `* * *`  | user                                   | add a person to a specific company |  easily identify contacts by their associated company             |
 | `* * *`  | user                                   | delete a contact             | remove contacts that I no longer need                                   |
 | `* * *`  | user                                   | find a contact by name       | locate details of contacts without having to go through the entire list |
 | `* *`    | user                                   | hide private contact details | minimize chance of someone else seeing them by accident                 |
