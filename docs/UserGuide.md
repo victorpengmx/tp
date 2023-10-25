@@ -18,8 +18,8 @@ Connectify is a networking platform designed to help professionals efficiently m
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
-<br><br>
-[More Details Coming Soon]
+   <br><br>
+   [More Details Coming Soon]
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
@@ -91,31 +91,155 @@ Email:
 Please provide a valid index.
 ```
 
-### Listing Contacts
+### Editing People
+####  Command: `edit`
 
-#### Command: `list`
+The `edit` command allows you to modify the details of a person in the address book by specifying the person's index and the fields you want to change.
 
-The **list** command enables you to view all the contacts you've added to your Connectify database.
+##### Example Usage
+
+To edit a person's information, use the following command format:
 
 ```
-list
+edit INDEX [c/COMPANY] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]
 ```
+The fields are:
+- `INDEX` is the index of the person in the displayed person list of a company that you want to edit. It must be a positive integer within the company.
+- `[c/COMPANY]` allows you to specify the company that the person is associated with.
+- `[n/NAME]` (optional) allows you to change the person's name.
+- `[p/PHONE]` (optional) allows you to change the person's phone number.
+- `[e/EMAIL]` (optional) allows you to change the person's email.
+- `[a/ADDRESS]` (optional) allows you to change the person's address.
+- `[t/TAG]` (optional) allows you to add or remove tags for the person.
+
 
 **Successful Output:**
 
-```
-Here are the contacts in your list:
-1. John Doe
-Email:
-```
-
-**Unsuccessful Output:**
+Suppose you want to edit the name, phone, and email of the person at index 1 of  company 1. You can use the following command:
 
 ```
-That is not a valid command.
+edit 1 c/1 n/NewName p/98765432 e/newemail@example.com
+```
+This command will edit the person's name to "NewName," their phone number to "98765432," and their email to "newemail@example.com."
+- If the operation is successful, you will receive the following output:
+```
+Edited Person: NewName
 ```
 
-Running this command will display a list of all your contacts, including their names, email addresses, and any tags you've assigned to them.
+**Unsuccessful Output**
+
+1. If you don't provide at least one field to edit, you will receive the following error message:
+```
+At least one field to edit must be provided.
+```
+2. If the specified index is invalid (not within the displayed person list or not a positive integer), you will get the following error message:
+```
+The person index provided is invalid.
+```
+
+3. If the specified company index is missing, you will get the following error message:
+```
+No company provided.
+```
+
+4. If you try to edit a person's details in a company that does not exist, you will receive:
+
+```
+The company index provided is invalid.
+```
+
+5. If the specified company index or person index is out of bounds, you will get the following error message:
+```
+Invalid index provided.
+```
+
+6. If you try to edit a person's details to match another person in the address book, you will receive the following error message:
+```
+This person already exists in the Connectify.
+```
+
+### Listing All Entities
+####  Command: `list`
+
+The `list` command allows you to retrieve a list of all entities (both persons and companies) in the Connectify address book. This command is useful for obtaining an overview of all the entities you have stored.
+
+##### Example Usage
+
+To list all entities in the address book, simply use the following command:
+```
+list
+```
+This command has no additional parameters or options.
+
+**Successful Output**
+
+Assuming you have entities stored in Connectify, when you execute the list command, you will receive the following output:
+```
+Listed all persons and companies.
+```
+This message confirms that all persons and companies have been successfully listed.
+
+
+**Unsuccessful Output**
+1. If Connectify is empty, and there are no entities to list, you will receive the following message:
+```
+There are no entities in Connectify.
+```
+This message indicates that there are no entities to display, so the operation cannot be completed until you add entities to Connectify.
+
+### Listing All Companies
+####  Command: `companies`
+The `companies` command allows you to retrieve a list of all companies in Connectify. This command is particularly useful for obtaining an overview of all the companies you have stored.
+
+##### Example Usage
+To list all companies in Connectify, simply use the following command:
+```
+companies
+```
+This command has no additional parameters or options.
+
+**Successful Output**
+
+Assuming you have companies stored in your Connectify address book, when you execute the companies command, you will receive the following output:
+```
+Listed all companies.
+```
+This message confirms that all companies have been successfully listed.
+
+**Unsuccessful Output**
+1. If Connectify does not contain any companies, and there are no companies to list, you will receive the following message:
+```
+There are no companies in Connectify.
+```
+This message indicates that there are no companies to display, so the operation cannot be completed until you add companies to Connectify.
+
+
+### Listing All People
+####  Command: `people`
+The `people` command allows you to retrieve a list of all individuals (persons) in the Connectify. This command is especially useful for obtaining an overview of all the individuals you have stored.
+
+##### Example Usage
+To list all people in Connectify, simply use the following command:
+```
+people
+```
+This command has no additional parameters or options.
+
+**Successful Output**
+
+Assuming you have people stored in Connectify, when you execute the people command, you will receive the following output:
+```
+Listed all persons.
+```
+This message confirms that all persons have been successfully listed.
+
+**Unsuccessful Output**
+1. If Connectify does not contain any individuals (persons), and there are no people to list, you will receive the following message:
+```
+There are no people in Connectify.
+```
+This message indicates that there are no persons to display, so the operation cannot be completed until you add persons to Connectify.
+
 
 ### Exit
 
@@ -159,4 +283,3 @@ That is not a valid command.
 | **DeletePerson** | `deletePerson INDEX` <br> e.g., `delete 1` |
 | **List**         | `list`                        |
 | **Exit**         | `exit`                        |
-
