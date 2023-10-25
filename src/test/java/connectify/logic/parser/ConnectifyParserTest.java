@@ -13,21 +13,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import connectify.logic.commands.*;
+import connectify.model.Note;
 import org.junit.jupiter.api.Test;
 
-import connectify.logic.commands.AddCompanyCommand;
-import connectify.logic.commands.AddPersonCommand;
-import connectify.logic.commands.ClearCommand;
-import connectify.logic.commands.DeleteCompanyCommand;
-import connectify.logic.commands.DeletePersonCommand;
-import connectify.logic.commands.EditPersonCommand;
 import connectify.logic.commands.EditPersonCommand.EditPersonDescriptor;
-import connectify.logic.commands.ExitCommand;
-import connectify.logic.commands.FindCommand;
-import connectify.logic.commands.HelpCommand;
-import connectify.logic.commands.ListAllCommand;
-import connectify.logic.commands.ListCompaniesCommand;
-import connectify.logic.commands.ListPeopleCommand;
 import connectify.logic.parser.exceptions.ParseException;
 import connectify.model.company.Company;
 import connectify.model.person.NameContainsKeywordsPredicate;
@@ -120,6 +110,16 @@ public class ConnectifyParserTest {
     public void parseCommand_listPeople() throws Exception {
         assertTrue(parser.parseCommand(ListPeopleCommand.COMMAND_WORD) instanceof ListPeopleCommand);
         assertTrue(parser.parseCommand(ListPeopleCommand.COMMAND_WORD + " 3") instanceof ListPeopleCommand);
+    }
+
+    @Test
+    public void parseCommand_note() throws Exception {
+        final Note note = new Note("Some note");
+        NoteCommand command = (NoteCommand) parser.parseCommand(NoteCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_COMPANY
+                + INDEX_FIRST_COMPANY.getOneBased() + " "
+                + note.getContent());
+        assertEquals(new NoteCommand(INDEX_FIRST_PERSON, note), command);
     }
 
     @Test
