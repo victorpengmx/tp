@@ -12,8 +12,8 @@ import connectify.logic.parser.exceptions.ParseException;
 import connectify.model.person.PersonAddress;
 import connectify.model.person.PersonEmail;
 import connectify.model.person.PersonName;
-import connectify.model.person.PersonPriority;
 import connectify.model.person.PersonPhone;
+import connectify.model.person.PersonPriority;
 import connectify.model.tag.Tag;
 
 /**
