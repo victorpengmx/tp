@@ -12,6 +12,7 @@ import connectify.logic.parser.exceptions.ParseException;
 import connectify.model.person.Address;
 import connectify.model.person.Email;
 import connectify.model.person.Name;
+import connectify.model.person.PersonPriority;
 import connectify.model.person.Phone;
 import connectify.model.tag.Tag;
 
@@ -131,5 +132,15 @@ public class ParserUtil {
         requireNonNull(s);
         String trimmedCompany = s.trim();
         return Index.fromOneBased(Integer.parseInt(trimmedCompany));
+    }
+
+    /**
+     * Parses a {@code String priority} into an {@code Priority}.
+     */
+
+    public static PersonPriority parsePersonPriority(String priority) throws ParseException {
+        requireNonNull(priority);
+        String trimmedPriority = priority.trim();
+        return new PersonPriority(trimmedPriority);
     }
 }

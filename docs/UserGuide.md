@@ -110,6 +110,7 @@ The fields are:
 - `[p/PHONE]` (optional) allows you to change the person's phone number.
 - `[e/EMAIL]` (optional) allows you to change the person's email.
 - `[a/ADDRESS]` (optional) allows you to change the person's address.
+- `[pr/PRIORITY]` (optional) allows you to change the person's priority level.
 - `[t/TAG]` (optional) allows you to add or remove tags for the person.
 
 
