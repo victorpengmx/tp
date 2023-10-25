@@ -8,6 +8,7 @@ import java.util.Set;
 import connectify.commons.util.CollectionUtil;
 import connectify.commons.util.ToStringBuilder;
 import connectify.model.Entity;
+import connectify.model.Note;
 import connectify.model.tag.Tag;
 
 /**
@@ -23,34 +24,61 @@ public class Person extends Entity {
 
     // Data fields
     private final Address address;
+
+    private final Note note;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        CollectionUtil.requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Note note, Set<Tag> tags) {
+        CollectionUtil.requireAllNonNull(name, phone, email, address, note, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.note = note;
         this.tags.addAll(tags);
     }
 
+    /**
+     * Returns the name of this person.
+     * @return Name of this person
+     */
     public Name getName() {
         return name;
     }
 
+    /**
+     * Returns the phone number of this person.
+     * @return Phone number of this person
+     */
     public Phone getPhone() {
         return phone;
     }
 
+    /**
+     * Returns the email of this person.
+     * @return Email of this person
+     */
     public Email getEmail() {
         return email;
     }
 
+    /**
+     * Returns the address of this person.
+     * @return Address of this person
+     */
     public Address getAddress() {
         return address;
+    }
+
+    /**
+     * Returns the note associated with this person.
+     * @return Note associated with this person
+     */
+    public Note getNote() {
+        return note;
     }
 
     /**
@@ -94,13 +122,14 @@ public class Person extends Entity {
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
+                && note.equals(otherPerson.note)
                 && tags.equals(otherPerson.tags);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, note, tags);
     }
 
     @Override
@@ -110,6 +139,7 @@ public class Person extends Entity {
                 .add("phone", phone)
                 .add("email", email)
                 .add("address", address)
+                .add("note", note)
                 .add("tags", tags)
                 .toString();
     }

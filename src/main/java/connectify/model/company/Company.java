@@ -4,8 +4,11 @@ import static connectify.commons.util.CollectionUtil.requireAllNonNull;
 
 import connectify.commons.util.ToStringBuilder;
 import connectify.model.Entity;
+import connectify.model.Note;
 import connectify.model.person.Person;
 import connectify.model.person.PersonList;
+
+import java.util.Objects;
 
 /**
  * Represents a Company in the address book.
@@ -20,7 +23,7 @@ public class Company extends Entity {
     private String email;
     private String phone;
     private String address;
-
+    private Note note;
     private PersonList personList;
 
     /**
@@ -35,8 +38,8 @@ public class Company extends Entity {
      * @param address Address of company
      */
     public Company(String name, String industry, String location, String description, String website, String email,
-                   String phone, String address, PersonList personList) {
-        requireAllNonNull(name, industry, location, description, website, email, phone, address);
+                   String phone, String address, Note note, PersonList personList) {
+        requireAllNonNull(name, industry, location, description, website, email, phone, address, note);
         this.name = name;
         this.industry = industry;
         this.location = location;
@@ -45,6 +48,7 @@ public class Company extends Entity {
         this.email = email;
         this.phone = phone;
         this.address = address;
+        this.note = note;
         this.personList = personList;
     }
 
@@ -60,8 +64,8 @@ public class Company extends Entity {
      * @param address Address of company
      */
     public Company(String name, String industry, String location, String description, String website, String email,
-                   String phone, String address) {
-        requireAllNonNull(name, industry, location, description, website, email, phone, address);
+                   String phone, String address, Note note) {
+        requireAllNonNull(name, industry, location, description, website, email, phone, address, note);
         this.name = name;
         this.industry = industry;
         this.location = location;
@@ -70,6 +74,7 @@ public class Company extends Entity {
         this.email = email;
         this.phone = phone;
         this.address = address;
+        this.note = note;
         this.personList = new PersonList();
     }
 
@@ -166,6 +171,14 @@ public class Company extends Entity {
         return address;
     }
 
+    /**
+     * Returns the note of the company.
+     * @return Note of company
+     */
+    public Note getNote() {
+        return note;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -185,12 +198,13 @@ public class Company extends Entity {
                 && otherCompany.getEmail().equals(getEmail())
                 && otherCompany.getPhone().equals(getPhone())
                 && otherCompany.getAddress().equals(getAddress())
+                && otherCompany.getNote().equals(getNote())
                 && otherCompany.getPersonList().equals(getPersonList());
     }
 
     @Override
     public int hashCode() {
-        return name.hashCode();
+        return Objects.hash(name, industry, location, description, website, email, phone, address, note, personList);
     }
 
     /**
@@ -220,6 +234,7 @@ public class Company extends Entity {
                 .add("location", location)
                 .add("description", description)
                 .add("website", website)
+                .add("note", note)
                 .add("people", personList);
         return string.toString();
     }
