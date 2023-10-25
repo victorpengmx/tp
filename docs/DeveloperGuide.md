@@ -316,6 +316,37 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `Connectify` and the **Actor** is the `user`, unless specified otherwise)
 
+**Use case: Add a Person**
+
+**MSS**
+
+1. User requests to add a new person.
+2. Connectify prompts the user to provide details for the new person, including name, phone, email, address, and company association.
+3. User provides the necessary details for the new person.
+4. Connectify creates a new person object with the provided details and associates it with the specified company.
+5. Connectify updates the address book to include the new person.
+6. Connectify confirms the successful addition of the new person.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. User cancels the operation.
+
+  Use case ends.
+
+* 4a. User provides incomplete or invalid details.
+
+    * 4a1. Connectify shows an error message and prompts the user to provide valid details.
+
+      Use case ends.
+
+* 4b. A person with the same details already exists in the address book.
+
+    * 4b1. Connectify shows an error message indicating that the person already exists.
+
+      Use case ends.
+
 **Use case: Delete a person**
 
 **MSS**
