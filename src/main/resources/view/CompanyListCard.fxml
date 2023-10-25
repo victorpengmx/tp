@@ -33,6 +33,7 @@
             <HBox spacing="5" alignment="CENTER_LEFT">
                 <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
                 <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
+                <Label fx:id="note" styleClass="cell_small_label" text="\$note" />
             </HBox>
             <HBox spacing="5" alignment="CENTER_LEFT">
                 <Label fx:id="people" styleClass="cell_small_label" text="\$people" />
