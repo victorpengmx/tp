@@ -30,6 +30,8 @@ public class CompanyCard extends UiPart<Region> {
     private Label phone;
     @FXML
     private Label address;
+    @FXML
+    private Label note;
 
     @FXML
     private FlowPane tags;
@@ -47,6 +49,7 @@ public class CompanyCard extends UiPart<Region> {
         name.setText(company.getName());
         phone.setText(company.getPhone());
         address.setText(company.getAddress());
+        note.setText(company.getNote().getContent());
 
         PersonList personList = company.getPersonList();
         StringBuilder str = new StringBuilder("People:\n");
