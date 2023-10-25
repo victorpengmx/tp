@@ -138,10 +138,7 @@ Deleted Company: Test Company
 **Unsuccessful Output:**
 
 ```
-Invalid command format! 
-deleteCompany: Deletes the company identified by the index number used in the displayed company list.
-Parameters: INDEX (must be a positive integer)
-Example: deleteCompany 1
+The company index provided is invalid.
 ```
 
 ### Editing People
