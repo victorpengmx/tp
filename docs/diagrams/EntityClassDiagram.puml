@@ -1,0 +1,10 @@
+@startuml
+Class "{abstract}\nEntity" as Entity
+Class Person
+Class Company
+
+
+Person --|> Entity
+Company --|> Entity
+
+@enduml
