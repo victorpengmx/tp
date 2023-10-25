@@ -202,6 +202,26 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### List Features `list`/`companies`/`people`
+
+#### Implementation
+
+The mechanism is facilitated by `ListAllCommand`/`ListCompaniesCommand`/`ListPeopleCommand` and `ConnectifyParser` in the `Logic` component, and works as described below.
+
+Upon receiving a valid user input for the list command, `ConnectifyParser` returns a new `ListAllCommand`/`ListCompaniesCommand`/`ListPeopleCommand` object.
+
+The `ListAllCommand` object invokes `updateFilteredPersonList` and `updateFilteredCompanyList` in `ModelManager` in the `Model` component with the predicates `PREDICATE_SHOW_ALL_PERSONS` and `PREDICATE_SHOW_ALL_COMPANIES` to communicate to the Model to display all Companies and Persons. Note that this command does not modify the internal list of Companies and Persons in the Model, only the displayed list.
+
+The `ListCompaniesCommand` object invokes `updateFilteredCompanyList` in `ModelManager` in the `Model` component with the predicates `PREDICATE_SHOW_ALL_COMPANIES` to communicate to the Model to display all Companies. Note that this command does not modify the internal list of Companies in the Model, only the displayed list.
+
+The `ListAllPeopleCommand` object invokes `updateFilteredPersonList` in `ModelManager` in the `Model` component with the predicates `PREDICATE_SHOW_ALL_PERSONS` to communicate to the Model to display all Persons. Note that this command does not modify the internal list of Persons in the Model, only the displayed list.
+
+If the list is empty, `execute` in the list command returns a `CommandResult` with `EMPTY_LIST_MESSAGE` or `MESSAGE_SUCCESS` otherwise.   
+
+The sequence diagram below illustrates the events that take place during the execution of `ListALlCommand`. The other two commands are similar.
+
+![ListAllActivityDiagram.png](images%2FListAllSequenceDiagram.png)
+
 ### Add Person Feature: `addPerson`
 
 #### Implementation
@@ -349,12 +369,15 @@ _{Explain here how the data archiving feature will be implemented}_
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​                                | I want to …​                 | So that I can…​                                                         |
-| -------- |----------------------------------------|------------------------------|-------------------------------------------------------------------------|
+|----------|----------------------------------------|------------------------------|-------------------------------------------------------------------------|
 | `* * *`  | new user                               | see usage instructions       | refer to instructions when I forget how to use the App                  |
 | `* * *`  | user                                   | add a new contact            |                                                                         |
 | `* * *`  | user                                   | add a person to a specific company |  easily identify contacts by their associated company             |
 | `* * *`  | user                                   | delete a contact             | remove contacts that I no longer need                                   |
 | `* * *`  | user                                   | find a contact by name       | locate details of contacts without having to go through the entire list |
+| `* * *`  | user                                   | list all contacts            | know what people and companies I have contacts of                       |
+| `* * *`  | user                                   | list all companies           | know what companies I have contacts of                                  |
+| `* * *`  | user                                   | list all people              | know who are the people I have contacts with                            |
 | `* *`    | user                                   | hide private contact details | minimize chance of someone else seeing them by accident                 |
 | `*`      | user with many contacts in Connnectify | sort contacts by name        | locate a contact easily                                                 |
 
@@ -418,6 +441,68 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+**Use case: List all contacts**
+
+**MSS**
+
+1.  User requests to list contacts
+2.  Connectify shows a list of contacts
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. Connectify shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: List all companies**
+
+**MSS**
+
+1.  User requests to list companies
+2.  Connectify shows a list of companies
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. Connectify shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: List all people**
+
+**MSS**
+
+1.  User requests to list people
+2.  Connectify shows a list of people
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. Connectify shows an error message.
+
+      Use case resumes at step 2.
 *{More to be added}*
 
 ### Non-Functional Requirements
