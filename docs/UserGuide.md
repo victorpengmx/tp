@@ -26,37 +26,54 @@ Connectify is a networking platform designed to help professionals efficiently m
 
 ### Adding Contacts
 
-#### Command: `add`
+#### Command: `addPerson`
 
-The **add** command allows you to add new contacts to your Connectify database. Follow the format below to add contacts:
+The **addPerson** command allows you to add new contacts to your Connectify database. Follow the format below to add contacts:
 
-`add n/NAME e/EMAIL [t/TAG]…`
+`addPerson n/NAME p/PHONE e/EMAIL a/ADDRESS c/COMPANY [t/TAG]…`
 
 - `n/NAME`: Specify the name of the contact.
+- `p/PHONE`: Add the phone number of the contact.
 - `e/EMAIL`: Add the email address of the contact.
+- `a/ADDRESS`: Include the address of the contact.
+- `c/COMPANY`: Specify the index of the company to which the contact belongs.
 - `t/TAG`: Optionally, you can include tags to categorize your contacts. Tags help you organize your connections efficiently.
 
 **Example:**
 
-To add a contact named John Doe with the email address johndoe@example.com and tag them as "colleague," use the following command:
+To add a contact named John Doe with the phone number 98765432, email address johndoe@example.com, address "311, Clementi Ave 2, #02-25," and associate them with Company 1, use the following command:
 
 ```
-Add n/John Doe e/johndoe@example.com t/colleague
+addPerson n/John Doe p/98765432 e/johndoe@example.com a/311, Clementi Ave 2, #02-25 c/1 t/friends t/owesMoney
 ```
 
 **Successful Output:**
 
 ```
-Got it. I've added this contact:
-John Doe
-Email:
+New person added: John Doe
+Phone: 98765432
+Email: johnd@example.com
+Address: 311, Clementi Ave 2, #02-25
+Company: Company 1
+Tags: friends, owesMoney
 ```
 
 **Unsuccessful Output:**
 
-```
-Please provide a valid email address.
-```
+- If the provided details are incomplete or invalid:
+  ```
+  Please provide valid contact details including name, phone, email, address, and a valid company index.
+  ```
+
+- If a person with the same details already exists in the address book:
+  ```
+  This person already exists in the address book.
+  ```
+
+- If the company index provided is invalid:
+  ```
+  The company index provided is invalid.
+  ```
 
 ### Deleting Contacts
 
@@ -155,7 +172,7 @@ That is not a valid command.
 
 | Action           | Format, Examples              |
 |------------------|-------------------------------|
-| **Add**          | `add n/NAME e/EMAIL [t/TAG]…` <br> e.g., `add n/John Doe |
+| **AddPerson**    | `addPerson n/NAME p/PHONE e/EMAIL a/ADDRESS c/COMPANY [t/TAG]…` <br> e.g., `addPerson n/John Doe p/98765432 e/johndoe@example.com a/311, Clementi Ave 2, #02-25 c/1 t/friends t/owesMoney` |
 | **DeletePerson** | `deletePerson INDEX` <br> e.g., `delete 1` |
 | **List**         | `list`                        |
 | **Exit**         | `exit`                        |
