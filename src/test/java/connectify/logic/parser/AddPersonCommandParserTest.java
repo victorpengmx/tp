@@ -160,7 +160,8 @@ public class AddPersonCommandParserTest {
         CommandParserTestUtil.assertParseFailure(parser, CommandTestUtil.INVALID_NAME_DESC
                 + CommandTestUtil.PHONE_DESC_BOB + CommandTestUtil.EMAIL_DESC_BOB + CommandTestUtil.ADDRESS_DESC_BOB
                 + CommandTestUtil.TAG_DESC_HUSBAND + CommandTestUtil.TAG_DESC_FRIEND
-                + CommandTestUtil.PRIORITY_DESC_BOB + CommandTestUtil.PRIORITY_DESC_BOB, PersonName.MESSAGE_CONSTRAINTS);
+                + CommandTestUtil.PRIORITY_DESC_BOB + CommandTestUtil.PRIORITY_DESC_BOB,
+                PersonName.MESSAGE_CONSTRAINTS);
 
         // invalid phone
         CommandParserTestUtil.assertParseFailure(parser, CommandTestUtil.NAME_DESC_BOB
