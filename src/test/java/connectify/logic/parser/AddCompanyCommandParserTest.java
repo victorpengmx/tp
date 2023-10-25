@@ -3,6 +3,7 @@ package connectify.logic.parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import connectify.model.Note;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -22,12 +23,12 @@ public class AddCompanyCommandParserTest {
     @Test
     public void parse_validInput_success() throws Exception {
         String userInput = " n/Company A p/12345678 e/hello@email.com "
-                +
-                "a/123 Main St w/www.google.com i/IT l/Singapore d/Leading IT Solutions";
+                + "a/123 Main St w/www.google.com i/IT l/Singapore d/Leading IT Solutions";
         AddCompanyCommand expectedCommand = new AddCompanyCommand(
                 new Company("Company A", "IT", "Singapore",
                         "Leading IT Solutions", "www.google.com",
-                        "hello@email.com", "12345678", "123 Main St"));
+                        "hello@email.com", "12345678", "123 Main St",
+                        new Note("")));
         assertEquals(parser.parse(userInput), expectedCommand);
     }
 

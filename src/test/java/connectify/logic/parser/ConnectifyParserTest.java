@@ -3,6 +3,7 @@ package connectify.logic.parser;
 import static connectify.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static connectify.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static connectify.logic.parser.CliSyntax.PREFIX_COMPANY;
+import static connectify.logic.parser.CliSyntax.PREFIX_NOTE;
 import static connectify.testutil.Assert.assertThrows;
 import static connectify.testutil.TypicalIndexes.INDEX_FIRST_COMPANY;
 import static connectify.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -116,9 +117,7 @@ public class ConnectifyParserTest {
     public void parseCommand_note() throws Exception {
         final Note note = new Note("Some note");
         NoteCommand command = (NoteCommand) parser.parseCommand(NoteCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_COMPANY
-                + INDEX_FIRST_COMPANY.getOneBased() + " "
-                + note.getContent());
+                + INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_NOTE + note.getContent());
         assertEquals(new NoteCommand(INDEX_FIRST_PERSON, note), command);
     }
 

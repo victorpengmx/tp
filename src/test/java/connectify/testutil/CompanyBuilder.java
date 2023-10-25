@@ -18,7 +18,7 @@ public class CompanyBuilder {
 
     public static final String DEFAULT_PHONE = "12345678";
     public static final String DEFAULT_ADDRESS = "1600 Amphitheatre Parkway, Mountain View, CA 94043, USA";
-    public static final String DEFAULT_NOTE = "A company looking for frontend developers specifically.";
+    public static final String DEFAULT_NOTE = "";
     private String name;
     private String industry;
     private String location;
