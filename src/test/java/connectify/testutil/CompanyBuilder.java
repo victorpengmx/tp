@@ -1,5 +1,6 @@
 package connectify.testutil;
 
+import connectify.model.Note;
 import connectify.model.company.Company;
 import connectify.model.person.PersonList;
 
@@ -17,6 +18,7 @@ public class CompanyBuilder {
 
     public static final String DEFAULT_PHONE = "12345678";
     public static final String DEFAULT_ADDRESS = "1600 Amphitheatre Parkway, Mountain View, CA 94043, USA";
+    public static final String DEFAULT_NOTE = "A company looking for frontend developers specifically.";
     private String name;
     private String industry;
     private String location;
@@ -25,6 +27,7 @@ public class CompanyBuilder {
     private String email;
     private String phone;
     private String address;
+    private Note note;
 
     private PersonList personList;
 
@@ -40,6 +43,7 @@ public class CompanyBuilder {
         this.email = DEFAULT_EMAIL;
         this.phone = DEFAULT_PHONE;
         this.address = DEFAULT_ADDRESS;
+        this.note = new Note(DEFAULT_NOTE);
         this.personList = new PersonList();
     }
 
@@ -56,6 +60,7 @@ public class CompanyBuilder {
         this.email = companyToCopy.getEmail();
         this.phone = companyToCopy.getPhone();
         this.address = companyToCopy.getAddress();
+        this.note = companyToCopy.getNote();
         this.personList = companyToCopy.getPersonList();
     }
 
@@ -124,6 +129,14 @@ public class CompanyBuilder {
     }
 
     /**
+     * Sets the {@code Note} of the {@code Company} that we are building.
+     */
+    public CompanyBuilder withNote(String note) {
+        this.note = new Note(note);
+        return this;
+    }
+
+    /**
      * Sets the {@code PersonList} of the {@code Company} that we are building.
      */
     public CompanyBuilder withPersonList(PersonList personList) {
@@ -136,6 +149,6 @@ public class CompanyBuilder {
      * @return Company
      */
     public Company build() {
-        return new Company(name, industry, location, description, website, email, phone, address, personList);
+        return new Company(name, industry, location, description, website, email, phone, address, note, personList);
     }
 }

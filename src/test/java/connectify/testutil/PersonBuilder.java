@@ -100,7 +100,7 @@ public class PersonBuilder {
      * @return PersonBuilder
      */
     public PersonBuilder withNote (String note) {
-        this.note = new Note (note);
+        this.note = new Note(note);
         return this;
     }
 
