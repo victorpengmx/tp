@@ -8,6 +8,7 @@ import java.util.stream.Stream;
 import connectify.commons.core.index.Index;
 import connectify.logic.commands.AddPersonCommand;
 import connectify.logic.parser.exceptions.ParseException;
+import connectify.model.Note;
 import connectify.model.person.Address;
 import connectify.model.person.Email;
 import connectify.model.person.Name;
@@ -42,10 +43,11 @@ public class AddPersonCommandParser implements Parser<AddPersonCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(CliSyntax.PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(CliSyntax.PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(CliSyntax.PREFIX_ADDRESS).get());
+        Note note = new Note("");
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(CliSyntax.PREFIX_TAG));
         Index companyIndex = ParserUtil.parseIndex(argMultimap.getValue(CliSyntax.PREFIX_COMPANY).orElse("1"));
 
-        Person person = new Person(name, phone, email, address, tagList);
+        Person person = new Person(name, phone, email, address, note, tagList);
 
         return new AddPersonCommand(person, companyIndex);
     }

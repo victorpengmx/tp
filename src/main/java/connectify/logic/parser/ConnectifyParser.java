@@ -8,19 +8,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import connectify.commons.core.LogsCenter;
-import connectify.logic.commands.AddCompanyCommand;
-import connectify.logic.commands.AddPersonCommand;
-import connectify.logic.commands.ClearCommand;
-import connectify.logic.commands.Command;
-import connectify.logic.commands.DeleteCompanyCommand;
-import connectify.logic.commands.DeletePersonCommand;
-import connectify.logic.commands.EditPersonCommand;
-import connectify.logic.commands.ExitCommand;
-import connectify.logic.commands.FindCommand;
-import connectify.logic.commands.HelpCommand;
-import connectify.logic.commands.ListAllCommand;
-import connectify.logic.commands.ListCompaniesCommand;
-import connectify.logic.commands.ListPeopleCommand;
+import connectify.logic.commands.*;
 import connectify.logic.parser.exceptions.ParseException;
 
 /**
@@ -71,6 +59,9 @@ public class ConnectifyParser {
 
         case DeleteCompanyCommand.COMMAND_WORD:
             return new DeleteCompanyCommandParser().parse(arguments);
+
+        case NoteCommand.COMMAND_WORD:
+            return new NoteCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
