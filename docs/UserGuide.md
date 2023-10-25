@@ -83,17 +83,17 @@ Tags: friends, owesMoney
 
 #### Command: `deletePerson`
 
-The **deletePerson** command allows you to remove contacts from your Connectify database. To delete a contact, you need to specify the contact's index.
+The **deletePerson** command allows you to remove people from your Connectify database. To delete a person, you need to specify the person's index.
 
 ```
 deletePerson INDEX
 ```
 
-- `INDEX`: Provide the index of the contact you want to delete.
+- `INDEX`: Provide the index of the person you want to delete.
 
 **Example:**
 
-To delete the contact named John Doe at index 1, use the following command:
+To delete the person named John Doe at index 1, use the following command:
 ```
 deletePerson 1
 ```
@@ -110,6 +110,38 @@ Email:
 
 ```
 Please provide a valid index.
+```
+
+#### Command: `deleteCompany`
+
+The **deleteCompany** command allows you to remove companies from your Connectify database. To delete a company, you need to specify the company's index.
+
+```
+deleteCompany INDEX
+```
+
+- `INDEX`: Provide the index of the company you want to delete.
+
+**Example:**
+
+To delete the company named Test Company at index 1, use the following command:
+```
+deleteCompany 1
+```
+
+**Successful Output:**
+
+```
+Deleted Company: Test Company
+```
+
+**Unsuccessful Output:**
+
+```
+Invalid command format! 
+deleteCompany: Deletes the company identified by the index number used in the displayed company list.
+Parameters: INDEX (must be a positive integer)
+Example: deleteCompany 1
 ```
 
 ### Editing People
