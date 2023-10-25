@@ -93,7 +93,7 @@ public class Company extends Entity {
     public Company addPersonToCompany(Person person) {
         requireAllNonNull(person);
         PersonList edited = new PersonList(personList).addPerson(person);
-        return new Company(name, industry, location, description, website, email, phone, address, edited);
+        return new Company(name, industry, location, description, website, email, phone, address, note, edited);
     }
 
     /**
@@ -104,7 +104,7 @@ public class Company extends Entity {
     public Company deletePersonFromCompany(Person person) {
         requireAllNonNull(person);
         PersonList edited = new PersonList(personList).removePerson(person);
-        return new Company(name, industry, location, description, website, email, phone, address, edited);
+        return new Company(name, industry, location, description, website, email, phone, address, note, edited);
     }
 
     /**
