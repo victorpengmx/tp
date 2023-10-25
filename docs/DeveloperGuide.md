@@ -166,7 +166,7 @@ Consider a scenario where the user wishes to add a new contact to a specific com
 
 To ensure that a contact is added to the correct company, the command also takes an `Index` parameter specifying the company where the contact should be added. This ensures that the contact is associated with the intended company.
 
-![AddPersonObjectDiagram](images/AddPersonObjectDiagram.png)
+<img src="images/addPersonObjectDiagram.png" width="450" />
 
 Consider an example of a valid `addPerson` command:
 
@@ -180,7 +180,7 @@ The following activity diagrams detail the behavior of Connectify when a user in
 
 The AddPersonCommand also handles scenarios where a person with the same details already exists in the address book or the company specified via the company index parameter does not exist. In such cases, the command throws a CommandException with an error message to inform the user.
 
-![AddPersonActivityDiagram](images/AddPersonActivityDiagram.png)
+<img src="images/addPersonActivityDiagram.png" width="450" />
 
 <div style="page-break-after: always;"></div>
 
