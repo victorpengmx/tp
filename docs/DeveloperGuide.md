@@ -202,6 +202,36 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add Person Feature: `addPerson`
+
+#### Implementation
+
+This feature is facilitated by the `AddPersonCommand` and `AddPersonCommandParser` in the `Logic` component, and works as described below.
+
+When given valid user input, the `AddPersonCommandParser` will create a new `Person` object to add to the address book in the specified company.
+
+Consider a scenario where the user wishes to add a new contact to a specific company with various details. The `AddPersonCommand` takes in various parameters, such as name, phone, email, address, and optional tags, to create a new `Person` object.
+
+To ensure that a contact is added to the correct company, the command also takes an `Index` parameter specifying the company where the contact should be added. This ensures that the contact is associated with the intended company.
+
+<img src="images/addPersonObjectDiagram.png" width="600" />
+
+Consider an example of a valid `addPerson` command:
+
+```plaintext
+addPerson n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney c/1
+```
+
+The new objects in the final internal state after this example has been parsed are shown in the object diagram above.
+
+The following activity diagrams detail the behavior of Connectify when a user inputs an addPerson command with valid syntax to be executed.
+
+The AddPersonCommand also handles scenarios where a person with the same details already exists in the address book or the company specified via the company index parameter does not exist. In such cases, the command throws a CommandException with an error message to inform the user.
+
+<img src="images/addPersonActivityDiagram.png" width="600" />
+
+<div style="page-break-after: always;"></div>
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -322,6 +352,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | -------- |----------------------------------------|------------------------------|-------------------------------------------------------------------------|
 | `* * *`  | new user                               | see usage instructions       | refer to instructions when I forget how to use the App                  |
 | `* * *`  | user                                   | add a new contact            |                                                                         |
+| `* * *`  | user                                   | add a person to a specific company |  easily identify contacts by their associated company             |
 | `* * *`  | user                                   | delete a contact             | remove contacts that I no longer need                                   |
 | `* * *`  | user                                   | find a contact by name       | locate details of contacts without having to go through the entire list |
 | `* *`    | user                                   | hide private contact details | minimize chance of someone else seeing them by accident                 |
@@ -332,6 +363,37 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Use cases
 
 (For all use cases below, the **System** is the `Connectify` and the **Actor** is the `user`, unless specified otherwise)
+
+**Use case: Add a Person**
+
+**MSS**
+
+1. User requests to add a new person.
+2. Connectify prompts the user to provide details for the new person, including name, phone, email, address, and company association.
+3. User provides the necessary details for the new person.
+4. Connectify creates a new person object with the provided details and associates it with the specified company.
+5. Connectify updates the address book to include the new person.
+6. Connectify confirms the successful addition of the new person.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. User cancels the operation.
+
+  Use case ends.
+
+* 4a. User provides incomplete or invalid details.
+
+    * 4a1. Connectify shows an error message and prompts the user to provide valid details.
+
+      Use case ends.
+
+* 4b. A person with the same details already exists in the address book.
+
+    * 4b1. Connectify shows an error message indicating that the person already exists.
+
+      Use case ends.
 
 **Use case: Delete a person**
 

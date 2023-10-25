@@ -176,6 +176,7 @@ public class ModelManager implements Model {
 
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
+        logger.info("Updating list of filtered persons");
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
         currEntity = EntityType.PEOPLE;
@@ -183,6 +184,7 @@ public class ModelManager implements Model {
 
     @Override
     public void updateFilteredCompanyList(Predicate<Company> predicate) {
+        logger.info("Updating list of filtered companies");
         requireNonNull(predicate);
         filterCompanies.setPredicate(predicate);
         currEntity = EntityType.COMPANIES;
