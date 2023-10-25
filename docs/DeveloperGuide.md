@@ -252,6 +252,42 @@ The AddPersonCommand also handles scenarios where a person with the same details
 
 <div style="page-break-after: always;"></div>
 
+### Delete Person Feature: `deletePerson`
+
+#### Implementation
+
+This feature is facilitated by the `DeletePersonCommand` and `DeletePersonCommandParser` in the `Logic` component, and works as described below.
+
+When given valid inputs, `the DeletePersonCommandParser` will delete a `Person` object from a particular company list.
+
+Consider a scenario where the user wishes to delete a person from a particular company list. 
+
+It requires two `Index` parameters: one for the company and another for the person within that company.
+
+The command first validates company index to ensure the company is present in the system. 
+
+It then validates person index to ensure that the person selected is indeed in that company's list.
+
+If valid, the person is removed from the designated company's list, and subsequently, from the address book.
+
+<img src="images/deletePersonObjectDiagram.png" width="600" />
+
+Consider an example of a valid `deletePerson` command:
+
+```plaintext
+deletePerson 1 1
+```
+
+The new objects in the final internal state after this example has been parsed are shown in the object diagram above.
+
+The following activity diagrams detail the behavior of Connectify when a user inputs an deletePerson command with valid syntax to be executed.
+
+The DeletePersonCommand also handles scenarios where a person is not part of a company or company index does not exist in the range of companies. In such cases, the command throws a CommandException with an error message to inform the user.
+
+<img src="images/deletePersonActivityDiagram.png" width="600" />
+
+<div style="page-break-after: always;"></div>
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
