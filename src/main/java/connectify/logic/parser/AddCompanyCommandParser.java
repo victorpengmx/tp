@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 
 import connectify.logic.commands.AddCompanyCommand;
 import connectify.logic.parser.exceptions.ParseException;
+import connectify.model.Note;
 import connectify.model.company.Company;
 
 /**
@@ -48,8 +49,9 @@ public class AddCompanyCommandParser implements Parser<AddCompanyCommand> {
                 .orElseThrow(() -> new ParseException("Phone is required"));
         String address = argMultimap.getValue(CliSyntax.PREFIX_ADDRESS)
                 .orElseThrow(() -> new ParseException("Address is required"));
+        Note note = new Note("");
 
-        Company company = new Company(name, industry, location, description, website, email, phone, address);
+        Company company = new Company(name, industry, location, description, website, email, phone, address, note);
 
         return new AddCompanyCommand(company);
     }
