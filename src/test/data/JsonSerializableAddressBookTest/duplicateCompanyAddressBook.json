@@ -8,7 +8,8 @@
       "industry": "Customer Service",
       "description": "Good service",
       "website" : "www.google.com",
-      "location": "Blk 345, Yio Chu Kang Ave"
+      "location": "Blk 345, Yio Chu Kang Ave",
+      "note": ""
     },
     {
       "name": "Company1",
@@ -18,7 +19,8 @@
       "industry": "Customer Service",
       "description": "Good service",
       "website" : "www.google.com",
-      "location": "Blk 345, Yio Chu Kang Ave"
+      "location": "Blk 345, Yio Chu Kang Ave",
+      "note": ""
     }
   ]
 }
