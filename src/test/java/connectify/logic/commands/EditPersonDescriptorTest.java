@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import connectify.logic.commands.EditCommand.EditPersonDescriptor;
+import connectify.logic.commands.EditPersonCommand.EditPersonDescriptor;
 import connectify.testutil.EditPersonDescriptorBuilder;
 
 public class EditPersonDescriptorTest {

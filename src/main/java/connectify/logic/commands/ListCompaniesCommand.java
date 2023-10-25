@@ -12,8 +12,8 @@ public class ListCompaniesCommand extends Command {
 
     public static final String COMMAND_WORD = "companies";
 
-    public static final String MESSAGE_SUCCESS = "Listed all companies";
-    public static final String EMPTY_LIST_MESSAGE = "There are no companies in Connectify";
+    public static final String MESSAGE_SUCCESS = "Listed all companies.";
+    public static final String EMPTY_LIST_MESSAGE = "There are no companies in Connectify.";
 
 
     @Override

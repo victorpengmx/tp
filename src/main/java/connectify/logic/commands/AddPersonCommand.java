@@ -74,8 +74,6 @@ public class AddPersonCommand extends Command {
 
         Company editedAffliatedCompany = affiliatedCompanyToEdit.addPersonToCompany(toAdd);
 
-        System.out.println(editedAffliatedCompany.getPersonList());
-
         model.setCompany(affiliatedCompanyToEdit, editedAffliatedCompany);
         model.updateFilteredCompanyList(Model.PREDICATE_SHOW_ALL_COMPANIES);
         model.addPerson(toAdd);

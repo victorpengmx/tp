@@ -176,6 +176,7 @@ public class ModelManager implements Model {
 
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
+        logger.info("Updating list of filtered persons");
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
         currEntity = EntityType.PEOPLE;
@@ -183,6 +184,7 @@ public class ModelManager implements Model {
 
     @Override
     public void updateFilteredCompanyList(Predicate<Company> predicate) {
+        logger.info("Updating list of filtered companies");
         requireNonNull(predicate);
         filterCompanies.setPredicate(predicate);
         currEntity = EntityType.COMPANIES;
@@ -268,9 +270,7 @@ public class ModelManager implements Model {
 
         ModelManager otherModelManager = (ModelManager) other;
         return addressBook.equals(otherModelManager.addressBook)
-                && userPrefs.equals(otherModelManager.userPrefs)
-                && filteredPersons.equals(otherModelManager.filteredPersons)
-                && filterCompanies.equals(otherModelManager.filterCompanies);
+                && userPrefs.equals(otherModelManager.userPrefs);
     }
 
     @Override

@@ -92,6 +92,17 @@ public class Company extends Entity {
     }
 
     /**
+     * Deletes a person from the company.
+     * @param person Person to be removed
+     * @return New Company object with the person removed
+     */
+    public Company deletePersonFromCompany(Person person) {
+        requireAllNonNull(person);
+        PersonList edited = new PersonList(personList).removePerson(person);
+        return new Company(name, industry, location, description, website, email, phone, address, edited);
+    }
+
+    /**
      * Returns the name of the company.
      * @return Name of company
      */

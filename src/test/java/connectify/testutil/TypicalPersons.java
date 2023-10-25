@@ -6,6 +6,7 @@ import java.util.List;
 
 import connectify.logic.commands.CommandTestUtil;
 import connectify.model.AddressBook;
+import connectify.model.company.Company;
 import connectify.model.person.Person;
 
 /**
@@ -59,7 +60,15 @@ public class TypicalPersons {
         for (Person person : getTypicalPersons()) {
             ab.addPerson(person);
         }
-        ab.addCompany(TypicalCompanies.DUMMY_COMPANY);
+        Company company1 = TypicalCompanies.DUMMY_COMPANY;
+        company1 = company1.addPersonToCompany(ALICE);
+        company1 = company1.addPersonToCompany(BENSON);
+        ab.addCompany(company1);
+
+        Company company2 = TypicalCompanies.COMPANY_1;
+        company2 = company2.addPersonToCompany(CARL);
+        company2 = company2.addPersonToCompany(DANIEL);
+        ab.addCompany(company2);
         return ab;
     }
 

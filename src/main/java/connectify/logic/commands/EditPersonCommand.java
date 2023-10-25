@@ -1,6 +1,7 @@
 package connectify.logic.commands;
 
 import static connectify.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static connectify.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static connectify.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static connectify.logic.parser.CliSyntax.PREFIX_NAME;
 import static connectify.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -21,6 +22,7 @@ import connectify.commons.util.ToStringBuilder;
 import connectify.logic.Messages;
 import connectify.logic.commands.exceptions.CommandException;
 import connectify.model.Model;
+import connectify.model.company.Company;
 import connectify.model.person.Address;
 import connectify.model.person.Email;
 import connectify.model.person.Name;
@@ -31,58 +33,76 @@ import connectify.model.tag.Tag;
 /**
  * Edits the details of an existing person in the address book.
  */
-public class EditCommand extends Command {
+public class EditPersonCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
             + "by the index number used in the displayed person list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: INDEX (must be a positive integer within the company) "
+            + "[" + PREFIX_COMPANY + "COMPANY] "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
+            + PREFIX_COMPANY + "1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in Connectify.";
+
+    public static final String MESSAGE_NO_COMPANY_PROVIDED = "No company provided.";
 
     private final Index index;
+
+    private final Index companyIndex;
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
      * @param index of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public EditPersonCommand(Index index, Index companyIndex, EditPersonDescriptor editPersonDescriptor) {
         requireNonNull(index);
         requireNonNull(editPersonDescriptor);
 
         this.index = index;
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.companyIndex = companyIndex;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
-
+        List<Company> lastShownList = model.getFilteredCompanyList();
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
+        if (this.companyIndex == null) {
+            throw new CommandException(MESSAGE_NO_COMPANY_PROVIDED);
+        }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
+        Company affiliatedCompanyToEdit = lastShownList.get(companyIndex.getZeroBased());
+        if (index.getZeroBased() >= affiliatedCompanyToEdit.getPersonList().asList().size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
+
+        Person personToEdit = affiliatedCompanyToEdit.getPersonList().asList().get(index.getZeroBased());
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
+        Company companyWithPersonDeleted = affiliatedCompanyToEdit.deletePersonFromCompany(personToEdit);
+        Company editedAffliatedCompany = companyWithPersonDeleted.addPersonToCompany(editedPerson);
+
+        model.setCompany(affiliatedCompanyToEdit, editedAffliatedCompany);
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)));
@@ -111,13 +131,13 @@ public class EditCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditCommand)) {
+        if (!(other instanceof EditPersonCommand)) {
             return false;
         }
 
-        EditCommand otherEditCommand = (EditCommand) other;
-        return index.equals(otherEditCommand.index)
-                && editPersonDescriptor.equals(otherEditCommand.editPersonDescriptor);
+        EditPersonCommand otherEditPersonCommand = (EditPersonCommand) other;
+        return index.equals(otherEditPersonCommand.index)
+                && editPersonDescriptor.equals(otherEditPersonCommand.editPersonDescriptor);
     }
 
     @Override
@@ -138,6 +158,8 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Tag> tags;
+
+        private Index companyIndex;
 
         public EditPersonDescriptor() {}
 

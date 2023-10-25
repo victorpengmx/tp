@@ -68,20 +68,63 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The UI component in this application provides the graphical user interface for interacting with Connectify. It consists of several key classes, including `MainWindow`, `CommandBox`, `ResultDisplay`, `EntityListPanel`, `StatusBarFooter`, `PersonCard` and `CompanyCard`. All these classes, along with `MainWindow`, inherit from the abstract `UiPart` class, which captures the common functionalities between parts of the GUI.
+
+The UI component is built using the JavaFX UI framework, and the layout of UI parts is defined in matching `.fxml` files located in the `src/main/resources/view` folder. For example, the layout of the `MainWindow` is specified in `MainWindow.fxml`.
+
+#### Class Structure
+
+The main classes and their relationships in the UI component are as follows:
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of the following parts:
+- `Ui`: The entry point of the UI component. It orchestrates the various UI elements.
+- `MainWindow`: The primary UI window that houses all UI elements.
+- `CommandBox`: The input box for user commands.
+- `ResultDisplay`: The area that displays command results and system messages.
+- `EntityListPanel`: The panel that displays a list of entities (e.g., persons and companies).
+- `StatusBarFooter`: The status bar that shows system information.
+- `UiPart`: An abstract class that captures common functionalities for UI components. It is inherited by all UI components.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+#### Interaction with Other Components
 
-The `UI` component,
+The UI component interacts with other components in the application to fulfill its role:
 
-* executes user commands using the `Logic` component.
-* listens for changes to `Model` data so that the UI can be updated with the modified data.
-* keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+- **Logic Component**: The UI component executes user commands by delegating them to the Logic component. It relies on the Logic component to process commands and provide responses.
+
+- **Model Component**: The UI component listens for changes to the Model data, specifically the list of persons and companies to display. When the Model data is modified, the UI updates to reflect those changes. It displays information about persons and companies that reside in the Model component.
+
+- **Dependencies**: The UI component has dependencies on various classes within the Model component to display data effectively.
+
+#### Usage
+
+To use the UI component effectively, follow these guidelines:
+
+1. **Starting the UI**: To start the UI, the application initializes the `UiManager`, which is the entry point of the UI. It also creates a `MainWindow` and the associated UI elements.
+
+2. **User Interaction**: Users interact with the UI by entering commands in the `CommandBox`. The UI component processes these commands and displays the results in the `ResultDisplay`.
+
+3. **Display of Entities**: The `EntityListPanel` displays a list of entities. An `Entity` is either a Person or a Company. The `EntityListPanel` displays the entities in a scrollable list. The user can scroll through the list to view all the entities.
+
+4. **Listening for Model Changes**: The UI component actively listens for changes to the Model data. When the Model is updated, the UI reflects these changes, ensuring that the user sees the most current data.
+
+5. **Error Handling**: The UI component handles errors gracefully and provides informative messages to the user when issues occur. These error messages are customised to the specific command the user has provided.
+
+6. **Extending UI Components**: Developers can extend or modify existing UI components by creating new classes that inherit from UiPart. This allows for the addition of new GUI elements and functionality, making it easy to customize and enhance the user interface.
+
+7. **Layout and Styling**: The layout of UI components is defined in matching `.fxml` files located in the `src/main/resources/view` folder. For example, the layout of the `MainWindow` is specified in `MainWindow.fxml`. The styling of UI components is defined in matching `.css` files located in the same folder. For example, the styling of the `MainWindow` is specified in `MainWindow.css`.
+
+
+#### External Resources
+
+- The API of this component is specified in [`Ui.java`](https://github.com/AY2324S1-CS2103T-T15-4/tp/blob/master/src/main/java/connectify/ui/Ui.java).
+
+- The layouts of UI parts are defined in matching `.fxml` files in the `src/main/resources/view` folder.
+
+- For specific details about the implementation of the `MainWindow`, refer to [`MainWindow.java`](https://github.com/AY2324S1-CS2103T-T15-4/tp/blob/master/src/main/java/connectify/ui/MainWindow.java).
+
+
 
 ### Logic component
 
@@ -114,14 +157,19 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2324S1-CS2103T-T15-4/tp/blob/master/src/main/java/connectify/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
+
+The main entities of Connectify are a `Person` and `Company` which both inherit from the `Entity` class. Such a relationship is to allow either a `Person` or `Company` to be displayed in the UI.
+This relationship is modelled in the following diagram:
+
+<img src="images/EntityClassDiagram.png" width="200" />
 
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
+* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object) and all `Company` objects (which are contained in a `UniqueCompanyList` object).
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
@@ -173,6 +221,36 @@ If the list is empty, `execute` in the list command returns a `CommandResult` wi
 The sequence diagram below illustrates the events that take place during the execution of `ListALlCommand`. The other two commands are similar.
 
 ![ListAllActivityDiagram.png](images%2FListAllSequenceDiagram.png)
+
+### Add Person Feature: `addPerson`
+
+#### Implementation
+
+This feature is facilitated by the `AddPersonCommand` and `AddPersonCommandParser` in the `Logic` component, and works as described below.
+
+When given valid user input, the `AddPersonCommandParser` will create a new `Person` object to add to the address book in the specified company.
+
+Consider a scenario where the user wishes to add a new contact to a specific company with various details. The `AddPersonCommand` takes in various parameters, such as name, phone, email, address, and optional tags, to create a new `Person` object.
+
+To ensure that a contact is added to the correct company, the command also takes an `Index` parameter specifying the company where the contact should be added. This ensures that the contact is associated with the intended company.
+
+<img src="images/addPersonObjectDiagram.png" width="600" />
+
+Consider an example of a valid `addPerson` command:
+
+```plaintext
+addPerson n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney c/1
+```
+
+The new objects in the final internal state after this example has been parsed are shown in the object diagram above.
+
+The following activity diagrams detail the behavior of Connectify when a user inputs an addPerson command with valid syntax to be executed.
+
+The AddPersonCommand also handles scenarios where a person with the same details already exists in the address book or the company specified via the company index parameter does not exist. In such cases, the command throws a CommandException with an error message to inform the user.
+
+<img src="images/addPersonActivityDiagram.png" width="600" />
+
+<div style="page-break-after: always;"></div>
 
 ### \[Proposed\] Undo/redo feature
 
@@ -294,6 +372,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 |----------|----------------------------------------|------------------------------|-------------------------------------------------------------------------|
 | `* * *`  | new user                               | see usage instructions       | refer to instructions when I forget how to use the App                  |
 | `* * *`  | user                                   | add a new contact            |                                                                         |
+| `* * *`  | user                                   | add a person to a specific company |  easily identify contacts by their associated company             |
 | `* * *`  | user                                   | delete a contact             | remove contacts that I no longer need                                   |
 | `* * *`  | user                                   | find a contact by name       | locate details of contacts without having to go through the entire list |
 | `* * *`  | user                                   | list all contacts            | know what people and companies I have contacts of                       |
@@ -307,6 +386,37 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Use cases
 
 (For all use cases below, the **System** is the `Connectify` and the **Actor** is the `user`, unless specified otherwise)
+
+**Use case: Add a Person**
+
+**MSS**
+
+1. User requests to add a new person.
+2. Connectify prompts the user to provide details for the new person, including name, phone, email, address, and company association.
+3. User provides the necessary details for the new person.
+4. Connectify creates a new person object with the provided details and associates it with the specified company.
+5. Connectify updates the address book to include the new person.
+6. Connectify confirms the successful addition of the new person.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. User cancels the operation.
+
+  Use case ends.
+
+* 4a. User provides incomplete or invalid details.
+
+    * 4a1. Connectify shows an error message and prompts the user to provide valid details.
+
+      Use case ends.
+
+* 4b. A person with the same details already exists in the address book.
+
+    * 4b1. Connectify shows an error message indicating that the person already exists.
+
+      Use case ends.
 
 **Use case: Delete a person**
 
