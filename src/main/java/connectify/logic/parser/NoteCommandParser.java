@@ -1,8 +1,8 @@
 package connectify.logic.parser;
 
-import static java.util.Objects.requireNonNull;
 import static connectify.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static connectify.logic.parser.CliSyntax.PREFIX_NOTE;
+import static java.util.Objects.requireNonNull;
 
 import connectify.commons.core.index.Index;
 import connectify.commons.exceptions.IllegalValueException;

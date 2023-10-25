@@ -10,8 +10,8 @@ import connectify.commons.core.index.Index;
 import connectify.logic.Messages;
 import connectify.logic.commands.exceptions.CommandException;
 import connectify.model.Model;
-import connectify.model.person.Person;
 import connectify.model.Note;
+import connectify.model.person.Person;
 
 /**
  * Changes the note of an existing person in the address book.

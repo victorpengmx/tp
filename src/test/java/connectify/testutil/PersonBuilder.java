@@ -99,7 +99,7 @@ public class PersonBuilder {
      * @param note
      * @return PersonBuilder
      */
-    public PersonBuilder withNote (String note) {
+    public PersonBuilder withNote(String note) {
         this.note = new Note(note);
         return this;
     }

@@ -3,12 +3,12 @@ package connectify.logic.parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import connectify.model.Note;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import connectify.logic.commands.AddCompanyCommand;
 import connectify.logic.parser.exceptions.ParseException;
+import connectify.model.Note;
 import connectify.model.company.Company;
 
 public class AddCompanyCommandParserTest {

@@ -14,12 +14,24 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import connectify.logic.commands.*;
-import connectify.model.Note;
 import org.junit.jupiter.api.Test;
 
+import connectify.logic.commands.AddCompanyCommand;
+import connectify.logic.commands.AddPersonCommand;
+import connectify.logic.commands.ClearCommand;
+import connectify.logic.commands.DeleteCompanyCommand;
+import connectify.logic.commands.DeletePersonCommand;
+import connectify.logic.commands.EditPersonCommand;
 import connectify.logic.commands.EditPersonCommand.EditPersonDescriptor;
+import connectify.logic.commands.ExitCommand;
+import connectify.logic.commands.FindCommand;
+import connectify.logic.commands.HelpCommand;
+import connectify.logic.commands.ListAllCommand;
+import connectify.logic.commands.ListCompaniesCommand;
+import connectify.logic.commands.ListPeopleCommand;
+import connectify.logic.commands.NoteCommand;
 import connectify.logic.parser.exceptions.ParseException;
+import connectify.model.Note;
 import connectify.model.company.Company;
 import connectify.model.person.NameContainsKeywordsPredicate;
 import connectify.model.person.Person;

@@ -1,11 +1,21 @@
 package connectify.model;
 
+/**
+ * Represents a Note in the address book.
+ */
 public class Note {
     private String content;
 
+    /**
+     * Constructor for Note.
+     */
     public Note() {
     }
 
+    /**
+     * Constructor for Note.
+     * @param content Content of note
+     */
     public Note(String content) {
         this.content = content;
     }

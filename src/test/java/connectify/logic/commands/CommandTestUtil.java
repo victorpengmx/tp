@@ -35,8 +35,8 @@ public class CommandTestUtil {
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
-    public static final String VALID_NOTE_AMY = "Managed to make a good impression on her at the 2023" +
-            "mid-year job fair";
+    public static final String VALID_NOTE_AMY = "Managed to make a good impression on her at the 2023"
+            + "mid-year job fair";
     public static final String VALID_NOTE_BOB = "A HR manager that appreciates a good sense of humour";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";

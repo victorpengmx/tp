@@ -18,6 +18,6 @@ public class NoteTest {
         // different note -> returns false
         assertFalse(note.equals(new Note("Test2")));
         // same content -> returns true
-        assertTrue(note.equals(new Note ("Test")));
+        assertTrue(note.equals(new Note("Test")));
     }
 }
