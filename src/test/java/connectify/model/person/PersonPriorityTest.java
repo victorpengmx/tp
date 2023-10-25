@@ -49,6 +49,12 @@ public class PersonPriorityTest {
     }
 
     @Test
+    public void toStringTest() {
+        PersonPriority priority = new PersonPriority("1");
+        assertTrue(priority.toString().equals("1"));
+    }
+
+    @Test
     public void equals() {
         PersonPriority priority = new PersonPriority("1");
 
