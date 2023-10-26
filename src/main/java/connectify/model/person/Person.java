@@ -1,9 +1,6 @@
 package connectify.model.person;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 import connectify.commons.util.CollectionUtil;
 import connectify.commons.util.ToStringBuilder;
@@ -14,7 +11,7 @@ import connectify.model.tag.Tag;
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person extends Entity {
+public class Person extends Entity implements Comparator<Person> {
 
     // Identity fields
     private final Name name;
@@ -122,6 +119,21 @@ public class Person extends Entity {
                 .add("tags", tags)
                 .add("priority", priority)
                 .toString();
+    }
+
+    @Override
+    public int compare(Person o1, Person o2) {
+        if (o1.getPriority().getValue() < o2.getPriority().getValue()) {
+            return -1;
+        } else if (o1.getPriority().getValue() > o2.getPriority().getValue()) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
+    public int rank() {
+        return priority.getValue();
     }
 
 }
