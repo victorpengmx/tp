@@ -183,6 +183,14 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void updateFilteredEntityList(Predicate<Entity> predicate) {
+        requireNonNull(predicate);
+        filteredPersons.setPredicate(predicate);
+        filterCompanies.setPredicate(predicate);
+        currEntity = EntityType.ALL;
+    }
+
+    @Override
     public void updateFilteredCompanyList(Predicate<Company> predicate) {
         logger.info("Updating list of filtered companies");
         requireNonNull(predicate);
