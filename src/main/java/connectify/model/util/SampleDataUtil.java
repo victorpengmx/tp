@@ -59,8 +59,8 @@ public class SampleDataUtil {
         return new Company[] {
             new Company(new CompanyName("Unassigned"), new CompanyIndustry("Unassigned"),
                     new CompanyLocation("Unassigned"), "Unassigned",
-                    new CompanyWebsite("Unassigned"), new CompanyEmail("Unassigned"),
-                    new CompanyPhone("Unassigned"), new CompanyAddress("Unassigned")),
+                    new CompanyWebsite("Unassigned"), new CompanyEmail("samplecompany@email.com"),
+                    new CompanyPhone("12345678"), new CompanyAddress("Unassigned")),
                     // To be protected from deletion in future
         };
     }
