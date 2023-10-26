@@ -216,7 +216,7 @@ The `ListCompaniesCommand` object invokes `updateFilteredCompanyList` in `ModelM
 
 The `ListAllPeopleCommand` object invokes `updateFilteredPersonList` in `ModelManager` in the `Model` component with the predicates `PREDICATE_SHOW_ALL_PERSONS` to communicate to the Model to display all Persons. Note that this command does not modify the internal list of Persons in the Model, only the displayed list.
 
-If the list is empty, `execute` in the list command returns a `CommandResult` with `EMPTY_LIST_MESSAGE` or `MESSAGE_SUCCESS` otherwise.   
+If the list is empty, `execute` in the list command returns a `CommandResult` with `EMPTY_LIST_MESSAGE` or `MESSAGE_SUCCESS` otherwise.
 
 The sequence diagram below illustrates the events that take place during the execution of `ListALlCommand`. The other two commands are similar.
 
@@ -260,11 +260,11 @@ This feature is facilitated by the `DeletePersonCommand` and `DeletePersonComman
 
 When given valid inputs, `the DeletePersonCommandParser` will delete a `Person` object from a particular company list.
 
-Consider a scenario where the user wishes to delete a person from a particular company list. 
+Consider a scenario where the user wishes to delete a person from a particular company list.
 
 It requires two `Index` parameters: one for the company and another for the person within that company.
 
-The command first validates company index to ensure the company is present in the system. 
+The command first validates company index to ensure the company is present in the system.
 
 It then validates person index to ensure that the person selected is indeed in that company's list.
 
@@ -296,7 +296,7 @@ This feature is facilitated by the `AddCompanyCommand` and `AddCompanyCommandPar
 
 When given valid user input, the `AddCompanyCommandParser` will create a new `Company` object to add to the address book.
 
-Consider a scenario where the user wishes to add a new company with various details. The `AddCompanyCommand` takes in various parameters, such as name, industry, location, description, website, email, phone, address 
+Consider a scenario where the user wishes to add a new company with various details. The `AddCompanyCommand` takes in various parameters, such as name, industry, location, description, website, email, phone, address
 to create a new `Company` object.
 
 <img src="images/addCompanyObjectDiagram.png" width="600" />
