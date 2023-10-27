@@ -4,193 +4,355 @@
   pageNav: 3
 ---
 
-# AB-3 User Guide
+# Connectify User Guide
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+Connectify is a networking platform designed to help professionals efficiently manage their connections and enhance their networking experiences. In this version (v1.2), we have focused on delivering the essential features for a Minimum Viable Product (MVP): **adding contacts**, **deleting contacts**, and **listing contacts**. This guide will walk you through the core functionality of Connectify.
 
-<!-- * Table of Contents -->
-<page-nav-print />
+## Table of Contents
+* [Quick start](#quick-start)
+* [Features](#features)
+  * [Adding Contacts](#adding-contacts)
+  * [Deleting Contacts](#deleting-contacts)
+  * [Editing Contacts](#editing-people)
+  * [Listing Contacts](#listing-all-entities)
+  * [Exit](#exit)
+* [FAQ](#faq)
+* [Known issues](#known-issues)
+* [Command Summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
+2. Create a new folder to store Connectify.
+3. Download Connectify from the following link and save the downloaded file in the directory you created in the previous step.
+4. Launch Connectify by double-clicking the file in the directory. After a brief moment, the Connectify application will commence. You'll be greeted by Connectify's primary interface, complete with sample contacts and company profiles already included for your exploration.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
-
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
-
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
-
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
-
-   * `list` : Lists all contacts.
-
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
-
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
-
-   * `clear` : Deletes all contacts.
-
-   * `exit` : Exits the app.
-
-1. Refer to the [Features](#features) below for details of each command.
-
+Now that you've successfully installed Connectify, let's take a moment to familiarize ourselves with the application's interface and functionality before diving into its features.
+[More Details Coming Soon]
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
 
-<box type="info" seamless>
+### Adding Contacts
+#### Command: `addPerson`
 
-**Notes about the command format:**<br>
+The `addPerson` command allows you to add new contacts to your Connectify database. Follow the format below to add contacts:
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+```
+addPerson n/NAME p/PHONE e/EMAIL a/ADDRESS c/COMPANY [t/TAG]
+```
+The fields are:
+- `n/NAME` is the name of the contact.
+- `p/PHONE` is the phone number of the contact.
+- `e/EMAIL` is the email address of the contact.
+- `a/ADDRESS` is the address of the contact.
+- `c/COMPANY` is the index of the company to which the contact belongs.
+- `[t/TAG]`: (optional) is used to categorize your contacts. Tags help organize connections efficiently.
 
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+**Example:**
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+To add a contact named John Doe with the phone number 98765432, email address johndoe@example.com, address "311, Clementi Ave 2, #02-25," and associate them with Company 1, use the following command:
 
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+```
+addPerson n/John Doe p/98765432 e/johndoe@example.com a/311, Clementi Ave 2, #02-25 c/1 t/friends t/owesMoney
+```
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+**Successful Output:**
 
-* If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
-</box>
+```
+New person added: John Doe
+Phone: 98765432
+Email: johnd@example.com
+Address: 311, Clementi Ave 2, #02-25
+Company: Company 1
+Tags: friends, owesMoney
+```
 
-### Viewing help : `help`
+**Unsuccessful Output:**
 
-Shows a message explaning how to access the help page.
+- If the provided details are incomplete or invalid:
+  ```
+  Please provide valid contact details including name, phone, email, address, and a valid company index.
+  ```
 
-![help message](images/helpMessage.png)
+- If a person with the same details already exists in the address book:
+  ```
+  This person already exists in the address book.
+  ```
 
-Format: `help`
+- If the company index provided is invalid:
+  ```
+  The company index provided is invalid.
+  ```
+
+#### Command: `addCompany`
+
+The **addCompany** command allows you to add new companies to your Connectify database. Follow the format below to add contacts:
+
+`addCompany n/NAME i/INDUSTRY l/LOCATION d/DESCRIPTION w/WEBSITE e/EMAIL p/PHONE a/ADDRESS`
+
+- `n/NAME`: Specify the Company name.
+- `i/INDUSTRY`: Add the industry the Company is in.
+- `l/LOCATION`: Add the city/locale Company is at.
+- `d/DESCRIPTION`: Describe the Company.
+- `w/WEBSITE`: Add the Company website.
+- `e/EMAIL`: Add the contact email of the Company.
+- `p/PHONE`: Add the phone number of the Company.
+- `a/ADDRESS`: Include the address of the Company.
+
+**Example:**
+
+To add a Company "Apple Inc", a computer and consumer technology company headquartered in Los Altos, with the website "www.apple.com", email address contact@apple.com, the phone number 98765432, address "1 Apple Park Way, Cupertino, California", use the following command:
+
+```
+addCompany n/Apple Inc i/technology l/Los Altos d/computer and consumer technology w/www.apple.com e/contact@apple.com p/98765432 a/1 Apple Park Way, Cupertino, California
+```
+
+**Successful Output:**
+
+```
+New company added: Apple Inc
+Phone: 98765432
+Email: contact@apple.com
+Address: 1 Apple Park Way, Cupertino, California
+Industry: technology
+Location: Los Altos
+Description: computer and consumer technology
+Website: www.apple.com
+```
+
+**Unsuccessful Output:**
+
+- If a person with the same details already exists in the address book:
+  ```
+  This company already exists in the address book.
+  ```
+
+### Deleting Contacts
+
+#### Command: `deletePerson`
+
+The **deletePerson** command allows you to remove people from your Connectify database. To delete a person, you need to specify the person's index.
+
+```
+deletePerson INDEX
+```
+
+- `INDEX`: Provide the index of the person you want to delete.
+
+**Example:**
+
+To delete the person named John Doe at index 1, use the following command:
+```
+deletePerson 1
+```
+
+**Successful Output:**
+
+```
+Noted. I've removed this contact:
+John Doe
+Email:
+```
+
+**Unsuccessful Output:**
+
+```
+Please provide a valid index.
+```
+
+#### Command: `deleteCompany`
+
+The **deleteCompany** command allows you to remove companies from your Connectify database. To delete a company, you need to specify the company's index.
+
+```
+deleteCompany INDEX
+```
+
+- `INDEX`: Provide the index of the company you want to delete.
+
+**Example:**
+
+To delete the company named Test Company at index 1, use the following command:
+```
+deleteCompany 1
+```
+
+**Successful Output:**
+
+```
+Deleted Company: Test Company
+```
+
+**Unsuccessful Output:**
+
+```
+The company index provided is invalid.
+```
+
+### Editing People
+####  Command: `edit`
+
+The `edit` command allows you to modify the details of a person in your Connectify database. Follow the format below to edit contacts.
+
+```
+edit INDEX c/COMPANY [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]
+```
+The fields are:
+- `INDEX` is the index of the person in the displayed person list of a company that you want to edit. It must be a positive integer within the company.
+- `c/COMPANY`is the index of the company that the person is associated with.
+- `n/NAME` is the new name of the person.
+- `[p/PHONE]` (optional) is the person's new phone number.
+- `[e/EMAIL]` (optional) is the person's new email.
+- `[a/ADDRESS]` (optional) is the person's new address.
+- `[pr/PRIORITY]` (optional) is the person's new priority level.
+- `[t/TAG]` (optional) is the person's new tags.
+
+**Example:**
+To edit the person's name to "NewName," their phone number to "98765432," and their email to "newemail@example.com." The person is located at index 1 in the displayed person list of Company 1, and the person is associated with Company 1. Use the following command:
+```
+edit 1 c/1 n/NewName p/98765432 e/newemail@example.com
+```
+
+**Successful Output**
+```
+Edited Person: NewName
+```
+
+**Unsuccessful Output**
+- If you don't provide at least one field to edit, you will receive the following error message:
+```
+At least one field to edit must be provided.
+```
+- If the specified index is invalid (not within the displayed person list or not a positive integer), you will get the following error message:
+```
+The person index provided is invalid.
+```
+- If the specified company index is missing, you will get the following error message:
+```
+No company provided.
+```
+
+- If you try to edit a person's details in a company that does not exist, you will receive:
+
+```
+The company index provided is invalid.
+```
+
+- If the specified company index or person index is out of bounds, you will get the following error message:
+```
+Invalid index provided.
+```
+
+- If you try to edit a person's details to match another person in the address book, you will receive the following error message:
+```
+This person already exists in the Connectify.
+```
+
+### Listing All Entities
+####  Command: `list`
+
+The `list` command allows you to retrieve a list of all entities (both persons and companies) in the Connectify database. This command is useful for obtaining an overview of all the entities you have stored.
+
+Follow the format below to list all entities:
+```
+list
+```
+This command has no additional fields.
+
+**Successful Output**
+```
+Listed all persons and companies.
+```
+
+**Unsuccessful Output**
+- If Connectify is empty, and there are no entities to display, you will receive the following message:
+```
+There are no entities in Connectify.
+```
 
 
-### Adding a person: `add`
+### Listing All Companies
+####  Command: `companies`
+The `companies` command allows you to retrieve a list of all companies in Connectify. This command is particularly useful for obtaining an overview of all the companies you have stored.
 
-Adds a person to the address book.
+Follow the format below to list all companies:
+```
+companies
+```
+This command has no additional fields.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+**Successful Output**
+```
+Listed all companies.
+```
 
-<box type="tip" seamless>
+**Unsuccessful Output**
+-If Connectify does not contain any companies, and there are no companies to display, you will receive the following message:
+```
+There are no companies in Connectify.
+```
 
-**Tip:** A person can have any number of tags (including 0)
-</box>
+### Listing All People
+####  Command: `people`
+The `people` command allows you to retrieve a list of all individuals (persons) in the Connectify. This command is especially useful for obtaining an overview of all the individuals you have stored.
 
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+Follow the format below to list all persons:
+```
+people
+```
+This command has no additional fields.
 
-### Listing all persons : `list`
+**Successful Output**
+```
+Listed all persons.
+```
 
-Shows a list of all persons in the address book.
+**Unsuccessful Output**
+- If Connectify does not contain any individuals (persons), and there are no people to list, you will receive the following message:
+```
+There are no people in Connectify.
+```
 
-Format: `list`
 
-### Editing a person : `edit`
+### Exit
 
-Edits an existing person in the address book.
+#### Command: `exit`
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+This command exits the program.
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+**Successful Output:**
 
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+```
+Bye. Hope to see you again soon!
+```
 
-### Locating persons by name: `find`
+**Unsuccessful Output:**
 
-Finds persons whose names contain any of the given keywords.
+```
+That is not a valid command.
+```
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
-### Deleting a person : `delete`
-
-Deletes the specified person from the address book.
-
-Format: `delete INDEX`
-
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
-
-### Clearing all entries : `clear`
-
-Clears all entries from the address book.
-
-Format: `clear`
-
-### Exiting the program : `exit`
-
-Exits the program.
-
-Format: `exit`
-
-### Saving the data
-
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Editing the data file
-
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
-
-<box type="warning" seamless>
-
-**Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.
-</box>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
+[More Features Coming Soon]
+>>>>>>> master
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+[Coming Soon]
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Known issues
 
-1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
+[Coming Soon]
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## Command Summary
 
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -201,3 +363,4 @@ Action     | Format, Examples
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List**   | `list`
 **Help**   | `help`
+
