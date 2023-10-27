@@ -18,7 +18,6 @@ import connectify.logic.Messages;
 import connectify.model.AddressBook;
 import connectify.model.Model;
 import connectify.model.ModelManager;
-import connectify.model.Note;
 import connectify.model.UserPrefs;
 import connectify.model.person.Person;
 import connectify.model.person.PersonNote;

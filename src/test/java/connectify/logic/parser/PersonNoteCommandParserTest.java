@@ -13,7 +13,7 @@ import connectify.logic.commands.PersonNoteCommand;
 import connectify.model.person.PersonNote;
 
 public class PersonNoteCommandParserTest {
-    private NoteCommandParser parser = new NoteCommandParser();
+    private PersonNoteCommandParser parser = new PersonNoteCommandParser();
     private final String nonEmptyNote = "Some note.";
 
     @Test
