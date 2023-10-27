@@ -15,6 +15,8 @@ Connectify is a networking platform designed to help professionals efficiently m
   * [Deleting Contacts](#deleting-contacts)
   * [Editing Contacts](#editing-people)
   * [Listing Contacts](#listing-all-entities)
+  * [Listing Companies](#listing-all-companies)
+  * [Listing People](#listing-all-people)
   * [Exit](#exit)
 * [FAQ](#faq)
 * [Known issues](#known-issues)
@@ -192,7 +194,7 @@ Deleted Company: Test Company
 The company index provided is invalid.
 ```
 
-### Editing People
+### Editing Contacts
 ####  Command: `edit`
 
 The `edit` command allows you to modify the details of a person in your Connectify database. Follow the format below to edit contacts.
@@ -336,8 +338,6 @@ That is not a valid command.
 ```
 
 [More Features Coming Soon]
->>>>>>> master
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
