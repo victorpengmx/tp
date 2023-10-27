@@ -121,15 +121,16 @@ public class EditPersonCommand extends Command {
     private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        PersonName updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
+        PersonPhone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
+        PersonEmail updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
+        PersonAddress updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Note updatedNote = personToEdit.getNote();
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         PersonPriority updatedPriority = editPersonDescriptor.getPersonPriority().orElse(personToEdit.getPriority());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedNote, updatedPriority);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags,
+                updatedNote, updatedPriority);
     }
 
     @Override

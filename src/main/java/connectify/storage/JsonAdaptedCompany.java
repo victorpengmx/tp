@@ -172,7 +172,6 @@ public class JsonAdaptedCompany {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Note"));
         }
         final Note modelNote = new Note(note);
-      
         return new Company(modelName, modelCompanyIndustry, modelCompanyLocation,
                 description, modelCompanyWebsite, modelCompanyEmail,
                 modelCompanyPhone, modelCompanyAddress, modelNote, modelPersonList);

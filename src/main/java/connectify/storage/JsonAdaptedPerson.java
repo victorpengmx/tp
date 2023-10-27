@@ -113,12 +113,10 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                 PersonAddress.class.getSimpleName()));
         }
-        
         if (note == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Note"));
         }
         final Note modelNote = new Note(note);
-      
         if (!PersonAddress.isValidAddress(address)) {
             throw new IllegalValueException(PersonAddress.MESSAGE_CONSTRAINTS);
         }
@@ -131,7 +129,8 @@ class JsonAdaptedPerson {
         }
         final PersonPriority priority = new PersonPriority(this.priority);
 
-        return new Person(modelName, modelPersonPhone, modelPersonEmail, modelPersonAddress, modelNote, modelTags, priority);
+        return new Person(modelName, modelPersonPhone, modelPersonEmail, modelPersonAddress, modelTags,
+                modelNote, priority);
     }
 
 }

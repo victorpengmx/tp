@@ -124,7 +124,7 @@ public class PersonBuilder {
      * @return Person object
      */
     public Person build() {
-        return new Person(name, personPhone, personEmail, personAddress, note, tags, priority);
+        return new Person(name, personPhone, personEmail, personAddress, tags, note, priority);
     }
 
 }

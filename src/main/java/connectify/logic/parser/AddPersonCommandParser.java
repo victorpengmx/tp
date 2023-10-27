@@ -9,10 +9,6 @@ import connectify.commons.core.index.Index;
 import connectify.logic.commands.AddPersonCommand;
 import connectify.logic.parser.exceptions.ParseException;
 import connectify.model.Note;
-import connectify.model.person.Address;
-import connectify.model.person.Email;
-import connectify.model.person.Name;
-
 import connectify.model.person.Person;
 import connectify.model.person.PersonAddress;
 import connectify.model.person.PersonEmail;
@@ -57,7 +53,7 @@ public class AddPersonCommandParser implements Parser<AddPersonCommand> {
         Index companyIndex = ParserCompanyUtil.parseIndex(argMultimap.getValue(CliSyntax.PREFIX_COMPANY).orElse("1"));
         PersonPriority priority = ParserPersonUtil
             .parsePersonPriority(argMultimap.getValue(CliSyntax.PREFIX_PRIORITY).get());
-        Person person = new Person(name, personPhone, personEmail, personAddress, note, tagList, priority);
+        Person person = new Person(name, personPhone, personEmail, personAddress, tagList, note, priority);
 
         return new AddPersonCommand(person, companyIndex);
     }

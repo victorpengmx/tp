@@ -49,7 +49,7 @@ public class JsonAdaptedCompanyTest {
         JsonAdaptedCompany company =
                 new JsonAdaptedCompany(INVALID_NAME, VALID_INDUSTRY, VALID_LOCATION,
                         VALID_DESCRIPTION, VALID_WEBSITE,
-                        VALID_EMAIL, VALID_PHONE, VALID_ADDRESS, VALID_PEOPLE);
+                        VALID_EMAIL, VALID_PHONE, VALID_ADDRESS, VALID_NOTE, VALID_PEOPLE);
         String expectedMessage = CompanyName.MESSAGE_CONSTRAINTS;
         Assert.assertThrows(IllegalValueException.class, expectedMessage, company::toModelType);
     }
@@ -72,7 +72,7 @@ public class JsonAdaptedCompanyTest {
         JsonAdaptedCompany company =
                 new JsonAdaptedCompany(VALID_NAME, VALID_INDUSTRY, VALID_LOCATION,
                         VALID_DESCRIPTION, VALID_WEBSITE,
-                        VALID_EMAIL, INVALID_PHONE, VALID_ADDRESS, VALID_PEOPLE);
+                        VALID_EMAIL, INVALID_PHONE, VALID_ADDRESS, VALID_NOTE, VALID_PEOPLE);
         String expectedMessage = CompanyPhone.MESSAGE_CONSTRAINTS;
         Assert.assertThrows(IllegalValueException.class, expectedMessage, company::toModelType);
     }
@@ -145,7 +145,7 @@ public class JsonAdaptedCompanyTest {
         JsonAdaptedCompany company =
                 new JsonAdaptedCompany(VALID_NAME, VALID_INDUSTRY, VALID_LOCATION,
                         VALID_DESCRIPTION, VALID_WEBSITE,
-                        INVALID_EMAIL, VALID_PHONE, VALID_ADDRESS, VALID_PEOPLE);
+                        INVALID_EMAIL, VALID_PHONE, VALID_ADDRESS, VALID_NOTE, VALID_PEOPLE);
         String expectedMessage = CompanyEmail.MESSAGE_CONSTRAINTS;
         Assert.assertThrows(IllegalValueException.class, expectedMessage, company::toModelType);
     }
@@ -168,7 +168,7 @@ public class JsonAdaptedCompanyTest {
         JsonAdaptedCompany company =
                 new JsonAdaptedCompany(VALID_NAME, VALID_INDUSTRY, VALID_LOCATION,
                         VALID_DESCRIPTION, VALID_WEBSITE,
-                        VALID_EMAIL, VALID_PHONE, INVALID_ADDRESS, VALID_PEOPLE);
+                        VALID_EMAIL, VALID_PHONE, INVALID_ADDRESS, VALID_NOTE, VALID_PEOPLE);
         String expectedMessage = CompanyAddress.MESSAGE_CONSTRAINTS;
         Assert.assertThrows(IllegalValueException.class, expectedMessage, company::toModelType);
     }
