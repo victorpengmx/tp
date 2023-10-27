@@ -31,7 +31,10 @@ Connectify is a networking platform designed to help professionals efficiently m
 3. Download Connectify from the following link and save the downloaded file in the directory you created in the previous step.
 4. Launch Connectify by double-clicking the file in the directory. After a brief moment, the Connectify application will commence. You'll be greeted by Connectify's primary interface, complete with sample contacts and company profiles already included for your exploration.
 
+
+
 Now that you've successfully installed Connectify, let's take a moment to familiarize ourselves with the application's interface and functionality before diving into its features.
+
 [More Details Coming Soon]
 --------------------------------------------------------------------------------------------------------------------
 
