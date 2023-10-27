@@ -60,7 +60,9 @@ public class CompanyNoteCommand extends Command {
                 companyToEdit.getWebsite(),
                 companyToEdit.getEmail(),
                 companyToEdit.getPhone(),
-                companyToEdit.getAddress(), note);
+                companyToEdit.getAddress(),
+                note,
+                companyToEdit.getPersonList());
 
         model.setCompany(companyToEdit, editedCompany);
         model.updateFilteredCompanyList(PREDICATE_SHOW_ALL_COMPANIES);

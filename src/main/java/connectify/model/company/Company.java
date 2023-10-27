@@ -110,6 +110,18 @@ public class Company extends Entity {
     }
 
     /**
+     * Replaces the person {@code target} in the list with {@code editedPerson}.
+     * @param target
+     * @param editedPerson
+     * @return
+     */
+    public Company setPerson(Person target, Person editedPerson) {
+        requireAllNonNull(target, editedPerson);
+        PersonList edited = new PersonList(personList).setPerson(target, editedPerson);
+        return new Company(name, industry, location, description, website, email, phone, address, note, edited);
+    }
+
+    /**
      * Returns the name of the company.
      * @return Name of company
      */

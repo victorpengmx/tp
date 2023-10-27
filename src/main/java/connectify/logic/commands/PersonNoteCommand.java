@@ -3,6 +3,7 @@ package connectify.logic.commands;
 import static connectify.commons.util.CollectionUtil.requireAllNonNull;
 import static connectify.logic.parser.CliSyntax.PREFIX_NOTE;
 import static connectify.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
@@ -10,6 +11,8 @@ import connectify.commons.core.index.Index;
 import connectify.logic.Messages;
 import connectify.logic.commands.exceptions.CommandException;
 import connectify.model.Model;
+import connectify.model.company.Company;
+import connectify.model.person.PersonList;
 import connectify.model.person.PersonNote;
 import connectify.model.person.Person;
 
@@ -19,41 +22,52 @@ import connectify.model.person.Person;
 public class PersonNoteCommand extends Command {
     public static final String COMMAND_WORD = "notePerson";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the note of the person identified "
-            + "by the index number used in the last person listing. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Changes the note of the person identified "
+            + "by the index number used in the displayed person list. "
             + "Existing note will be overwritten by the input.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_NOTE + "[NOTE]\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_NOTE + "Likes to swim.";
+            + "Parameters: COMPANY_INDEX PERSON_INDEX (must be a positive integer) "
+            + "[" + PREFIX_NOTE + "NOTE]\n"
+            + "Example: " + COMMAND_WORD + " 1 1 " + PREFIX_NOTE + "Likes to swim.";
 
     public static final String MESSAGE_ADD_NOTE_SUCCESS = "Added note to Person: %1$s";
     public static final String MESSAGE_DELETE_NOTE_SUCCESS = "Removed note from Person: %1$s";
 
-    private final Index index;
+    private final Index companyIndex;
+    private final Index personIndex;
     private final PersonNote note;
 
     /**
-     * @param index of the person in the filtered person list to edit the note
-     * @param note of the person to be updated to
      */
-    public PersonNoteCommand(Index index, PersonNote note) {
-        requireAllNonNull(index, note);
-        this.index = index;
+    public PersonNoteCommand(Index companyIndex, Index personIndex, PersonNote note) {
+        requireAllNonNull(companyIndex, personIndex, note);
+        this.companyIndex = companyIndex;
+        this.personIndex = personIndex;
         this.note = note;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        List<Person> lastShownList = model.getFilteredPersonList();
+        requireNonNull(model);
 
-        if (index.getZeroBased() >= lastShownList.size()) {
+        List<Company> companyList = model.getFilteredCompanyList();
+
+        if (companyIndex.getZeroBased() >= companyList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_COMPANY_DISPLAYED_INDEX);
+        }
+
+        Company companyToUpdate = companyList.get(companyIndex.getZeroBased());
+        PersonList companyPersonsList = companyToUpdate.getPersonList();
+
+        if (personIndex.getZeroBased() >= companyPersonsList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
+        Person personToEdit = companyPersonsList.get(personIndex.getZeroBased());
         Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
                 personToEdit.getAddress(), personToEdit.getTags(), note, personToEdit.getPriority());
+
+        Company editedCompany = companyToUpdate.setPerson(personToEdit, editedPerson);
+        model.setCompany(companyToUpdate, editedCompany);
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -84,7 +98,8 @@ public class PersonNoteCommand extends Command {
 
         // state check
         PersonNoteCommand e = (PersonNoteCommand) other;
-        return index.equals(e.index)
+        return companyIndex.equals(e.companyIndex)
+                && personIndex.equals(e.personIndex)
                 && note.equals(e.note);
     }
 }

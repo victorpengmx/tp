@@ -6,8 +6,11 @@ import static java.util.Objects.requireNonNull;
 
 import connectify.commons.core.index.Index;
 import connectify.commons.exceptions.IllegalValueException;
+import connectify.logic.commands.CompanyNoteCommand;
+import connectify.logic.commands.DeletePersonCommand;
 import connectify.logic.commands.PersonNoteCommand;
 import connectify.logic.parser.exceptions.ParseException;
+import connectify.model.company.CompanyNote;
 import connectify.model.person.PersonNote;
 
 /**
@@ -23,15 +26,21 @@ public class PersonNoteCommandParser implements Parser<PersonNoteCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NOTE);
 
-        Index index;
         try {
-            index = ParserPersonUtil.parseIndex(argMultimap.getPreamble());
+            String[] splitArgs = args.trim().split("\\s+");
+
+            if (splitArgs.length < 2) {
+                throw new ParseException(MESSAGE_INVALID_COMMAND_FORMAT);
+            }
+
+            Index companyIndex = ParserPersonUtil.parseIndex(splitArgs[0]);
+            Index personIndex = ParserCompanyUtil.parseIndex(splitArgs[1]);
+
+            String note = argMultimap.getValue(PREFIX_NOTE).orElse("");
+
+            return new PersonNoteCommand(companyIndex, personIndex, new PersonNote(note));
         } catch (IllegalValueException ive) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, PersonNoteCommand.MESSAGE_USAGE), ive);
         }
-
-        String note = argMultimap.getValue(PREFIX_NOTE).orElse("");
-
-        return new PersonNoteCommand(index, new PersonNote(note));
     }
 }
