@@ -17,7 +17,7 @@ import connectify.model.person.Person;
  * Changes the note of an existing person in the address book.
  */
 public class PersonNoteCommand extends Command {
-    public static final String COMMAND_WORD = "note";
+    public static final String COMMAND_WORD = "notePerson";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the note of the person identified "
             + "by the index number used in the last person listing. "
