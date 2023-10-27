@@ -3,7 +3,7 @@ package connectify.model;
 /**
  * Represents a Note in the address book.
  */
-public class Note {
+abstract public class Note {
     private String content;
 
     /**

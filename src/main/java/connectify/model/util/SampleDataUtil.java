@@ -5,7 +5,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import connectify.model.AddressBook;
-import connectify.model.Note;
 import connectify.model.ReadOnlyAddressBook;
 import connectify.model.company.Company;
 import connectify.model.company.CompanyAddress;
@@ -19,6 +18,7 @@ import connectify.model.person.Person;
 import connectify.model.person.PersonAddress;
 import connectify.model.person.PersonEmail;
 import connectify.model.person.PersonName;
+import connectify.model.person.PersonNote;
 import connectify.model.person.PersonPhone;
 import connectify.model.person.PersonPriority;
 import connectify.model.tag.Tag;
@@ -27,7 +27,7 @@ import connectify.model.tag.Tag;
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
-    private static final Note EMPTY_NOTE = new Note("");
+    private static final PersonNote EMPTY_NOTE = new PersonNote("");
     public static Person[] getSamplePersons() {
         return new Person[] {
             new Person(new PersonName("Alex Yeoh"), new PersonPhone("87438807"),

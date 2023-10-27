@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import connectify.commons.exceptions.IllegalValueException;
-import connectify.model.Note;
+import connectify.model.person.PersonNote;
 import connectify.model.person.Person;
 import connectify.model.person.PersonAddress;
 import connectify.model.person.PersonEmail;
@@ -116,7 +116,7 @@ class JsonAdaptedPerson {
         if (note == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Note"));
         }
-        final Note modelNote = new Note(note);
+        final PersonNote modelNote = new PersonNote(note);
         if (!PersonAddress.isValidAddress(address)) {
             throw new IllegalValueException(PersonAddress.MESSAGE_CONSTRAINTS);
         }

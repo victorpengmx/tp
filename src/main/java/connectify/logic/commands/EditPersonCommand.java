@@ -24,7 +24,6 @@ import connectify.commons.util.ToStringBuilder;
 import connectify.logic.Messages;
 import connectify.logic.commands.exceptions.CommandException;
 import connectify.model.Model;
-import connectify.model.Note;
 import connectify.model.company.Company;
 import connectify.model.person.Person;
 import connectify.model.person.PersonAddress;
@@ -32,6 +31,7 @@ import connectify.model.person.PersonEmail;
 import connectify.model.person.PersonName;
 import connectify.model.person.PersonPhone;
 import connectify.model.person.PersonPriority;
+import connectify.model.person.PersonNote;
 import connectify.model.tag.Tag;
 
 /**
@@ -125,7 +125,7 @@ public class EditPersonCommand extends Command {
         PersonPhone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         PersonEmail updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         PersonAddress updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Note updatedNote = personToEdit.getNote();
+        PersonNote updatedNote = personToEdit.getNote();
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         PersonPriority updatedPriority = editPersonDescriptor.getPersonPriority().orElse(personToEdit.getPriority());
 

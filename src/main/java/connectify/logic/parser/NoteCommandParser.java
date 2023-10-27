@@ -6,20 +6,20 @@ import static java.util.Objects.requireNonNull;
 
 import connectify.commons.core.index.Index;
 import connectify.commons.exceptions.IllegalValueException;
-import connectify.logic.commands.NoteCommand;
+import connectify.logic.commands.PersonNoteCommand;
 import connectify.logic.parser.exceptions.ParseException;
-import connectify.model.Note;
+import connectify.model.person.PersonNote;
 
 /**
  * Parses input arguments and creates a new {@code NoteCommand} object
  */
-public class NoteCommandParser implements Parser<NoteCommand> {
+public class NoteCommandParser implements Parser<PersonNoteCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the {@code NoteCommand}
      * and returns a {@code NoteCommand} object for execution.
      * @throws ParseException if the user input does not conform to the expected format
      */
-    public NoteCommand parse(String args) throws ParseException {
+    public PersonNoteCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NOTE);
 
@@ -27,11 +27,11 @@ public class NoteCommandParser implements Parser<NoteCommand> {
         try {
             index = ParserPersonUtil.parseIndex(argMultimap.getPreamble());
         } catch (IllegalValueException ive) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, NoteCommand.MESSAGE_USAGE), ive);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, PersonNoteCommand.MESSAGE_USAGE), ive);
         }
 
         String note = argMultimap.getValue(PREFIX_NOTE).orElse("");
 
-        return new NoteCommand(index, new Note(note));
+        return new PersonNoteCommand(index, new PersonNote(note));
     }
 }

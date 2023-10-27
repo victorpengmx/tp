@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import connectify.commons.exceptions.IllegalValueException;
-import connectify.model.Note;
+import connectify.model.company.CompanyNote;
 import connectify.model.company.Company;
 import connectify.model.company.CompanyAddress;
 import connectify.model.company.CompanyEmail;
@@ -171,7 +171,7 @@ public class JsonAdaptedCompany {
         if (note == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Note"));
         }
-        final Note modelNote = new Note(note);
+        final CompanyNote modelNote = new CompanyNote(note);
         return new Company(modelName, modelCompanyIndustry, modelCompanyLocation,
                 description, modelCompanyWebsite, modelCompanyEmail,
                 modelCompanyPhone, modelCompanyAddress, modelNote, modelPersonList);

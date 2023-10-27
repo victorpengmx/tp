@@ -10,14 +10,13 @@ import connectify.commons.core.index.Index;
 import connectify.logic.Messages;
 import connectify.logic.commands.exceptions.CommandException;
 import connectify.model.Model;
-import connectify.model.Note;
+import connectify.model.person.PersonNote;
 import connectify.model.person.Person;
 
 /**
  * Changes the note of an existing person in the address book.
  */
-public class NoteCommand extends Command {
-
+public class PersonNoteCommand extends Command {
     public static final String COMMAND_WORD = "note";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the note of the person identified "
@@ -32,15 +31,14 @@ public class NoteCommand extends Command {
     public static final String MESSAGE_DELETE_NOTE_SUCCESS = "Removed note from Person: %1$s";
 
     private final Index index;
-    private final Note note;
+    private final PersonNote note;
 
     /**
      * @param index of the person in the filtered person list to edit the note
      * @param note of the person to be updated to
      */
-    public NoteCommand(Index index, Note note) {
+    public PersonNoteCommand(Index index, PersonNote note) {
         requireAllNonNull(index, note);
-
         this.index = index;
         this.note = note;
     }
@@ -80,12 +78,12 @@ public class NoteCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof NoteCommand)) {
+        if (!(other instanceof PersonNoteCommand)) {
             return false;
         }
 
         // state check
-        NoteCommand e = (NoteCommand) other;
+        PersonNoteCommand e = (PersonNoteCommand) other;
         return index.equals(e.index)
                 && note.equals(e.note);
     }

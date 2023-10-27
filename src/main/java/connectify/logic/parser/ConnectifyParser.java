@@ -23,7 +23,7 @@ import connectify.logic.commands.HelpCommand;
 import connectify.logic.commands.ListAllCommand;
 import connectify.logic.commands.ListCompaniesCommand;
 import connectify.logic.commands.ListPeopleCommand;
-import connectify.logic.commands.NoteCommand;
+import connectify.logic.commands.PersonNoteCommand;
 import connectify.logic.parser.exceptions.ParseException;
 
 /**
@@ -75,7 +75,7 @@ public class ConnectifyParser {
         case DeleteCompanyCommand.COMMAND_WORD:
             return new DeleteCompanyCommandParser().parse(arguments);
 
-        case NoteCommand.COMMAND_WORD:
+        case PersonNoteCommand.COMMAND_WORD:
             return new NoteCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:

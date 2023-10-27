@@ -8,7 +8,7 @@ import java.util.Set;
 import connectify.commons.util.CollectionUtil;
 import connectify.commons.util.ToStringBuilder;
 import connectify.model.Entity;
-import connectify.model.Note;
+import connectify.model.person.PersonNote;
 import connectify.model.tag.Tag;
 
 /**
@@ -25,14 +25,14 @@ public class Person extends Entity {
     // Data fields
     private final PersonAddress personAddress;
     private final Set<Tag> tags = new HashSet<>();
-    private final Note note;
+    private final PersonNote note;
     private final PersonPriority priority;
 
     /**
      * Every field must be present and not null.
      */
     public Person(PersonName name, PersonPhone phone, PersonEmail email, PersonAddress address,
-                  Set<Tag> tags, Note note, PersonPriority priority) {
+                  Set<Tag> tags, PersonNote note, PersonPriority priority) {
         CollectionUtil.requireAllNonNull(name, phone, email, address, note, tags, priority);
         this.name = name;
         this.personPhone = phone;
@@ -83,7 +83,7 @@ public class Person extends Entity {
      * Returns the note associated with this person.
      * @return Note associated with this person
      */
-    public Note getNote() {
+    public PersonNote getNote() {
         return note;
     }
 

@@ -6,7 +6,7 @@ import java.util.Objects;
 
 import connectify.commons.util.ToStringBuilder;
 import connectify.model.Entity;
-import connectify.model.Note;
+import connectify.model.company.CompanyNote;
 import connectify.model.person.Person;
 import connectify.model.person.PersonList;
 
@@ -23,7 +23,7 @@ public class Company extends Entity {
     private final CompanyEmail email;
     private final CompanyPhone phone;
     private final CompanyAddress address;
-    private Note note;
+    private CompanyNote note;
     private final PersonList personList;
 
     /**
@@ -39,7 +39,7 @@ public class Company extends Entity {
      */
     public Company(CompanyName name, CompanyIndustry industry, CompanyLocation location,
                    String description, CompanyWebsite website, CompanyEmail email,
-                   CompanyPhone phone, CompanyAddress address, Note note, PersonList personList) {
+                   CompanyPhone phone, CompanyAddress address, CompanyNote note, PersonList personList) {
         requireAllNonNull(name, industry, location, description, website, email, phone, address, note);
         this.name = name;
         this.industry = industry;
@@ -66,7 +66,7 @@ public class Company extends Entity {
      */
     public Company(CompanyName name, CompanyIndustry industry, CompanyLocation location,
                    String description, CompanyWebsite website, CompanyEmail email,
-                   CompanyPhone phone, CompanyAddress address, Note note) {
+                   CompanyPhone phone, CompanyAddress address, CompanyNote note) {
         requireAllNonNull(name, industry, location, description, website, email, phone, address, note);
         this.name = name;
         this.industry = industry;
@@ -177,7 +177,7 @@ public class Company extends Entity {
      * Returns the note of the company.
      * @return Note of company
      */
-    public Note getNote() {
+    public CompanyNote getNote() {
         return note;
     }
 
