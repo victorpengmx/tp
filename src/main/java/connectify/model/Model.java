@@ -128,6 +128,13 @@ public interface Model {
     /** Sets the current entity to be displayed to be all the entities*/
     void updateToAllEntities();
 
+    /**
+     * Updates the filter of the filtered company and people list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredEntityList(Predicate<Entity> predicate);
+
+
     /** Get the current entity type */
     String getCurrEntity();
 
@@ -145,4 +152,5 @@ public interface Model {
 
     /** Check if there is no entities */
     Boolean isEmpty();
+
 }
