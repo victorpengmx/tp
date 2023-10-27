@@ -107,6 +107,9 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
+    /**
+     * Replaces the person list with a new person list sorted with the {@code comparator}.
+     */
     void updateSortedPersonList(Comparator<Person> comparator);
 
     /**

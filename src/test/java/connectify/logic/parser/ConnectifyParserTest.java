@@ -14,21 +14,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import connectify.logic.commands.*;
 import org.junit.jupiter.api.Test;
 
-import connectify.logic.commands.AddCompanyCommand;
-import connectify.logic.commands.AddPersonCommand;
-import connectify.logic.commands.ClearCommand;
-import connectify.logic.commands.DeleteCompanyCommand;
-import connectify.logic.commands.DeletePersonCommand;
-import connectify.logic.commands.EditPersonCommand;
 import connectify.logic.commands.EditPersonCommand.EditPersonDescriptor;
-import connectify.logic.commands.ExitCommand;
-import connectify.logic.commands.FindCommand;
-import connectify.logic.commands.HelpCommand;
-import connectify.logic.commands.ListAllCommand;
-import connectify.logic.commands.ListCompaniesCommand;
-import connectify.logic.commands.ListPeopleCommand;
 import connectify.logic.parser.exceptions.ParseException;
 import connectify.model.company.Company;
 import connectify.model.person.NameContainsKeywordsPredicate;
@@ -127,6 +116,12 @@ public class ConnectifyParserTest {
     public void parseCommand_listAllEntities() throws Exception {
         assertTrue(parser.parseCommand(ListAllCommand.COMMAND_WORD) instanceof ListAllCommand);
         assertTrue(parser.parseCommand(ListAllCommand.COMMAND_WORD + " 3") instanceof ListAllCommand);
+    }
+
+    @Test
+    public void parseCommand_rankPerson() throws Exception {
+        assertTrue(parser.parseCommand(RankPersonCommand.COMMAND_WORD) instanceof RankPersonCommand);
+        assertTrue(parser.parseCommand(RankPersonCommand.COMMAND_WORD + " 3") instanceof RankPersonCommand);
     }
 
     @Test
