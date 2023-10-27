@@ -1,12 +1,12 @@
 package connectify.logic.commands;
 
+import java.util.Comparator;
+
 import static connectify.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static java.util.Objects.requireNonNull;
 
 import connectify.model.Model;
 import connectify.model.person.Person;
-
-import java.util.Comparator;
 
 /**
  * Lists all persons in the address book to the user according to their priority.

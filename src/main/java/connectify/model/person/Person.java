@@ -1,6 +1,10 @@
 package connectify.model.person;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
 import connectify.commons.util.CollectionUtil;
 import connectify.commons.util.ToStringBuilder;
