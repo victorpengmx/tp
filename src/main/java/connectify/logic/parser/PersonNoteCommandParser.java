@@ -13,7 +13,7 @@ import connectify.model.person.PersonNote;
 /**
  * Parses input arguments and creates a new {@code NoteCommand} object
  */
-public class NoteCommandParser implements Parser<PersonNoteCommand> {
+public class PersonNoteCommandParser implements Parser<PersonNoteCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the {@code NoteCommand}
      * and returns a {@code NoteCommand} object for execution.
