@@ -6,6 +6,7 @@ import static connectify.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static connectify.logic.parser.CliSyntax.PREFIX_NAME;
 import static connectify.logic.parser.CliSyntax.PREFIX_NOTE;
 import static connectify.logic.parser.CliSyntax.PREFIX_PHONE;
+import static connectify.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static connectify.logic.parser.CliSyntax.PREFIX_TAG;
 import static connectify.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static java.util.Objects.requireNonNull;
@@ -25,11 +26,12 @@ import connectify.logic.commands.exceptions.CommandException;
 import connectify.model.Model;
 import connectify.model.Note;
 import connectify.model.company.Company;
-import connectify.model.person.Address;
-import connectify.model.person.Email;
-import connectify.model.person.Name;
 import connectify.model.person.Person;
-import connectify.model.person.Phone;
+import connectify.model.person.PersonAddress;
+import connectify.model.person.PersonEmail;
+import connectify.model.person.PersonName;
+import connectify.model.person.PersonPhone;
+import connectify.model.person.PersonPriority;
 import connectify.model.tag.Tag;
 
 /**
@@ -49,6 +51,7 @@ public class EditPersonCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_NOTE + "NOTE] "
+            + "[" + PREFIX_PRIORITY + "PRIORITY] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_COMPANY + "1 "
@@ -60,6 +63,7 @@ public class EditPersonCommand extends Command {
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in Connectify.";
 
     public static final String MESSAGE_NO_COMPANY_PROVIDED = "No company provided.";
+
 
     private final Index index;
 
@@ -73,10 +77,9 @@ public class EditPersonCommand extends Command {
     public EditPersonCommand(Index index, Index companyIndex, EditPersonDescriptor editPersonDescriptor) {
         requireNonNull(index);
         requireNonNull(editPersonDescriptor);
-
         this.index = index;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
         this.companyIndex = companyIndex;
+        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
     }
 
     @Override
@@ -124,8 +127,9 @@ public class EditPersonCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Note updatedNote = personToEdit.getNote();
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        PersonPriority updatedPriority = editPersonDescriptor.getPersonPriority().orElse(personToEdit.getPriority());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedNote, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedNote, updatedPriority);
     }
 
     @Override
@@ -139,9 +143,9 @@ public class EditPersonCommand extends Command {
             return false;
         }
 
-        EditPersonCommand otherEditPersonCommand = (EditPersonCommand) other;
-        return index.equals(otherEditPersonCommand.index)
-                && editPersonDescriptor.equals(otherEditPersonCommand.editPersonDescriptor);
+        EditPersonCommand otherEditCommand = (EditPersonCommand) other;
+        return index.equals(otherEditCommand.index)
+                && editPersonDescriptor.equals(otherEditCommand.editPersonDescriptor);
     }
 
     @Override
@@ -157,11 +161,14 @@ public class EditPersonCommand extends Command {
      * corresponding field value of the person.
      */
     public static class EditPersonDescriptor {
-        private Name name;
-        private Phone phone;
-        private Email email;
-        private Address address;
+        private PersonName name;
+        private PersonPhone phone;
+        private PersonEmail email;
+        private PersonAddress address;
         private Set<Tag> tags;
+        private PersonPriority personPriority;
+
+
 
         public EditPersonDescriptor() {}
 
@@ -175,44 +182,46 @@ public class EditPersonCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setPersonPriority(toCopy.personPriority);
+
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, personPriority);
         }
 
-        public void setName(Name name) {
+        public void setName(PersonName name) {
             this.name = name;
         }
 
-        public Optional<Name> getName() {
+        public Optional<PersonName> getName() {
             return Optional.ofNullable(name);
         }
 
-        public void setPhone(Phone phone) {
+        public void setPhone(PersonPhone phone) {
             this.phone = phone;
         }
 
-        public Optional<Phone> getPhone() {
+        public Optional<PersonPhone> getPhone() {
             return Optional.ofNullable(phone);
         }
 
-        public void setEmail(Email email) {
+        public void setEmail(PersonEmail email) {
             this.email = email;
         }
 
-        public Optional<Email> getEmail() {
+        public Optional<PersonEmail> getEmail() {
             return Optional.ofNullable(email);
         }
 
-        public void setAddress(Address address) {
+        public void setAddress(PersonAddress address) {
             this.address = address;
         }
 
-        public Optional<Address> getAddress() {
+        public Optional<PersonAddress> getAddress() {
             return Optional.ofNullable(address);
         }
 
@@ -231,6 +240,14 @@ public class EditPersonCommand extends Command {
          */
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        }
+
+        public void setPersonPriority(PersonPriority personPriority) {
+            this.personPriority = personPriority;
+        }
+
+        public Optional<PersonPriority> getPersonPriority() {
+            return Optional.ofNullable(personPriority);
         }
 
         @Override
@@ -260,6 +277,7 @@ public class EditPersonCommand extends Command {
                     .add("email", email)
                     .add("address", address)
                     .add("tags", tags)
+                    .add("priority", personPriority)
                     .toString();
         }
     }

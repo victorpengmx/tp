@@ -16,7 +16,9 @@ import connectify.logic.commands.DeleteCompanyCommand;
 import connectify.logic.commands.DeletePersonCommand;
 import connectify.logic.commands.EditPersonCommand;
 import connectify.logic.commands.ExitCommand;
-import connectify.logic.commands.FindCommand;
+import connectify.logic.commands.FindAllCommand;
+import connectify.logic.commands.FindCompaniesCommand;
+import connectify.logic.commands.FindPeopleCommand;
 import connectify.logic.commands.HelpCommand;
 import connectify.logic.commands.ListAllCommand;
 import connectify.logic.commands.ListCompaniesCommand;
@@ -79,8 +81,14 @@ public class ConnectifyParser {
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
+        case FindAllCommand.COMMAND_WORD:
+            return new FindAllCommandParser().parse(arguments);
+
+        case FindPeopleCommand.COMMAND_WORD:
+            return new FindPeopleCommandParser().parse(arguments);
+
+        case FindCompaniesCommand.COMMAND_WORD:
+            return new FindCompaniesCommandParser().parse(arguments);
 
         case ListCompaniesCommand.COMMAND_WORD:
             return new ListCompaniesCommand();

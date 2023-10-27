@@ -52,8 +52,12 @@ public class PersonCard extends UiPart<Region> {
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
         note.setText(person.getNote().getContent());
+        Label label = new Label("Priority: " + person.getPriority().value);
+        label.setStyle("-fx-background-color: #588B8B");
+        tags.getChildren().add(label);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+
     }
 }

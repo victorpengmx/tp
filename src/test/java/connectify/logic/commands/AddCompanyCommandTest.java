@@ -25,6 +25,9 @@ import connectify.model.person.Person;
 import connectify.testutil.CompanyBuilder;
 import javafx.collections.ObservableList;
 
+/**
+ * Contains unit tests for AddCompanyCommand.
+ */
 public class AddCompanyCommandTest {
 
     @Test
@@ -61,11 +64,20 @@ public class AddCompanyCommandTest {
         AddCompanyCommand addTechCorpCommand = new AddCompanyCommand(techCorp);
         AddCompanyCommand addAlphaTechCommand = new AddCompanyCommand(alphaTech);
 
+        // same object -> returns true
         assertTrue(addTechCorpCommand.equals(addTechCorpCommand));
+
+        // same values -> returns true
         AddCompanyCommand addTechCorpCommandCopy = new AddCompanyCommand(techCorp);
         assertTrue(addTechCorpCommand.equals(addTechCorpCommandCopy));
+
+        // different types -> returns false
         assertFalse(addTechCorpCommand.equals(1));
+
+        // null -> returns false
         assertFalse(addTechCorpCommand.equals(null));
+
+        // different company -> returns false
         assertFalse(addTechCorpCommand.equals(addAlphaTechCommand));
     }
 
@@ -207,7 +219,19 @@ public class AddCompanyCommandTest {
         @Override
         public void updateToAllEntities() {
             throw new AssertionError("This method should not be called.");
-        };
+        }
+
+        /**
+         * Updates the filter of the filtered company and people list to filter by the given {@code predicate}.
+         *
+         * @param predicate
+         * @throws NullPointerException if {@code predicate} is null.
+         */
+        @Override
+        public void updateFilteredEntityList(Predicate<Entity> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
         @Override
         public void setCurrEntity(String s) {
             throw new AssertionError("This method should not be called.");

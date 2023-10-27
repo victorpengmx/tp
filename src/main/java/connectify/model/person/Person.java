@@ -18,59 +18,65 @@ import connectify.model.tag.Tag;
 public class Person extends Entity {
 
     // Identity fields
-    private final Name name;
-    private final Phone phone;
-    private final Email email;
+    private final PersonName name;
+    private final PersonPhone personPhone;
+    private final PersonEmail personEmail;
 
     // Data fields
-    private final Address address;
-
-    private final Note note;
+    private final PersonAddress personAddress;
     private final Set<Tag> tags = new HashSet<>();
+    private final Note note;
+    private final PersonPriority priority;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Note note, Set<Tag> tags) {
-        CollectionUtil.requireAllNonNull(name, phone, email, address, note, tags);
+    public Person(PersonName name, PersonPhone phone, PersonEmail email, PersonAddress address,
+                  Set<Tag> tags, Note note, PersonPriority priority) {
+        CollectionUtil.requireAllNonNull(name, phone, email, address, note, tags, priority);
         this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
+        this.personPhone = phone;
+        this.personEmail = email;
+        this.personAddress = address;
         this.note = note;
         this.tags.addAll(tags);
+        this.priority = priority;
     }
 
     /**
-     * Returns the name of this person.
-     * @return Name of this person
+     * Returns the name of the person.
+     * @return Name of person
      */
-    public Name getName() {
+    public PersonName getName() {
         return name;
     }
 
     /**
-     * Returns the phone number of this person.
-     * @return Phone number of this person
+     * Returns the phone number of the person.
+     * @return Phone number of person
      */
-    public Phone getPhone() {
-        return phone;
+    public PersonPhone getPhone() {
+        return personPhone;
     }
 
     /**
-     * Returns the email of this person.
-     * @return Email of this person
+     * Returns the email of the person.
+     * @return Email of person
      */
-    public Email getEmail() {
-        return email;
+    public PersonEmail getEmail() {
+        return personEmail;
     }
 
     /**
-     * Returns the address of this person.
-     * @return Address of this person
+     * Returns the address of the person.
+     * @return Address of person
      */
-    public Address getAddress() {
-        return address;
+    public PersonAddress getAddress() {
+        return personAddress;
+    }
+
+    public PersonPriority getPriority() {
+        return priority;
     }
 
     /**
@@ -119,28 +125,30 @@ public class Person extends Entity {
 
         Person otherPerson = (Person) other;
         return name.equals(otherPerson.name)
-                && phone.equals(otherPerson.phone)
-                && email.equals(otherPerson.email)
-                && address.equals(otherPerson.address)
+                && personPhone.equals(otherPerson.personPhone)
+                && personEmail.equals(otherPerson.personEmail)
+                && personAddress.equals(otherPerson.personAddress)
                 && note.equals(otherPerson.note)
-                && tags.equals(otherPerson.tags);
+                && tags.equals(otherPerson.tags)
+                && priority.equals(otherPerson.priority);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, note, tags);
+        return Objects.hash(name, personPhone, personEmail, personAddress, note, tags);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("name", name)
-                .add("phone", phone)
-                .add("email", email)
-                .add("address", address)
+                .add("phone", personPhone)
+                .add("email", personEmail)
+                .add("address", personAddress)
                 .add("note", note)
                 .add("tags", tags)
+                .add("priority", priority)
                 .toString();
     }
 

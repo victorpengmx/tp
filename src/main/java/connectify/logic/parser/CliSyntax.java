@@ -19,4 +19,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_COMPANY = new Prefix("c/");
     public static final Prefix PREFIX_NOTE = new Prefix("r/");
 
+    public static final Prefix PREFIX_PRIORITY = new Prefix("pr/");
+
 }

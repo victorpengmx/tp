@@ -46,21 +46,23 @@ public class CompanyCard extends UiPart<Region> {
     public CompanyCard(Company company, int displayedIndex) {
         super(FXML);
         id.setText(displayedIndex + ". ");
-        name.setText(company.getName());
-        phone.setText(company.getPhone());
-        address.setText(company.getAddress());
+        name.setText(company.getName().fullName);
+        phone.setText(company.getPhone().value);
+        address.setText(company.getAddress().value);
         note.setText(company.getNote().getContent());
 
         PersonList personList = company.getPersonList();
         StringBuilder str = new StringBuilder("People:\n");
+        int count = 0;
         for (Person person : personList) {
-            str.append(person.getName() + "\n");
+            str.append(count + 1).append(". ").append(person.getName()).append("\n");
+            count++;
         }
         people.setText(str.toString());
 
         Label label = new Label("Company");
         label.setStyle("-fx-background-color: #FF4F79");
         tags.getChildren().add(label);
-        tags.getChildren().add(new Label(company.getIndustry()));
+        tags.getChildren().add(new Label(company.getIndustry().value));
     }
 }

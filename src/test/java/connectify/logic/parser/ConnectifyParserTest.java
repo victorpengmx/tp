@@ -4,6 +4,7 @@ import static connectify.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static connectify.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static connectify.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static connectify.logic.parser.CliSyntax.PREFIX_NOTE;
+import static connectify.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static connectify.testutil.Assert.assertThrows;
 import static connectify.testutil.TypicalIndexes.INDEX_FIRST_COMPANY;
 import static connectify.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -24,7 +25,9 @@ import connectify.logic.commands.DeletePersonCommand;
 import connectify.logic.commands.EditPersonCommand;
 import connectify.logic.commands.EditPersonCommand.EditPersonDescriptor;
 import connectify.logic.commands.ExitCommand;
-import connectify.logic.commands.FindCommand;
+import connectify.logic.commands.FindAllCommand;
+import connectify.logic.commands.FindCompaniesCommand;
+import connectify.logic.commands.FindPeopleCommand;
 import connectify.logic.commands.HelpCommand;
 import connectify.logic.commands.ListAllCommand;
 import connectify.logic.commands.ListCompaniesCommand;
@@ -32,7 +35,9 @@ import connectify.logic.commands.ListPeopleCommand;
 import connectify.logic.commands.NoteCommand;
 import connectify.logic.parser.exceptions.ParseException;
 import connectify.model.Note;
+import connectify.model.EntityNameContainsKeywordsPredicate;
 import connectify.model.company.Company;
+import connectify.model.company.CompanyNameContainsKeywordsPredicate;
 import connectify.model.person.NameContainsKeywordsPredicate;
 import connectify.model.person.Person;
 import connectify.testutil.CompanyBuilder;
@@ -86,9 +91,10 @@ public class ConnectifyParserTest {
     public void parseCommand_edit() throws Exception {
         Person person = new PersonBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
-        EditPersonCommand command = (EditPersonCommand) parser.parseCommand(EditPersonCommand.COMMAND_WORD + " "
+        EditPersonCommand command = (EditPersonCommand) parser.parseCommand(
+                EditPersonCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_COMPANY
-                + INDEX_FIRST_COMPANY.getOneBased() + " "
+                + INDEX_FIRST_COMPANY.getOneBased() + " " + PREFIX_PRIORITY + "1 "
                 + PersonUtil.getEditPersonDescriptorDetails(descriptor));
         assertEquals(new EditPersonCommand(INDEX_FIRST_PERSON, INDEX_FIRST_COMPANY, descriptor), command);
     }
@@ -100,11 +106,33 @@ public class ConnectifyParserTest {
     }
 
     @Test
-    public void parseCommand_find() throws Exception {
+    public void parseCommand_findPeople() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        FindPeopleCommand command = (FindPeopleCommand) parser.parseCommand(
+                FindPeopleCommand.COMMAND_WORD
+                        +
+                        " " + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindPeopleCommand(new NameContainsKeywordsPredicate(keywords)), command);
+    }
+
+    @Test
+    public void parseCommand_findAll() throws Exception {
+        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        FindAllCommand command = (FindAllCommand) parser.parseCommand(
+                FindAllCommand.COMMAND_WORD
+                        +
+                        " " + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindAllCommand(new EntityNameContainsKeywordsPredicate(keywords)), command);
+    }
+
+    @Test
+    public void parseCommand_findCompanies() throws Exception {
+        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        FindCompaniesCommand command = (FindCompaniesCommand) parser.parseCommand(
+                FindCompaniesCommand.COMMAND_WORD
+                        +
+                        " " + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindCompaniesCommand(new CompanyNameContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test
