@@ -72,6 +72,11 @@ public class TypicalPersons {
         company2 = company2.addPersonToCompany(CARL);
         company2 = company2.addPersonToCompany(DANIEL);
         ab.addCompany(company2);
+
+        Company company3 = TypicalCompanies.COMPANY_2;
+        company3 = company3.addPersonToCompany(FIONA);
+        company3 = company3.addPersonToCompany(DANIEL);
+        ab.addCompany(company3);
         return ab;
     }
 

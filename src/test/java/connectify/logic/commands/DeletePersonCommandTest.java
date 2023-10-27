@@ -128,5 +128,4 @@ public class DeletePersonCommandTest {
         assertTrue(model.getFilteredPersonList().isEmpty());
     }
 
-
 }

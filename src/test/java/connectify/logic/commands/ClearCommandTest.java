@@ -11,7 +11,6 @@ import connectify.model.ModelManager;
 import connectify.model.UserPrefs;
 
 public class ClearCommandTest {
-
     @Test
     public void execute_emptyAddressBook_success() {
         Model model = new ModelManager();

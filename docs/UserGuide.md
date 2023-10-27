@@ -1,3 +1,9 @@
+---
+  layout: default.md
+  title: "User Guide"
+  pageNav: 3
+---
+
 # Connectify User Guide
 
 Connectify is a networking platform designed to help professionals efficiently manage their connections and enhance their networking experiences. In this version (v1.2), we have focused on delivering the essential features for a Minimum Viable Product (MVP): **adding contacts**, **deleting contacts**, and **listing contacts**. This guide will walk you through the core functionality of Connectify.
@@ -7,7 +13,10 @@ Connectify is a networking platform designed to help professionals efficiently m
 * [Features](#features)
   * [Adding Contacts](#adding-contacts)
   * [Deleting Contacts](#deleting-contacts)
-  * [Listing Contacts](#listing-contacts)
+  * [Editing Contacts](#editing-people)
+  * [Listing Contacts](#listing-all-entities)
+  * [Listing Companies](#listing-all-companies)
+  * [Listing People](#listing-all-people)
   * [Exit](#exit)
 * [FAQ](#faq)
 * [Known issues](#known-issues)
@@ -22,26 +31,30 @@ Connectify is a networking platform designed to help professionals efficiently m
 3. Download Connectify from the following link and save the downloaded file in the directory you created in the previous step.
 4. Launch Connectify by double-clicking the file in the directory. After a brief moment, the Connectify application will commence. You'll be greeted by Connectify's primary interface, complete with sample contacts and company profiles already included for your exploration.
 
+
+
 Now that you've successfully installed Connectify, let's take a moment to familiarize ourselves with the application's interface and functionality before diving into its features.
+
 [More Details Coming Soon]
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
 
 ### Adding Contacts
-
 #### Command: `addPerson`
 
-The **addPerson** command allows you to add new contacts to your Connectify database. Follow the format below to add contacts:
+The `addPerson` command allows you to add new contacts to your Connectify database. Follow the format below to add contacts:
 
-`addPerson n/NAME p/PHONE e/EMAIL a/ADDRESS c/COMPANY [t/TAG]…`
-
-- `n/NAME`: Specify the name of the contact.
-- `p/PHONE`: Add the phone number of the contact.
-- `e/EMAIL`: Add the email address of the contact.
-- `a/ADDRESS`: Include the address of the contact.
-- `c/COMPANY`: Specify the index of the company to which the contact belongs.
-- `t/TAG`: Optionally, you can include tags to categorize your contacts. Tags help you organize your connections efficiently.
+```
+addPerson n/NAME p/PHONE e/EMAIL a/ADDRESS c/COMPANY [t/TAG]
+```
+The fields are:
+- `n/NAME` is the name of the contact.
+- `p/PHONE` is the phone number of the contact.
+- `e/EMAIL` is the email address of the contact.
+- `a/ADDRESS` is the address of the contact.
+- `c/COMPANY` is the index of the company to which the contact belongs.
+- `[t/TAG]`: (optional) is used to categorize your contacts. Tags help organize connections efficiently.
 
 **Example:**
 
@@ -77,6 +90,49 @@ Tags: friends, owesMoney
 - If the company index provided is invalid:
   ```
   The company index provided is invalid.
+  ```
+
+#### Command: `addCompany`
+
+The **addCompany** command allows you to add new companies to your Connectify database. Follow the format below to add contacts:
+
+`addCompany n/NAME i/INDUSTRY l/LOCATION d/DESCRIPTION w/WEBSITE e/EMAIL p/PHONE a/ADDRESS`
+
+- `n/NAME`: Specify the Company name.
+- `i/INDUSTRY`: Add the industry the Company is in.
+- `l/LOCATION`: Add the city/locale Company is at.
+- `d/DESCRIPTION`: Describe the Company.
+- `w/WEBSITE`: Add the Company website.
+- `e/EMAIL`: Add the contact email of the Company.
+- `p/PHONE`: Add the phone number of the Company.
+- `a/ADDRESS`: Include the address of the Company.
+
+**Example:**
+
+To add a Company "Apple Inc", a computer and consumer technology company headquartered in Los Altos, with the website "www.apple.com", email address contact@apple.com, the phone number 98765432, address "1 Apple Park Way, Cupertino, California", use the following command:
+
+```
+addCompany n/Apple Inc i/technology l/Los Altos d/computer and consumer technology w/www.apple.com e/contact@apple.com p/98765432 a/1 Apple Park Way, Cupertino, California
+```
+
+**Successful Output:**
+
+```
+New company added: Apple Inc
+Phone: 98765432
+Email: contact@apple.com
+Address: 1 Apple Park Way, Cupertino, California
+Industry: technology
+Location: Los Altos
+Description: computer and consumer technology
+Website: www.apple.com
+```
+
+**Unsuccessful Output:**
+
+- If a person with the same details already exists in the address book:
+  ```
+  This company already exists in the address book.
   ```
 
 ### Deleting Contacts
@@ -141,70 +197,61 @@ Deleted Company: Test Company
 The company index provided is invalid.
 ```
 
-### Editing People
+### Editing Contacts
 ####  Command: `edit`
 
-The `edit` command allows you to modify the details of a person in the address book by specifying the person's index and the fields you want to change.
-
-##### Example Usage
-
-To edit a person's information, use the following command format:
+The `edit` command allows you to modify the details of a person in your Connectify database. Follow the format below to edit contacts.
 
 ```
-edit INDEX [c/COMPANY] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]
+edit INDEX c/COMPANY [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]
 ```
 The fields are:
 - `INDEX` is the index of the person in the displayed person list of a company that you want to edit. It must be a positive integer within the company.
-- `[c/COMPANY]` allows you to specify the company that the person is associated with.
-- `[n/NAME]` (optional) allows you to change the person's name.
-- `[p/PHONE]` (optional) allows you to change the person's phone number.
-- `[e/EMAIL]` (optional) allows you to change the person's email.
-- `[a/ADDRESS]` (optional) allows you to change the person's address.
-- `[pr/PRIORITY]` (optional) allows you to change the person's priority level.
-- `[t/TAG]` (optional) allows you to add or remove tags for the person.
+- `c/COMPANY`is the index of the company that the person is associated with.
+- `n/NAME` is the new name of the person.
+- `[p/PHONE]` (optional) is the person's new phone number.
+- `[e/EMAIL]` (optional) is the person's new email.
+- `[a/ADDRESS]` (optional) is the person's new address.
+- `[pr/PRIORITY]` (optional) is the person's new priority level.
+- `[t/TAG]` (optional) is the person's new tags.
 
-
-**Successful Output:**
-
-Suppose you want to edit the name, phone, and email of the person at index 1 of  company 1. You can use the following command:
-
+**Example:**
+To edit the person's name to "NewName," their phone number to "98765432," and their email to "newemail@example.com." The person is located at index 1 in the displayed person list of Company 1, and the person is associated with Company 1. Use the following command:
 ```
 edit 1 c/1 n/NewName p/98765432 e/newemail@example.com
 ```
-This command will edit the person's name to "NewName," their phone number to "98765432," and their email to "newemail@example.com."
-- If the operation is successful, you will receive the following output:
+
+**Successful Output**
 ```
 Edited Person: NewName
 ```
 
 **Unsuccessful Output**
-
-1. If you don't provide at least one field to edit, you will receive the following error message:
+- If you don't provide at least one field to edit, you will receive the following error message:
 ```
 At least one field to edit must be provided.
 ```
-2. If the specified index is invalid (not within the displayed person list or not a positive integer), you will get the following error message:
+- If the specified index is invalid (not within the displayed person list or not a positive integer), you will get the following error message:
 ```
 The person index provided is invalid.
 ```
-
-3. If the specified company index is missing, you will get the following error message:
+- If the specified company index is missing, you will get the following error message:
 ```
 No company provided.
 ```
 
-4. If you try to edit a person's details in a company that does not exist, you will receive:
+- If you try to edit a person's details in a company that does not exist, you will receive:
 
 ```
 The company index provided is invalid.
 ```
 
-5. If the specified company index or person index is out of bounds, you will get the following error message:
+- If the specified company index or person index is out of bounds, you will get the following error message:
 ```
 Invalid index provided.
 ```
 
-6. If you try to edit a person's details to match another person in the address book, you will receive the following error message:
+- If you try to edit a person's details to match another person in the address book, you will receive the following error message:
 ```
 This person already exists in the Connectify.
 ```
@@ -212,84 +259,67 @@ This person already exists in the Connectify.
 ### Listing All Entities
 ####  Command: `list`
 
-The `list` command allows you to retrieve a list of all entities (both persons and companies) in the Connectify address book. This command is useful for obtaining an overview of all the entities you have stored.
+The `list` command allows you to retrieve a list of all entities (both persons and companies) in the Connectify database. This command is useful for obtaining an overview of all the entities you have stored.
 
-##### Example Usage
-
-To list all entities in the address book, simply use the following command:
+Follow the format below to list all entities:
 ```
 list
 ```
-This command has no additional parameters or options.
+This command has no additional fields.
 
 **Successful Output**
-
-Assuming you have entities stored in Connectify, when you execute the list command, you will receive the following output:
 ```
 Listed all persons and companies.
 ```
-This message confirms that all persons and companies have been successfully listed.
-
 
 **Unsuccessful Output**
-1. If Connectify is empty, and there are no entities to list, you will receive the following message:
+- If Connectify is empty, and there are no entities to display, you will receive the following message:
 ```
 There are no entities in Connectify.
 ```
-This message indicates that there are no entities to display, so the operation cannot be completed until you add entities to Connectify.
+
 
 ### Listing All Companies
 ####  Command: `companies`
 The `companies` command allows you to retrieve a list of all companies in Connectify. This command is particularly useful for obtaining an overview of all the companies you have stored.
 
-##### Example Usage
-To list all companies in Connectify, simply use the following command:
+Follow the format below to list all companies:
 ```
 companies
 ```
-This command has no additional parameters or options.
+This command has no additional fields.
 
 **Successful Output**
-
-Assuming you have companies stored in your Connectify address book, when you execute the companies command, you will receive the following output:
 ```
 Listed all companies.
 ```
-This message confirms that all companies have been successfully listed.
 
 **Unsuccessful Output**
-1. If Connectify does not contain any companies, and there are no companies to list, you will receive the following message:
+-If Connectify does not contain any companies, and there are no companies to display, you will receive the following message:
 ```
 There are no companies in Connectify.
 ```
-This message indicates that there are no companies to display, so the operation cannot be completed until you add companies to Connectify.
-
 
 ### Listing All People
 ####  Command: `people`
 The `people` command allows you to retrieve a list of all individuals (persons) in the Connectify. This command is especially useful for obtaining an overview of all the individuals you have stored.
 
-##### Example Usage
-To list all people in Connectify, simply use the following command:
+Follow the format below to list all persons:
 ```
 people
 ```
-This command has no additional parameters or options.
+This command has no additional fields.
 
 **Successful Output**
-
-Assuming you have people stored in Connectify, when you execute the people command, you will receive the following output:
 ```
 Listed all persons.
 ```
-This message confirms that all persons have been successfully listed.
 
 **Unsuccessful Output**
-1. If Connectify does not contain any individuals (persons), and there are no people to list, you will receive the following message:
+- If Connectify does not contain any individuals (persons), and there are no people to list, you will receive the following message:
 ```
 There are no people in Connectify.
 ```
-This message indicates that there are no persons to display, so the operation cannot be completed until you add persons to Connectify.
 
 
 ### Exit
@@ -311,7 +341,6 @@ That is not a valid command.
 ```
 
 [More Features Coming Soon]
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -328,9 +357,13 @@ That is not a valid command.
 
 ## Command Summary
 
-| Action           | Format, Examples              |
-|------------------|-------------------------------|
-| **AddPerson**    | `addPerson n/NAME p/PHONE e/EMAIL a/ADDRESS c/COMPANY [t/TAG]…` <br> e.g., `addPerson n/John Doe p/98765432 e/johndoe@example.com a/311, Clementi Ave 2, #02-25 c/1 t/friends t/owesMoney` |
-| **DeletePerson** | `deletePerson INDEX` <br> e.g., `delete 1` |
-| **List**         | `list`                        |
-| **Exit**         | `exit`                        |
+Action     | Format, Examples
+-----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+**Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Clear**  | `clear`
+**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**List**   | `list`
+**Help**   | `help`
+
