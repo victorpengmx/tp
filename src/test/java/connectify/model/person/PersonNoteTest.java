@@ -1,14 +1,14 @@
-package connectify.model;
+package connectify.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-public class NoteTest {
+public class PersonNoteTest {
     @Test
     public void equals() {
-        Note note = new Note("Test");
+        PersonNote note = new PersonNote("Test");
         // same object -> returns true
         assertTrue(note.equals(note));
         // null -> returns false
@@ -16,8 +16,8 @@ public class NoteTest {
         // different type -> returns false
         assertFalse(note.equals(5));
         // different note -> returns false
-        assertFalse(note.equals(new Note("Test2")));
+        assertFalse(note.equals(new PersonNote("Test2")));
         // same content -> returns true
-        assertTrue(note.equals(new Note("Test")));
+        assertTrue(note.equals(new PersonNote("Test")));
     }
 }

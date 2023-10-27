@@ -3,11 +3,11 @@ package connectify.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import connectify.model.Note;
 import connectify.model.person.Person;
 import connectify.model.person.PersonAddress;
 import connectify.model.person.PersonEmail;
 import connectify.model.person.PersonName;
+import connectify.model.person.PersonNote;
 import connectify.model.person.PersonPhone;
 import connectify.model.person.PersonPriority;
 import connectify.model.tag.Tag;
@@ -31,7 +31,7 @@ public class PersonBuilder {
     private PersonEmail personEmail;
     private PersonAddress personAddress;
     private Set<Tag> tags;
-    private Note note;
+    private PersonNote note;
     private PersonPriority priority;
 
     /**
@@ -43,7 +43,7 @@ public class PersonBuilder {
         personEmail = new PersonEmail(DEFAULT_EMAIL);
         personAddress = new PersonAddress(DEFAULT_ADDRESS);
         tags = new HashSet<>();
-        note = new Note(DEFAULT_NOTE);
+        note = new PersonNote(DEFAULT_NOTE);
         priority = new PersonPriority(DEFAULT_PRIORITY);
 
     }
@@ -115,7 +115,7 @@ public class PersonBuilder {
      * @return PersonBuilder
      */
     public PersonBuilder withNote(String note) {
-        this.note = new Note(note);
+        this.note = new PersonNote(note);
         return this;
     }
 

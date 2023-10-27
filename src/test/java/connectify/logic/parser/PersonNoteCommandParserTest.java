@@ -9,8 +9,8 @@ import static connectify.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import org.junit.jupiter.api.Test;
 
 import connectify.commons.core.index.Index;
-import connectify.logic.commands.NoteCommand;
-import connectify.model.Note;
+import connectify.logic.commands.PersonNoteCommand;
+import connectify.model.person.PersonNote;
 
 public class PersonNoteCommandParserTest {
     private NoteCommandParser parser = new NoteCommandParser();
@@ -21,23 +21,23 @@ public class PersonNoteCommandParserTest {
         // have note
         Index targetIndex = INDEX_FIRST_PERSON;
         String userInput = targetIndex.getOneBased() + " " + PREFIX_NOTE + nonEmptyNote;
-        NoteCommand expectedCommand = new NoteCommand(INDEX_FIRST_PERSON, new Note(nonEmptyNote));
+        PersonNoteCommand expectedCommand = new PersonNoteCommand(INDEX_FIRST_PERSON, new PersonNote(nonEmptyNote));
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // no note
         userInput = targetIndex.getOneBased() + " " + PREFIX_NOTE;
-        expectedCommand = new NoteCommand(INDEX_FIRST_PERSON, new Note(""));
+        expectedCommand = new PersonNoteCommand(INDEX_FIRST_PERSON, new PersonNote(""));
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
     public void parse_missingCompulsoryField_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, NoteCommand.MESSAGE_USAGE);
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, PersonNoteCommand.MESSAGE_USAGE);
 
         // no parameters
-        assertParseFailure(parser, NoteCommand.COMMAND_WORD, expectedMessage);
+        assertParseFailure(parser, PersonNoteCommand.COMMAND_WORD, expectedMessage);
 
         // no index
-        assertParseFailure(parser, NoteCommand.COMMAND_WORD + " " + nonEmptyNote, expectedMessage);
+        assertParseFailure(parser, PersonNoteCommand.COMMAND_WORD + " " + nonEmptyNote, expectedMessage);
     }
 }

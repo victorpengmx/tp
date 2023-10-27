@@ -32,13 +32,13 @@ import connectify.logic.commands.HelpCommand;
 import connectify.logic.commands.ListAllCommand;
 import connectify.logic.commands.ListCompaniesCommand;
 import connectify.logic.commands.ListPeopleCommand;
-import connectify.logic.commands.NoteCommand;
+import connectify.logic.commands.PersonNoteCommand;
 import connectify.logic.parser.exceptions.ParseException;
 import connectify.model.EntityNameContainsKeywordsPredicate;
-import connectify.model.Note;
 import connectify.model.company.Company;
 import connectify.model.company.CompanyNameContainsKeywordsPredicate;
 import connectify.model.person.NameContainsKeywordsPredicate;
+import connectify.model.person.PersonNote;
 import connectify.model.person.Person;
 import connectify.testutil.CompanyBuilder;
 import connectify.testutil.CompanyUtil;
@@ -154,11 +154,11 @@ public class ConnectifyParserTest {
     }
 
     @Test
-    public void parseCommand_note() throws Exception {
-        final Note note = new Note("Some note");
-        NoteCommand command = (NoteCommand) parser.parseCommand(NoteCommand.COMMAND_WORD + " "
+    public void parseCommand_personNote() throws Exception {
+        final PersonNote note = new PersonNote("Some note");
+        PersonNoteCommand command = (PersonNoteCommand) parser.parseCommand(PersonNoteCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_NOTE + note.getContent());
-        assertEquals(new NoteCommand(INDEX_FIRST_PERSON, note), command);
+        assertEquals(new PersonNoteCommand(INDEX_FIRST_PERSON, note), command);
     }
 
     @Test
