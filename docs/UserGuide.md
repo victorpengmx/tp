@@ -1,3 +1,9 @@
+---
+  layout: default.md
+  title: "User Guide"
+  pageNav: 3
+---
+
 # Connectify User Guide
 
 Connectify is a networking platform designed to help professionals efficiently manage their connections and enhance their networking experiences. In this version (v1.2), we have focused on delivering the essential features for a Minimum Viable Product (MVP): **adding contacts**, **deleting contacts**, and **listing contacts**. This guide will walk you through the core functionality of Connectify.
@@ -9,6 +15,8 @@ Connectify is a networking platform designed to help professionals efficiently m
   * [Deleting Contacts](#deleting-contacts)
   * [Editing Contacts](#editing-people)
   * [Listing Contacts](#listing-all-entities)
+  * [Listing Companies](#listing-all-companies)
+  * [Listing People](#listing-all-people)
   * [Exit](#exit)
 * [FAQ](#faq)
 * [Known issues](#known-issues)
@@ -30,7 +38,6 @@ Now that you've successfully installed Connectify, let's take a moment to famili
 ## Features
 
 ### Adding Contacts
-
 #### Command: `addPerson`
 
 The `addPerson` command allows you to add new contacts to your Connectify database. Follow the format below to add contacts:
@@ -187,7 +194,7 @@ Deleted Company: Test Company
 The company index provided is invalid.
 ```
 
-### Editing People
+### Editing Contacts
 ####  Command: `edit`
 
 The `edit` command allows you to modify the details of a person in your Connectify database. Follow the format below to edit contacts.
@@ -290,7 +297,6 @@ Listed all companies.
 There are no companies in Connectify.
 ```
 
-
 ### Listing All People
 ####  Command: `people`
 The `people` command allows you to retrieve a list of all individuals (persons) in the Connectify. This command is especially useful for obtaining an overview of all the individuals you have stored.
@@ -332,7 +338,6 @@ That is not a valid command.
 ```
 
 [More Features Coming Soon]
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -349,11 +354,13 @@ That is not a valid command.
 
 ## Command Summary
 
-| Action            | Format, Examples                                                                                                                                                                                                                                                                     |
-|-------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **AddPerson**     | `addPerson n/NAME p/PHONE e/EMAIL a/ADDRESS c/COMPANY [t/TAG]…` <br> e.g., `addPerson n/John Doe p/98765432 e/johndoe@example.com a/311, Clementi Ave 2, #02-25 c/1 t/friends t/owesMoney`                                                                                           |
-| **AddCompany**    | `addCompany n/NAME i/INDUSTRY l/LOCATION d/DESCRIPTION w/WEBSITE e/EMAIL p/PHONE a/ADDRESS` <br> e.g., `addCompany n/Apple Inc i/technology l/Los Altos d/computer and consumer technology w/www.apple.com e/contact@apple.com p/98765432 a/1 Apple Park Way, Cupertino, California` |
-| **DeletePerson**  | `deletePerson INDEX` <br> e.g., `delete 1`                                                                                                                                                                                                                                           |
-| **DeleteCompany** | `deleteCompany INDEX` <br> e.g., `delete 1`                                                                                                                                                                                                                                          |
-| **List**          | `list`                                                                                                                                                                                                                                                                               |
-| **Exit**          | `exit`                                                                                                                                                                                                                                                                               |
+Action     | Format, Examples
+-----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+**Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Clear**  | `clear`
+**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**List**   | `list`
+**Help**   | `help`
+
