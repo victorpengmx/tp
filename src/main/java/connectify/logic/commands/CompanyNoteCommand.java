@@ -95,5 +95,4 @@ public class CompanyNoteCommand extends Command {
         return index.equals(e.index)
                 && note.equals(e.note);
     }
-
 }

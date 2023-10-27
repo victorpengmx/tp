@@ -6,11 +6,8 @@ import static java.util.Objects.requireNonNull;
 
 import connectify.commons.core.index.Index;
 import connectify.commons.exceptions.IllegalValueException;
-import connectify.logic.commands.CompanyNoteCommand;
-import connectify.logic.commands.DeletePersonCommand;
 import connectify.logic.commands.PersonNoteCommand;
 import connectify.logic.parser.exceptions.ParseException;
-import connectify.model.company.CompanyNote;
 import connectify.model.person.PersonNote;
 
 /**
@@ -40,7 +37,8 @@ public class PersonNoteCommandParser implements Parser<PersonNoteCommand> {
 
             return new PersonNoteCommand(companyIndex, personIndex, new PersonNote(note));
         } catch (IllegalValueException ive) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, PersonNoteCommand.MESSAGE_USAGE), ive);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    PersonNoteCommand.MESSAGE_USAGE), ive);
         }
     }
 }

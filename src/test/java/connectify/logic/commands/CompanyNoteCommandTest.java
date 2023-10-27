@@ -1,10 +1,10 @@
 package connectify.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static connectify.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static connectify.testutil.TypicalCompanies.getTypicalAddressBook;
 import static connectify.testutil.TypicalIndexes.INDEX_FIRST_COMPANY;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -62,7 +62,8 @@ public class CompanyNoteCommandTest {
                 new CompanyNote(
                         ""));
 
-        CommandTestUtil.assertCommandFailure(companyNoteCommand, model, Messages.MESSAGE_INVALID_COMPANY_DISPLAYED_INDEX);
+        CommandTestUtil.assertCommandFailure(companyNoteCommand, model,
+                Messages.MESSAGE_INVALID_COMPANY_DISPLAYED_INDEX);
     }
 
     @Test

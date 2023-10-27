@@ -38,8 +38,8 @@ import connectify.model.EntityNameContainsKeywordsPredicate;
 import connectify.model.company.Company;
 import connectify.model.company.CompanyNameContainsKeywordsPredicate;
 import connectify.model.person.NameContainsKeywordsPredicate;
-import connectify.model.person.PersonNote;
 import connectify.model.person.Person;
+import connectify.model.person.PersonNote;
 import connectify.testutil.CompanyBuilder;
 import connectify.testutil.CompanyUtil;
 import connectify.testutil.EditPersonDescriptorBuilder;
@@ -157,8 +157,9 @@ public class ConnectifyParserTest {
     public void parseCommand_personNote() throws Exception {
         final PersonNote note = new PersonNote("Some note");
         PersonNoteCommand command = (PersonNoteCommand) parser.parseCommand(PersonNoteCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_NOTE + note.getContent());
-        assertEquals(new PersonNoteCommand(INDEX_FIRST_PERSON, note), command);
+                + INDEX_FIRST_COMPANY.getOneBased() + " " + INDEX_FIRST_PERSON.getOneBased() + " "
+                    + PREFIX_NOTE + note.getContent());
+        assertEquals(new PersonNoteCommand(INDEX_FIRST_COMPANY, INDEX_FIRST_PERSON, note), command);
     }
 
     @Test

@@ -12,9 +12,9 @@ import connectify.logic.Messages;
 import connectify.logic.commands.exceptions.CommandException;
 import connectify.model.Model;
 import connectify.model.company.Company;
+import connectify.model.person.Person;
 import connectify.model.person.PersonList;
 import connectify.model.person.PersonNote;
-import connectify.model.person.Person;
 
 /**
  * Changes the note of an existing person in the address book.

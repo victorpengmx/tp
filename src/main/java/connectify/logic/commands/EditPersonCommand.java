@@ -29,9 +29,9 @@ import connectify.model.person.Person;
 import connectify.model.person.PersonAddress;
 import connectify.model.person.PersonEmail;
 import connectify.model.person.PersonName;
+import connectify.model.person.PersonNote;
 import connectify.model.person.PersonPhone;
 import connectify.model.person.PersonPriority;
-import connectify.model.person.PersonNote;
 import connectify.model.tag.Tag;
 
 /**

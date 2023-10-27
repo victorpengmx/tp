@@ -8,7 +8,6 @@ import java.util.Set;
 import connectify.commons.util.CollectionUtil;
 import connectify.commons.util.ToStringBuilder;
 import connectify.model.Entity;
-import connectify.model.person.PersonNote;
 import connectify.model.tag.Tag;
 
 /**

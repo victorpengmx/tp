@@ -6,7 +6,6 @@ import java.util.Objects;
 
 import connectify.commons.util.ToStringBuilder;
 import connectify.model.Entity;
-import connectify.model.company.CompanyNote;
 import connectify.model.person.Person;
 import connectify.model.person.PersonList;
 

@@ -5,8 +5,10 @@ import static connectify.logic.commands.CommandTestUtil.VALID_NOTE_BOB;
 import static connectify.logic.commands.CommandTestUtil.assertCommandFailure;
 import static connectify.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static connectify.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static connectify.testutil.TypicalIndexes.INDEX_FIRST_COMPANY;
 import static connectify.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static connectify.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static connectify.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
 import static connectify.testutil.TypicalPersons.getTypicalAddressBook;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -36,7 +38,7 @@ public class PersonNoteCommandTest {
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person editedPerson = new PersonBuilder(firstPerson).withNote(NOTE_STUB).build();
 
-        PersonNoteCommand personNoteCommand = new PersonNoteCommand(INDEX_FIRST_PERSON,
+        PersonNoteCommand personNoteCommand = new PersonNoteCommand(INDEX_FIRST_COMPANY, INDEX_FIRST_PERSON,
                 new PersonNote(editedPerson.getNote().getContent()));
 
         String expectedMessage = String.format(PersonNoteCommand.MESSAGE_ADD_NOTE_SUCCESS, editedPerson);
@@ -52,7 +54,7 @@ public class PersonNoteCommandTest {
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person editedPerson = new PersonBuilder(firstPerson).withNote("").build();
 
-        PersonNoteCommand personNoteCommand = new PersonNoteCommand(INDEX_FIRST_PERSON,
+        PersonNoteCommand personNoteCommand = new PersonNoteCommand(INDEX_FIRST_COMPANY, INDEX_FIRST_PERSON,
                 new PersonNote(editedPerson.getNote().toString()));
 
         String expectedMessage = String.format(PersonNoteCommand.MESSAGE_DELETE_NOTE_SUCCESS, editedPerson);
@@ -71,7 +73,7 @@ public class PersonNoteCommandTest {
         Person editedPerson = new PersonBuilder(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()))
                 .withNote(NOTE_STUB).build();
 
-        PersonNoteCommand personNoteCommand = new PersonNoteCommand(INDEX_FIRST_PERSON,
+        PersonNoteCommand personNoteCommand = new PersonNoteCommand(INDEX_FIRST_COMPANY, INDEX_FIRST_PERSON,
                 new PersonNote(editedPerson.getNote().getContent()));
 
         String expectedMessage = String.format(PersonNoteCommand.MESSAGE_ADD_NOTE_SUCCESS, editedPerson);
@@ -85,7 +87,8 @@ public class PersonNoteCommandTest {
     @Test
     public void execute_invalidPersonIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        PersonNoteCommand personNoteCommand = new PersonNoteCommand(outOfBoundIndex, new PersonNote(VALID_NOTE_BOB));
+        PersonNoteCommand personNoteCommand = new PersonNoteCommand(INDEX_FIRST_COMPANY, outOfBoundIndex,
+                new PersonNote(VALID_NOTE_BOB));
 
         assertCommandFailure(personNoteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
@@ -97,21 +100,22 @@ public class PersonNoteCommandTest {
     @Test
     public void execute_invalidPersonIndexFilteredList_failure() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
-        Index outOfBoundIndex = INDEX_SECOND_PERSON;
+        Index outOfBoundIndex = INDEX_THIRD_PERSON;
         // Ensures that outOfBoundIndex is still in the bounds of the address book list.
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
 
-        PersonNoteCommand personNoteCommand = new PersonNoteCommand(outOfBoundIndex, new PersonNote(VALID_NOTE_BOB));
+        PersonNoteCommand personNoteCommand = new PersonNoteCommand(INDEX_FIRST_COMPANY, outOfBoundIndex,
+                new PersonNote(VALID_NOTE_BOB));
 
         assertCommandFailure(personNoteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        final PersonNoteCommand standardCommand = new PersonNoteCommand(INDEX_FIRST_PERSON,
+        final PersonNoteCommand standardCommand = new PersonNoteCommand(INDEX_FIRST_COMPANY, INDEX_FIRST_PERSON,
                 new PersonNote(VALID_NOTE_AMY));
         // Same values -> returns true
-        PersonNoteCommand commandWithSameValues = new PersonNoteCommand(INDEX_FIRST_PERSON,
+        PersonNoteCommand commandWithSameValues = new PersonNoteCommand(INDEX_FIRST_COMPANY, INDEX_FIRST_PERSON,
                 new PersonNote(VALID_NOTE_AMY));
         assertTrue(standardCommand.equals(commandWithSameValues));
 
@@ -125,10 +129,10 @@ public class PersonNoteCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // Different index -> returns false
-        assertFalse(standardCommand.equals(new PersonNoteCommand(INDEX_SECOND_PERSON,
+        assertFalse(standardCommand.equals(new PersonNoteCommand(INDEX_FIRST_COMPANY, INDEX_SECOND_PERSON,
                 new PersonNote(VALID_NOTE_AMY))));
         // Different note -> returns false
-        assertFalse(standardCommand.equals(new PersonNoteCommand(INDEX_FIRST_PERSON,
+        assertFalse(standardCommand.equals(new PersonNoteCommand(INDEX_FIRST_COMPANY, INDEX_SECOND_PERSON,
                 new PersonNote(VALID_NOTE_BOB))));
     }
 }

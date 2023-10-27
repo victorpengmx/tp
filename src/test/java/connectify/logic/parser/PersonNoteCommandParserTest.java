@@ -4,6 +4,7 @@ import static connectify.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static connectify.logic.parser.CliSyntax.PREFIX_NOTE;
 import static connectify.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static connectify.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static connectify.testutil.TypicalIndexes.INDEX_FIRST_COMPANY;
 import static connectify.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import org.junit.jupiter.api.Test;
@@ -19,14 +20,21 @@ public class PersonNoteCommandParserTest {
     @Test
     public void parse_indexSpecified_success() {
         // have note
-        Index targetIndex = INDEX_FIRST_PERSON;
-        String userInput = targetIndex.getOneBased() + " " + PREFIX_NOTE + nonEmptyNote;
-        PersonNoteCommand expectedCommand = new PersonNoteCommand(INDEX_FIRST_PERSON, new PersonNote(nonEmptyNote));
+        Index targetPersonIndex = INDEX_FIRST_PERSON;
+        Index targetCompanyIndex = INDEX_FIRST_COMPANY;
+        String userInput = targetCompanyIndex.getOneBased() + " "
+                + targetPersonIndex.getOneBased() + " "
+                + PREFIX_NOTE + nonEmptyNote;
+        PersonNoteCommand expectedCommand = new PersonNoteCommand(INDEX_FIRST_COMPANY,
+                INDEX_FIRST_PERSON, new PersonNote(nonEmptyNote));
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // no note
-        userInput = targetIndex.getOneBased() + " " + PREFIX_NOTE;
-        expectedCommand = new PersonNoteCommand(INDEX_FIRST_PERSON, new PersonNote(""));
+        userInput = targetCompanyIndex.getOneBased() + " "
+                + targetPersonIndex.getOneBased() + " "
+                + PREFIX_NOTE;
+        expectedCommand = new PersonNoteCommand(INDEX_FIRST_COMPANY,
+                INDEX_FIRST_PERSON, new PersonNote(""));
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 

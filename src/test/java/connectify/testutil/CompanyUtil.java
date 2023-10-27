@@ -1,9 +1,16 @@
 package connectify.testutil;
 
+import static connectify.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static connectify.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static connectify.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static connectify.logic.parser.CliSyntax.PREFIX_INDUSTRY;
+import static connectify.logic.parser.CliSyntax.PREFIX_LOCATION;
+import static connectify.logic.parser.CliSyntax.PREFIX_NAME;
+import static connectify.logic.parser.CliSyntax.PREFIX_PHONE;
+import static connectify.logic.parser.CliSyntax.PREFIX_WEBSITE;
+
 import connectify.logic.commands.AddCompanyCommand;
 import connectify.model.company.Company;
-
-import static connectify.logic.parser.CliSyntax.*;
 
 /**
  * A utility class for Company.
