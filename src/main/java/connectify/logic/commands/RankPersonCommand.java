@@ -1,9 +1,9 @@
 package connectify.logic.commands;
 
-import java.util.Comparator;
-
 import static connectify.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static java.util.Objects.requireNonNull;
+
+import java.util.Comparator;
 
 import connectify.model.Model;
 import connectify.model.person.Person;
