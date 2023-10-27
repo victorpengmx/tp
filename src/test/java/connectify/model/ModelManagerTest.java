@@ -10,10 +10,10 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Comparator;
 
-import connectify.model.person.Person;
 import org.junit.jupiter.api.Test;
 
 import connectify.commons.core.GuiSettings;
+import connectify.model.person.Person;
 import connectify.testutil.AddressBookBuilder;
 import connectify.testutil.Assert;
 import connectify.testutil.TypicalCompanies;
