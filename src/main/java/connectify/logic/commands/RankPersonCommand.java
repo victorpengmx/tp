@@ -24,11 +24,7 @@ public class RankPersonCommand extends Command {
         requireNonNull(model);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         Comparator<Person> comparator = Comparator.comparing(Person::rank);
-        try {
-            model.updateSortedPersonList(comparator);
-        } catch (Exception e) {
-            return new CommandResult(e.getMessage());
-        }
+        model.updateSortedPersonList(comparator);
         Integer size = model.getNumberOfPeople();
         if (size == 0) {
             return new CommandResult(EMPTY_LIST_MESSAGE);
