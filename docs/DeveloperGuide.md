@@ -216,7 +216,7 @@ The `ListCompaniesCommand` object invokes `updateFilteredCompanyList` in `ModelM
 
 The `ListAllPeopleCommand` object invokes `updateFilteredPersonList` in `ModelManager` in the `Model` component with the predicates `PREDICATE_SHOW_ALL_PERSONS` to communicate to the Model to display all Persons. Note that this command does not modify the internal list of Persons in the Model, only the displayed list.
 
-If the list is empty, `execute` in the list command returns a `CommandResult` with `EMPTY_LIST_MESSAGE` or `MESSAGE_SUCCESS` otherwise.   
+If the list is empty, `execute` in the list command returns a `CommandResult` with `EMPTY_LIST_MESSAGE` or `MESSAGE_SUCCESS` otherwise.
 
 The sequence diagram below illustrates the events that take place during the execution of `ListALlCommand`. The other two commands are similar.
 
@@ -260,11 +260,11 @@ This feature is facilitated by the `DeletePersonCommand` and `DeletePersonComman
 
 When given valid inputs, `the DeletePersonCommandParser` will delete a `Person` object from a particular company list.
 
-Consider a scenario where the user wishes to delete a person from a particular company list. 
+Consider a scenario where the user wishes to delete a person from a particular company list.
 
 It requires two `Index` parameters: one for the company and another for the person within that company.
 
-The command first validates company index to ensure the company is present in the system. 
+The command first validates company index to ensure the company is present in the system.
 
 It then validates person index to ensure that the person selected is indeed in that company's list.
 
@@ -285,6 +285,67 @@ The following activity diagrams detail the behavior of Connectify when a user in
 The DeletePersonCommand also handles scenarios where a person is not part of a company or company index does not exist in the range of companies. In such cases, the command throws a CommandException with an error message to inform the user.
 
 <img src="images/deletePersonActivityDiagram.png" width="600" />
+
+<div style="page-break-after: always;"></div>
+
+### Add Company Feature: `addCompany`
+
+#### Implementation
+
+This feature is facilitated by the `AddCompanyCommand` and `AddCompanyCommandParser` in the `Logic` component, and works as described below.
+
+When given valid user input, the `AddCompanyCommandParser` will create a new `Company` object to add to the address book.
+
+Consider a scenario where the user wishes to add a new company with various details. The `AddCompanyCommand` takes in various parameters, such as name, industry, location, description, website, email, phone, address
+to create a new `Company` object.
+
+<img src="images/addCompanyObjectDiagram.png" width="600" />
+
+Consider an example of a valid `addCompany` command:
+
+```plaintext
+addCompany n/TechCorp i/Technology l/Silicon Valley d/Leading tech company w/www.techcorp.com e/contact@techcorp.com p/12345678 a/123 Tech St, Silicon Valley
+```
+
+The new objects in the final internal state after this example has been parsed are shown in the object diagram above.
+
+The following activity diagrams detail the behavior of Connectify when a user inputs an addCompany command with valid syntax to be executed.
+
+The AddCompanyCommand also handles scenarios where a company with the same details already exists in the address book. In such cases, the command throws a CommandException with an error message to inform the user.
+
+<img src="images/addCompanyActivityDiagram.png" width="600" />
+
+<div style="page-break-after: always;"></div>
+
+### Delete Company Feature: `deleteCompany`
+
+#### Implementation
+
+This feature is facilitated by the `DeleteCompanyCommand` and `DeleteCompanyCommandParser` in the `Logic` component, and works as described below.
+
+When given valid inputs, `the DeleteCompanyCommandParser` will delete a `Company` object.
+
+Consider a scenario where the user wishes to delete a company.
+
+It requires a `CompanyIndex` parameter. This validates company index to ensure the company is present in the system.
+
+If valid, the company is removed from the address book.
+
+<img src="images/deleteCompanyObjectDiagram.png" width="600" />
+
+Consider an example of a valid `deleteCompany` command:
+
+```plaintext
+deleteCompany 1
+```
+
+The new objects in the final internal state after this example has been parsed are shown in the object diagram above.
+
+The following activity diagrams detail the behavior of Connectify when a user inputs an deleteCompany command with valid syntax to be executed.
+
+The DeleteCompanyCommand also handles scenarios where a company index does not exist in the range of companies. In such cases, the command throws a CommandException with an error message to inform the user.
+
+<img src="images/deleteCompanyActivityDiagram.png" width="600" />
 
 <div style="page-break-after: always;"></div>
 
