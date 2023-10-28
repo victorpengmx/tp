@@ -7,6 +7,7 @@ import connectify.model.person.Person;
 import connectify.model.person.PersonAddress;
 import connectify.model.person.PersonEmail;
 import connectify.model.person.PersonName;
+import connectify.model.person.PersonNote;
 import connectify.model.person.PersonPhone;
 import connectify.model.person.PersonPriority;
 import connectify.model.tag.Tag;
@@ -21,6 +22,7 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_NOTE = "";
 
     public static final String DEFAULT_PRIORITY = "1";
 
@@ -29,7 +31,7 @@ public class PersonBuilder {
     private PersonEmail personEmail;
     private PersonAddress personAddress;
     private Set<Tag> tags;
-
+    private PersonNote note;
     private PersonPriority priority;
 
     /**
@@ -41,6 +43,7 @@ public class PersonBuilder {
         personEmail = new PersonEmail(DEFAULT_EMAIL);
         personAddress = new PersonAddress(DEFAULT_ADDRESS);
         tags = new HashSet<>();
+        note = new PersonNote(DEFAULT_NOTE);
         priority = new PersonPriority(DEFAULT_PRIORITY);
 
     }
@@ -50,6 +53,7 @@ public class PersonBuilder {
      */
     public PersonBuilder(Person personToCopy) {
         name = personToCopy.getName();
+        note = personToCopy.getNote();
         personPhone = personToCopy.getPhone();
         personEmail = personToCopy.getEmail();
         personAddress = personToCopy.getAddress();
@@ -106,11 +110,21 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Note} of the {@code Person} that we are building.
+     * @param note
+     * @return PersonBuilder
+     */
+    public PersonBuilder withNote(String note) {
+        this.note = new PersonNote(note);
+        return this;
+    }
+
+    /**
      * Builds a person object.
      * @return Person object
      */
     public Person build() {
-        return new Person(name, personPhone, personEmail, personAddress, tags, priority);
+        return new Person(name, personPhone, personEmail, personAddress, tags, note, priority);
     }
 
 }

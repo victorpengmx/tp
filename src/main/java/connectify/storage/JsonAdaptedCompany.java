@@ -14,6 +14,7 @@ import connectify.model.company.CompanyEmail;
 import connectify.model.company.CompanyIndustry;
 import connectify.model.company.CompanyLocation;
 import connectify.model.company.CompanyName;
+import connectify.model.company.CompanyNote;
 import connectify.model.company.CompanyPhone;
 import connectify.model.company.CompanyWebsite;
 import connectify.model.person.Person;
@@ -36,6 +37,7 @@ public class JsonAdaptedCompany {
     private final String email;
     private final String phone;
     private final String address;
+    private final String note;
 
     private final List<JsonAdaptedPerson> personList = new ArrayList<>();
 
@@ -61,6 +63,7 @@ public class JsonAdaptedCompany {
                               @JsonProperty("email") String email,
                               @JsonProperty("phone") String phone,
                               @JsonProperty("address") String address,
+                              @JsonProperty("note") String note,
                               @JsonProperty("personList") List<JsonAdaptedPerson> personList) {
         this.name = name;
         this.industry = industry;
@@ -70,6 +73,7 @@ public class JsonAdaptedCompany {
         this.email = email;
         this.phone = phone;
         this.address = address;
+        this.note = note;
         if (personList != null) {
             this.personList.addAll(personList);
         }
@@ -89,6 +93,7 @@ public class JsonAdaptedCompany {
         email = source.getEmail().value;
         phone = source.getPhone().value;
         address = source.getAddress().value;
+        note = source.getNote().getContent();
         personList.addAll(source.getPersonList().asList().stream().map(JsonAdaptedPerson::new)
                 .collect(Collectors.toList()));
     }
@@ -163,8 +168,12 @@ public class JsonAdaptedCompany {
         }
         final CompanyAddress modelCompanyAddress = new CompanyAddress(address);
 
+        if (note == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Note"));
+        }
+        final CompanyNote modelNote = new CompanyNote(note);
         return new Company(modelName, modelCompanyIndustry, modelCompanyLocation,
                 description, modelCompanyWebsite, modelCompanyEmail,
-                modelCompanyPhone, modelCompanyAddress, modelPersonList);
+                modelCompanyPhone, modelCompanyAddress, modelNote, modelPersonList);
     }
 }

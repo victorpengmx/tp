@@ -12,6 +12,7 @@ import connectify.model.person.Person;
 import connectify.model.person.PersonAddress;
 import connectify.model.person.PersonEmail;
 import connectify.model.person.PersonName;
+import connectify.model.person.PersonNote;
 import connectify.model.person.PersonPhone;
 import connectify.model.person.PersonPriority;
 import connectify.model.tag.Tag;
@@ -45,13 +46,14 @@ public class AddPersonCommandParser implements Parser<AddPersonCommand> {
         PersonEmail personEmail = ParserPersonUtil.parseEmail(argMultimap.getValue(CliSyntax.PREFIX_EMAIL).get());
         PersonAddress personAddress = ParserPersonUtil.parseAddress(argMultimap
                 .getValue(CliSyntax.PREFIX_ADDRESS).get());
+        PersonNote note = new PersonNote("");
         Set<Tag> tagList = ParserPersonUtil.parseTags(argMultimap.getAllValues(CliSyntax.PREFIX_TAG));
 
         // Defaults to first company if no company index is provided
         Index companyIndex = ParserCompanyUtil.parseIndex(argMultimap.getValue(CliSyntax.PREFIX_COMPANY).orElse("1"));
         PersonPriority priority = ParserPersonUtil
             .parsePersonPriority(argMultimap.getValue(CliSyntax.PREFIX_PRIORITY).get());
-        Person person = new Person(name, personPhone, personEmail, personAddress, tagList, priority);
+        Person person = new Person(name, personPhone, personEmail, personAddress, tagList, note, priority);
 
         return new AddPersonCommand(person, companyIndex);
     }

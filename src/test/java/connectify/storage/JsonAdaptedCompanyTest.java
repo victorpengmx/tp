@@ -28,6 +28,7 @@ public class JsonAdaptedCompanyTest {
     private static final String VALID_EMAIL = COMPANY_1.getEmail().toString();
     private static final String VALID_PHONE = COMPANY_1.getPhone().toString();
     private static final String VALID_ADDRESS = COMPANY_1.getAddress().toString();
+    private static final String VALID_NOTE = COMPANY_1.getNote().toString();
 
     private static final List<JsonAdaptedPerson> VALID_PEOPLE = COMPANY_1.getPersonList().asList()
             .stream()
@@ -48,7 +49,7 @@ public class JsonAdaptedCompanyTest {
         JsonAdaptedCompany company =
                 new JsonAdaptedCompany(INVALID_NAME, VALID_INDUSTRY, VALID_LOCATION,
                         VALID_DESCRIPTION, VALID_WEBSITE,
-                        VALID_EMAIL, VALID_PHONE, VALID_ADDRESS, VALID_PEOPLE);
+                        VALID_EMAIL, VALID_PHONE, VALID_ADDRESS, VALID_NOTE, VALID_PEOPLE);
         String expectedMessage = CompanyName.MESSAGE_CONSTRAINTS;
         Assert.assertThrows(IllegalValueException.class, expectedMessage, company::toModelType);
     }
@@ -61,7 +62,7 @@ public class JsonAdaptedCompanyTest {
         JsonAdaptedCompany company =
                 new JsonAdaptedCompany(null, VALID_INDUSTRY, VALID_LOCATION,
                         VALID_DESCRIPTION, VALID_WEBSITE,
-                        VALID_EMAIL, VALID_PHONE, VALID_ADDRESS, VALID_PEOPLE);
+                        VALID_EMAIL, VALID_PHONE, VALID_ADDRESS, VALID_NOTE, VALID_PEOPLE);
         String expectedMessage = String.format(JsonAdaptedCompany.MISSING_FIELD_MESSAGE_FORMAT, "CompanyName");
         Assert.assertThrows(IllegalValueException.class, expectedMessage, company::toModelType);
     }
@@ -71,7 +72,7 @@ public class JsonAdaptedCompanyTest {
         JsonAdaptedCompany company =
                 new JsonAdaptedCompany(VALID_NAME, VALID_INDUSTRY, VALID_LOCATION,
                         VALID_DESCRIPTION, VALID_WEBSITE,
-                        VALID_EMAIL, INVALID_PHONE, VALID_ADDRESS, VALID_PEOPLE);
+                        VALID_EMAIL, INVALID_PHONE, VALID_ADDRESS, VALID_NOTE, VALID_PEOPLE);
         String expectedMessage = CompanyPhone.MESSAGE_CONSTRAINTS;
         Assert.assertThrows(IllegalValueException.class, expectedMessage, company::toModelType);
     }
@@ -84,7 +85,7 @@ public class JsonAdaptedCompanyTest {
         JsonAdaptedCompany company =
                 new JsonAdaptedCompany(VALID_NAME, VALID_INDUSTRY, VALID_LOCATION,
                         VALID_DESCRIPTION, VALID_WEBSITE,
-                        VALID_EMAIL, null, VALID_ADDRESS, VALID_PEOPLE);
+                        VALID_EMAIL, null, VALID_ADDRESS, VALID_NOTE, VALID_PEOPLE);
         String expectedMessage = String.format(JsonAdaptedCompany.MISSING_FIELD_MESSAGE_FORMAT, "CompanyPhone");
         Assert.assertThrows(IllegalValueException.class, expectedMessage, company::toModelType);
     }
@@ -97,7 +98,7 @@ public class JsonAdaptedCompanyTest {
         JsonAdaptedCompany company =
                 new JsonAdaptedCompany(VALID_NAME, null, VALID_LOCATION,
                         VALID_DESCRIPTION, VALID_WEBSITE,
-                        VALID_EMAIL, VALID_PHONE, VALID_ADDRESS, VALID_PEOPLE);
+                        VALID_EMAIL, VALID_PHONE, VALID_ADDRESS, VALID_NOTE, VALID_PEOPLE);
         String expectedMessage = String.format(JsonAdaptedCompany.MISSING_FIELD_MESSAGE_FORMAT, "CompanyIndustry");
         Assert.assertThrows(IllegalValueException.class, expectedMessage, company::toModelType);
     }
@@ -110,7 +111,7 @@ public class JsonAdaptedCompanyTest {
         JsonAdaptedCompany company =
                 new JsonAdaptedCompany(VALID_NAME, VALID_INDUSTRY, null,
                         VALID_DESCRIPTION, VALID_WEBSITE,
-                        VALID_EMAIL, VALID_PHONE, VALID_ADDRESS, VALID_PEOPLE);
+                        VALID_EMAIL, VALID_PHONE, VALID_ADDRESS, VALID_NOTE, VALID_PEOPLE);
         String expectedMessage = String.format(JsonAdaptedCompany.MISSING_FIELD_MESSAGE_FORMAT, "CompanyLocation");
         Assert.assertThrows(IllegalValueException.class, expectedMessage, company::toModelType);
     }
@@ -122,7 +123,7 @@ public class JsonAdaptedCompanyTest {
     public void toModelType_nullDescription_throwsIllegalValueException() {
         JsonAdaptedCompany company =
                 new JsonAdaptedCompany(VALID_NAME, VALID_INDUSTRY, VALID_LOCATION, null, VALID_WEBSITE,
-                        VALID_EMAIL, VALID_PHONE, VALID_ADDRESS, VALID_PEOPLE);
+                        VALID_EMAIL, VALID_PHONE, VALID_ADDRESS, VALID_NOTE, VALID_PEOPLE);
         String expectedMessage = String.format(JsonAdaptedCompany.MISSING_FIELD_MESSAGE_FORMAT, "Description");
         Assert.assertThrows(IllegalValueException.class, expectedMessage, company::toModelType);
     }
@@ -134,7 +135,7 @@ public class JsonAdaptedCompanyTest {
     public void toModelType_nullWebsite_throwsIllegalValueException() {
         JsonAdaptedCompany company =
                 new JsonAdaptedCompany(VALID_NAME, VALID_INDUSTRY, VALID_LOCATION, VALID_DESCRIPTION, null,
-                        VALID_EMAIL, VALID_PHONE, VALID_ADDRESS, VALID_PEOPLE);
+                        VALID_EMAIL, VALID_PHONE, VALID_ADDRESS, VALID_NOTE, VALID_PEOPLE);
         String expectedMessage = String.format(JsonAdaptedCompany.MISSING_FIELD_MESSAGE_FORMAT, "CompanyWebsite");
         Assert.assertThrows(IllegalValueException.class, expectedMessage, company::toModelType);
     }
@@ -144,7 +145,7 @@ public class JsonAdaptedCompanyTest {
         JsonAdaptedCompany company =
                 new JsonAdaptedCompany(VALID_NAME, VALID_INDUSTRY, VALID_LOCATION,
                         VALID_DESCRIPTION, VALID_WEBSITE,
-                        INVALID_EMAIL, VALID_PHONE, VALID_ADDRESS, VALID_PEOPLE);
+                        INVALID_EMAIL, VALID_PHONE, VALID_ADDRESS, VALID_NOTE, VALID_PEOPLE);
         String expectedMessage = CompanyEmail.MESSAGE_CONSTRAINTS;
         Assert.assertThrows(IllegalValueException.class, expectedMessage, company::toModelType);
     }
@@ -157,7 +158,7 @@ public class JsonAdaptedCompanyTest {
         JsonAdaptedCompany company =
                 new JsonAdaptedCompany(VALID_NAME, VALID_INDUSTRY, VALID_LOCATION,
                         VALID_DESCRIPTION, VALID_WEBSITE,
-                        null, VALID_PHONE, VALID_ADDRESS, VALID_PEOPLE);
+                        null, VALID_PHONE, VALID_ADDRESS, VALID_NOTE, VALID_PEOPLE);
         String expectedMessage = String.format(JsonAdaptedCompany.MISSING_FIELD_MESSAGE_FORMAT, "CompanyEmail");
         Assert.assertThrows(IllegalValueException.class, expectedMessage, company::toModelType);
     }
@@ -167,7 +168,7 @@ public class JsonAdaptedCompanyTest {
         JsonAdaptedCompany company =
                 new JsonAdaptedCompany(VALID_NAME, VALID_INDUSTRY, VALID_LOCATION,
                         VALID_DESCRIPTION, VALID_WEBSITE,
-                        VALID_EMAIL, VALID_PHONE, INVALID_ADDRESS, VALID_PEOPLE);
+                        VALID_EMAIL, VALID_PHONE, INVALID_ADDRESS, VALID_NOTE, VALID_PEOPLE);
         String expectedMessage = CompanyAddress.MESSAGE_CONSTRAINTS;
         Assert.assertThrows(IllegalValueException.class, expectedMessage, company::toModelType);
     }
@@ -180,7 +181,7 @@ public class JsonAdaptedCompanyTest {
         JsonAdaptedCompany company =
                 new JsonAdaptedCompany(VALID_NAME, VALID_INDUSTRY, VALID_LOCATION,
                         VALID_DESCRIPTION, VALID_WEBSITE,
-                        VALID_EMAIL, VALID_PHONE, null, VALID_PEOPLE);
+                        VALID_EMAIL, VALID_PHONE, null, VALID_NOTE, VALID_PEOPLE);
         String expectedMessage = String.format(JsonAdaptedCompany.MISSING_FIELD_MESSAGE_FORMAT, "CompanyAddress");
         Assert.assertThrows(IllegalValueException.class, expectedMessage, company::toModelType);
     }

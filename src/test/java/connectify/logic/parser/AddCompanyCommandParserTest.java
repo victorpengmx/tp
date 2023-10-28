@@ -14,6 +14,7 @@ import connectify.model.company.CompanyEmail;
 import connectify.model.company.CompanyIndustry;
 import connectify.model.company.CompanyLocation;
 import connectify.model.company.CompanyName;
+import connectify.model.company.CompanyNote;
 import connectify.model.company.CompanyPhone;
 import connectify.model.company.CompanyWebsite;
 
@@ -29,13 +30,12 @@ public class AddCompanyCommandParserTest {
     @Test
     public void parse_validInput_success() throws Exception {
         String userInput = " n/Company A p/12345678 e/hello@email.com "
-                +
-                "a/123 Main St w/www.google.com i/IT l/Singapore d/Leading IT Solutions";
+                + "a/123 Main St w/www.google.com i/IT l/Singapore d/Leading IT Solutions";
         AddCompanyCommand expectedCommand = new AddCompanyCommand(
                 new Company(new CompanyName("Company A"), new CompanyIndustry("IT"),
                         new CompanyLocation("Singapore"), "Leading IT Solutions",
                         new CompanyWebsite("www.google.com"), new CompanyEmail("hello@email.com"),
-                        new CompanyPhone("12345678"), new CompanyAddress("123 Main St")));
+                        new CompanyPhone("12345678"), new CompanyAddress("123 Main St"), new CompanyNote("")));
         assertEquals(parser.parse(userInput), expectedCommand);
     }
 
