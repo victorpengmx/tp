@@ -25,6 +25,7 @@ import connectify.logic.commands.ListAllCommand;
 import connectify.logic.commands.ListCompaniesCommand;
 import connectify.logic.commands.ListPeopleCommand;
 import connectify.logic.commands.PersonNoteCommand;
+import connectify.logic.commands.RankPersonCommand;
 import connectify.logic.parser.exceptions.ParseException;
 
 /**
@@ -108,6 +109,9 @@ public class ConnectifyParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case RankPersonCommand.COMMAND_WORD:
+            return new RankPersonCommand();
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);

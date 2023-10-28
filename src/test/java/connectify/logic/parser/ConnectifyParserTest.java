@@ -33,6 +33,7 @@ import connectify.logic.commands.ListAllCommand;
 import connectify.logic.commands.ListCompaniesCommand;
 import connectify.logic.commands.ListPeopleCommand;
 import connectify.logic.commands.PersonNoteCommand;
+import connectify.logic.commands.RankPersonCommand;
 import connectify.logic.parser.exceptions.ParseException;
 import connectify.model.EntityNameContainsKeywordsPredicate;
 import connectify.model.company.Company;
@@ -166,6 +167,12 @@ public class ConnectifyParserTest {
     public void parseCommand_listAllEntities() throws Exception {
         assertTrue(parser.parseCommand(ListAllCommand.COMMAND_WORD) instanceof ListAllCommand);
         assertTrue(parser.parseCommand(ListAllCommand.COMMAND_WORD + " 3") instanceof ListAllCommand);
+    }
+
+    @Test
+    public void parseCommand_rankPerson() throws Exception {
+        assertTrue(parser.parseCommand(RankPersonCommand.COMMAND_WORD) instanceof RankPersonCommand);
+        assertTrue(parser.parseCommand(RankPersonCommand.COMMAND_WORD + " 3") instanceof RankPersonCommand);
     }
 
     @Test

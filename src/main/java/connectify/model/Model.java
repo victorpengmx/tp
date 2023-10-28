@@ -1,6 +1,7 @@
 package connectify.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import connectify.commons.core.GuiSettings;
@@ -105,6 +106,11 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Replaces the person list with a new person list sorted with the {@code comparator}.
+     */
+    void updateSortedPersonList(Comparator<Person> comparator);
 
     /**
      * Replaces the given company {@code target} with {@code editedCompany}.

@@ -8,6 +8,8 @@ import static connectify.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static connectify.testutil.Assert.assertThrows;
 import static connectify.testutil.TypicalPersons.ALICE;
 import static connectify.testutil.TypicalPersons.BOB;
+import static connectify.testutil.TypicalPersons.GEORGE;
+import static connectify.testutil.TypicalPersons.HOON;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -96,5 +98,18 @@ public class PersonTest {
                 + ", email=" + ALICE.getEmail() + ", address=" + ALICE.getAddress() + ", note=" + ALICE.getNote()
                 + ", tags=" + ALICE.getTags() + ", priority=" + ALICE.getPriority() + "}";
         assertEquals(expected, ALICE.toString());
+    }
+
+    @Test
+    public void compare() {
+        assertEquals(ALICE.compare(ALICE, BOB), -1);
+        assertEquals(ALICE.compare(BOB, ALICE), 1);
+        assertEquals(HOON.compare(HOON, GEORGE), 0);
+    }
+
+    @Test
+    public void rank() {
+        assertEquals(ALICE.rank(), 1);
+        assertEquals(HOON.rank(), 7);
     }
 }

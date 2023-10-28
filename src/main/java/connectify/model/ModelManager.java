@@ -3,6 +3,9 @@ package connectify.model;
 import static java.util.Objects.requireNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -180,6 +183,15 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
         currEntity = EntityType.PEOPLE;
+    }
+
+    @Override
+    public void updateSortedPersonList(Comparator<Person> comparator) {
+        logger.info("Updating list of sorted persons");
+        requireNonNull(comparator);
+        List<Person> sortedList = new ArrayList<>(addressBook.getPersonList());
+        sortedList.sort(comparator);
+        addressBook.setPersons(sortedList);
     }
 
     @Override

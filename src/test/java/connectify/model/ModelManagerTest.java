@@ -8,10 +8,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Comparator;
 
 import org.junit.jupiter.api.Test;
 
 import connectify.commons.core.GuiSettings;
+import connectify.model.person.Person;
 import connectify.testutil.AddressBookBuilder;
 import connectify.testutil.Assert;
 import connectify.testutil.TypicalCompanies;
@@ -151,6 +153,17 @@ public class ModelManagerTest {
     @Test
     public void getFilteredEntityList_getPersonList_returnsCorrectList() {
         modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        try {
+            modelManager.setCurrEntity("people");
+            assertEquals(modelManager.getFilteredPersonList(), modelManager.getFilteredEntityList());
+        } catch (InvalidEntityException e) {
+            throw new AssertionError("InvalidEntityException should not be thrown.");
+        }
+    }
+
+    @Test
+    public void getSortedEntityList_getPersonList_returnsCorrectList() {
+        modelManager.updateSortedPersonList(Comparator.comparing(Person::rank));
         try {
             modelManager.setCurrEntity("people");
             assertEquals(modelManager.getFilteredPersonList(), modelManager.getFilteredEntityList());
