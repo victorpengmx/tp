@@ -24,19 +24,20 @@ public class Person extends Entity {
     // Data fields
     private final PersonAddress personAddress;
     private final Set<Tag> tags = new HashSet<>();
-
+    private final PersonNote note;
     private final PersonPriority priority;
 
     /**
      * Every field must be present and not null.
      */
     public Person(PersonName name, PersonPhone phone, PersonEmail email, PersonAddress address,
-                  Set<Tag> tags, PersonPriority priority) {
-        CollectionUtil.requireAllNonNull(name, phone, email, address, tags, priority);
+                  Set<Tag> tags, PersonNote note, PersonPriority priority) {
+        CollectionUtil.requireAllNonNull(name, phone, email, address, note, tags, priority);
         this.name = name;
         this.personPhone = phone;
         this.personEmail = email;
         this.personAddress = address;
+        this.note = note;
         this.tags.addAll(tags);
         this.priority = priority;
     }
@@ -75,6 +76,14 @@ public class Person extends Entity {
 
     public PersonPriority getPriority() {
         return priority;
+    }
+
+    /**
+     * Returns the note associated with this person.
+     * @return Note associated with this person
+     */
+    public PersonNote getNote() {
+        return note;
     }
 
     /**
@@ -118,15 +127,15 @@ public class Person extends Entity {
                 && personPhone.equals(otherPerson.personPhone)
                 && personEmail.equals(otherPerson.personEmail)
                 && personAddress.equals(otherPerson.personAddress)
+                && note.equals(otherPerson.note)
                 && tags.equals(otherPerson.tags)
                 && priority.equals(otherPerson.priority);
-
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, personPhone, personEmail, personAddress, tags);
+        return Objects.hash(name, personPhone, personEmail, personAddress, note, tags);
     }
 
     @Override
@@ -136,6 +145,7 @@ public class Person extends Entity {
                 .add("phone", personPhone)
                 .add("email", personEmail)
                 .add("address", personAddress)
+                .add("note", note)
                 .add("tags", tags)
                 .add("priority", priority)
                 .toString();

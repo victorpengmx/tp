@@ -37,6 +37,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
+    private Label note;
+    @FXML
     private FlowPane tags;
 
     /**
@@ -49,6 +51,7 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
+        note.setText(person.getNote().getContent());
         Label label = new Label("Priority: " + person.getPriority().value);
         label.setStyle("-fx-background-color: #588B8B");
         tags.getChildren().add(label);

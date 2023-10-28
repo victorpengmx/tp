@@ -6,6 +6,7 @@ import connectify.model.company.CompanyEmail;
 import connectify.model.company.CompanyIndustry;
 import connectify.model.company.CompanyLocation;
 import connectify.model.company.CompanyName;
+import connectify.model.company.CompanyNote;
 import connectify.model.company.CompanyPhone;
 import connectify.model.company.CompanyWebsite;
 import connectify.model.person.PersonList;
@@ -24,6 +25,8 @@ public class CompanyBuilder {
 
     public static final String DEFAULT_PHONE = "12345678";
     public static final String DEFAULT_ADDRESS = "1600 Amphitheatre Parkway, Mountain View, CA 94043, USA";
+    public static final String DEFAULT_NOTE = "";
+    private CompanyNote note;
     private CompanyName name;
     private CompanyIndustry industry;
     private CompanyLocation location;
@@ -32,7 +35,6 @@ public class CompanyBuilder {
     private CompanyEmail email;
     private CompanyPhone phone;
     private CompanyAddress address;
-
     private PersonList personList;
 
     /**
@@ -43,6 +45,7 @@ public class CompanyBuilder {
         this.industry = new CompanyIndustry(DEFAULT_INDUSTRY);
         this.location = new CompanyLocation(DEFAULT_LOCATION);
         this.description = DEFAULT_DESCRIPTION;
+        this.note = new CompanyNote(DEFAULT_NOTE);
         this.website = new CompanyWebsite(DEFAULT_WEBSITE);
         this.email = new CompanyEmail(DEFAULT_EMAIL);
         this.phone = new CompanyPhone(DEFAULT_PHONE);
@@ -63,6 +66,7 @@ public class CompanyBuilder {
         this.email = companyToCopy.getEmail();
         this.phone = companyToCopy.getPhone();
         this.address = companyToCopy.getAddress();
+        this.note = companyToCopy.getNote();
         this.personList = companyToCopy.getPersonList();
     }
 
@@ -131,6 +135,14 @@ public class CompanyBuilder {
     }
 
     /**
+     * Sets the {@code Note} of the {@code Company} that we are building.
+     */
+    public CompanyBuilder withNote(String note) {
+        this.note = new CompanyNote(note);
+        return this;
+    }
+
+    /**
      * Sets the {@code PersonList} of the {@code Company} that we are building.
      */
     public CompanyBuilder withPersonList(PersonList personList) {
@@ -143,6 +155,6 @@ public class CompanyBuilder {
      * @return Company
      */
     public Company build() {
-        return new Company(name, industry, location, description, website, email, phone, address, personList);
+        return new Company(name, industry, location, description, website, email, phone, address, note, personList);
     }
 }

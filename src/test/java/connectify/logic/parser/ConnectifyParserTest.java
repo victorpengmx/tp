@@ -3,6 +3,7 @@ package connectify.logic.parser;
 import static connectify.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static connectify.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static connectify.logic.parser.CliSyntax.PREFIX_COMPANY;
+import static connectify.logic.parser.CliSyntax.PREFIX_NOTE;
 import static connectify.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static connectify.testutil.Assert.assertThrows;
 import static connectify.testutil.TypicalIndexes.INDEX_FIRST_COMPANY;
@@ -31,12 +32,14 @@ import connectify.logic.commands.HelpCommand;
 import connectify.logic.commands.ListAllCommand;
 import connectify.logic.commands.ListCompaniesCommand;
 import connectify.logic.commands.ListPeopleCommand;
+import connectify.logic.commands.PersonNoteCommand;
 import connectify.logic.parser.exceptions.ParseException;
 import connectify.model.EntityNameContainsKeywordsPredicate;
 import connectify.model.company.Company;
 import connectify.model.company.CompanyNameContainsKeywordsPredicate;
 import connectify.model.person.NameContainsKeywordsPredicate;
 import connectify.model.person.Person;
+import connectify.model.person.PersonNote;
 import connectify.testutil.CompanyBuilder;
 import connectify.testutil.CompanyUtil;
 import connectify.testutil.EditPersonDescriptorBuilder;
@@ -148,6 +151,15 @@ public class ConnectifyParserTest {
     public void parseCommand_listPeople() throws Exception {
         assertTrue(parser.parseCommand(ListPeopleCommand.COMMAND_WORD) instanceof ListPeopleCommand);
         assertTrue(parser.parseCommand(ListPeopleCommand.COMMAND_WORD + " 3") instanceof ListPeopleCommand);
+    }
+
+    @Test
+    public void parseCommand_personNote() throws Exception {
+        final PersonNote note = new PersonNote("Some note");
+        PersonNoteCommand command = (PersonNoteCommand) parser.parseCommand(PersonNoteCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_COMPANY.getOneBased() + " " + INDEX_FIRST_PERSON.getOneBased() + " "
+                    + PREFIX_NOTE + note.getContent());
+        assertEquals(new PersonNoteCommand(INDEX_FIRST_COMPANY, INDEX_FIRST_PERSON, note), command);
     }
 
     @Test

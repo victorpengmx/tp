@@ -77,6 +77,25 @@ public class PersonList implements Iterable<Person> {
     }
 
     /**
+     * Replaces the person {@code target} in the list with {@code editedPerson}.
+     * @param target
+     * @param editedPerson
+     * @return
+     */
+    public PersonList setPerson(Person target, Person editedPerson) {
+        requireAllNonNull(target, editedPerson);
+
+        int index = people.indexOf(target);
+        if (index == -1) {
+            throw new PersonNotFoundException();
+        }
+
+        PersonList edited = new PersonList(this);
+        edited.people.set(index, editedPerson);
+        return edited;
+    }
+
+    /**
      * Returns an immutable person list, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      *

@@ -12,6 +12,7 @@ import connectify.model.company.CompanyEmail;
 import connectify.model.company.CompanyIndustry;
 import connectify.model.company.CompanyLocation;
 import connectify.model.company.CompanyName;
+import connectify.model.company.CompanyNote;
 import connectify.model.company.CompanyPhone;
 import connectify.model.company.CompanyWebsite;
 
@@ -54,8 +55,9 @@ public class AddCompanyCommandParser implements Parser<AddCompanyCommand> {
         CompanyEmail email = ParserCompanyUtil.parseEmail(argMultimap.getValue(CliSyntax.PREFIX_EMAIL).get());
         CompanyPhone phone = ParserCompanyUtil.parsePhone(argMultimap.getValue(CliSyntax.PREFIX_PHONE).get());
         CompanyAddress address = ParserCompanyUtil.parseAddress(argMultimap.getValue(CliSyntax.PREFIX_ADDRESS).get());
+        CompanyNote note = new CompanyNote("");
 
-        Company company = new Company(name, industry, location, description, website, email, phone, address);
+        Company company = new Company(name, industry, location, description, website, email, phone, address, note);
 
         return new AddCompanyCommand(company);
     }

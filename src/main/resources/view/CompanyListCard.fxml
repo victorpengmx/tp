@@ -37,6 +37,9 @@
             <HBox spacing="5" alignment="CENTER_LEFT">
                 <Label fx:id="people" styleClass="cell_small_label" text="\$people" />
             </HBox>
+            <HBox spacing="5" alignment="CENTER_LEFT">
+                <Label fx:id="note" styleClass="cell_small_label" text="\$note" />
+            </HBox>
             <padding>
                 <Insets top="10" right="10" bottom="10" left="10" />
             </padding>

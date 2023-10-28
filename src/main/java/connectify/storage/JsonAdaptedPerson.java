@@ -14,6 +14,7 @@ import connectify.model.person.Person;
 import connectify.model.person.PersonAddress;
 import connectify.model.person.PersonEmail;
 import connectify.model.person.PersonName;
+import connectify.model.person.PersonNote;
 import connectify.model.person.PersonPhone;
 import connectify.model.person.PersonPriority;
 import connectify.model.tag.Tag;
@@ -29,6 +30,7 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
+    private final String note;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     private final String priority;
@@ -39,12 +41,14 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
+            @JsonProperty("note") String note,
             @JsonProperty("tags") List<JsonAdaptedTag> tags,
             @JsonProperty("priority") String priority) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.note = note;
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -60,6 +64,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        note = source.getNote().getContent();
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -108,20 +113,24 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                 PersonAddress.class.getSimpleName()));
         }
+        if (note == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Note"));
+        }
+        final PersonNote modelNote = new PersonNote(note);
         if (!PersonAddress.isValidAddress(address)) {
             throw new IllegalValueException(PersonAddress.MESSAGE_CONSTRAINTS);
         }
         final PersonAddress modelPersonAddress = new PersonAddress(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-
         if (priority == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     PersonPriority.class.getSimpleName()));
         }
         final PersonPriority priority = new PersonPriority(this.priority);
 
-        return new Person(modelName, modelPersonPhone, modelPersonEmail, modelPersonAddress, modelTags, priority);
+        return new Person(modelName, modelPersonPhone, modelPersonEmail, modelPersonAddress, modelTags,
+                modelNote, priority);
     }
 
 }
