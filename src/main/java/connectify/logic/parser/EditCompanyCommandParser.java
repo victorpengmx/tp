@@ -7,7 +7,6 @@ import static connectify.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static connectify.logic.parser.CliSyntax.PREFIX_INDUSTRY;
 import static connectify.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static connectify.logic.parser.CliSyntax.PREFIX_NAME;
-import static connectify.logic.parser.CliSyntax.PREFIX_NOTE;
 import static connectify.logic.parser.CliSyntax.PREFIX_PHONE;
 import static connectify.logic.parser.CliSyntax.PREFIX_WEBSITE;
 import static java.util.Objects.requireNonNull;
