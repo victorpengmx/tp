@@ -105,9 +105,10 @@ public class EditCompanyCommand extends Command {
         CompanyEmail updatedEmail = editCompanyDescriptor.getEmail().orElse(companyToEdit.getEmail());
         CompanyAddress updatedAddress = editCompanyDescriptor.getAddress().orElse(companyToEdit.getAddress());
         CompanyNote updatedCompanyNote = editCompanyDescriptor.getCompanyNote().orElse(companyToEdit.getNote());
+        PersonList updatedPersonList = editCompanyDescriptor.getPersonList().orElse(companyToEdit.getPersonList());
 
         return new Company(updatedName, updatedIndustry, updatedLocation, updatedDescription, updatedWebsite,
-                updatedEmail, updatedPhone, updatedAddress, updatedCompanyNote);
+                updatedEmail, updatedPhone, updatedAddress, updatedCompanyNote, updatedPersonList);
     }
 
     @Override
@@ -148,9 +149,9 @@ public class EditCompanyCommand extends Command {
         private CompanyWebsite companyWebsite;
         private CompanyEmail companyEmail;
         private CompanyPhone companyPhone;
-
         private CompanyAddress companyAddress;
         private CompanyNote companyNote;
+        private PersonList personList;
 
 
         public EditCompanyDescriptor() {}
@@ -169,6 +170,7 @@ public class EditCompanyCommand extends Command {
             setEmail(toCopy.companyEmail);
             setAddress(toCopy.companyAddress);
             setCompanyNote(toCopy.companyNote);
+            setPersonList(toCopy.personList);
         }
 
         /**
@@ -251,6 +253,14 @@ public class EditCompanyCommand extends Command {
             return Optional.ofNullable(companyNote);
         }
 
+        public void setPersonList(PersonList personList) {
+            this.personList = personList;
+        }
+
+        public Optional<PersonList> getPersonList() {
+            return Optional.ofNullable(personList);
+        }
+
         @Override
         public boolean equals(Object other) {
             if (other == this) {
@@ -272,7 +282,8 @@ public class EditCompanyCommand extends Command {
                     && Objects.equals(getPhone(), otherEditCompanyDescriptor.getPhone())
                     && Objects.equals(getEmail(), otherEditCompanyDescriptor.getEmail())
                     && Objects.equals(getAddress(), otherEditCompanyDescriptor.getAddress())
-                    && Objects.equals(getCompanyNote(), otherEditCompanyDescriptor.getCompanyNote());
+                    && Objects.equals(getCompanyNote(), otherEditCompanyDescriptor.getCompanyNote())
+                    && Objects.equals(getPersonList(), otherEditCompanyDescriptor.getPersonList());
         }
 
         @Override
@@ -287,6 +298,7 @@ public class EditCompanyCommand extends Command {
                     .add("email", companyEmail)
                     .add("address", companyAddress)
                     .add("companyNote", companyNote)
+                    .add("personList", personList)
                     .toString();
         }
     }

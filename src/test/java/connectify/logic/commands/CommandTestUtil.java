@@ -87,6 +87,7 @@ public class CommandTestUtil {
     public static final String VALID_COMPANY_DESCRIPTION_B = "A financial institution";
     public static final String VALID_COMPANY_NOTE_A = "A note about Company A";
     public static final String VALID_COMPANY_NOTE_B = "A note about Company B";
+    public static final String NAME_DESC_A = " " + PREFIX_NAME + VALID_COMPANY_NAME_A;
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
@@ -104,6 +105,7 @@ public class CommandTestUtil {
 
     public static final EditCompanyCommand.EditCompanyDescriptor DESC_COMPANY_A;
     public static final EditCompanyCommand.EditCompanyDescriptor DESC_COMPANY_B;
+    public static final EditCompanyCommand.EditCompanyDescriptor DESC_EMPTY_COMPANY;
 
     static {
         DESC_COMPANY_A = new EditCompanyDescriptorBuilder()
@@ -129,6 +131,8 @@ public class CommandTestUtil {
                 .withCompanyNote(VALID_COMPANY_NOTE_B)
                 .withLocation(VALID_COMPANY_LOCATION_B)
                 .build();
+
+        DESC_EMPTY_COMPANY = new EditCompanyDescriptorBuilder().build();
     }
 
     /**
