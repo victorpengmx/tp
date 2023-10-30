@@ -1,8 +1,15 @@
 package connectify.testutil;
 
 import connectify.logic.commands.EditCompanyCommand.EditCompanyDescriptor;
-import connectify.model.company.*;
-import connectify.model.person.PersonList;
+import connectify.model.company.Company;
+import connectify.model.company.CompanyAddress;
+import connectify.model.company.CompanyEmail;
+import connectify.model.company.CompanyIndustry;
+import connectify.model.company.CompanyLocation;
+import connectify.model.company.CompanyName;
+import connectify.model.company.CompanyNote;
+import connectify.model.company.CompanyPhone;
+import connectify.model.company.CompanyWebsite;
 
 /**
  * A utility class to help with building EditCompanyDescriptor objects.
@@ -33,7 +40,6 @@ public class EditCompanyDescriptorBuilder {
         descriptor.setEmail(company.getEmail());
         descriptor.setAddress(company.getAddress());
         descriptor.setCompanyNote(company.getNote());
-        descriptor.setPersonList(company.getPersonList());
     }
 
     /**
@@ -103,16 +109,8 @@ public class EditCompanyDescriptorBuilder {
     /**
      * Sets the {@code CompanyNote} of the {@code EditCompanyDescriptor} that we are building.
      */
-    public EditCompanyDescriptorBuilder withCompanyNote(CompanyNote companyNote) {
-        descriptor.setCompanyNote(companyNote);
-        return this;
-    }
-
-    /**
-     * Sets the {@code PersonList} of the {@code EditCompanyDescriptor} that we are building.
-     */
-    public EditCompanyDescriptorBuilder withPersonList(PersonList personList) {
-        descriptor.setPersonList(personList);
+    public EditCompanyDescriptorBuilder withCompanyNote(String companyNote) {
+        descriptor.setCompanyNote(new CompanyNote(companyNote));
         return this;
     }
 

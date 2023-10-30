@@ -22,6 +22,7 @@ import connectify.model.company.Company;
 import connectify.model.company.CompanyNameContainsKeywordsPredicate;
 import connectify.model.person.NameContainsKeywordsPredicate;
 import connectify.model.person.Person;
+import connectify.testutil.EditCompanyDescriptorBuilder;
 import connectify.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -68,6 +69,24 @@ public class CommandTestUtil {
 
     public static final String INVALID_PRIORITY_DESC = " " + PREFIX_PRIORITY + "abc"; // priority must be an integer
 
+    public static final String VALID_COMPANY_NAME_A = "Company A";
+    public static final String VALID_COMPANY_NAME_B = "Company B";
+    public static final String VALID_COMPANY_PHONE_A = "11111111";
+    public static final String VALID_COMPANY_PHONE_B = "22222222";
+    public static final String VALID_COMPANY_EMAIL_A = "a@example.com";
+    public static final String VALID_COMPANY_EMAIL_B = "b@example.com";
+    public static final String VALID_COMPANY_ADDRESS_A = "Block 101, Company A Street 1";
+    public static final String VALID_COMPANY_ADDRESS_B = "Block 202, Company B Street 2";
+    public static final String VALID_COMPANY_INDUSTRY_A = "IT";
+    public static final String VALID_COMPANY_INDUSTRY_B = "Finance";
+    public static final String VALID_COMPANY_LOCATION_A = "Singapore";
+    public static final String VALID_COMPANY_LOCATION_B = "Malaysia";
+    public static final String VALID_COMPANY_WEBSITE_A = "www.companya.com";
+    public static final String VALID_COMPANY_WEBSITE_B = "www.companyb.com";
+    public static final String VALID_COMPANY_DESCRIPTION_A = "A tech company";
+    public static final String VALID_COMPANY_DESCRIPTION_B = "A financial institution";
+    public static final String VALID_COMPANY_NOTE_A = "A note about Company A";
+    public static final String VALID_COMPANY_NOTE_B = "A note about Company B";
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
@@ -81,6 +100,35 @@ public class CommandTestUtil {
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+    }
+
+    public static final EditCompanyCommand.EditCompanyDescriptor DESC_COMPANY_A;
+    public static final EditCompanyCommand.EditCompanyDescriptor DESC_COMPANY_B;
+
+    static {
+        DESC_COMPANY_A = new EditCompanyDescriptorBuilder()
+                .withName(VALID_COMPANY_NAME_A)
+                .withPhone(VALID_COMPANY_PHONE_A)
+                .withEmail(VALID_COMPANY_EMAIL_A)
+                .withAddress(VALID_COMPANY_ADDRESS_A)
+                .withIndustry(VALID_COMPANY_INDUSTRY_A)
+                .withWebsite(VALID_COMPANY_WEBSITE_A)
+                .withDescription(VALID_COMPANY_DESCRIPTION_A)
+                .withCompanyNote(VALID_COMPANY_NOTE_A)
+                .withLocation(VALID_COMPANY_LOCATION_A)
+                .build();
+
+        DESC_COMPANY_B = new EditCompanyDescriptorBuilder()
+                .withName(VALID_COMPANY_NAME_B)
+                .withPhone(VALID_COMPANY_PHONE_B)
+                .withEmail(VALID_COMPANY_EMAIL_B)
+                .withAddress(VALID_COMPANY_ADDRESS_B)
+                .withIndustry(VALID_COMPANY_INDUSTRY_B)
+                .withWebsite(VALID_COMPANY_WEBSITE_B)
+                .withDescription(VALID_COMPANY_DESCRIPTION_B)
+                .withCompanyNote(VALID_COMPANY_NOTE_B)
+                .withLocation(VALID_COMPANY_LOCATION_B)
+                .build();
     }
 
     /**

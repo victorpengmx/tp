@@ -7,6 +7,7 @@ import static connectify.logic.parser.CliSyntax.PREFIX_PHONE;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 import connectify.commons.core.index.Index;
@@ -104,10 +105,9 @@ public class EditCompanyCommand extends Command {
         CompanyEmail updatedEmail = editCompanyDescriptor.getEmail().orElse(companyToEdit.getEmail());
         CompanyAddress updatedAddress = editCompanyDescriptor.getAddress().orElse(companyToEdit.getAddress());
         CompanyNote updatedCompanyNote = editCompanyDescriptor.getCompanyNote().orElse(companyToEdit.getNote());
-        PersonList updatedPersonList = editCompanyDescriptor.getPersonList().orElse(companyToEdit.getPersonList());
 
         return new Company(updatedName, updatedIndustry, updatedLocation, updatedDescription, updatedWebsite,
-                updatedEmail, updatedPhone, updatedAddress, updatedCompanyNote, updatedPersonList);
+                updatedEmail, updatedPhone, updatedAddress, updatedCompanyNote);
     }
 
     @Override
@@ -151,8 +151,6 @@ public class EditCompanyCommand extends Command {
 
         private CompanyAddress companyAddress;
         private CompanyNote companyNote;
-        private PersonList personList;
-
 
 
         public EditCompanyDescriptor() {}
@@ -171,7 +169,6 @@ public class EditCompanyCommand extends Command {
             setEmail(toCopy.companyEmail);
             setAddress(toCopy.companyAddress);
             setCompanyNote(toCopy.companyNote);
-            setPersonList(toCopy.personList);
         }
 
         /**
@@ -179,7 +176,7 @@ public class EditCompanyCommand extends Command {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(companyName, companyIndustry, companyLocation, companyDescription,
-                    companyWebsite, companyEmail, companyPhone, companyAddress, companyNote, personList);
+                    companyWebsite, companyEmail, companyPhone, companyAddress, companyNote);
         }
 
         public void setName(CompanyName companyName) {
@@ -254,14 +251,6 @@ public class EditCompanyCommand extends Command {
             return Optional.ofNullable(companyNote);
         }
 
-        public void setPersonList(PersonList personList) {
-            this.personList = personList;
-        }
-
-        public Optional<PersonList> getPersonList() {
-            return Optional.ofNullable(personList);
-        }
-
         @Override
         public boolean equals(Object other) {
             if (other == this) {
@@ -269,36 +258,35 @@ public class EditCompanyCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPersonCommand.EditPersonDescriptor)) {
+            if (!(other instanceof EditCompanyDescriptor)) {
                 return false;
             }
 
-            EditCompanyCommand.EditCompanyDescriptor e = (EditCompanyCommand.EditCompanyDescriptor) other;
-            return getName().equals(e.getName())
-                    && getIndustry().equals(e.getIndustry())
-                    && getLocation().equals(e.getLocation())
-                    && getDescription().equals(e.getDescription())
-                    && getWebsite().equals(e.getWebsite())
-                    && getPhone().equals(e.getPhone())
-                    && getEmail().equals(e.getEmail())
-                    && getAddress().equals(e.getAddress())
-                    && getCompanyNote().equals(e.getCompanyNote())
-                    && getPersonList().equals(e.getPersonList());
+            EditCompanyCommand.EditCompanyDescriptor otherEditCompanyDescriptor
+                    = (EditCompanyCommand.EditCompanyDescriptor) other;
+            return Objects.equals(getName(), otherEditCompanyDescriptor.getName())
+                    && Objects.equals(getIndustry(), otherEditCompanyDescriptor.getIndustry())
+                    && Objects.equals(getLocation(), otherEditCompanyDescriptor.getLocation())
+                    && Objects.equals(getDescription(), otherEditCompanyDescriptor.getDescription())
+                    && Objects.equals(getWebsite(), otherEditCompanyDescriptor.getWebsite())
+                    && Objects.equals(getPhone(), otherEditCompanyDescriptor.getPhone())
+                    && Objects.equals(getEmail(), otherEditCompanyDescriptor.getEmail())
+                    && Objects.equals(getAddress(), otherEditCompanyDescriptor.getAddress())
+                    && Objects.equals(getCompanyNote(), otherEditCompanyDescriptor.getCompanyNote());
         }
 
         @Override
         public String toString() {
             return new ToStringBuilder(this)
-                    .add("name", getName())
-                    .add("industry", getIndustry())
-                    .add("location", getLocation())
-                    .add("description", getDescription())
-                    .add("website", getWebsite())
-                    .add("phone", getPhone())
-                    .add("email", getEmail())
-                    .add("address", getAddress())
-                    .add("companyNote", getCompanyNote())
-                    .add("personList", getPersonList())
+                    .add("name", companyName)
+                    .add("industry", companyIndustry)
+                    .add("location", companyLocation)
+                    .add("description", companyDescription)
+                    .add("website", companyWebsite)
+                    .add("phone", companyPhone)
+                    .add("email", companyEmail)
+                    .add("address", companyAddress)
+                    .add("companyNote", companyNote)
                     .toString();
         }
     }
