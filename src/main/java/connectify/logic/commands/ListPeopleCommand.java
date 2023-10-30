@@ -15,8 +15,7 @@ public class ListPeopleCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Listed all persons.";
 
     public static final String EMPTY_LIST_MESSAGE = "There are no people in Connectify.";
-
-
+    
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
