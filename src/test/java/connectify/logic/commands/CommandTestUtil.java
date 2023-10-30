@@ -116,7 +116,6 @@ public class CommandTestUtil {
                 .withIndustry(VALID_COMPANY_INDUSTRY_A)
                 .withWebsite(VALID_COMPANY_WEBSITE_A)
                 .withDescription(VALID_COMPANY_DESCRIPTION_A)
-                .withCompanyNote(VALID_COMPANY_NOTE_A)
                 .withLocation(VALID_COMPANY_LOCATION_A)
                 .build();
 
@@ -128,7 +127,6 @@ public class CommandTestUtil {
                 .withIndustry(VALID_COMPANY_INDUSTRY_B)
                 .withWebsite(VALID_COMPANY_WEBSITE_B)
                 .withDescription(VALID_COMPANY_DESCRIPTION_B)
-                .withCompanyNote(VALID_COMPANY_NOTE_B)
                 .withLocation(VALID_COMPANY_LOCATION_B)
                 .build();
 

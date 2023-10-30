@@ -29,7 +29,7 @@ public class EditCompanyCommandParser implements Parser<EditCompanyCommand> {
     public EditCompanyCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_INDUSTRY, PREFIX_LOCATION,
-                PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_WEBSITE, PREFIX_DESCRIPTION, PREFIX_NOTE);
+                PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_WEBSITE, PREFIX_DESCRIPTION);
 
         Index companyIndex;
 
@@ -41,7 +41,7 @@ public class EditCompanyCommandParser implements Parser<EditCompanyCommand> {
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_INDUSTRY, PREFIX_LOCATION, PREFIX_PHONE,
-                PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_WEBSITE, PREFIX_DESCRIPTION, PREFIX_NOTE);
+                PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_WEBSITE, PREFIX_DESCRIPTION);
 
         EditCompanyCommand.EditCompanyDescriptor editCompanyDescriptor = new EditCompanyCommand
                 .EditCompanyDescriptor();

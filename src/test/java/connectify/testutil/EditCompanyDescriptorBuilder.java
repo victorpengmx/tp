@@ -39,7 +39,6 @@ public class EditCompanyDescriptorBuilder {
         descriptor.setPhone(company.getPhone());
         descriptor.setEmail(company.getEmail());
         descriptor.setAddress(company.getAddress());
-        descriptor.setCompanyNote(company.getNote());
     }
 
     /**
@@ -103,14 +102,6 @@ public class EditCompanyDescriptorBuilder {
      */
     public EditCompanyDescriptorBuilder withAddress(String address) {
         descriptor.setAddress(new CompanyAddress(address));
-        return this;
-    }
-
-    /**
-     * Sets the {@code CompanyNote} of the {@code EditCompanyDescriptor} that we are building.
-     */
-    public EditCompanyDescriptorBuilder withCompanyNote(String companyNote) {
-        descriptor.setCompanyNote(new CompanyNote(companyNote));
         return this;
     }
 
