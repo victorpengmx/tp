@@ -27,6 +27,9 @@ import connectify.model.company.CompanyPhone;
 import connectify.model.company.CompanyWebsite;
 import connectify.model.person.PersonList;
 
+/**
+ * Edits the details of an existing company in the address book.
+ */
 public class EditCompanyCommand extends Command {
 
     public static final String COMMAND_WORD = "editCompany";
@@ -245,7 +248,7 @@ public class EditCompanyCommand extends Command {
             return Optional.ofNullable(companyAddress);
         }
 
-        public void setCompanyNote (CompanyNote companyNote) {
+        public void setCompanyNote(CompanyNote companyNote) {
             this.companyNote = companyNote;
         }
 
@@ -272,8 +275,8 @@ public class EditCompanyCommand extends Command {
                 return false;
             }
 
-            EditCompanyCommand.EditCompanyDescriptor otherEditCompanyDescriptor
-                    = (EditCompanyCommand.EditCompanyDescriptor) other;
+            EditCompanyCommand.EditCompanyDescriptor otherEditCompanyDescriptor =
+                    (EditCompanyCommand.EditCompanyDescriptor) other;
             return Objects.equals(getName(), otherEditCompanyDescriptor.getName())
                     && Objects.equals(getIndustry(), otherEditCompanyDescriptor.getIndustry())
                     && Objects.equals(getLocation(), otherEditCompanyDescriptor.getLocation())

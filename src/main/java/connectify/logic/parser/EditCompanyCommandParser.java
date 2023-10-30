@@ -43,31 +43,39 @@ public class EditCompanyCommandParser implements Parser<EditCompanyCommand> {
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_INDUSTRY, PREFIX_LOCATION, PREFIX_PHONE,
                 PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_WEBSITE, PREFIX_DESCRIPTION, PREFIX_NOTE);
 
-        EditCompanyCommand.EditCompanyDescriptor editCompanyDescriptor = new EditCompanyCommand.EditCompanyDescriptor();
+        EditCompanyCommand.EditCompanyDescriptor editCompanyDescriptor = new EditCompanyCommand
+                .EditCompanyDescriptor();
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editCompanyDescriptor.setName(ParserCompanyUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_INDUSTRY).isPresent()) {
-            editCompanyDescriptor.setIndustry(ParserCompanyUtil.parseIndustry(argMultimap.getValue(PREFIX_INDUSTRY).get()));
+            editCompanyDescriptor.setIndustry(ParserCompanyUtil.parseIndustry(argMultimap
+                    .getValue(PREFIX_INDUSTRY).get()));
         }
         if (argMultimap.getValue(PREFIX_LOCATION).isPresent()) {
-            editCompanyDescriptor.setLocation(ParserCompanyUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get()));
+            editCompanyDescriptor.setLocation(ParserCompanyUtil.parseLocation(argMultimap
+                    .getValue(PREFIX_LOCATION).get()));
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            editCompanyDescriptor.setPhone(ParserCompanyUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
+            editCompanyDescriptor.setPhone(ParserCompanyUtil.parsePhone(argMultimap
+                    .getValue(PREFIX_PHONE).get()));
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            editCompanyDescriptor.setEmail(ParserCompanyUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
+            editCompanyDescriptor.setEmail(ParserCompanyUtil.parseEmail(argMultimap
+                    .getValue(PREFIX_EMAIL).get()));
         }
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            editCompanyDescriptor.setAddress(ParserCompanyUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
+            editCompanyDescriptor.setAddress(ParserCompanyUtil.parseAddress(argMultimap
+                    .getValue(PREFIX_ADDRESS).get()));
         }
         if (argMultimap.getValue(PREFIX_WEBSITE).isPresent()) {
-            editCompanyDescriptor.setWebsite(ParserCompanyUtil.parseWebsite(argMultimap.getValue(PREFIX_WEBSITE).get()));
+            editCompanyDescriptor.setWebsite(ParserCompanyUtil.parseWebsite(argMultimap
+                    .getValue(PREFIX_WEBSITE).get()));
         }
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
-            editCompanyDescriptor.setDescription(ParserCompanyUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get()));
+            editCompanyDescriptor.setDescription(ParserCompanyUtil.parseDescription(argMultimap
+                    .getValue(PREFIX_DESCRIPTION).get()));
         }
 
 
