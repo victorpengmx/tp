@@ -2,14 +2,13 @@ package connectify.logic.commands;
 
 import static connectify.logic.commands.CommandTestUtil.DESC_COMPANY_A;
 import static connectify.logic.commands.CommandTestUtil.DESC_COMPANY_B;
-import static connectify.logic.commands.CommandTestUtil.VALID_COMPANY_NAME_A;
 import static connectify.logic.commands.CommandTestUtil.VALID_COMPANY_NAME_B;
 import static connectify.logic.commands.CommandTestUtil.assertCommandFailure;
 import static connectify.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static connectify.logic.commands.CommandTestUtil.showCompanyAtIndex;
+import static connectify.testutil.TypicalCompanies.getTypicalAddressBook;
 import static connectify.testutil.TypicalIndexes.INDEX_FIRST_COMPANY;
 import static connectify.testutil.TypicalIndexes.INDEX_SECOND_COMPANY;
-import static connectify.testutil.TypicalCompanies.getTypicalAddressBook;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -18,15 +17,14 @@ import org.junit.jupiter.api.Test;
 
 import connectify.commons.core.index.Index;
 import connectify.logic.Messages;
-import connectify.logic.commands.EditCompanyCommand;
 import connectify.logic.commands.EditCompanyCommand.EditCompanyDescriptor;
 import connectify.model.AddressBook;
 import connectify.model.Model;
 import connectify.model.ModelManager;
 import connectify.model.UserPrefs;
 import connectify.model.company.Company;
-import connectify.testutil.EditCompanyDescriptorBuilder;
 import connectify.testutil.CompanyBuilder;
+import connectify.testutil.EditCompanyDescriptorBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCompanyCommand.
@@ -72,7 +70,8 @@ public class EditCompanyCommandTest {
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
-        EditCompanyCommand editCompanyCommand = new EditCompanyCommand(INDEX_FIRST_COMPANY, new EditCompanyDescriptor());
+        EditCompanyCommand editCompanyCommand = new EditCompanyCommand(INDEX_FIRST_COMPANY,
+                new EditCompanyDescriptor());
         Company editedCompany = model.getFilteredCompanyList().get(INDEX_FIRST_COMPANY.getZeroBased());
 
         String expectedMessage = String.format(EditCompanyCommand.MESSAGE_SUCCESS,
@@ -149,7 +148,8 @@ public class EditCompanyCommandTest {
         Index index = Index.fromOneBased(1);
         EditCompanyDescriptor editCompanyDescriptor = new EditCompanyDescriptor();
         EditCompanyCommand editCompanyCommand = new EditCompanyCommand(index, editCompanyDescriptor);
-        String expected = EditCompanyCommand.class.getCanonicalName() + "{companyIndex=" + index + ", editCompanyDescriptor="
+        String expected = EditCompanyCommand.class.getCanonicalName()
+                + "{companyIndex=" + index + ", editCompanyDescriptor="
                 + editCompanyDescriptor + "}";
         assertEquals(expected, editCompanyCommand.toString());
     }

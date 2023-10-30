@@ -1,6 +1,11 @@
 package connectify.logic.commands;
 
-import static connectify.logic.commands.CommandTestUtil.*;
+import static connectify.logic.commands.CommandTestUtil.DESC_COMPANY_A;
+import static connectify.logic.commands.CommandTestUtil.DESC_COMPANY_B;
+import static connectify.logic.commands.CommandTestUtil.VALID_COMPANY_ADDRESS_B;
+import static connectify.logic.commands.CommandTestUtil.VALID_COMPANY_EMAIL_B;
+import static connectify.logic.commands.CommandTestUtil.VALID_COMPANY_NAME_B;
+import static connectify.logic.commands.CommandTestUtil.VALID_COMPANY_PHONE_B;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;

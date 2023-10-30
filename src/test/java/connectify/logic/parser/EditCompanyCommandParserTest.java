@@ -4,7 +4,7 @@ import static connectify.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static connectify.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static connectify.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static connectify.logic.parser.CliSyntax.PREFIX_NAME;
-import static connectify.logic.parser.CliSyntax.PREFIX_PHONE
+import static connectify.logic.parser.CliSyntax.PREFIX_PHONE;
 import static connectify.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static connectify.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static connectify.testutil.TypicalIndexes.INDEX_FIRST_COMPANY;
@@ -16,9 +16,9 @@ import connectify.commons.core.index.Index;
 import connectify.logic.commands.CommandTestUtil;
 import connectify.logic.commands.EditCompanyCommand;
 import connectify.model.company.CompanyAddress;
+import connectify.model.company.CompanyEmail;
 import connectify.model.company.CompanyName;
 import connectify.model.company.CompanyPhone;
-import connectify.model.company.CompanyEmail;
 import connectify.testutil.EditCompanyDescriptorBuilder;
 import connectify.testutil.TypicalIndexes;
 

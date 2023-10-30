@@ -7,7 +7,6 @@ import connectify.model.company.CompanyEmail;
 import connectify.model.company.CompanyIndustry;
 import connectify.model.company.CompanyLocation;
 import connectify.model.company.CompanyName;
-import connectify.model.company.CompanyNote;
 import connectify.model.company.CompanyPhone;
 import connectify.model.company.CompanyWebsite;
 
