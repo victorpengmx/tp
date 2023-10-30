@@ -1,18 +1,30 @@
 package connectify.logic.commands;
 
+import static connectify.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static connectify.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static connectify.logic.parser.CliSyntax.PREFIX_NAME;
+import static connectify.logic.parser.CliSyntax.PREFIX_PHONE;
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+import java.util.Optional;
+
 import connectify.commons.core.index.Index;
 import connectify.commons.util.CollectionUtil;
 import connectify.commons.util.ToStringBuilder;
 import connectify.logic.Messages;
 import connectify.logic.commands.exceptions.CommandException;
 import connectify.model.Model;
-import connectify.model.company.*;
-import connectify.model.person.*;
-import connectify.model.tag.Tag;
-
-import java.util.*;
-
-import static java.util.Objects.requireNonNull;
+import connectify.model.company.Company;
+import connectify.model.company.CompanyAddress;
+import connectify.model.company.CompanyEmail;
+import connectify.model.company.CompanyIndustry;
+import connectify.model.company.CompanyLocation;
+import connectify.model.company.CompanyName;
+import connectify.model.company.CompanyNote;
+import connectify.model.company.CompanyPhone;
+import connectify.model.company.CompanyWebsite;
+import connectify.model.person.PersonList;
 
 public class EditCompanyCommand extends Command {
 
@@ -28,12 +40,14 @@ public class EditCompanyCommand extends Command {
             + "ADDRESS "
             + "TAG...\n"
             + "Example: " + COMMAND_WORD + " 1 "
+            + PREFIX_NAME
             + "TechCorp "
+            + PREFIX_PHONE
             + "91234567 "
+            + PREFIX_EMAIL
             + "techcorp@gmail.com"
-            + "123, Jurong West Ave 6, #08-111 "
-            + "tech "
-            + "software";
+            + PREFIX_ADDRESS
+            + "123, Jurong West Ave 6, #08-111";
 
     public static final String MESSAGE_SUCCESS = "Edited Company: %1$s";
     public static final String MESSAGE_DUPLICATE_COMPANY = "This company already exists in Connectify.";
