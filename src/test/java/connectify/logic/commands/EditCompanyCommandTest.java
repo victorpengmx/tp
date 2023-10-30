@@ -61,7 +61,7 @@ public class EditCompanyCommandTest {
         EditCompanyDescriptor descriptor = new EditCompanyDescriptorBuilder().withName(VALID_COMPANY_NAME_B).build();
         EditCompanyCommand editCompanyCommand = new EditCompanyCommand(indexLastCompany, descriptor);
 
-        String expectedMessage = String.format(EditCompanyCommand.MESSAGE_EDIT_COMPANY_SUCCESS,
+        String expectedMessage = String.format(EditCompanyCommand.MESSAGE_SUCCESS,
                 Messages.format(editedCompany));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
@@ -75,7 +75,7 @@ public class EditCompanyCommandTest {
         EditCompanyCommand editCompanyCommand = new EditCompanyCommand(INDEX_FIRST_COMPANY, new EditCompanyDescriptor());
         Company editedCompany = model.getFilteredCompanyList().get(INDEX_FIRST_COMPANY.getZeroBased());
 
-        String expectedMessage = String.format(EditCompanyCommand.MESSAGE_EDIT_COMPANY_SUCCESS,
+        String expectedMessage = String.format(EditCompanyCommand.MESSAGE_SUCCESS,
                 Messages.format(editedCompany));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
@@ -92,7 +92,7 @@ public class EditCompanyCommandTest {
         EditCompanyDescriptor descriptor = new EditCompanyDescriptorBuilder().withName(VALID_COMPANY_NAME_B).build();
         EditCompanyCommand editCompanyCommand = new EditCompanyCommand(INDEX_FIRST_COMPANY, descriptor);
 
-        String expectedMessage = String.format(EditCompanyCommand.MESSAGE_EDIT_COMPANY_SUCCESS,
+        String expectedMessage = String.format(EditCompanyCommand.MESSAGE_SUCCESS,
                 Messages.format(editedCompany));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
@@ -111,18 +111,12 @@ public class EditCompanyCommandTest {
     }
 
     @Test
-    public void execute_invalidCompanyIndexUnfilteredList_failure() {
+    public void execute_invalidIndexProvided_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredCompanyList().size() + 1);
         EditCompanyDescriptor descriptor = new EditCompanyDescriptorBuilder().withName(VALID_COMPANY_NAME_B).build();
         EditCompanyCommand editCompanyCommand = new EditCompanyCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(editCompanyCommand, model, Messages.MESSAGE_INVALID_COMPANY_DISPLAYED_INDEX);
-    }
-
-    @Test
-    public void execute_noIndexProvided_failure() {
-        EditCompanyCommand editCompanyCommand = new EditCompanyCommand(null, DESC_COMPANY_A);
-        assertCommandFailure(editCompanyCommand, model, EditCompanyCommand.MESSAGE_NO_INDEX_PROVIDED);
     }
 
     @Test
@@ -155,7 +149,7 @@ public class EditCompanyCommandTest {
         Index index = Index.fromOneBased(1);
         EditCompanyDescriptor editCompanyDescriptor = new EditCompanyDescriptor();
         EditCompanyCommand editCompanyCommand = new EditCompanyCommand(index, editCompanyDescriptor);
-        String expected = EditCompanyCommand.class.getCanonicalName() + "{index=" + index + ", editCompanyDescriptor="
+        String expected = EditCompanyCommand.class.getCanonicalName() + "{companyIndex=" + index + ", editCompanyDescriptor="
                 + editCompanyDescriptor + "}";
         assertEquals(expected, editCompanyCommand.toString());
     }
