@@ -15,6 +15,7 @@ import java.util.*;
 import static java.util.Objects.requireNonNull;
 
 public class EditCompanyCommand extends Command {
+
     public static final String COMMAND_WORD = "editCompany";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the company identified "
@@ -36,6 +37,7 @@ public class EditCompanyCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Edited Company: %1$s";
     public static final String MESSAGE_DUPLICATE_COMPANY = "This company already exists in Connectify.";
+    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     private final Index companyIndex;
     private final EditCompanyDescriptor editCompanyDescriptor;
 
@@ -286,6 +288,4 @@ public class EditCompanyCommand extends Command {
                     .toString();
         }
     }
-}
-
 }

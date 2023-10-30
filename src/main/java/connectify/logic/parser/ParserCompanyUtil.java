@@ -129,4 +129,10 @@ public class ParserCompanyUtil {
         return new CompanyEmail(trimmedEmail);
     }
 
+    public static String parseDescription(String description) throws ParseException {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        return trimmedDescription;
+    }
+
 }
