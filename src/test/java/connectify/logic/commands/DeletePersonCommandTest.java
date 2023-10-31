@@ -32,20 +32,19 @@ public class DeletePersonCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
-
     @Test
     public void execute_validIndexesUnfilteredList_success() {
         Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         DeletePersonCommand deletePersonCommand = new DeletePersonCommand(INDEX_SECOND_COMPANY, INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(DeletePersonCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
+        String expectedMessage = String.format(DeletePersonCommand.MESSAGE_DELETE_PERSON_SUCCESS,
+                Messages.format(personToDelete));
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
 
         assertCommandSuccess(deletePersonCommand, model, expectedMessage, expectedModel);
 
-        // Additional checks for the contents
         assertFalse(model.getFilteredPersonList().contains(personToDelete));
         assertEquals(expectedModel.getFilteredPersonList(), model.getFilteredPersonList());
     }
@@ -68,7 +67,7 @@ public class DeletePersonCommandTest {
         DeletePersonCommand deletePersonCommand = new DeletePersonCommand(INDEX_SECOND_COMPANY, INDEX_FIRST_PERSON);
 
         String expectedMessage = String.format(DeletePersonCommand.MESSAGE_DELETE_PERSON_SUCCESS,
-                personToDelete);
+                Messages.format(personToDelete));
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
@@ -77,18 +76,27 @@ public class DeletePersonCommandTest {
     }
 
     @Test
+    public void execute_invalidCompanyIndex_throwsCommandException() {
+        Index outOfBoundCompanyIndex = Index.fromOneBased(model.getFilteredCompanyList().size() + 1);
+        DeletePersonCommand deletePersonCommand = new DeletePersonCommand(outOfBoundCompanyIndex, INDEX_FIRST_PERSON);
+        assertCommandFailure(deletePersonCommand, model, Messages.MESSAGE_INVALID_COMPANY_DISPLAYED_INDEX);
+    }
+
+
+    @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
-        Index outOfBoundPersonIndex = INDEX_THIRD_PERSON; // Typical address book has only 2 persons
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // Our typical address book has only 2 persons
+        Index outOfBoundPersonIndex = INDEX_THIRD_PERSON;
+
+        // Ensure that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundPersonIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
 
         DeletePersonCommand deletePersonCommand = new DeletePersonCommand(INDEX_FIRST_COMPANY, outOfBoundPersonIndex);
 
         assertCommandFailure(deletePersonCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
-
 
     @Test
     public void equals() {
@@ -111,6 +119,7 @@ public class DeletePersonCommandTest {
         // different person -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
     }
+
     @Test
     public void toStringMethod() {
         DeletePersonCommand deletePersonCommand = new DeletePersonCommand(INDEX_FIRST_COMPANY, INDEX_FIRST_PERSON);
@@ -118,14 +127,4 @@ public class DeletePersonCommandTest {
                 + ", personIndex=" + INDEX_FIRST_PERSON + "}";
         assertEquals(expected, deletePersonCommand.toString());
     }
-
-    /**
-     * Updates {@code model}'s filtered list to show no one.
-     */
-    private void showNoPerson(Model model) {
-        model.updateFilteredPersonList(p -> false);
-
-        assertTrue(model.getFilteredPersonList().isEmpty());
-    }
-
 }

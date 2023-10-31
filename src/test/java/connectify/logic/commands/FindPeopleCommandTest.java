@@ -54,24 +54,60 @@ public class FindPeopleCommandTest {
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 
+    /**
+     * Tests the scenario where no keyword is provided.
+     * Expected result is that no person is found.
+     */
     @Test
     public void execute_zeroKeywords_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        NameContainsKeywordsPredicate predicate = preparePredicate(" ");
+        NameContainsKeywordsPredicate predicate = createPersonNamePredicate(" ");
         FindPeopleCommand command = new FindPeopleCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredPersonList());
     }
 
+    /**
+     * Tests the scenario where multiple valid keywords are provided.
+     * Expected result is that all persons matching the keywords are found.
+     */
     @Test
     public void execute_multipleKeywords_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
+        NameContainsKeywordsPredicate predicate = createPersonNamePredicate("Kurz Elle Kunz");
         FindPeopleCommand command = new FindPeopleCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
+    }
+
+    /**
+     * Tests the scenario where a mix of matching and non-matching keywords are provided.
+     * Expected result is that persons matching the valid keywords are found.
+     */
+    @Test
+    public void execute_mixedKeywords_matchingPersonsFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
+        NameContainsKeywordsPredicate predicate = createPersonNamePredicate("Kurz NonExistent");
+        FindPeopleCommand command = new FindPeopleCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(CARL), model.getFilteredPersonList());
+    }
+
+    /**
+     * Tests the scenario where keywords are provided in a case-insensitive manner.
+     * Expected result is that persons matching the keywords (regardless of case) are found.
+     */
+    @Test
+    public void execute_caseInsensitiveSearch_matchingPersonsFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
+        NameContainsKeywordsPredicate predicate = createPersonNamePredicate("kUrZ eLLe");
+        FindPeopleCommand command = new FindPeopleCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(CARL, ELLE), model.getFilteredPersonList());
     }
 
     @Test
@@ -85,7 +121,7 @@ public class FindPeopleCommandTest {
     /**
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */
-    private NameContainsKeywordsPredicate preparePredicate(String userInput) {
+    private NameContainsKeywordsPredicate createPersonNamePredicate(String userInput) {
         return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 }

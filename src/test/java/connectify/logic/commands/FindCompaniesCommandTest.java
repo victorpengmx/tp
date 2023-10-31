@@ -56,20 +56,26 @@ public class FindCompaniesCommandTest {
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 
+    /**
+     * Tests the scenario where no companies are found with zero keywords.
+     */
     @Test
     public void execute_zeroKeywords_noCompanyFound() {
         String expectedMessage = String.format(MESSAGE_COMPANIES_LISTED_OVERVIEW, 0);
-        CompanyNameContainsKeywordsPredicate predicate = preparePredicate(" ");
+        CompanyNameContainsKeywordsPredicate predicate = createCompanyNamePredicate(" ");
         FindCompaniesCommand command = new FindCompaniesCommand(predicate);
         expectedModel.updateFilteredCompanyList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredCompanyList());
     }
 
+    /**
+     * Tests the scenario where multiple companies are found with multiple keywords.
+     */
     @Test
     public void execute_multipleKeywords_multipleCompaniesFound() {
         String expectedMessage = String.format(MESSAGE_COMPANIES_LISTED_OVERVIEW, 2);
-        CompanyNameContainsKeywordsPredicate predicate = preparePredicate("Company1 Banana");
+        CompanyNameContainsKeywordsPredicate predicate = createCompanyNamePredicate("Company1 Banana");
         FindCompaniesCommand command = new FindCompaniesCommand(predicate);
         expectedModel.updateFilteredCompanyList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -79,9 +85,60 @@ public class FindCompaniesCommandTest {
     }
 
     /**
-     * Parses {@code userInput} into a {@code EntityNameContainsKeywordsPredicate}.
+     * Tests the scenario where a single company is found with a single keyword.
      */
-    private CompanyNameContainsKeywordsPredicate preparePredicate(String userInput) {
+    @Test
+    public void execute_singleKeyword_singleCompanyFound() {
+        String expectedMessage = String.format(MESSAGE_COMPANIES_LISTED_OVERVIEW, 1);
+        CompanyNameContainsKeywordsPredicate predicate = createCompanyNamePredicate("Company1");
+        FindCompaniesCommand command = new FindCompaniesCommand(predicate);
+        expectedModel.updateFilteredCompanyList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+
+        List<Company> expectedCompanies = Collections.singletonList(COMPANY_1);
+        assertEquals(expectedCompanies, model.getFilteredCompanyList());
+    }
+
+    /**
+     * Tests the scenario where the user provides keywords in a mixture of upper and lower case letters.
+     * The search should be case-insensitive, and the method should return companies that match
+     * the keywords regardless of their case.
+     */
+    @Test
+    public void execute_caseInsensitiveSearch() {
+        String expectedMessage = String.format(MESSAGE_COMPANIES_LISTED_OVERVIEW, 1);
+        CompanyNameContainsKeywordsPredicate predicate = createCompanyNamePredicate("COMPANY1");
+        FindCompaniesCommand command = new FindCompaniesCommand(predicate);
+        expectedModel.updateFilteredCompanyList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+
+        List<Company> expectedCompanies = Collections.singletonList(COMPANY_1);
+        assertEquals(expectedCompanies, model.getFilteredCompanyList());
+    }
+
+    /**
+     * Tests the scenario where the user provides multiple keywords for searching,
+     * and only some of them match the companies in the list.
+     */
+    @Test
+    public void execute_multipleKeywords_someMatching() {
+        String expectedMessage = String.format(MESSAGE_COMPANIES_LISTED_OVERVIEW, 1);
+        CompanyNameContainsKeywordsPredicate predicate = createCompanyNamePredicate("Company1 Nonexistent");
+        FindCompaniesCommand command = new FindCompaniesCommand(predicate);
+        expectedModel.updateFilteredCompanyList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+
+        List<Company> expectedCompanies = Collections.singletonList(COMPANY_1);
+        assertEquals(expectedCompanies, model.getFilteredCompanyList());
+    }
+
+    /**
+     * Parses {@code userInput} into a {@code CompanyNameContainsKeywordsPredicate}.
+     *
+     * @param userInput The user's input to be parsed.
+     * @return A predicate that checks if a company name contains the given keywords.
+     */
+    private CompanyNameContainsKeywordsPredicate createCompanyNamePredicate(String userInput) {
         return new CompanyNameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 }

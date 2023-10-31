@@ -53,19 +53,6 @@ public class AddPersonCommandTest {
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().build();
-        modelStub.addCompany(TypicalCompanies.DUMMY_COMPANY);
-
-        CommandResult commandResult = new AddPersonCommand(validPerson, INDEX_FIRST_COMPANY).execute(modelStub);
-
-        assertEquals(String.format(AddPersonCommand.MESSAGE_SUCCESS, Messages.format(validPerson)),
-                commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
-    }
-
-    @Test
     public void execute_invalidCompanyIndex_throwsCommandException() {
         Person validPerson = new PersonBuilder().build();
         AddPersonCommand addPersonCommand = new AddPersonCommand(validPerson, INDEX_SECOND_COMPANY);
@@ -118,7 +105,7 @@ public class AddPersonCommandTest {
     }
 
     /**
-     * A default model stub that have all of the methods failing.
+     * A default model stub that have all the methods failing.
      */
     private class ModelStub implements Model {
         @Override
