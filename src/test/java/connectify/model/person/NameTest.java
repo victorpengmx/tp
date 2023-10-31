@@ -1,6 +1,7 @@
 package connectify.model.person;
 
 import static connectify.testutil.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -56,5 +57,15 @@ public class NameTest {
 
         // different values -> returns false
         assertFalse(name.equals(new PersonName("Other Valid Name")));
+    }
+
+    @Test
+    public void compareTo() {
+        PersonName name1 = new PersonName("Alice");
+        PersonName name2 = new PersonName("Bob");
+
+        assertEquals(name1.compareTo(name2), -1);
+        assertEquals(name1.compareTo(name1), 0);
+        assertEquals(name2.compareTo(name1), 1);
     }
 }

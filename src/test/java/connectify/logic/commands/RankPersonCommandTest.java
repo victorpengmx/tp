@@ -2,6 +2,7 @@ package connectify.logic.commands;
 
 import static connectify.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static connectify.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static connectify.testutil.RankedPersons.getRankedAddressBook;
 import static connectify.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static connectify.testutil.TypicalPersons.getTypicalAddressBook;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -16,7 +17,7 @@ import connectify.model.ModelManager;
 import connectify.model.UserPrefs;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for ListPeopleCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for RankPersonCommand.
  */
 public class RankPersonCommandTest {
 
@@ -26,7 +27,7 @@ public class RankPersonCommandTest {
     @BeforeEach
     public void setUp() {
         model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel = new ModelManager(getRankedAddressBook(), new UserPrefs());
     }
 
     @Test

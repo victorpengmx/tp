@@ -1,7 +1,6 @@
 package connectify.model.person;
 
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -15,7 +14,7 @@ import connectify.model.tag.Tag;
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person extends Entity implements Comparator<Person> {
+public class Person extends Entity {
 
     // Identity fields
     private final PersonName name;
@@ -152,15 +151,8 @@ public class Person extends Entity implements Comparator<Person> {
                 .toString();
     }
 
-    @Override
-    public int compare(Person o1, Person o2) {
-        if (o1.getPriority().getValue() < o2.getPriority().getValue()) {
-            return -1;
-        } else if (o1.getPriority().getValue() > o2.getPriority().getValue()) {
-            return 1;
-        } else {
-            return 0;
-        }
+    public int compareNameWith(Person o) {
+        return this.getName().compareTo(o.getName());
     }
 
     public int rank() {

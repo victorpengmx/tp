@@ -4,7 +4,11 @@ import static connectify.model.Model.PREDICATE_SHOW_ALL_COMPANIES;
 import static connectify.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static java.util.Objects.requireNonNull;
 
+import java.util.Comparator;
+
 import connectify.model.Model;
+import connectify.model.person.Person;
+import connectify.model.person.PersonNameComparator;
 
 /**
  * Lists all entities (both persons and companies) in the address book to the user.
@@ -22,6 +26,8 @@ public class ListAllCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        Comparator<Person> comparator = new PersonNameComparator();
+        model.updateSortedPersonList(comparator);
         model.updateFilteredCompanyList(PREDICATE_SHOW_ALL_COMPANIES);
         model.updateToAllEntities();
         if (model.isEmpty()) {
