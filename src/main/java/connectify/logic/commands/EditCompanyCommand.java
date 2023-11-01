@@ -49,7 +49,7 @@ public class EditCompanyCommand extends Command {
             + PREFIX_PHONE
             + "91234567 "
             + PREFIX_EMAIL
-            + "techcorp@gmail.com"
+            + "techcorp@gmail.com "
             + PREFIX_ADDRESS
             + "123, Jurong West Ave 6, #08-111";
 
