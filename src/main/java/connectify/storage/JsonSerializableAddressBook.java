@@ -23,41 +23,37 @@ class JsonSerializableAddressBook {
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
     public static final String MESSAGE_DUPLICATE_COMPANY = "Companies list contains duplicate company(s).";
 
-    private final List<JsonAdaptedPerson> persons = new ArrayList<>();
     private final List<JsonAdaptedCompany> companies = new ArrayList<>();
 
+
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
-                                       @JsonProperty("companies") List<JsonAdaptedCompany> companies) {
-        if (persons != null) {
-            this.persons.addAll(persons);
-        }
+    public JsonSerializableAddressBook(@JsonProperty("companies") List<JsonAdaptedCompany> companies) {
         if (companies != null) {
             this.companies.addAll(companies);
         }
     }
 
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
         companies.addAll(source.getCompanyList().stream().map(JsonAdaptedCompany::new).collect(Collectors.toList()));
     }
 
     public AddressBook toModelType() throws IllegalValueException {
         AddressBook addressBook = new AddressBook();
-        for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
-            Person person = jsonAdaptedPerson.toModelType();
-            if (addressBook.hasPerson(person)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
-            }
-            addressBook.addPerson(person);
-        }
-
         for (JsonAdaptedCompany jsonAdaptedCompany : companies) {
             Company company = jsonAdaptedCompany.toModelType();
             if (addressBook.hasCompany(company)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_COMPANY);
             }
             addressBook.addCompany(company);
+
+            for (int i = 0; i < company.getPersonList().size(); i++) {
+                Person person = company.getPersonList().get(i);
+                if (addressBook.hasPerson(person)) {
+                    throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+                }
+                person.setParentCompany(company);
+                addressBook.addPerson(person);
+            }
         }
 
         return addressBook;

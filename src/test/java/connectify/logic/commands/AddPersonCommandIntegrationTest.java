@@ -34,14 +34,14 @@ public class AddPersonCommandIntegrationTest {
         Person validPerson = new PersonBuilder().build();
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.addPerson(validPerson);
 
         List<Company> companies = expectedModel.getFilteredCompanyList();
         Company targetCompany = companies.get(INDEX_FIRST_COMPANY.getZeroBased());
         Company editedCompany = targetCompany.addPersonToCompany(validPerson);
 
+        validPerson.setParentCompany(editedCompany);
         expectedModel.setCompany(targetCompany, editedCompany);
-
+        expectedModel.addPerson(validPerson);
         assertCommandSuccess(new AddPersonCommand(validPerson, INDEX_FIRST_COMPANY), model,
                 String.format(AddPersonCommand.MESSAGE_SUCCESS, Messages.format(validPerson)),
                 expectedModel);

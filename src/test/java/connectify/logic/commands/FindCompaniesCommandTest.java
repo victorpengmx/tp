@@ -75,7 +75,7 @@ public class FindCompaniesCommandTest {
     @Test
     public void execute_multipleKeywords_multipleCompaniesFound() {
         String expectedMessage = String.format(MESSAGE_COMPANIES_LISTED_OVERVIEW, 2);
-        CompanyNameContainsKeywordsPredicate predicate = createCompanyNamePredicate("Company1 Banana");
+        CompanyNameContainsKeywordsPredicate predicate = createCompanyNamePredicate("Company1 Company2");
         FindCompaniesCommand command = new FindCompaniesCommand(predicate);
         expectedModel.updateFilteredCompanyList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);

@@ -99,6 +99,7 @@ public class EditPersonCommand extends Command {
         }
 
         Person personToEdit = affiliatedCompanyToEdit.getPersonList().asList().get(index.getZeroBased());
+
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
@@ -109,6 +110,7 @@ public class EditPersonCommand extends Command {
         Company editedAffliatedCompany = companyWithPersonDeleted.addPersonToCompany(editedPerson);
 
         model.setCompany(affiliatedCompanyToEdit, editedAffliatedCompany);
+        editedPerson.setParentCompany(editedAffliatedCompany);
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)));
@@ -119,7 +121,7 @@ public class EditPersonCommand extends Command {
      * edited with {@code editPersonDescriptor}.
      */
     private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
-        assert personToEdit != null;
+        assert personToEdit != null : "Person to edit cannot be null";
 
         PersonName updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         PersonPhone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
@@ -128,9 +130,10 @@ public class EditPersonCommand extends Command {
         PersonNote updatedNote = personToEdit.getNote();
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         PersonPriority updatedPriority = editPersonDescriptor.getPersonPriority().orElse(personToEdit.getPriority());
+        Company updatedParentCompany = personToEdit.getParentCompany();
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags,
-                updatedNote, updatedPriority);
+                updatedNote, updatedPriority, updatedParentCompany);
     }
 
     @Override
@@ -169,6 +172,10 @@ public class EditPersonCommand extends Command {
         private Set<Tag> tags;
         private PersonPriority personPriority;
 
+        private PersonNote note;
+
+        private Company parentCompany;
+
 
 
         public EditPersonDescriptor() {}
@@ -184,7 +191,8 @@ public class EditPersonCommand extends Command {
             setAddress(toCopy.address);
             setTags(toCopy.tags);
             setPersonPriority(toCopy.personPriority);
-
+            setParentCompany(toCopy.parentCompany);
+            setNote(toCopy.note);
         }
 
         /**
@@ -251,6 +259,21 @@ public class EditPersonCommand extends Command {
             return Optional.ofNullable(personPriority);
         }
 
+        public void setParentCompany(Company parentCompany) {
+            this.parentCompany = parentCompany;
+        }
+
+        public Optional<Company> getParentCompany() {
+            return Optional.ofNullable(parentCompany);
+        }
+        public void setNote(PersonNote note) {
+            this.note = note;
+        }
+
+        public Optional<PersonNote> getNote() {
+            return Optional.ofNullable(note);
+        }
+
         @Override
         public boolean equals(Object other) {
             if (other == this) {
@@ -267,7 +290,9 @@ public class EditPersonCommand extends Command {
                     && Objects.equals(phone, otherEditPersonDescriptor.phone)
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
-                    && Objects.equals(tags, otherEditPersonDescriptor.tags);
+                    && Objects.equals(tags, otherEditPersonDescriptor.tags)
+                    && Objects.equals(personPriority, otherEditPersonDescriptor.personPriority)
+                    && Objects.equals(parentCompany, otherEditPersonDescriptor.parentCompany);
         }
 
         @Override
@@ -277,8 +302,10 @@ public class EditPersonCommand extends Command {
                     .add("phone", phone)
                     .add("email", email)
                     .add("address", address)
-                    .add("tags", tags)
                     .add("priority", personPriority)
+                    .add("company", parentCompany)
+                    .add("note", note)
+                    .add("tags", tags)
                     .toString();
         }
     }

@@ -35,12 +35,16 @@ public class DeletePersonCommandTest {
     @Test
     public void execute_validIndexesUnfilteredList_success() {
         Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeletePersonCommand deletePersonCommand = new DeletePersonCommand(INDEX_SECOND_COMPANY, INDEX_FIRST_PERSON);
+        DeletePersonCommand deletePersonCommand = new DeletePersonCommand(INDEX_FIRST_COMPANY, INDEX_FIRST_PERSON);
 
         String expectedMessage = String.format(DeletePersonCommand.MESSAGE_DELETE_PERSON_SUCCESS,
                 Messages.format(personToDelete));
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Company expectedCompanyToUpdate = expectedModel.getFilteredCompanyList()
+                .get(INDEX_FIRST_COMPANY.getZeroBased());
+        Company editedCompany = expectedCompanyToUpdate.deletePersonFromCompany(personToDelete);
+        expectedModel.setCompany(expectedCompanyToUpdate, editedCompany);
         expectedModel.deletePerson(personToDelete);
 
         assertCommandSuccess(deletePersonCommand, model, expectedMessage, expectedModel);
@@ -70,6 +74,10 @@ public class DeletePersonCommandTest {
                 Messages.format(personToDelete));
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Company expectedCompanyToUpdate = expectedModel.getFilteredCompanyList()
+                                                .get(INDEX_SECOND_COMPANY.getZeroBased());
+        Company editedCompany = expectedCompanyToUpdate.deletePersonFromCompany(personToDelete);
+        expectedModel.setCompany(expectedCompanyToUpdate, editedCompany);
         expectedModel.deletePerson(personToDelete);
 
         assertCommandSuccess(deletePersonCommand, model, expectedMessage, expectedModel);

@@ -139,6 +139,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
+                .add("companies", companies)
                 .add("persons", persons)
                 .toString();
     }
@@ -171,9 +172,26 @@ public class AddressBook implements ReadOnlyAddressBook {
         if (!(other instanceof AddressBook)) {
             return false;
         }
-
         AddressBook otherAddressBook = (AddressBook) other;
-        return persons.equals(otherAddressBook.persons);
+        for (int i = 0; i < getCompanyList().size(); i++) {
+            if (!getCompanyList().get(i).equals(otherAddressBook.getCompanyList().get(i))) {
+                System.out.println("Company " + i + " is not equal");
+                System.out.println("Company in this addressbook: " + getCompanyList().get(i));
+                System.out.println("Company in other addressbook: " + otherAddressBook.getCompanyList().get(i));
+                // print people
+                System.out.println("There are " + getCompanyList().get(i).getPersonList().size()
+                        + " people in this company");
+                System.out.println("There are " + otherAddressBook.getCompanyList().get(i).getPersonList().size());
+                for (int j = 0; j < getCompanyList().get(i).getPersonList().size(); j++) {
+                    System.out.println("Person in this company: " + getCompanyList().get(i).getPersonList().get(j));
+                    System.out.println("Person in other company: "
+                            + otherAddressBook.getCompanyList().get(i).getPersonList().get(j));
+                }
+            }
+        }
+
+        return companies.equals(otherAddressBook.companies)
+                && persons.equals(otherAddressBook.persons);
     }
 
     @Override

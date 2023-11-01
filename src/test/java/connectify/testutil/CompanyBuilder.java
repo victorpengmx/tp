@@ -18,8 +18,7 @@ public class CompanyBuilder {
     public static final String DEFAULT_NAME = "Google";
     public static final String DEFAULT_INDUSTRY = "Technology";
     public static final String DEFAULT_LOCATION = "Singapore";
-    public static final String DEFAULT_DESCRIPTION = "Google is an American multinational technology company "
-            + "specializing in Internet-related services and products.";
+    public static final String DEFAULT_DESCRIPTION = "";
     public static final String DEFAULT_WEBSITE = "https://www.google.com/";
     public static final String DEFAULT_EMAIL = "google@gmail.com";
 

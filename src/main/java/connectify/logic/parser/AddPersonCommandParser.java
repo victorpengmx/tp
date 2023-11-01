@@ -50,7 +50,8 @@ public class AddPersonCommandParser implements Parser<AddPersonCommand> {
         Set<Tag> tagList = ParserPersonUtil.parseTags(argMultimap.getAllValues(CliSyntax.PREFIX_TAG));
 
         // Defaults to first company if no company index is provided
-        Index companyIndex = ParserCompanyUtil.parseIndex(argMultimap.getValue(CliSyntax.PREFIX_COMPANY).orElse("1"));
+        Index companyIndex = ParserCompanyUtil.parseIndex(argMultimap.getValue(CliSyntax.PREFIX_COMPANY)
+                .orElse("1"));
         PersonPriority priority = ParserPersonUtil
             .parsePersonPriority(argMultimap.getValue(CliSyntax.PREFIX_PRIORITY).get());
         Person person = new Person(name, personPhone, personEmail, personAddress, tagList, note, priority);

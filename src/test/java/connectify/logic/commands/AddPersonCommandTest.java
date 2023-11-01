@@ -271,6 +271,11 @@ public class AddPersonCommandTest {
         };
 
         @Override
+        public Integer getNumberOfAllEntities() {
+            throw new AssertionError("This method should not be called.");
+        };
+
+        @Override
         public Boolean isEmpty() {
             throw new AssertionError("This method should not be called.");
         };

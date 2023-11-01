@@ -64,7 +64,8 @@ public class PersonNoteCommand extends Command {
 
         Person personToEdit = companyPersonsList.get(personIndex.getZeroBased());
         Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), personToEdit.getTags(), note, personToEdit.getPriority());
+                personToEdit.getAddress(), personToEdit.getTags(), note, personToEdit.getPriority(),
+                personToEdit.getParentCompany());
 
         Company editedCompany = companyToUpdate.setPerson(personToEdit, editedPerson);
         model.setCompany(companyToUpdate, editedCompany);

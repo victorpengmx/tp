@@ -86,8 +86,10 @@ public class ModelManagerTest {
 
     @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
-        modelManager.addPerson(TypicalPersons.ALICE);
-        assertTrue(modelManager.hasPerson(TypicalPersons.ALICE));
+        Person toAdd = TypicalPersons.ALICE;
+        toAdd.setParentCompany(TypicalCompanies.COMPANY_1);
+        modelManager.addPerson(toAdd);
+        assertTrue(modelManager.hasPerson(toAdd));
     }
 
     @Test

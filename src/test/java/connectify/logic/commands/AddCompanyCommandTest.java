@@ -15,6 +15,7 @@ import java.util.function.Predicate;
 import org.junit.jupiter.api.Test;
 
 import connectify.commons.core.GuiSettings;
+import connectify.logic.Messages;
 import connectify.logic.commands.exceptions.CommandException;
 import connectify.model.AddressBook;
 import connectify.model.Entity;
@@ -43,7 +44,7 @@ public class AddCompanyCommandTest {
 
         CommandResult commandResult = new AddCompanyCommand(validCompany).execute(modelStub);
 
-        assertEquals(String.format(AddCompanyCommand.MESSAGE_SUCCESS, validCompany),
+        assertEquals(String.format(AddCompanyCommand.MESSAGE_SUCCESS, Messages.format(validCompany)),
                 commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validCompany), modelStub.companiesAdded);
     }
@@ -260,6 +261,11 @@ public class AddCompanyCommandTest {
 
         @Override
         public Integer getNumberOfEntities() {
+            throw new AssertionError("This method should not be called.");
+        };
+
+        @Override
+        public Integer getNumberOfAllEntities() {
             throw new AssertionError("This method should not be called.");
         };
 

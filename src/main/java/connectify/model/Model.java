@@ -147,7 +147,7 @@ public interface Model {
     /** Set the current entity type */
     void setCurrEntity(String currEntity) throws InvalidEntityException;
 
-    /** Get number of entities */
+    /** Get number of entities of the current type */
     Integer getNumberOfEntities();
 
     /** Get number of people */
@@ -155,6 +155,9 @@ public interface Model {
 
     /** Get number of companies */
     Integer getNumberOfCompanies();
+
+    /** Get number of entities */
+    Integer getNumberOfAllEntities();
 
     /** Check if there is no entities */
     Boolean isEmpty();

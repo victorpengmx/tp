@@ -21,6 +21,7 @@ import connectify.model.AddressBook;
 import connectify.model.Model;
 import connectify.model.ModelManager;
 import connectify.model.UserPrefs;
+import connectify.model.company.Company;
 import connectify.model.person.Person;
 import connectify.model.person.PersonNote;
 import connectify.testutil.PersonBuilder;
@@ -36,7 +37,8 @@ public class PersonNoteCommandTest {
     @Test
     public void execute_addNoteUnfilteredList_success() {
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Person editedPerson = new PersonBuilder(firstPerson).withNote(NOTE_STUB).build();
+        Person editedPerson = new PersonBuilder(firstPerson).withNote(NOTE_STUB)
+                                            .withParentCompany(firstPerson.getParentCompany()).build();
 
         PersonNoteCommand personNoteCommand = new PersonNoteCommand(INDEX_FIRST_COMPANY, INDEX_FIRST_PERSON,
                 new PersonNote(editedPerson.getNote().getContent()));
@@ -45,6 +47,10 @@ public class PersonNoteCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(firstPerson, editedPerson);
+        Company expectedCompanyToUpdate = expectedModel.getFilteredCompanyList()
+                .get(INDEX_FIRST_COMPANY.getZeroBased());
+        Company editedCompany = expectedCompanyToUpdate.setPerson(firstPerson, editedPerson);
+        expectedModel.setCompany(expectedCompanyToUpdate, editedCompany);
 
         assertCommandSuccess(personNoteCommand, model, expectedMessage, expectedModel);
     }
@@ -61,6 +67,11 @@ public class PersonNoteCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(firstPerson, editedPerson);
+
+        Company expectedCompanyToUpdate = expectedModel.getFilteredCompanyList()
+                .get(INDEX_FIRST_COMPANY.getZeroBased());
+        Company editedCompany = expectedCompanyToUpdate.setPerson(firstPerson, editedPerson);
+        expectedModel.setCompany(expectedCompanyToUpdate, editedCompany);
 
         assertCommandSuccess(personNoteCommand, model, expectedMessage, expectedModel);
     }
@@ -80,6 +91,11 @@ public class PersonNoteCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(firstPerson, editedPerson);
+
+        Company expectedCompanyToUpdate = expectedModel.getFilteredCompanyList()
+                .get(INDEX_FIRST_COMPANY.getZeroBased());
+        Company editedCompany = expectedCompanyToUpdate.setPerson(firstPerson, editedPerson);
+        expectedModel.setCompany(expectedCompanyToUpdate, editedCompany);
 
         assertCommandSuccess(personNoteCommand, model, expectedMessage, expectedModel);
     }

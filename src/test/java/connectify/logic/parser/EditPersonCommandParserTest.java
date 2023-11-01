@@ -39,7 +39,6 @@ public class EditPersonCommandParserTest {
     @Test
     public void parse_missingParts_failure() {
         // no company specified
-        System.out.println("1 " + CommandTestUtil.VALID_NAME_AMY);
         assertParseFailure(parser, "1 ", EditPersonCommand.MESSAGE_NO_COMPANY_PROVIDED);
 
         // no index specified

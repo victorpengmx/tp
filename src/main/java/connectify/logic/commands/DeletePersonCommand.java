@@ -50,7 +50,6 @@ public class DeletePersonCommand extends Command {
 
         Company companyToUpdate = getCompanyFromIndex(model);
         Person personToDelete = getPersonFromCompany(companyToUpdate);
-
         Company editedCompany = companyToUpdate.deletePersonFromCompany(personToDelete);
         model.setCompany(companyToUpdate, editedCompany);
 

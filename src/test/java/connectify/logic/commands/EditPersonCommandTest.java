@@ -27,6 +27,7 @@ import connectify.model.AddressBook;
 import connectify.model.Model;
 import connectify.model.ModelManager;
 import connectify.model.UserPrefs;
+import connectify.model.company.Company;
 import connectify.model.person.Person;
 import connectify.testutil.EditPersonDescriptorBuilder;
 import connectify.testutil.PersonBuilder;
@@ -41,6 +42,8 @@ public class EditPersonCommandTest {
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Person editedPerson = new PersonBuilder().build();
+        editedPerson.setParentCompany(model.getFilteredCompanyList().get(0));
+
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson).build();
         EditPersonCommand editPersonCommand = new EditPersonCommand(INDEX_FIRST_PERSON, INDEX_FIRST_COMPANY,
                 descriptor);
@@ -49,6 +52,12 @@ public class EditPersonCommandTest {
                 Messages.format(editedPerson));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Company expectedCompanyToEdit = expectedModel.getFilteredCompanyList().get(0);
+        Company expectedCompanyWithPersonDeleted = expectedCompanyToEdit.deletePersonFromCompany(
+                                                    expectedCompanyToEdit.getPersonList().get(0));
+        Company expectedEditedAffliatedCompany = expectedCompanyWithPersonDeleted.addPersonToCompany(editedPerson);
+        expectedModel.setCompany(expectedCompanyToEdit, expectedEditedAffliatedCompany);
+        editedPerson.setParentCompany(expectedEditedAffliatedCompany);
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
         assertCommandSuccess(editPersonCommand, model, expectedMessage, expectedModel);
@@ -72,6 +81,12 @@ public class EditPersonCommandTest {
                                                         Messages.format(editedPerson));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Company expectedCompanyToEdit = expectedModel.getFilteredCompanyList().get(0);
+        Company expectedCompanyWithPersonDeleted = expectedCompanyToEdit.deletePersonFromCompany(
+                expectedCompanyToEdit.getPersonList().get(indexLastPerson.getZeroBased()));
+        Company expectedEditedAffliatedCompany = expectedCompanyWithPersonDeleted.addPersonToCompany(editedPerson);
+        expectedModel.setCompany(expectedCompanyToEdit, expectedEditedAffliatedCompany);
+        editedPerson.setParentCompany(expectedEditedAffliatedCompany);
         expectedModel.setPerson(lastPerson, editedPerson);
 
         assertCommandSuccess(editPersonCommand, model, expectedMessage, expectedModel);
@@ -82,7 +97,6 @@ public class EditPersonCommandTest {
         EditPersonCommand editPersonCommand = new EditPersonCommand(INDEX_FIRST_PERSON, INDEX_FIRST_COMPANY,
                 new EditPersonDescriptor());
         Person editedPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-
         String expectedMessage = String.format(EditPersonCommand.MESSAGE_EDIT_PERSON_SUCCESS,
                                                         Messages.format(editedPerson));
 
@@ -105,6 +119,12 @@ public class EditPersonCommandTest {
                                                                     Messages.format(editedPerson));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Company expectedCompanyToEdit = expectedModel.getFilteredCompanyList().get(0);
+        Company expectedCompanyWithPersonDeleted = expectedCompanyToEdit.deletePersonFromCompany(
+                expectedCompanyToEdit.getPersonList().get(0));
+        Company expectedEditedAffliatedCompany = expectedCompanyWithPersonDeleted.addPersonToCompany(editedPerson);
+        expectedModel.setCompany(expectedCompanyToEdit, expectedEditedAffliatedCompany);
+        editedPerson.setParentCompany(expectedEditedAffliatedCompany);
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
         assertCommandSuccess(editPersonCommand, model, expectedMessage, expectedModel);
@@ -112,7 +132,6 @@ public class EditPersonCommandTest {
 
     @Test
     public void execute_duplicatePersonUnfilteredList_failure() {
-        System.out.println(model.getAddressBook().getCompanyList().get(0).getPersonList().size());
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(firstPerson).build();
         EditPersonCommand editPersonCommand = new EditPersonCommand(INDEX_SECOND_PERSON, INDEX_FIRST_COMPANY,

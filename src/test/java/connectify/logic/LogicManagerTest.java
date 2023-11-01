@@ -192,6 +192,7 @@ public class LogicManagerTest {
         Company editedCompany = targetCompany.addPersonToCompany(expectedPerson);
 
         expectedModel.setCompany(targetCompany, editedCompany);
+        expectedPerson.setParentCompany(editedCompany);
         expectedModel.addPerson(expectedPerson);
 
         assertCommandFailure(addPersonCommand, CommandException.class, expectedMessage, expectedModel);
