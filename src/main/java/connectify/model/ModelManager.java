@@ -33,7 +33,7 @@ public class ModelManager implements Model {
     private enum EntityType {
         PEOPLE, COMPANIES, ALL
     }
-    private EntityType currEntity = EntityType.COMPANIES;
+    private EntityType currEntity = EntityType.ALL;
 
 
     /**
@@ -45,8 +45,6 @@ public class ModelManager implements Model {
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
-        // Add a default company to the address book - To be implemented in future
-        // this.addressBook.addCompany(new Company("Unassigned"));
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filterCompanies = new FilteredList<>(this.addressBook.getCompanyList());
@@ -123,6 +121,7 @@ public class ModelManager implements Model {
 
     @Override
     public void addPerson(Person person) {
+        assert person.getParentCompany() != null : "Person that is added to Connectify must have a parent company";
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         currEntity = EntityType.PEOPLE;
@@ -211,10 +210,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateToAllEntities() {
-        currEntity = EntityType.ALL;
-    }
-    @Override
     public String getCurrEntity() {
         if (currEntity == EntityType.PEOPLE) {
             return "people";
@@ -239,22 +234,18 @@ public class ModelManager implements Model {
         }
     }
 
+    /**
+     * Returns an ObservableList of entities that is currently being filtered.
+     */
     @Override
-    public ObservableList<? extends Entity> getFilteredEntityList() {
-        if (currEntity == EntityType.PEOPLE) {
-            logger.info("Returning list of filtered persons");
-            return filteredPersons;
-        } else if (currEntity == EntityType.COMPANIES) {
-            logger.info("Returning list of filtered companies");
-            return filterCompanies;
-        } else {
-            // Create a new ObservableList which contains all the elements from filteredCompanies and filteredPersons
-            logger.info("Returning list of all entities");
-            ObservableList<Entity> allEntityList = FXCollections.observableArrayList();
-            allEntityList.addAll(filterCompanies);
-            allEntityList.addAll(filteredPersons);
-            return allEntityList;
-        }
+    public ObservableList<Entity> getFilteredEntityList() {
+        // Create a new ObservableList which contains all the elements from filteredCompanies and filteredPersons
+        logger.info("Returning list of all entities");
+        ObservableList<Entity> allEntityList = FXCollections.observableArrayList();
+        allEntityList.addAll(filterCompanies);
+        allEntityList.addAll(filteredPersons);
+        return new FilteredList<>(allEntityList);
+
     }
 
     @Override
@@ -270,6 +261,11 @@ public class ModelManager implements Model {
     @Override
     public Integer getNumberOfCompanies() {
         return filterCompanies.size();
+    }
+
+    @Override
+    public Integer getNumberOfAllEntities() {
+        return addressBook.getPersonList().size() + addressBook.getCompanyList().size();
     }
 
     @Override
@@ -295,7 +291,7 @@ public class ModelManager implements Model {
 
     @Override
     public String toString() {
-        String msg = "There are " + getNumberOfEntities() + " entities in the address book.\n";
+        String msg = "There are " + getNumberOfAllEntities() + " entities in the address book.\n";
         msg += "There are " + getNumberOfPeople() + " people in the address book.\n";
         msg += "There are " + getNumberOfCompanies() + " companies in the address book.\n";
         return msg;

@@ -3,6 +3,7 @@ package connectify.testutil;
 import static connectify.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static connectify.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static connectify.logic.parser.CliSyntax.PREFIX_NAME;
+import static connectify.logic.parser.CliSyntax.PREFIX_NOTE;
 import static connectify.logic.parser.CliSyntax.PREFIX_PHONE;
 import static connectify.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static connectify.logic.parser.CliSyntax.PREFIX_TAG;
@@ -51,6 +52,9 @@ public class PersonUtil {
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
+        descriptor.getPersonPriority().ifPresent(priority -> sb.append(PREFIX_PRIORITY).append(priority.toString())
+                .append(" "));
+        descriptor.getNote().ifPresent(note -> sb.append(PREFIX_NOTE).append(note.toString()).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

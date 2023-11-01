@@ -10,6 +10,8 @@ import org.junit.jupiter.api.Test;
 import connectify.commons.exceptions.IllegalValueException;
 import connectify.commons.util.JsonUtil;
 import connectify.model.AddressBook;
+import connectify.model.company.CompanyNameComparator;
+import connectify.model.person.PersonNameComparator;
 import connectify.testutil.Assert;
 import connectify.testutil.TypicalPersons;
 
@@ -28,6 +30,8 @@ public class JsonSerializableAddressBookTest {
                 JsonSerializableAddressBook.class).get();
         AddressBook addressBookFromFile = dataFromFile.toModelType();
         AddressBook typicalPersonsAddressBook = TypicalPersons.getTypicalAddressBook();
+        addressBookFromFile.sort(new CompanyNameComparator(), new PersonNameComparator());
+        typicalPersonsAddressBook.sort(new CompanyNameComparator(), new PersonNameComparator());
         assertEquals(addressBookFromFile, typicalPersonsAddressBook);
     }
 

@@ -3,11 +3,13 @@ package connectify.model.person;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 import connectify.commons.util.CollectionUtil;
 import connectify.commons.util.ToStringBuilder;
 import connectify.model.Entity;
+import connectify.model.company.Company;
 import connectify.model.tag.Tag;
 
 /**
@@ -27,6 +29,9 @@ public class Person extends Entity {
     private final PersonNote note;
     private final PersonPriority priority;
 
+    // Pointer back to parent company
+    private Company parentCompany;
+
     /**
      * Every field must be present and not null.
      */
@@ -40,6 +45,22 @@ public class Person extends Entity {
         this.note = note;
         this.tags.addAll(tags);
         this.priority = priority;
+        this.parentCompany = null;
+    }
+    /**
+     * Constructor with the parent company.
+     */
+    public Person(PersonName name, PersonPhone phone, PersonEmail email, PersonAddress address,
+                  Set<Tag> tags, PersonNote note, PersonPriority priority, Company parentCompany) {
+        CollectionUtil.requireAllNonNull(name, phone, email, address, note, tags, priority);
+        this.name = name;
+        this.personPhone = phone;
+        this.personEmail = email;
+        this.personAddress = address;
+        this.note = note;
+        this.tags.addAll(tags);
+        this.priority = priority;
+        this.parentCompany = parentCompany;
     }
 
     /**
@@ -95,6 +116,21 @@ public class Person extends Entity {
     }
 
     /**
+     * Get the parent company of this person.
+     */
+    public Company getParentCompany() {
+        return parentCompany;
+    }
+
+    /**
+     * Set the parent company of this person.
+     */
+
+    public void setParentCompany(Company parentCompany) {
+        this.parentCompany = parentCompany;
+    }
+
+    /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
@@ -123,6 +159,20 @@ public class Person extends Entity {
         }
 
         Person otherPerson = (Person) other;
+
+        // If one of the parent company is null and the other is not null, return false
+        if (otherPerson.getParentCompany() == null && this.getParentCompany() != null) {
+            return false;
+        } else if (otherPerson.getParentCompany() != null && this.getParentCompany() == null) {
+            return false;
+        } else if (otherPerson.getParentCompany() != null && this.getParentCompany() != null) {
+            // If both parent companies are not null, check if they are the same
+            if (!this.getParentCompany().isSameCompany(otherPerson.getParentCompany())) {
+                return false;
+            }
+
+        }
+
         return name.equals(otherPerson.name)
                 && personPhone.equals(otherPerson.personPhone)
                 && personEmail.equals(otherPerson.personEmail)
@@ -146,8 +196,9 @@ public class Person extends Entity {
                 .add("email", personEmail)
                 .add("address", personAddress)
                 .add("note", note)
-                .add("tags", tags)
                 .add("priority", priority)
+                .add("company", Optional.ofNullable(parentCompany).map(Company::getName).orElse(null))
+                .add("tags", tags)
                 .toString();
     }
 

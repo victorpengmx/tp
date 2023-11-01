@@ -47,7 +47,18 @@ public class Messages {
                 .append(person.getEmail())
                 .append("; Address: ")
                 .append(person.getAddress())
-                .append("; Tags: ");
+                .append("; Note: ")
+                .append(person.getNote())
+                .append("Priority: ")
+                .append(person.getPriority())
+                .append("; Company: ");
+        if (person.getParentCompany() != null) {
+            builder.append(person.getParentCompany().getName())
+                    .append("; ");
+        } else {
+            builder.append("None; ");
+        }
+        builder.append("Tags: ");
         person.getTags().forEach(builder::append);
         return builder.toString();
     }

@@ -2,6 +2,7 @@ package connectify.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Comparator;
 import java.util.List;
 
 import connectify.commons.util.ToStringBuilder;
@@ -139,6 +140,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
+                .add("companies", companies)
                 .add("persons", persons)
                 .toString();
     }
@@ -161,6 +163,16 @@ public class AddressBook implements ReadOnlyAddressBook {
         return companies.asUnmodifiableObservableList();
     }
 
+    /**
+     * Sorts the address book by the given comparators.
+     * @param companyComparator
+     * @param personComparator
+     */
+    public void sort(Comparator<Company> companyComparator, Comparator<Person> personComparator) {
+        companies.sort(companyComparator);
+        persons.sort(personComparator);
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -171,9 +183,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         if (!(other instanceof AddressBook)) {
             return false;
         }
-
         AddressBook otherAddressBook = (AddressBook) other;
-        return persons.equals(otherAddressBook.persons);
+
+        return companies.equals(otherAddressBook.companies)
+                && persons.equals(otherAddressBook.persons);
     }
 
     @Override

@@ -10,6 +10,7 @@ import static connectify.logic.parser.CliSyntax.PREFIX_PHONE;
 import static connectify.logic.parser.CliSyntax.PREFIX_WEBSITE;
 import static java.util.Objects.requireNonNull;
 
+import connectify.logic.Messages;
 import connectify.logic.commands.exceptions.CommandException;
 import connectify.model.Model;
 import connectify.model.company.Company;
@@ -63,7 +64,7 @@ public class AddCompanyCommand extends Command {
         }
 
         model.addCompany(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
 
     @Override

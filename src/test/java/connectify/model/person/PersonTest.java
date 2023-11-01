@@ -17,6 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import connectify.testutil.PersonBuilder;
+import connectify.testutil.TypicalCompanies;
 
 public class PersonTest {
 
@@ -31,11 +32,25 @@ public class PersonTest {
         // same object -> returns true
         assertTrue(ALICE.isSamePerson(ALICE));
 
+        // same everything except company -> returns true
+        Person editedAlice = new PersonBuilder(ALICE).withParentCompany(TypicalCompanies.COMPANY_3).build();
+        assertTrue(ALICE.isSamePerson(editedAlice));
+
+        // same everything but company is null -> returns true
+        editedAlice = new PersonBuilder(ALICE).withParentCompany(null).build();
+        assertTrue(ALICE.isSamePerson(editedAlice));
+        assertTrue(editedAlice.isSamePerson(ALICE));
+
+        // both companies are null, everything else is the same -> returns true
+        editedAlice = new PersonBuilder(ALICE).withParentCompany(null).build();
+        Person editedAlice2 = new PersonBuilder(ALICE).withParentCompany(null).build();
+        assertTrue(editedAlice.isSamePerson(editedAlice2));
+
         // null -> returns false
         assertFalse(ALICE.isSamePerson(null));
 
         // same name, all other attributes different -> returns true
-        Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
+        editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
@@ -57,6 +72,7 @@ public class PersonTest {
     public void equals() {
         // same values -> returns true
         Person aliceCopy = new PersonBuilder(ALICE).build();
+
         assertTrue(ALICE.equals(aliceCopy));
 
         // same object -> returns true
@@ -64,6 +80,15 @@ public class PersonTest {
 
         // null -> returns false
         assertFalse(ALICE.equals(null));
+
+        // different company -> returns false
+        aliceCopy = new PersonBuilder(ALICE).withParentCompany(TypicalCompanies.COMPANY_3).build();
+        assertFalse(ALICE.equals(aliceCopy));
+
+        // one company null, everything else the same -> returns false
+        aliceCopy = new PersonBuilder(ALICE).withParentCompany(null).build();
+        assertFalse(ALICE.equals(aliceCopy));
+        assertFalse(aliceCopy.equals(ALICE));
 
         // different type -> returns false
         assertFalse(ALICE.equals(5));
@@ -96,7 +121,9 @@ public class PersonTest {
     public void toStringMethod() {
         String expected = Person.class.getCanonicalName() + "{name=" + ALICE.getName() + ", phone=" + ALICE.getPhone()
                 + ", email=" + ALICE.getEmail() + ", address=" + ALICE.getAddress() + ", note=" + ALICE.getNote()
-                + ", tags=" + ALICE.getTags() + ", priority=" + ALICE.getPriority() + "}";
+                + ", priority=" + ALICE.getPriority() + ", company="
+                + ALICE.getParentCompany().getName()
+                + ", tags=" + ALICE.getTags() + "}";
         assertEquals(expected, ALICE.toString());
     }
 

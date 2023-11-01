@@ -17,7 +17,6 @@ public class FindPeopleParserTest {
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        System.out.println(MESSAGE_INVALID_COMMAND_FORMAT);
         assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 FindPeopleCommand.MESSAGE_USAGE));
     }

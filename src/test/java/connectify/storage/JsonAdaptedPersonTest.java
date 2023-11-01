@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import connectify.commons.exceptions.IllegalValueException;
+import connectify.model.person.Person;
 import connectify.model.person.PersonAddress;
 import connectify.model.person.PersonEmail;
 import connectify.model.person.PersonName;
@@ -36,6 +37,8 @@ public class JsonAdaptedPersonTest {
 
     @Test
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {
+        Person toCheck = TypicalPersons.BENSON;
+        toCheck.setParentCompany(null); // JsonAdaptedPerson does not store parent company
         JsonAdaptedPerson person = new JsonAdaptedPerson(TypicalPersons.BENSON);
         assertEquals(TypicalPersons.BENSON, person.toModelType());
     }

@@ -6,6 +6,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Comparator;
 
+import connectify.model.InvalidEntityException;
 import connectify.model.Model;
 import connectify.model.person.Person;
 import connectify.model.person.PersonNameComparator;
@@ -29,7 +30,11 @@ public class ListAllCommand extends Command {
         Comparator<Person> comparator = new PersonNameComparator();
         model.updateSortedPersonList(comparator);
         model.updateFilteredCompanyList(PREDICATE_SHOW_ALL_COMPANIES);
-        model.updateToAllEntities();
+        try {
+            model.setCurrEntity("all");
+        } catch (InvalidEntityException e) {
+            throw new AssertionError("An exception was thrown when setting the current entity to 'all'");
+        }
         if (model.isEmpty()) {
             return new CommandResult(EMPTY_LIST_MESSAGE);
         } else {

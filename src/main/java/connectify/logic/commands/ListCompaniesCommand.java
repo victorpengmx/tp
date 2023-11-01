@@ -3,6 +3,7 @@ package connectify.logic.commands;
 import static connectify.model.Model.PREDICATE_SHOW_ALL_COMPANIES;
 import static java.util.Objects.requireNonNull;
 
+import connectify.model.InvalidEntityException;
 import connectify.model.Model;
 
 /**
@@ -21,6 +22,12 @@ public class ListCompaniesCommand extends Command {
         requireNonNull(model);
         model.updateFilteredCompanyList(PREDICATE_SHOW_ALL_COMPANIES);
         Integer size = model.getNumberOfCompanies();
+        try {
+            model.setCurrEntity("companies");
+        } catch (InvalidEntityException e) {
+            throw new AssertionError("An exception was thrown when setting the current entity to 'companies'");
+        }
+
         if (size == 0) {
             return new CommandResult(EMPTY_LIST_MESSAGE);
         }

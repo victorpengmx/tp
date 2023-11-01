@@ -13,6 +13,7 @@ import org.junit.jupiter.api.io.TempDir;
 import connectify.commons.exceptions.DataLoadingException;
 import connectify.model.AddressBook;
 import connectify.model.ReadOnlyAddressBook;
+import connectify.model.company.Company;
 import connectify.testutil.Assert;
 import connectify.testutil.TypicalPersons;
 
@@ -69,16 +70,28 @@ public class JsonAddressBookStorageTest {
         assertEquals(original, new AddressBook(readBack));
 
         // Modify data, overwrite exiting file, and read back
+        Company companyToAdd = original.getCompanyList().get(0);
+        Company editedAffliatedCompany = companyToAdd.addPersonToCompany(TypicalPersons.HOON);
+        original.setCompany(companyToAdd, editedAffliatedCompany);
         original.addPerson(TypicalPersons.HOON);
+
+        Company companyToUpdate = original.getCompanyList().get(0);
+        Company editedCompany = companyToUpdate.deletePersonFromCompany(TypicalPersons.ALICE);
+        original.setCompany(companyToUpdate, editedCompany);
         original.removePerson(TypicalPersons.ALICE);
         jsonAddressBookStorage.saveAddressBook(original, filePath);
         readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
         assertEquals(original, new AddressBook(readBack));
 
         // Save and read without specifying file path
+        Company companyToAddSecond = original.getCompanyList().get(0);
+        Company editedAffliatedCompanySecond = companyToAddSecond.addPersonToCompany(TypicalPersons.IDA);
+        original.setCompany(companyToAddSecond, editedAffliatedCompanySecond);
         original.addPerson(TypicalPersons.IDA);
+
         jsonAddressBookStorage.saveAddressBook(original); // file path not specified
         readBack = jsonAddressBookStorage.readAddressBook().get(); // file path not specified
+
         assertEquals(original, new AddressBook(readBack));
 
     }
