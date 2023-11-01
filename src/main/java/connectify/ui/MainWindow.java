@@ -110,7 +110,8 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        entityListPanelPlaceholder.getChildren().add(new EntityListPanel(logic.getFilteredEntityList()).getRoot());
+        entityListPanelPlaceholder.getChildren().add(new EntityListPanel(logic.getFilteredEntityList(),
+                logic.getFilteredPersonList(), logic.getFilteredCompanyList(), logic.getCurrEntity()).getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -176,7 +177,8 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-            entityListPanelPlaceholder.getChildren().add(new EntityListPanel(logic.getFilteredEntityList()).getRoot());
+            entityListPanelPlaceholder.getChildren().add(new EntityListPanel(logic.getFilteredEntityList(),
+                    logic.getFilteredPersonList(), logic.getFilteredCompanyList(), logic.getCurrEntity()).getRoot());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

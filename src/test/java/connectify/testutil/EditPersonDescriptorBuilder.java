@@ -5,10 +5,12 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import connectify.logic.commands.EditPersonCommand.EditPersonDescriptor;
+import connectify.model.company.Company;
 import connectify.model.person.Person;
 import connectify.model.person.PersonAddress;
 import connectify.model.person.PersonEmail;
 import connectify.model.person.PersonName;
+import connectify.model.person.PersonNote;
 import connectify.model.person.PersonPhone;
 import connectify.model.person.PersonPriority;
 import connectify.model.tag.Tag;
@@ -38,6 +40,8 @@ public class EditPersonDescriptorBuilder {
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
         descriptor.setTags(person.getTags());
+        descriptor.setNote(person.getNote());
+        descriptor.setParentCompany(person.getParentCompany());
         descriptor.setPersonPriority(person.getPriority());
     }
 
@@ -93,6 +97,27 @@ public class EditPersonDescriptorBuilder {
         descriptor.setPersonPriority(converted);
         return this;
     }
+
+    /**
+     * Sets the {@code ParentCompany} of the {@code EditPersonDescriptor} that we are building.
+     * @param parentCompany
+     * @return
+     */
+    public EditPersonDescriptorBuilder withParentCompany(Company parentCompany) {
+        descriptor.setParentCompany(parentCompany);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Note} of the {@code EditPersonDescriptor} that we are building.
+     * @param note
+     * @return
+     */
+    public EditPersonDescriptorBuilder withNote(String note) {
+        descriptor.setNote(new PersonNote(note));
+        return this;
+    }
+
 
     public EditPersonDescriptor build() {
         return descriptor;

@@ -13,6 +13,7 @@ import connectify.logic.commands.exceptions.CommandException;
 import connectify.logic.parser.ConnectifyParser;
 import connectify.logic.parser.exceptions.ParseException;
 import connectify.model.Entity;
+import connectify.model.InvalidEntityException;
 import connectify.model.Model;
 import connectify.model.ReadOnlyAddressBook;
 import connectify.model.company.Company;
@@ -95,5 +96,15 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public String getCurrEntity() {
+        return model.getCurrEntity();
+    }
+
+    @Override
+    public void setCurrEntity(String currEntity) throws InvalidEntityException {
+        model.setCurrEntity(currEntity);
     }
 }

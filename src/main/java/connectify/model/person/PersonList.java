@@ -102,6 +102,7 @@ public class PersonList implements Iterable<Person> {
      * @return An immutable person list.
      */
     public List<Person> asList() {
+        people.sort(new PersonNameComparator());
         return Collections.unmodifiableList(people);
     }
 

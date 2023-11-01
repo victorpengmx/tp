@@ -39,7 +39,6 @@ public class EditPersonCommandParserTest {
     @Test
     public void parse_missingParts_failure() {
         // no company specified
-        System.out.println("1 " + CommandTestUtil.VALID_NAME_AMY);
         assertParseFailure(parser, "1 ", EditPersonCommand.MESSAGE_NO_COMPANY_PROVIDED);
 
         // no index specified
@@ -180,6 +179,13 @@ public class EditPersonCommandParserTest {
         userInput = targetIndex.getOneBased() + " " + PREFIX_COMPANY + INDEX_FIRST_COMPANY.getOneBased()
                 + CommandTestUtil.TAG_DESC_FRIEND;
         descriptor = new EditPersonDescriptorBuilder().withTags(CommandTestUtil.VALID_TAG_FRIEND).build();
+        expectedCommand = new EditPersonCommand(targetIndex, INDEX_FIRST_COMPANY, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // Note
+        userInput = targetIndex.getOneBased() + " " + PREFIX_COMPANY + INDEX_FIRST_COMPANY.getOneBased()
+                + CommandTestUtil.NOTE_DESC_AMY;
+        descriptor = new EditPersonDescriptorBuilder().withNote(CommandTestUtil.VALID_NOTE_AMY).build();
         expectedCommand = new EditPersonCommand(targetIndex, INDEX_FIRST_COMPANY, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }

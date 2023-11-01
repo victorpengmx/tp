@@ -1,9 +1,7 @@
 package connectify.logic.commands;
 
 import static connectify.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static connectify.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static connectify.testutil.RankedPersons.getRankedAddressBook;
-import static connectify.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static connectify.testutil.TypicalPersons.getRankedAddressBook;
 import static connectify.testutil.TypicalPersons.getTypicalAddressBook;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -37,7 +35,6 @@ public class RankPersonCommandTest {
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
         assertCommandSuccess(new RankPersonCommand(), model, RankPersonCommand.MESSAGE_SUCCESS, expectedModel);
     }
 

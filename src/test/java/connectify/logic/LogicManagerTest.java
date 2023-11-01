@@ -20,6 +20,7 @@ import connectify.logic.commands.CommandTestUtil;
 import connectify.logic.commands.ListPeopleCommand;
 import connectify.logic.commands.exceptions.CommandException;
 import connectify.logic.parser.exceptions.ParseException;
+import connectify.model.InvalidEntityException;
 import connectify.model.Model;
 import connectify.model.ModelManager;
 import connectify.model.ReadOnlyAddressBook;
@@ -71,6 +72,33 @@ public class LogicManagerTest {
     }
 
     @Test
+    public void getCurrentEntity_success() {
+        try {
+            logic.setCurrEntity("all");
+            assertEquals(logic.getCurrEntity(), "all");
+        } catch (InvalidEntityException e) {
+            throw new AssertionError("No exception should be thrown");
+        }
+        try {
+            logic.setCurrEntity("people");
+            assertEquals(logic.getCurrEntity(), "people");
+        } catch (InvalidEntityException e) {
+            throw new AssertionError("No exception should be thrown");
+        }
+        try {
+            logic.setCurrEntity("companies");
+            assertEquals(logic.getCurrEntity(), "companies");
+        } catch (InvalidEntityException e) {
+            throw new AssertionError("No exception should be thrown");
+        }
+    }
+
+    @Test
+    public void invalidEntity_throwsInvalidEntityException() {
+        Assert.assertThrows(InvalidEntityException.class, () -> logic.setCurrEntity("invalid"));
+    }
+
+    @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
         assertCommandFailureForExceptionFromStorage(DUMMY_IO_EXCEPTION, String.format(
                 LogicManager.FILE_OPS_ERROR_FORMAT, DUMMY_IO_EXCEPTION.getMessage()));
@@ -92,6 +120,7 @@ public class LogicManagerTest {
         Assert.assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredCompanyList().remove(0));
 
     }
+
 
     @Test
     public void getFilteredEntityList_modifyList_throwsUnsupportedOperationException() {
@@ -192,6 +221,7 @@ public class LogicManagerTest {
         Company editedCompany = targetCompany.addPersonToCompany(expectedPerson);
 
         expectedModel.setCompany(targetCompany, editedCompany);
+        expectedPerson.setParentCompany(editedCompany);
         expectedModel.addPerson(expectedPerson);
 
         assertCommandFailure(addPersonCommand, CommandException.class, expectedMessage, expectedModel);

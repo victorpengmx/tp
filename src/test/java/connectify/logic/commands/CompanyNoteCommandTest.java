@@ -1,8 +1,8 @@
 package connectify.logic.commands;
 
 import static connectify.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static connectify.testutil.TypicalCompanies.getTypicalAddressBook;
 import static connectify.testutil.TypicalIndexes.INDEX_FIRST_COMPANY;
+import static connectify.testutil.TypicalPersons.getTypicalAddressBook;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 

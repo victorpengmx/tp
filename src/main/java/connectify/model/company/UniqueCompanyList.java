@@ -2,6 +2,7 @@ package connectify.model.company;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -106,6 +107,10 @@ public class UniqueCompanyList implements Iterable<Company> {
     @Override
     public Iterator<Company> iterator() {
         return internalList.iterator();
+    }
+
+    public void sort(Comparator<Company> companyComparator) {
+        internalList.sort(companyComparator);
     }
 
     @Override

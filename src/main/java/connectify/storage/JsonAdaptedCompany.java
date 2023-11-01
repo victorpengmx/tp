@@ -2,7 +2,6 @@ package connectify.storage;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -94,8 +93,13 @@ public class JsonAdaptedCompany {
         phone = source.getPhone().value;
         address = source.getAddress().value;
         note = source.getNote().getContent();
-        personList.addAll(source.getPersonList().asList().stream().map(JsonAdaptedPerson::new)
-                .collect(Collectors.toList()));
+        List<Person> toAdd = source.getPersonList().asList();
+        for (int i = 0; i < toAdd.size(); i++) {
+            Person person = toAdd.get(i);
+            person.setParentCompany(source);
+            personList.add(new JsonAdaptedPerson(person));
+        }
+
     }
 
     /**

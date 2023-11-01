@@ -15,6 +15,7 @@ import java.util.function.Predicate;
 import org.junit.jupiter.api.Test;
 
 import connectify.commons.core.GuiSettings;
+import connectify.logic.Messages;
 import connectify.logic.commands.exceptions.CommandException;
 import connectify.model.AddressBook;
 import connectify.model.Entity;
@@ -43,7 +44,7 @@ public class AddCompanyCommandTest {
 
         CommandResult commandResult = new AddCompanyCommand(validCompany).execute(modelStub);
 
-        assertEquals(String.format(AddCompanyCommand.MESSAGE_SUCCESS, validCompany),
+        assertEquals(String.format(AddCompanyCommand.MESSAGE_SUCCESS, Messages.format(validCompany)),
                 commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validCompany), modelStub.companiesAdded);
     }
@@ -222,11 +223,6 @@ public class AddCompanyCommandTest {
             throw new AssertionError("This method should not be called.");
         };
 
-        @Override
-        public void updateToAllEntities() {
-            throw new AssertionError("This method should not be called.");
-        }
-
         /**
          * Updates the filter of the filtered company and people list to filter by the given {@code predicate}.
          *
@@ -237,16 +233,6 @@ public class AddCompanyCommandTest {
         public void updateFilteredEntityList(Predicate<Entity> predicate) {
             throw new AssertionError("This method should not be called.");
         }
-
-        @Override
-        public void setCurrEntity(String s) {
-            throw new AssertionError("This method should not be called.");
-        };
-
-        @Override
-        public String getCurrEntity() {
-            throw new AssertionError("This method should not be called.");
-        };
 
         @Override
         public Integer getNumberOfPeople() {
@@ -264,9 +250,25 @@ public class AddCompanyCommandTest {
         };
 
         @Override
+        public Integer getNumberOfAllEntities() {
+            throw new AssertionError("This method should not be called.");
+        };
+
+        @Override
         public Boolean isEmpty() {
             throw new AssertionError("This method should not be called.");
         };
+
+        @Override
+        public String getCurrEntity() {
+            throw new AssertionError("This method should not be called.");
+        };
+
+        @Override
+        public void setCurrEntity(String currEntity) {
+            throw new AssertionError("This method should not be called.");
+        };
+
     }
 
     private class ModelStubWithCompany extends ModelStub {

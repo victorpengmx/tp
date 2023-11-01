@@ -52,6 +52,8 @@ public class AddPersonCommand extends Command {
 
     private final Index companyIndex;
 
+    private Company parentCompany;
+
     /**
      * Creates an AddPersonCommand to add the specified {@code Person}
      */
@@ -73,6 +75,11 @@ public class AddPersonCommand extends Command {
 
         model.setCompany(affiliatedCompanyToEdit, editedAffliatedCompany);
         model.updateFilteredCompanyList(Model.PREDICATE_SHOW_ALL_COMPANIES);
+
+        // Set the parent company of the person to the company it is added to
+        toAdd.setParentCompany(editedAffliatedCompany);
+        this.parentCompany = editedAffliatedCompany;
+
         model.addPerson(toAdd);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));

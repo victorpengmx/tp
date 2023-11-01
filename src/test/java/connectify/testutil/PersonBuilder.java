@@ -3,6 +3,7 @@ package connectify.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import connectify.model.company.Company;
 import connectify.model.person.Person;
 import connectify.model.person.PersonAddress;
 import connectify.model.person.PersonEmail;
@@ -34,6 +35,8 @@ public class PersonBuilder {
     private PersonNote note;
     private PersonPriority priority;
 
+    private Company parentCompany;
+
     /**
      * Creates a {@code PersonBuilder} with the default details.
      */
@@ -45,7 +48,6 @@ public class PersonBuilder {
         tags = new HashSet<>();
         note = new PersonNote(DEFAULT_NOTE);
         priority = new PersonPriority(DEFAULT_PRIORITY);
-
     }
 
     /**
@@ -59,6 +61,8 @@ public class PersonBuilder {
         personAddress = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
         priority = personToCopy.getPriority();
+        parentCompany = personToCopy.getParentCompany();
+
     }
 
     /**
@@ -120,11 +124,21 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code ParentCompany} of the {@code Person} that we are building.
+     * @param parentCompany
+     * @return
+     */
+    public PersonBuilder withParentCompany(Company parentCompany) {
+        this.parentCompany = parentCompany;
+        return this;
+    }
+
+    /**
      * Builds a person object.
      * @return Person object
      */
     public Person build() {
-        return new Person(name, personPhone, personEmail, personAddress, tags, note, priority);
+        return new Person(name, personPhone, personEmail, personAddress, tags, note, priority, parentCompany);
     }
 
 }

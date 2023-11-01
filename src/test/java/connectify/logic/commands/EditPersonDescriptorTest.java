@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import connectify.logic.commands.EditPersonCommand.EditPersonDescriptor;
 import connectify.testutil.EditPersonDescriptorBuilder;
+import connectify.testutil.TypicalCompanies;
 
 public class EditPersonDescriptorTest {
 
@@ -55,6 +56,18 @@ public class EditPersonDescriptorTest {
         // different tags -> returns false
         editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(DESC_AMY.equals(editedAmy));
+
+        // different priority -> returns false
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withPersonPriority("1").build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
+        // different company -> returns false
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withParentCompany(TypicalCompanies.COMPANY_3).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
+        // different note -> returns false
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withNote("SOME NOTE").build();
+        assertFalse(DESC_AMY.equals(editedAmy));
     }
 
     @Test
@@ -64,9 +77,11 @@ public class EditPersonDescriptorTest {
                 + editPersonDescriptor.getName().orElse(null) + ", phone="
                 + editPersonDescriptor.getPhone().orElse(null) + ", email="
                 + editPersonDescriptor.getEmail().orElse(null) + ", address="
-                + editPersonDescriptor.getAddress().orElse(null) + ", tags="
-                + editPersonDescriptor.getTags().orElse(null) + ", priority="
-                + editPersonDescriptor.getPersonPriority().orElse(null) + "}";
+                + editPersonDescriptor.getAddress().orElse(null) + ", priority="
+                + editPersonDescriptor.getPersonPriority().orElse(null) + ", company="
+                + editPersonDescriptor.getParentCompany().orElse(null) + ", note="
+                + editPersonDescriptor.getNote().orElse(null) + ", tags="
+                + editPersonDescriptor.getTags().orElse(null) + "}";
         assertEquals(expected, editPersonDescriptor.toString());
     }
 }

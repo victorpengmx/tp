@@ -1,7 +1,7 @@
 package connectify.logic.commands;
 
 import static connectify.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static connectify.testutil.TypicalCompanies.getTypicalAddressBook;
+import static connectify.testutil.TypicalPersons.getTypicalAddressBook;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -36,6 +36,11 @@ public class ListAllCommandTest {
     public void execute_emptyList_showsEmptyList() {
         Model emptyModel = new ModelManager();
         assertCommandSuccess(new ListAllCommand(), emptyModel, ListAllCommand.EMPTY_LIST_MESSAGE, emptyModel);
+    }
+
+    @Test
+    public void execute_noExceptionThrown() {
+        assertCommandSuccess(new ListAllCommand(), model, ListAllCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
