@@ -2,6 +2,7 @@ package connectify.model.person;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -66,7 +67,6 @@ public class UniquePersonList implements Iterable<Person> {
         }
 
         internalList.set(index, editedPerson);
-        internalList.sort(new PersonNameComparator());
     }
 
     /**
@@ -78,13 +78,11 @@ public class UniquePersonList implements Iterable<Person> {
         if (!internalList.remove(toRemove)) {
             throw new PersonNotFoundException();
         }
-        internalList.sort(new PersonNameComparator());
     }
 
     public void setPersons(UniquePersonList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
-        internalList.sort(new PersonNameComparator());
     }
 
     /**
@@ -98,7 +96,6 @@ public class UniquePersonList implements Iterable<Person> {
         }
 
         internalList.setAll(persons);
-        internalList.sort(new PersonNameComparator());
     }
 
     /**
@@ -111,6 +108,10 @@ public class UniquePersonList implements Iterable<Person> {
     @Override
     public Iterator<Person> iterator() {
         return internalList.iterator();
+    }
+
+    public void sort(Comparator<Person> comparator) {
+        internalList.sort(comparator);
     }
 
     @Override

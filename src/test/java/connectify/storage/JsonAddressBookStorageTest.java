@@ -79,7 +79,6 @@ public class JsonAddressBookStorageTest {
         Company editedCompany = companyToUpdate.deletePersonFromCompany(TypicalPersons.ALICE);
         original.setCompany(companyToUpdate, editedCompany);
         original.removePerson(TypicalPersons.ALICE);
-
         jsonAddressBookStorage.saveAddressBook(original, filePath);
         readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
         assertEquals(original, new AddressBook(readBack));

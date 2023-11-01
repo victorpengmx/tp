@@ -6,7 +6,9 @@ import connectify.model.person.Person;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.Accordion;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
@@ -93,16 +95,42 @@ public class EntityListPanel extends UiPart<Region> {
     }
     private TitledPane createCompanyPane(Company company) {
         TitledPane companyPane = new TitledPane();
-        companyPane.setText(company.getName().toString());
+        companyPane.setText(company.getName().toString() + " (" + company.getPersonList().size() + " people)");
+        // Create a VBox to hold the information
+        VBox companyPaneContent = new VBox();
+
+        // Add labels and values for each field
+        VBox infoBox = new VBox();
+        infoBox.setSpacing(5); // Spacing between each label and value
+        infoBox.setPadding(new Insets(5, 5, 8, 5)); // Padding around the entire infoBox
+
+        infoBox.getChildren().add( new Label("Industry: " + company.getIndustry()));
+        infoBox.getChildren().add(new Label("Location: " + company.getLocation()));
+        infoBox.getChildren().add(new Label("Website: " + company.getWebsite()));
+        infoBox.getChildren().add(new Label("Email: " + company.getEmail()));
+        infoBox.getChildren().add(new Label("Phone: " + company.getPhone()));
+        infoBox.getChildren().add(new Label("Address: " + company.getAddress()));
+        infoBox.getChildren().add(new Label("Description: " + company.getDescription()));
+        infoBox.getChildren().add(new Label("Note: " + company.getNote()));
 
         // Create a ListView for people within the company
         ListView<Person> companyPeopleListView = new ListView<>();
         companyPeopleListView.setItems(FXCollections.observableArrayList(company.getPersonList().asList()));
         companyPeopleListView.setCellFactory(listView -> new PersonListViewCell());
 
-        // Add the ListView to a VBox to ensure proper layout
-        VBox companyPaneContent = new VBox(companyPeopleListView);
+        if (company.getPersonList().size() == 0) {
+            companyPeopleListView.setPlaceholder(new Label("No person in company"));
+        }
 
+        // Add the ListView to the VBox to ensure proper layout
+        VBox listViewBox = new VBox(companyPeopleListView);
+        listViewBox.setPadding(new Insets(5, 5, 5, 5)); // Padding around the entire listViewBox
+
+        // Add spacing between infoBox and listViewBox
+        companyPaneContent.getChildren().add(infoBox);
+        companyPaneContent.getChildren().add(listViewBox);
+
+        // Set the content of the TitledPane to the VBox
         companyPane.setContent(companyPaneContent);
         return companyPane;
     }

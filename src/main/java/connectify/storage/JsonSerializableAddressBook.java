@@ -12,7 +12,9 @@ import connectify.commons.exceptions.IllegalValueException;
 import connectify.model.AddressBook;
 import connectify.model.ReadOnlyAddressBook;
 import connectify.model.company.Company;
+import connectify.model.company.CompanyNameComparator;
 import connectify.model.person.Person;
+import connectify.model.person.PersonNameComparator;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -55,6 +57,7 @@ class JsonSerializableAddressBook {
                 addressBook.addPerson(person);
             }
         }
+        addressBook.sort(new CompanyNameComparator(), new PersonNameComparator());
 
         return addressBook;
     }

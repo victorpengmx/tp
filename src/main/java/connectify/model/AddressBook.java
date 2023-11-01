@@ -2,6 +2,7 @@ package connectify.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Comparator;
 import java.util.List;
 
 import connectify.commons.util.ToStringBuilder;
@@ -160,6 +161,16 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     public ObservableList<Company> getCompanyList() {
         return companies.asUnmodifiableObservableList();
+    }
+
+    /**
+     * Sorts the address book by the given comparators.
+     * @param companyComparator
+     * @param personComparator
+     */
+    public void sort(Comparator<Company> companyComparator, Comparator<Person> personComparator) {
+        companies.sort(companyComparator);
+        persons.sort(personComparator);
     }
 
     @Override
