@@ -292,6 +292,7 @@ public class EditPersonCommand extends Command {
                     && Objects.equals(address, otherEditPersonDescriptor.address)
                     && Objects.equals(tags, otherEditPersonDescriptor.tags)
                     && Objects.equals(personPriority, otherEditPersonDescriptor.personPriority)
+                    && Objects.equals(note, otherEditPersonDescriptor.note)
                     && Objects.equals(parentCompany, otherEditPersonDescriptor.parentCompany);
         }
 

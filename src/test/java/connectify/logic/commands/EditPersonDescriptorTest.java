@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import connectify.logic.commands.EditPersonCommand.EditPersonDescriptor;
 import connectify.testutil.EditPersonDescriptorBuilder;
+import connectify.testutil.TypicalCompanies;
 
 public class EditPersonDescriptorTest {
 
@@ -54,6 +55,18 @@ public class EditPersonDescriptorTest {
 
         // different tags -> returns false
         editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
+        // different priority -> returns false
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withPersonPriority("1").build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
+        // different company -> returns false
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withParentCompany(TypicalCompanies.COMPANY_3).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
+        // different note -> returns false
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withNote("SOME NOTE").build();
         assertFalse(DESC_AMY.equals(editedAmy));
     }
 

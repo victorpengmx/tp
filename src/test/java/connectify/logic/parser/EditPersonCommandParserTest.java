@@ -181,6 +181,13 @@ public class EditPersonCommandParserTest {
         descriptor = new EditPersonDescriptorBuilder().withTags(CommandTestUtil.VALID_TAG_FRIEND).build();
         expectedCommand = new EditPersonCommand(targetIndex, INDEX_FIRST_COMPANY, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
+
+        // Note
+        userInput = targetIndex.getOneBased() + " " + PREFIX_COMPANY + INDEX_FIRST_COMPANY.getOneBased()
+                + CommandTestUtil.NOTE_DESC_AMY;
+        descriptor = new EditPersonDescriptorBuilder().withNote(CommandTestUtil.VALID_NOTE_AMY).build();
+        expectedCommand = new EditPersonCommand(targetIndex, INDEX_FIRST_COMPANY, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
