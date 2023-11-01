@@ -4,7 +4,11 @@ import static connectify.logic.Messages.MESSAGE_COMPANIES_LISTED_OVERVIEW;
 import static connectify.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static connectify.testutil.TypicalCompanies.COMPANY_1;
 import static connectify.testutil.TypicalCompanies.COMPANY_2;
-import static connectify.testutil.TypicalCompanies.getTypicalAddressBook;
+import static connectify.testutil.TypicalPersons.ALICE;
+import static connectify.testutil.TypicalPersons.BENSON;
+import static connectify.testutil.TypicalPersons.CARL;
+import static connectify.testutil.TypicalPersons.DANIEL;
+import static connectify.testutil.TypicalPersons.getTypicalAddressBook;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -80,7 +84,15 @@ public class FindCompaniesCommandTest {
         expectedModel.updateFilteredCompanyList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
 
-        List<Company> expectedCompanies = Arrays.asList(COMPANY_1, COMPANY_2);
+        Company expectedCompany1 = COMPANY_1;
+        expectedCompany1 = expectedCompany1.addPersonToCompany(ALICE);
+        expectedCompany1 = expectedCompany1.addPersonToCompany(BENSON);
+
+        Company expectedCompany2 = COMPANY_2;
+        expectedCompany2 = expectedCompany2.addPersonToCompany(CARL);
+        expectedCompany2 = expectedCompany2.addPersonToCompany(DANIEL);
+
+        List<Company> expectedCompanies = Arrays.asList(expectedCompany1, expectedCompany2);
         assertEquals(expectedCompanies, model.getFilteredCompanyList());
     }
 
@@ -95,7 +107,10 @@ public class FindCompaniesCommandTest {
         expectedModel.updateFilteredCompanyList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
 
-        List<Company> expectedCompanies = Collections.singletonList(COMPANY_1);
+        Company expectedCompany = COMPANY_1;
+        expectedCompany = expectedCompany.addPersonToCompany(ALICE);
+        expectedCompany = expectedCompany.addPersonToCompany(BENSON);
+        List<Company> expectedCompanies = Collections.singletonList(expectedCompany);
         assertEquals(expectedCompanies, model.getFilteredCompanyList());
     }
 
@@ -112,7 +127,10 @@ public class FindCompaniesCommandTest {
         expectedModel.updateFilteredCompanyList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
 
-        List<Company> expectedCompanies = Collections.singletonList(COMPANY_1);
+        Company expectedCompany = COMPANY_1;
+        expectedCompany = expectedCompany.addPersonToCompany(ALICE);
+        expectedCompany = expectedCompany.addPersonToCompany(BENSON);
+        List<Company> expectedCompanies = Collections.singletonList(expectedCompany);
         assertEquals(expectedCompanies, model.getFilteredCompanyList());
     }
 
@@ -128,7 +146,10 @@ public class FindCompaniesCommandTest {
         expectedModel.updateFilteredCompanyList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
 
-        List<Company> expectedCompanies = Collections.singletonList(COMPANY_1);
+        Company expectedCompany = COMPANY_1;
+        expectedCompany = expectedCompany.addPersonToCompany(ALICE);
+        expectedCompany = expectedCompany.addPersonToCompany(BENSON);
+        List<Company> expectedCompanies = Collections.singletonList(expectedCompany);
         assertEquals(expectedCompanies, model.getFilteredCompanyList());
     }
 

@@ -14,7 +14,7 @@ import connectify.model.person.PersonPriorityComparator;
  */
 public class RankPersonCommand extends Command {
 
-    public static final String COMMAND_WORD = "rankPerson";
+    public static final String COMMAND_WORD = "rank";
 
     public static final String MESSAGE_SUCCESS = "Ranked all persons";
 

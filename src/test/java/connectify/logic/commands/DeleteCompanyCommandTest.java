@@ -3,9 +3,9 @@ package connectify.logic.commands;
 import static connectify.logic.commands.CommandTestUtil.assertCommandFailure;
 import static connectify.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static connectify.logic.commands.CommandTestUtil.showCompanyAtIndex;
-import static connectify.testutil.TypicalCompanies.getTypicalAddressBook;
 import static connectify.testutil.TypicalIndexes.INDEX_FIRST_COMPANY;
 import static connectify.testutil.TypicalIndexes.INDEX_SECOND_COMPANY;
+import static connectify.testutil.TypicalPersons.getTypicalAddressBook;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -38,6 +38,9 @@ public class DeleteCompanyCommandTest {
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deleteCompany(companyToDelete);
+        for (int i = 0; i < companyToDelete.getPersonList().size(); i++) {
+            expectedModel.deletePerson(companyToDelete.getPersonList().get(i));
+        }
 
         assertCommandSuccess(deleteCompanyCommand, model, expectedMessage, expectedModel);
     }
@@ -62,6 +65,10 @@ public class DeleteCompanyCommandTest {
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deleteCompany(companyToDelete);
+        for (int i = 0; i < companyToDelete.getPersonList().size(); i++) {
+            expectedModel.deletePerson(companyToDelete.getPersonList().get(i));
+        }
+
         showNoCompany(expectedModel);
 
         assertCommandSuccess(deleteCompanyCommand, model, expectedMessage, expectedModel);
@@ -89,6 +96,7 @@ public class DeleteCompanyCommandTest {
                 Messages.format(companyToDelete));
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        System.out.println(companyToDelete.getPersonList().size());
         expectedModel.deleteCompany(companyToDelete);
         for (int i = 0; i < companyToDelete.getPersonList().size(); i++) {
             expectedModel.deletePerson(companyToDelete.getPersonList().get(i));
@@ -100,6 +108,7 @@ public class DeleteCompanyCommandTest {
     @Test
     public void execute_deleteCompanyDeletesPeople_success() {
         Company companyToDelete = model.getFilteredCompanyList().get(INDEX_FIRST_COMPANY.getZeroBased());
+        ModelManager originalModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         DeleteCompanyCommand deleteCompanyCommand = new DeleteCompanyCommand(INDEX_FIRST_COMPANY);
         try {
             deleteCompanyCommand.execute(model);
@@ -107,7 +116,6 @@ public class DeleteCompanyCommandTest {
             throw new AssertionError("Execution of command should not fail.", e);
         }
 
-        ModelManager originalModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         int numPeople = companyToDelete.getPersonList().size();
         assertEquals(originalModel.getFilteredPersonList().size() - numPeople, model.getFilteredPersonList().size());
     }

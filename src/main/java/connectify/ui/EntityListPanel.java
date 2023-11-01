@@ -35,16 +35,37 @@ public class EntityListPanel extends UiPart<Region> {
     public EntityListPanel(ObservableList<? extends Entity> entityList, ObservableList<Person> personList,
                            ObservableList<Company> companyList, String mode) {
         super(FXML);
-        Tab tab1 = createEntityTab("All", entityList);
-        Tab tab2 = createEntityTab("People", personList);
-        Tab tab3 = createEntityTab("Company", companyList);
+        /// Create Tab 1: Accordion of Companies with People Cards
+        Tab tab1 = new Tab("All");
+        Accordion companyAccordion = createCompanyAccordion(companyList);
+        tab1.setContent(companyAccordion);
 
-        TabPane entityTabPane = new TabPane(tab1, tab2, tab3);
-        entityTabPane.getSelectionModel().select(getMode(mode));
+        // Create Tab 2: ListView of People Cards
+        Tab tab2 = new Tab("People");
+        ListView<Entity> peopleListView = new ListView<>();
+        peopleListView.setItems(FXCollections.observableArrayList(personList));
+        peopleListView.setCellFactory(listView -> new EntityListViewCell());
+        tab2.setContent(peopleListView);
+
+        // Create Tab 3: ListView of Company Cards
+        Tab tab3 = new Tab("Companies");
+        ListView<Entity> companyListView = new ListView<>();
+        companyListView.setItems(FXCollections.observableArrayList(companyList));
+        companyListView.setCellFactory(listView -> new EntityListViewCell());
+        tab3.setContent(companyListView);
 
         entityTabPane.getTabs().addAll(tab1, tab2, tab3);
         entityTabPane.getSelectionModel().select(getMode(mode));
         entityTabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
+        // Wrap the content of each Tab in a ScrollPane
+
+        for (Tab tab : entityTabPane.getTabs()) {
+            ScrollPane scrollPane = new ScrollPane();
+            scrollPane.setFitToWidth(true);
+            scrollPane.setFitToHeight(true);
+            scrollPane.setContent(tab.getContent());
+            tab.setContent(scrollPane);
+        }
     }
 
     class EntityListViewCell extends ListCell<Entity> {
@@ -84,22 +105,6 @@ public class EntityListPanel extends UiPart<Region> {
 
         companyPane.setContent(companyPaneContent);
         return companyPane;
-    }
-
-    private Tab createEntityTab(String tabName, ObservableList<? extends Entity> entityList) {
-        Tab tab = new Tab(tabName);
-
-        ListView<Entity> entityListView = new ListView<>();
-        entityListView.setItems(FXCollections.observableArrayList(entityList));
-        entityListView.setCellFactory(listView -> new EntityListViewCell());
-
-        ScrollPane scrollPane = new ScrollPane();
-        scrollPane.setContent(entityListView);
-        scrollPane.setFitToWidth(true);
-        scrollPane.setFitToHeight(true);
-
-        tab.setContent(scrollPane);
-        return tab;
     }
 
     class PersonListViewCell extends ListCell<Person> {

@@ -6,9 +6,9 @@ import static connectify.logic.commands.CommandTestUtil.VALID_COMPANY_NAME_B;
 import static connectify.logic.commands.CommandTestUtil.assertCommandFailure;
 import static connectify.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static connectify.logic.commands.CommandTestUtil.showCompanyAtIndex;
-import static connectify.testutil.TypicalCompanies.getTypicalAddressBook;
 import static connectify.testutil.TypicalIndexes.INDEX_FIRST_COMPANY;
 import static connectify.testutil.TypicalIndexes.INDEX_SECOND_COMPANY;
+import static connectify.testutil.TypicalPersons.getTypicalAddressBook;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -36,6 +36,12 @@ public class EditCompanyCommandTest {
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Company editedCompany = new CompanyBuilder().build();
+        Company expectedCompany = model.getFilteredCompanyList().get(0);
+
+        // copy over people
+        for (int i = 0; i < expectedCompany.getPersonList().size(); i++) {
+            editedCompany = editedCompany.addPersonToCompany(expectedCompany.getPersonList().get(i));
+        }
         EditCompanyDescriptor descriptor = new EditCompanyDescriptorBuilder(editedCompany).build();
         EditCompanyCommand editCompanyCommand = new EditCompanyCommand(INDEX_FIRST_COMPANY, descriptor);
 
