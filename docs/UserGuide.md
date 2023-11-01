@@ -60,6 +60,7 @@ The **addCompany** command allows you to add new companies to your Connectify da
 
 `addCompany n/NAME i/INDUSTRY l/LOCATION d/DESCRIPTION w/WEBSITE e/EMAIL p/PHONE a/ADDRESS`
 
+The fields are:
 - `n/NAME`: Specify the Company name.
 - `i/INDUSTRY`: Add the industry the Company is in.
 - `l/LOCATION`: Add the city/locale Company is at.
@@ -105,6 +106,7 @@ The **deleteCompany** command allows you to remove companies from your Connectif
 deleteCompany INDEX
 ```
 
+The fields are:
 - `INDEX` is the index of the company you want to delete.
 
 **Example:**
@@ -139,8 +141,19 @@ The company index provided is invalid.
 The **editCompany** command allows you to modify the details of a company in your Connectify database. To edit a company, follow the command format below:
 
 ```
-
+editCompany INDEX [n/NAME] [i/INDUSTRY] [l/LOCATION] [d/DESCRIPTION] [w/WEBSITE] [e/EMAIL] [p/PHONE] [a/ADDRESS]
 ```
+
+The fields are:
+- `INDEX` is the index of the company in the displayed company list that you want to edit. It must be a positive integer within the company.
+- `[n/NAME]` (optional) is the new name of the company.
+- `[i/INDUSTRY]` (optional) is the company's new industry.
+- `[l/LOCATION]` (optional) is the company's new location.
+- `[d/DESCRIPTION]` (optional) is the company's new description.
+- `[w/WEBSITE]` (optional) is the company's new website.
+- `[e/EMAIL]` (optional) is the company's new email.
+- `[p/PHONE]` (optional) is the company's new phone number.
+- `[a/ADDRESS]` (optional) is the company's new address.
 
 **Example:**
 
@@ -196,6 +209,41 @@ Listed all companies.
 - If Connectify does not contain any companies, and there are no companies to display, you will receive the following message:
 ```
 There are no companies in Connectify.
+```
+
+#### Adding note to a company: `noteCompany`
+
+The `noteCompany` command allows you to add a note to a company in Connectify. This command is particularly useful for adding notes to companies you have stored. To add a note to a company, follow the command format below:
+
+```
+noteCompany INDEX r/NOTE
+```
+
+The fields are:
+- `INDEX` is the index of the company in the displayed company list that you want to edit. It must be a positive integer within the company.
+- `r/NOTE` is the note you want to add to the company.
+
+Note: This command deletes the existing note if it is inputted without the `r/` placeholder.
+
+**Example:**
+
+To add a note to the company at index 1, use the following command:
+
+```
+noteCompany 1 r/Looking for aspiring frontend developers.
+```
+
+**Successful Output**
+
+```
+Added note to Company: connectify.model.company.Company{name=ABC, phone=91234567, email=techcorp@gmail.com, address=123, Jurong West Ave 6, #08-111, industry=Technology, location=Silicon Valley, description=Leading tech company, website=www.techcorp.com, note=Looking for aspiring frontend developers., people=connectify.model.person.PersonList@d5a9d461}
+```
+
+**Unsuccessful Output**
+
+- If the specified index is invalid (not within the displayed company list or not a positive integer), you will get the following error message:
+```
+The company index provided is invalid.
 ```
 
 ### Features for managing people contact details
@@ -262,6 +310,7 @@ The **deletePerson** command allows you to remove people from your Connectify da
 deletePerson COMPANY_INDEX PERSON_INDEX
 ```
 
+The fields are:
 - `COMPANY_INDEX` is the index of the company that the person is associated with.
 - `PERSON_INDEX` is the index of the person you want to delete.
 
@@ -308,10 +357,11 @@ The `editPerson` command allows you to modify the details of a person in your Co
 ```
 editPerson INDEX c/COMPANY [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]
 ```
+
 The fields are:
 - `INDEX` is the index of the person in the displayed person list of a company that you want to edit. It must be a positive integer within the company.
 - `c/COMPANY`is the index of the company that the person is associated with.
-- `n/NAME` is the new name of the person.
+- `[n/NAME]` (optional) is the new name of the person.
 - `[p/PHONE]` (optional) is the person's new phone number.
 - `[e/EMAIL]` (optional) is the person's new email.
 - `[a/ADDRESS]` (optional) is the person's new address.
@@ -388,6 +438,78 @@ Listed all persons.
 There are no people in Connectify.
 ```
 
+#### Adding note to a person: `notePerson`
+
+The `notePerson` command allows you to add a note to a person in Connectify. This command is particularly useful for adding notes to people you have stored. To add a note to a person, follow the command format below:
+
+```
+notePerson COMPANY_INDEX PERSON_INDEX r/NOTE
+```
+
+The fields are:
+- `COMPANY_INDEX` is the index of the company that the person is associated with.
+- `PERSON_INDEX` is the index of the person in the displayed person list of a company that you want to edit. It must be a positive integer within the company.
+- `r/NOTE` is the note you want to add to the person.
+
+Note: This command deletes the existing note if it is inputted without the `r/` placeholder.
+
+**Example:**
+
+To add a note to the person at index 1 in the displayed person list of Company 1, use the following command:
+
+```
+notePerson 1 1 r/Likes to swim.
+```
+
+**Successful Output**
+
+```
+Added note to Person: connectify.model.person.Person{name=Joe Doe, phone=98765432, email=johnd@example.com, address=311, Clementi Ave 2, #02-25, note=Likes to swim., tags=[[owesMoney], [friends]], priority=1}
+```
+
+**Unsuccessful Output**
+
+- If the specified company index is missing, you will get the following error message:
+```
+Invalid command format! 
+notePerson: Changes the note of the person identified by the index number used in the displayed person list. Existing note will be overwritten by the input.
+Parameters: COMPANY_INDEX PERSON_INDEX (must be a positive integer) [r/NOTE]
+Example: notePerson 1 1 r/Likes to swim.
+```
+
+- If the specified company index is invalid, you will get the following error message:
+```
+The company index provided is invalid.
+```
+
+- If the specified person index is invalid, you will get the following error message:
+```
+The person index provided is invalid.
+```
+
+#### Ranking people by priority: `rankPerson`
+
+The `rankPerson` command allows you to rank people by priority in Connectify. This command is particularly useful for ranking people you have stored. To rank people by priority, follow the command format below:
+
+```
+rankPerson
+```
+
+Note: This command has no additional fields.
+
+**Successful Output**
+
+```
+Ranked all persons
+```
+
+**Unsuccessful Output**
+
+- If Connectify does not contain any individuals (persons), and there are no people to rank, you will receive the following message:
+```
+There are no people in Connectify.
+```
+
 ### Listing All Entities
 ####  Command: `list`
 
@@ -446,13 +568,31 @@ That is not a valid command.
 
 ## Command Summary
 
-Action     | Format, Examples
------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear**  | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List**   | `list`
-**Help**   | `help`
+### Managing Companies
 
+| Action     | Format, Examples                                                                                                                                                                                           |
+|------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `addCompany n/NAME i/INDUSTRY l/LOCATION d/DESCRIPTION w/WEBSITE e/EMAIL p/PHONE a/ADDRESS` <br> e.g., `addCompany n/Apple Inc i/technology l/Los Altos d/computer and consumer technology w/www.apple.com |
+| **Delete** | `deleteCompany INDEX`<br> e.g., `deleteCompany 3`                                                                                                                                                          |
+| **Edit**   | `editCompany INDEX [n/NAME] [i/INDUSTRY] [l/LOCATION] [d/DESCRIPTION] [w/WEBSITE] [e/EMAIL] [p/PHONE] [a/ADDRESS]`<br> e.g.,`editCompany 2 n/Apple Inc                                                     |
+| **List**   | `companies`                                                                                                                                                                                                |
+| **Note**   | `noteCompany INDEX r/NOTE`<br> e.g., `noteCompany 1 r/Looking for aspiring frontend developers.`                                                                                                           |
+
+### Manging People Contacts
+| Action     | Format, Examples                                                                                                         |
+|------------|--------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `addPerson n/NAME p/PHONE e/EMAIL a/ADDRESS c/COMPANY pr/PRIORITY [t/TAG]…​` <br> e.g., `addPerson n/John Doe p/98765432 |
+| **Delete** | `deletePerson COMPANY_INDEX PERSON_INDEX`<br> e.g., `deletePerson 1 3`                                                   |
+| **Edit**   | `editPerson INDEX c/COMPANY [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`editPerson 2 c/1 n/John Doe    |
+| **List**   | `people`                                                                                                                 |
+| **Note**   | `notePerson COMPANY_INDEX PERSON_INDEX r/NOTE`<br> e.g., `notePerson 1 1 r/Likes to swim.`                               |
+| **Rank**   | `rankPerson`                                                                                                             |
+
+### General Commands
+| Action    | Format, Examples                                           |
+|-----------|------------------------------------------------------------|
+| **List**  | `list`                                                     |
+| **Find**  | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake` |
+| **Clear** | `clear`                                                    |
+| **Help**  | `help`                                                     |
+| **Exit**  | `exit`                                                     |
