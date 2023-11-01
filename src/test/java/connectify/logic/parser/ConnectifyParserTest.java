@@ -36,6 +36,8 @@ import connectify.logic.commands.ListCompaniesCommand;
 import connectify.logic.commands.ListPeopleCommand;
 import connectify.logic.commands.PersonNoteCommand;
 import connectify.logic.commands.RankPersonCommand;
+import connectify.logic.commands.ShareCompanyCommand;
+import connectify.logic.commands.SharePersonCommand;
 import connectify.logic.parser.exceptions.ParseException;
 import connectify.model.EntityNameContainsKeywordsPredicate;
 import connectify.model.company.Company;
@@ -90,7 +92,6 @@ public class ConnectifyParserTest {
         assertEquals(new DeletePersonCommand(INDEX_FIRST_COMPANY, INDEX_FIRST_PERSON), command);
     }
 
-
     @Test
     public void parseCommand_editPerson() throws Exception {
         Person person = new PersonBuilder().build();
@@ -109,8 +110,8 @@ public class ConnectifyParserTest {
         EditCompanyDescriptor descriptor = new EditCompanyDescriptorBuilder(company).build();
         EditCompanyCommand command = (EditCompanyCommand) parser.parseCommand(
                 EditCompanyCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_COMPANY.getOneBased() + " "
-                + CompanyUtil.getEditCompanyDescriptorDetails(descriptor));
+                        + INDEX_FIRST_COMPANY.getOneBased() + " "
+                        + CompanyUtil.getEditCompanyDescriptorDetails(descriptor));
         assertEquals(new EditCompanyCommand(INDEX_FIRST_COMPANY, descriptor), command);
     }
 
@@ -148,6 +149,22 @@ public class ConnectifyParserTest {
                         +
                         " " + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindCompaniesCommand(new CompanyNameContainsKeywordsPredicate(keywords)), command);
+    }
+
+    @Test
+    public void parseCommand_shareCompany() throws Exception {
+        ShareCompanyCommand command = (ShareCompanyCommand) parser.parseCommand(
+                ShareCompanyCommand.COMMAND_WORD + " " + INDEX_FIRST_COMPANY.getOneBased());
+        assertEquals(new ShareCompanyCommand(INDEX_FIRST_COMPANY), command);
+    }
+
+    @Test
+    public void parseCommand_sharePerson() throws Exception {
+        SharePersonCommand command = (SharePersonCommand) parser.parseCommand(
+                SharePersonCommand.COMMAND_WORD + " " + INDEX_FIRST_COMPANY.getOneBased()
+                        +
+                        " " + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new SharePersonCommand(INDEX_FIRST_COMPANY, INDEX_FIRST_PERSON), command);
     }
 
     @Test
