@@ -1,8 +1,5 @@
 package connectify.ui;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import connectify.model.Entity;
 import connectify.model.company.Company;
 import connectify.model.person.Person;
@@ -24,19 +21,6 @@ import javafx.scene.layout.VBox;
  */
 public class EntityListPanel extends UiPart<Region> {
     public static final String FXML = "EntityListPanel.fxml";
-    public static final int ALL_MODE = 0;
-    public static final int PEOPLE_MODE = 1;
-
-    public static final int COMPANIES_MODE = 2;
-
-    private static final Map<String, Integer> modeMap = new HashMap<>();
-
-    static {
-        modeMap.put("all", ALL_MODE);
-        modeMap.put("people", PEOPLE_MODE);
-        modeMap.put("companies", COMPANIES_MODE);
-    }
-
     /* The TabPane that contains the different entity types */
     @FXML
     private TabPane entityTabPane;
@@ -51,44 +35,12 @@ public class EntityListPanel extends UiPart<Region> {
     public EntityListPanel(ObservableList<? extends Entity> entityList, ObservableList<Person> personList,
                            ObservableList<Company> companyList, String mode) {
         super(FXML);
+        Tab tab1 = createEntityTab("All", entityList);
+        Tab tab2 = createEntityTab("People", personList);
+        Tab tab3 = createEntityTab("Company", companyList);
 
-        // Create Tab 1: Accordion of Companies with People Cards
-        Tab tab1 = new Tab("All");
-        Accordion companyAccordion = createCompanyAccordion(companyList);
-        tab1.setContent(companyAccordion);
-
-        // Create Tab 2: ListView of People Cards
-        Tab tab2 = new Tab("People");
-        ListView<Entity> peopleListView = new ListView<>();
-        peopleListView.setItems(FXCollections.observableArrayList(personList));
-        peopleListView.setCellFactory(listView -> new EntityListViewCell());
-        tab2.setContent(peopleListView);
-
-        // Create Tab 3: ListView of Company Cards
-        Tab tab3 = new Tab("Company");
-        ListView<Entity> companyListView = new ListView<>();
-        companyListView.setItems(FXCollections.observableArrayList(companyList));
-        companyListView.setCellFactory(listView -> new EntityListViewCell());
-        tab3.setContent(companyListView);
-
-        // Wrap the content of each Tab in a ScrollPane
-        ScrollPane scrollPane1 = new ScrollPane();
-        scrollPane1.setContent(tab1.getContent());
-        tab1.setContent(scrollPane1);
-
-        ScrollPane scrollPane2 = new ScrollPane();
-        scrollPane2.setContent(tab2.getContent());
-        tab2.setContent(scrollPane2);
-
-        ScrollPane scrollPane3 = new ScrollPane();
-        scrollPane3.setContent(tab3.getContent());
-        tab3.setContent(scrollPane3);
-        scrollPane1.setFitToWidth(true);
-        scrollPane1.setFitToHeight(true);
-        scrollPane2.setFitToWidth(true);
-        scrollPane2.setFitToHeight(true);
-        scrollPane3.setFitToWidth(true);
-        scrollPane3.setFitToHeight(true);
+        TabPane entityTabPane = new TabPane(tab1, tab2, tab3);
+        entityTabPane.getSelectionModel().select(getMode(mode));
 
         entityTabPane.getTabs().addAll(tab1, tab2, tab3);
         entityTabPane.getSelectionModel().select(getMode(mode));
@@ -133,6 +85,23 @@ public class EntityListPanel extends UiPart<Region> {
         companyPane.setContent(companyPaneContent);
         return companyPane;
     }
+
+    private Tab createEntityTab(String tabName, ObservableList<? extends Entity> entityList) {
+        Tab tab = new Tab(tabName);
+
+        ListView<Entity> entityListView = new ListView<>();
+        entityListView.setItems(FXCollections.observableArrayList(entityList));
+        entityListView.setCellFactory(listView -> new EntityListViewCell());
+
+        ScrollPane scrollPane = new ScrollPane();
+        scrollPane.setContent(entityListView);
+        scrollPane.setFitToWidth(true);
+        scrollPane.setFitToHeight(true);
+
+        tab.setContent(scrollPane);
+        return tab;
+    }
+
     class PersonListViewCell extends ListCell<Person> {
         @Override
         protected void updateItem(Person person, boolean empty) {
@@ -148,6 +117,13 @@ public class EntityListPanel extends UiPart<Region> {
     }
 
     public static int getMode(String modeName) {
-        return modeMap.getOrDefault(modeName, ALL_MODE); // Default to ALL_MODE if modeName is not found
+        switch (modeName) {
+        case "people":
+            return 1;
+        case "companies":
+            return 2;
+        default:
+            return 0;
+        }
     }
 }

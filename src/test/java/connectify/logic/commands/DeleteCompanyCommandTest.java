@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 
 import connectify.commons.core.index.Index;
 import connectify.logic.Messages;
+import connectify.logic.commands.exceptions.CommandException;
 import connectify.model.Model;
 import connectify.model.ModelManager;
 import connectify.model.UserPrefs;
@@ -94,6 +95,21 @@ public class DeleteCompanyCommandTest {
         }
 
         assertCommandSuccess(deleteCompanyCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_deleteCompanyDeletesPeople_success() {
+        Company companyToDelete = model.getFilteredCompanyList().get(INDEX_FIRST_COMPANY.getZeroBased());
+        DeleteCompanyCommand deleteCompanyCommand = new DeleteCompanyCommand(INDEX_FIRST_COMPANY);
+        try {
+            deleteCompanyCommand.execute(model);
+        } catch (CommandException e) {
+            throw new AssertionError("Execution of command should not fail.", e);
+        }
+
+        ModelManager originalModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        int numPeople = companyToDelete.getPersonList().size();
+        assertEquals(originalModel.getFilteredPersonList().size() - numPeople, model.getFilteredPersonList().size());
     }
 
     @Test

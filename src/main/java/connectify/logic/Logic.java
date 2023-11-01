@@ -7,6 +7,7 @@ import connectify.logic.commands.CommandResult;
 import connectify.logic.commands.exceptions.CommandException;
 import connectify.logic.parser.exceptions.ParseException;
 import connectify.model.Entity;
+import connectify.model.InvalidEntityException;
 import connectify.model.Model;
 import connectify.model.ReadOnlyAddressBook;
 import connectify.model.company.Company;
@@ -65,4 +66,9 @@ public interface Logic {
      * Return the current entity type
      */
     String getCurrEntity();
+
+    /**
+     * Set the current entity type
+     */
+    void setCurrEntity(String currEntity) throws InvalidEntityException;
 }

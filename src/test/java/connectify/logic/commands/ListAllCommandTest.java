@@ -39,6 +39,11 @@ public class ListAllCommandTest {
     }
 
     @Test
+    public void execute_noExceptionThrown() {
+        assertCommandSuccess(new ListAllCommand(), model, ListAllCommand.MESSAGE_SUCCESS, expectedModel);
+    }
+
+    @Test
     public void toStringTest() {
         ListAllCommand listAllCommand = new ListAllCommand();
         assertEquals(listAllCommand.toString(), "ListAllCommand");

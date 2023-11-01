@@ -52,9 +52,12 @@ public class PersonCard extends UiPart<Region> {
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
         note.setText(person.getNote().getContent());
-        Label label = new Label("Priority: " + person.getPriority().value);
-        label.setStyle("-fx-background-color: #588B8B");
-        tags.getChildren().add(label);
+        Label companyLabel = new Label("Company: " + person.getParentCompany().getName());
+        companyLabel.setStyle("-fx-background-color: #FF4F79");
+        tags.getChildren().add(companyLabel);
+        Label priorityLabel = new Label("Priority: " + person.getPriority().value);
+        priorityLabel.setStyle("-fx-background-color: #588B8B");
+        tags.getChildren().add(priorityLabel);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

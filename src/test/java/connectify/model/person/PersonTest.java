@@ -88,6 +88,7 @@ public class PersonTest {
         // one company null, everything else the same -> returns false
         aliceCopy = new PersonBuilder(ALICE).withParentCompany(null).build();
         assertFalse(ALICE.equals(aliceCopy));
+        assertFalse(aliceCopy.equals(ALICE));
 
         // different type -> returns false
         assertFalse(ALICE.equals(5));

@@ -36,7 +36,7 @@
                 <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
             </HBox>
             <HBox spacing="5" alignment="CENTER_LEFT">
-                <ListView fx:id="people" styleClass="cell_small_label" />
+                <Label fx:id="people" styleClass="cell_small_label" />
             </HBox>
             <HBox spacing="5" alignment="CENTER_LEFT">
                 <Label fx:id="note" styleClass="cell_small_label" text="\$note" />
