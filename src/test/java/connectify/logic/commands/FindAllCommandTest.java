@@ -25,9 +25,6 @@ import connectify.model.Model;
 import connectify.model.ModelManager;
 import connectify.model.UserPrefs;
 
-
-
-
 /**
  * Contains integration tests (interaction with the Model) for {@code FindAllCommand}.
  */
@@ -65,7 +62,17 @@ public class FindAllCommandTest {
     @Test
     public void execute_zeroKeywords_noEntityFound() {
         String expectedMessage = String.format(MESSAGE_PEOPLE_AND_COMPANIES_LISTED_OVERVIEW, 0);
-        EntityNameContainsKeywordsPredicate predicate = preparePredicate(" ");
+        EntityNameContainsKeywordsPredicate predicate = createEntityNamePredicate(" ");
+        FindAllCommand command = new FindAllCommand(predicate);
+        expectedModel.updateFilteredEntityList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getFilteredEntityList());
+    }
+
+    @Test
+    public void execute_noEntitiesMatched() {
+        String expectedMessage = String.format(MESSAGE_PEOPLE_AND_COMPANIES_LISTED_OVERVIEW, 0);
+        EntityNameContainsKeywordsPredicate predicate = createEntityNamePredicate("NonExistentKeyword");
         FindAllCommand command = new FindAllCommand(predicate);
         expectedModel.updateFilteredEntityList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -75,7 +82,7 @@ public class FindAllCommandTest {
     @Test
     public void execute_multipleKeywords_multipleEntitiesFound() {
         String expectedMessage = String.format(MESSAGE_PEOPLE_AND_COMPANIES_LISTED_OVERVIEW, 4);
-        EntityNameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz Company1");
+        EntityNameContainsKeywordsPredicate predicate = createEntityNamePredicate("Kurz Elle Kunz Company1");
         FindAllCommand command = new FindAllCommand(predicate);
         expectedModel.updateFilteredEntityList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -83,16 +90,53 @@ public class FindAllCommandTest {
         List<Entity> expectedEntities = Arrays.asList(COMPANY_1, CARL, ELLE, FIONA);
         List<Entity> actualEntities = new ArrayList<>(model.getFilteredEntityList());
 
-        assertTrue(expectedEntities.size() == actualEntities.size()
-                &&
-                IntStream.range(0, expectedEntities.size())
-                        .allMatch(i -> expectedEntities.get(i).getName().equals(actualEntities.get(i).getName())));
+        assertEntityListsAreEqual(expectedEntities, actualEntities);
+    }
+
+    /**
+     * Tests the case where the search keyword is in a different case than the entity name.
+     * The search should still return a match as it is expected to be case-insensitive.
+     */
+    @Test
+    public void execute_caseInsensitiveSearch() {
+        String expectedMessage = String.format(MESSAGE_PEOPLE_AND_COMPANIES_LISTED_OVERVIEW, 1);
+        EntityNameContainsKeywordsPredicate predicate = createEntityNamePredicate("cOmPaNy1");
+        FindAllCommand command = new FindAllCommand(predicate);
+        expectedModel.updateFilteredEntityList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        List<Entity> expectedEntities = Arrays.asList(COMPANY_1);
+        List<Entity> actualEntities = new ArrayList<>(model.getFilteredEntityList());
+        assertEntityListsAreEqual(expectedEntities, actualEntities);
+    }
+
+    /**
+     * Tests the scenario where some provided search keywords match entities and some don't.
+     * The search should return entities that match any of the provided keywords.
+     */
+    @Test
+    public void execute_someKeywordsMatch() {
+        String expectedMessage = String.format(MESSAGE_PEOPLE_AND_COMPANIES_LISTED_OVERVIEW, 1);
+        EntityNameContainsKeywordsPredicate predicate = createEntityNamePredicate("Company1 Nonexistent");
+        FindAllCommand command = new FindAllCommand(predicate);
+        expectedModel.updateFilteredEntityList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        List<Entity> expectedEntities = Collections.singletonList(COMPANY_1);
+        List<Entity> actualEntities = new ArrayList<>(model.getFilteredEntityList());
+        assertEntityListsAreEqual(expectedEntities, actualEntities);
+    }
+
+    private void assertEntityListsAreEqual(List<Entity> expectedEntities, List<Entity> actualEntities) {
+        assertEquals(expectedEntities.size(), actualEntities.size(), "Entity lists have different sizes.");
+
+        boolean allNamesMatch = IntStream.range(0, expectedEntities.size())
+                .allMatch(i -> expectedEntities.get(i).getName().equals(actualEntities.get(i).getName()));
+        assertTrue(allNamesMatch, "Names in the entity lists do not match.");
     }
 
     /**
      * Parses {@code userInput} into a {@code EntityNameContainsKeywordsPredicate}.
      */
-    private EntityNameContainsKeywordsPredicate preparePredicate(String userInput) {
+    private EntityNameContainsKeywordsPredicate createEntityNamePredicate(String userInput) {
         return new EntityNameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 }

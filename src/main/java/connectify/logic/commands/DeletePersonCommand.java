@@ -46,29 +46,48 @@ public class DeletePersonCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        validateIndices(model);
 
-        List<Company> companyList = model.getFilteredCompanyList();
-
-        if (companyIndex.getZeroBased() >= companyList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_COMPANY_DISPLAYED_INDEX);
-        }
-
-        Company companyToUpdate = companyList.get(companyIndex.getZeroBased());
-        PersonList companyPersonsList = companyToUpdate.getPersonList();
-
-        if (personIndex.getZeroBased() >= companyPersonsList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-        }
-
-        Person personToDelete = companyPersonsList.get(personIndex.getZeroBased());
+        Company companyToUpdate = getCompanyFromIndex(model);
+        Person personToDelete = getPersonFromCompany(companyToUpdate);
 
         Company editedCompany = companyToUpdate.deletePersonFromCompany(personToDelete);
         model.setCompany(companyToUpdate, editedCompany);
 
         model.deletePerson(personToDelete);
 
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
     }
+
+    /**
+     * Validates the company and person indices against the current model.
+     * Throws a CommandException if either of the indices is invalid.
+     *
+     * @param model The current model against which indices are validated.
+     * @throws CommandException if the company or person index is out of bounds.
+     */
+    private void validateIndices(Model model) throws CommandException {
+        List<Company> companyList = model.getFilteredCompanyList();
+        if (companyIndex.getZeroBased() >= companyList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_COMPANY_DISPLAYED_INDEX);
+        }
+
+        Company company = companyList.get(companyIndex.getZeroBased());
+        if (personIndex.getZeroBased() >= company.getPersonList().size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
+    }
+
+    private Company getCompanyFromIndex(Model model) {
+        List<Company> companyList = model.getFilteredCompanyList();
+        return companyList.get(companyIndex.getZeroBased());
+    }
+
+    private Person getPersonFromCompany(Company company) {
+        PersonList companyPersonsList = company.getPersonList();
+        return companyPersonsList.get(personIndex.getZeroBased());
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {

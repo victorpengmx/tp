@@ -101,10 +101,10 @@ public class PersonTest {
     }
 
     @Test
-    public void compare() {
-        assertEquals(ALICE.compare(ALICE, BOB), -1);
-        assertEquals(ALICE.compare(BOB, ALICE), 1);
-        assertEquals(HOON.compare(HOON, GEORGE), 0);
+    public void compareNameWith() {
+        assertEquals(ALICE.compareNameWith(BOB), -1);
+        assertEquals(ALICE.compareNameWith(ALICE), 0);
+        assertEquals(HOON.compareNameWith(GEORGE), 1);
     }
 
     @Test

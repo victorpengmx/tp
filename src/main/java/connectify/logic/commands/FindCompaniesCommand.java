@@ -30,9 +30,13 @@ public class FindCompaniesCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredCompanyList(predicate);
+
+        int companyListSize = model.getFilteredCompanyList().size();
+
         return new CommandResult(
-                String.format(Messages.MESSAGE_COMPANIES_LISTED_OVERVIEW, model.getFilteredCompanyList().size()));
+                String.format(Messages.MESSAGE_COMPANIES_LISTED_OVERVIEW, companyListSize));
     }
+
 
     @Override
     public boolean equals(Object other) {

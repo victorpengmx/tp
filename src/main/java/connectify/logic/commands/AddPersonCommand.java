@@ -64,16 +64,9 @@ public class AddPersonCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasPerson(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
-        }
+        validateAddition(model);
 
         List<Company> lastShownList = model.getFilteredCompanyList();
-
-        if (companyIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_COMPANY_DISPLAYED_INDEX);
-        }
-
         Company affiliatedCompanyToEdit = lastShownList.get(companyIndex.getZeroBased());
 
         Company editedAffliatedCompany = affiliatedCompanyToEdit.addPersonToCompany(toAdd);
@@ -84,6 +77,27 @@ public class AddPersonCommand extends Command {
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
+
+    /**
+     * Validates the addition of a person to the address book and associated company.
+     * Checks if the person already exists in the address book.
+     * Validates the provided company index against the current filtered list of companies.
+     *
+     * @param model The current model context where the validation is to be performed.
+     * @throws CommandException if the person already exists in the address book,
+     *                          or if the provided company index is invalid.
+     */
+    private void validateAddition(Model model) throws CommandException {
+        if (model.hasPerson(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        }
+
+        List<Company> lastShownList = model.getFilteredCompanyList();
+        if (companyIndex.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_COMPANY_DISPLAYED_INDEX);
+        }
+    }
+
 
     @Override
     public boolean equals(Object other) {

@@ -7,6 +7,7 @@ import java.util.Comparator;
 
 import connectify.model.Model;
 import connectify.model.person.Person;
+import connectify.model.person.PersonPriorityComparator;
 
 /**
  * Lists all persons in the address book to the user according to their priority.
@@ -23,7 +24,7 @@ public class RankPersonCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        Comparator<Person> comparator = Comparator.comparing(Person::rank);
+        Comparator<Person> comparator = new PersonPriorityComparator();
         model.updateSortedPersonList(comparator);
         Integer size = model.getNumberOfPeople();
         if (size == 0) {
@@ -49,4 +50,5 @@ public class RankPersonCommand extends Command {
     public String toString() {
         return "RankPersonCommand";
     }
+
 }

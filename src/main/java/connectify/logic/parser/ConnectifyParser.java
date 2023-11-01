@@ -15,6 +15,7 @@ import connectify.logic.commands.Command;
 import connectify.logic.commands.CompanyNoteCommand;
 import connectify.logic.commands.DeleteCompanyCommand;
 import connectify.logic.commands.DeletePersonCommand;
+import connectify.logic.commands.EditCompanyCommand;
 import connectify.logic.commands.EditPersonCommand;
 import connectify.logic.commands.ExitCommand;
 import connectify.logic.commands.FindAllCommand;
@@ -72,6 +73,9 @@ public class ConnectifyParser {
 
         case EditPersonCommand.COMMAND_WORD:
             return new EditPersonCommandParser().parse(arguments);
+
+        case EditCompanyCommand.COMMAND_WORD:
+            return new EditCompanyCommandParser().parse(arguments);
 
         case DeletePersonCommand.COMMAND_WORD:
             return new DeletePersonCommandParser().parse(arguments);
