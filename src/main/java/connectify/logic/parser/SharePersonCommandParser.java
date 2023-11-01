@@ -6,8 +6,6 @@ import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.xml.sax.Parser;
-
 import connectify.commons.core.index.Index;
 import connectify.logic.commands.SharePersonCommand;
 import connectify.logic.parser.exceptions.ParseException;
