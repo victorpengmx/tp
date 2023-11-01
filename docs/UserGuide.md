@@ -134,6 +134,47 @@ Address: 123 Tech St, Silicon Valley
 The company index provided is invalid.
 ```
 
+#### Editing a company: `editCompany`
+
+The **editCompany** command allows you to modify the details of a company in your Connectify database. To edit a company, follow the command format below:
+
+```
+
+```
+
+**Example:**
+
+To edit the company's name to "TechCorp", their email to techcorp@gmail.com and their address to "123, Jurong West Ave 6, #08-111", use the following command:
+
+```
+editCompany 1 n/TechCorp p/91234567 e/techcorp@gmail.com a/123, Jurong West Ave 6, #08-111
+```
+
+**Successful Output:**
+
+```
+Edited Company: TechCorp;
+Industry: Technology;
+Location: Silicon Valley;
+Description: Leading tech company;
+Website: www.techcorp.com;
+Email: techcorp@gmail.com;
+Phone: 91234567;
+Address: 123, Jurong West Ave 6, #08-111;
+```
+
+**Unsuccessful Output:**
+
+- If you don't provide at least one field to edit, you will receive the following error message:
+```
+At least one field to edit must be provided.
+```
+
+- If the specified index is invalid (not within the displayed company list or not a positive integer), you will get the following error message:
+```
+The company index provided is invalid.
+```
+
 ####  Listing all companies: `companies`
 
 The `companies` command allows you to retrieve a list of all companies in Connectify. This command is particularly useful for obtaining an overview of all the companies you have stored. To list all companies, follow the command format below:
@@ -166,6 +207,7 @@ The `addPerson` command allows you to add new contacts to your Connectify databa
 ```
 addPerson n/NAME p/PHONE e/EMAIL a/ADDRESS c/COMPANY pr/PRIORITY [t/TAG]
 ```
+
 The fields are:
 - `n/NAME` is the name of the contact.
 - `p/PHONE` is the phone number of the contact.
