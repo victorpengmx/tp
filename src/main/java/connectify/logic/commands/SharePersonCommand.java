@@ -1,5 +1,6 @@
 package connectify.logic.commands;
 
+import static connectify.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
@@ -9,7 +10,9 @@ import connectify.commons.util.ToStringBuilder;
 import connectify.logic.Messages;
 import connectify.logic.commands.exceptions.CommandException;
 import connectify.model.Model;
+import connectify.model.company.Company;
 import connectify.model.person.Person;
+import connectify.model.person.PersonList;
 
 /**
  * Shares a person to another address book.
@@ -19,34 +22,47 @@ public class SharePersonCommand extends Command {
     public static final String COMMAND_WORD = "sharePerson";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Shares instructions on how to add a Person to another address book.\n"
-            + "Parameters: "
-            + "INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + ": Shares instructions on how to add a Person, from the specified "
+            + "company, to another address book.\n"
+            + "Parameters: COMPANY_INDEX (must be a positive integer) PERSON_INDEX (must be a positive integer)\n"
+            + "Example: " + COMMAND_WORD + " 2 1";
 
     public static final String MESSAGE_SHARE_PERSON_SUCCESS = "Command to add this Person:\n%1$s\n"
             + "Do take note that you need to specify Company and priority on your own.";
 
-    private final Index targetIndex;
+    private final Index companyIndex;
+    private final Index personIndex;
 
     /**
-     * Creates a ShareCompanyCommand to share the specified {@code Company}
+     * Creates a SharePersonCommand to share a person from a company using their respective indices.
+     *
+     * @param companyIndex The index of the company from which the person should be shared.
+     * @param personIndex The index of the person to be shared within the specified company.
      */
-    public SharePersonCommand(Index targetIndex) {
-        requireNonNull(targetIndex);
-        this.targetIndex = targetIndex;
+    public SharePersonCommand(Index companyIndex, Index personIndex) {
+        requireAllNonNull(companyIndex, personIndex);
+        this.companyIndex = companyIndex;
+        this.personIndex = personIndex;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
 
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+        List<Company> companyList = model.getFilteredCompanyList();
+
+        if (companyIndex.getZeroBased() >= companyList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_COMPANY_DISPLAYED_INDEX);
+        }
+
+        Company companyToUpdate = companyList.get(companyIndex.getZeroBased());
+        PersonList companyPersonsList = companyToUpdate.getPersonList();
+
+        if (personIndex.getZeroBased() >= companyPersonsList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToShare = lastShownList.get(targetIndex.getZeroBased());
+        Person personToShare = companyPersonsList.get(personIndex.getZeroBased());
         return new CommandResult(String.format(MESSAGE_SHARE_PERSON_SUCCESS,
                 formatInput(Messages.format(personToShare))));
     }
@@ -94,7 +110,8 @@ public class SharePersonCommand extends Command {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("targetIndex", targetIndex)
+                .add("companyIndex", companyIndex)
+                .add("personIndex", personIndex)
                 .toString();
     }
 
@@ -110,6 +127,6 @@ public class SharePersonCommand extends Command {
         }
 
         SharePersonCommand otherShareCommand = (SharePersonCommand) other;
-        return targetIndex.equals(otherShareCommand.targetIndex);
+        return personIndex.equals(otherShareCommand.personIndex);
     }
 }
