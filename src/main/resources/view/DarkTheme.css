@@ -2,6 +2,14 @@
     -fx-background-color: derive(#1d1d1d, 20%);
     background-color: #383838; /* Used in the default.html file */
 }
+.scroll-pane {
+    -fx-background-color: derive(#1d1d1d, 20%);
+    background-color: #383838; /* Used in the default.html file */
+}
+
+.accordion {
+    -fx-background-color: #383838;
+}
 
 .label {
     -fx-font-size: 11pt;

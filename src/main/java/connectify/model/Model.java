@@ -131,8 +131,6 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered entity (either person or company) list */
     ObservableList<? extends Entity> getFilteredEntityList();
 
-    /** Sets the current entity to be displayed to be all the entities*/
-    void updateToAllEntities();
 
     /**
      * Updates the filter of the filtered company and people list to filter by the given {@code predicate}.

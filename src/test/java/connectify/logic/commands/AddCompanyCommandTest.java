@@ -223,11 +223,6 @@ public class AddCompanyCommandTest {
             throw new AssertionError("This method should not be called.");
         };
 
-        @Override
-        public void updateToAllEntities() {
-            throw new AssertionError("This method should not be called.");
-        }
-
         /**
          * Updates the filter of the filtered company and people list to filter by the given {@code predicate}.
          *
@@ -238,16 +233,6 @@ public class AddCompanyCommandTest {
         public void updateFilteredEntityList(Predicate<Entity> predicate) {
             throw new AssertionError("This method should not be called.");
         }
-
-        @Override
-        public void setCurrEntity(String s) {
-            throw new AssertionError("This method should not be called.");
-        };
-
-        @Override
-        public String getCurrEntity() {
-            throw new AssertionError("This method should not be called.");
-        };
 
         @Override
         public Integer getNumberOfPeople() {
@@ -273,6 +258,17 @@ public class AddCompanyCommandTest {
         public Boolean isEmpty() {
             throw new AssertionError("This method should not be called.");
         };
+
+        @Override
+        public String getCurrEntity() {
+            throw new AssertionError("This method should not be called.");
+        };
+
+        @Override
+        public void setCurrEntity(String currEntity) {
+            throw new AssertionError("This method should not be called.");
+        };
+
     }
 
     private class ModelStubWithCompany extends ModelStub {

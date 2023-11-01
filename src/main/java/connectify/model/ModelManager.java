@@ -33,7 +33,7 @@ public class ModelManager implements Model {
     private enum EntityType {
         PEOPLE, COMPANIES, ALL
     }
-    private EntityType currEntity = EntityType.COMPANIES;
+    private EntityType currEntity = EntityType.ALL;
 
 
     /**
@@ -210,10 +210,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateToAllEntities() {
-        currEntity = EntityType.ALL;
-    }
-    @Override
     public String getCurrEntity() {
         if (currEntity == EntityType.PEOPLE) {
             return "people";
@@ -242,21 +238,14 @@ public class ModelManager implements Model {
      * Returns an ObservableList of entities that is currently being filtered.
      */
     @Override
-    public ObservableList<? extends Entity> getFilteredEntityList() {
-        if (currEntity == EntityType.PEOPLE) {
-            logger.info("Returning list of filtered persons");
-            return filteredPersons;
-        } else if (currEntity == EntityType.COMPANIES) {
-            logger.info("Returning list of filtered companies");
-            return filterCompanies;
-        } else {
-            // Create a new ObservableList which contains all the elements from filteredCompanies and filteredPersons
-            logger.info("Returning list of all entities");
-            ObservableList<Entity> allEntityList = FXCollections.observableArrayList();
-            allEntityList.addAll(filterCompanies);
-            allEntityList.addAll(filteredPersons);
-            return new FilteredList<>(allEntityList);
-        }
+    public ObservableList<Entity> getFilteredEntityList() {
+        // Create a new ObservableList which contains all the elements from filteredCompanies and filteredPersons
+        logger.info("Returning list of all entities");
+        ObservableList<Entity> allEntityList = FXCollections.observableArrayList();
+        allEntityList.addAll(filterCompanies);
+        allEntityList.addAll(filteredPersons);
+        return new FilteredList<>(allEntityList);
+
     }
 
     @Override

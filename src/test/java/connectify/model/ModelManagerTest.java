@@ -209,12 +209,11 @@ public class ModelManagerTest {
     @Test
     public void getFilteredEntityList_getAllList_returnsCorrectList() {
         modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        ObservableList<?> personList = modelManager.getFilteredEntityList();
+        ObservableList<?> personList = modelManager.getFilteredPersonList();
 
         modelManager.updateFilteredCompanyList(PREDICATE_SHOW_ALL_COMPANIES);
-        ObservableList<?> companyList = modelManager.getFilteredEntityList();
+        ObservableList<?> companyList = modelManager.getFilteredCompanyList();
 
-        modelManager.updateToAllEntities();
         assertEquals(personList.size() + companyList.size(), modelManager.getFilteredEntityList().size());
 
         // check items
@@ -227,34 +226,12 @@ public class ModelManagerTest {
         }
     }
 
-    @Test
-    public void updateToAllEntities_modifyEntityType_setsEntityType() {
-        modelManager.updateToAllEntities();
-        assertEquals("all", modelManager.getCurrEntity());
-    }
-
-    @Test
-    public void getCurrEntity_invalidEntityType_throwsInvalidEntityException() {
-        Assert.assertThrows(InvalidEntityException.class, () -> modelManager.setCurrEntity("invalid"));
-    }
 
     @Test
     public void getNumberOfEntities_emptyAddressBook_returnsZero() {
         assertEquals(0, modelManager.getNumberOfEntities());
     }
 
-    @Test
-    public void getNumberOfEntities_nonEmptyAddressBook_returnsCorrectNumber() {
-        try {
-            modelManager.addPerson(TypicalPersons.ALICE);
-            modelManager.addCompany(TypicalCompanies.COMPANY_1);
-            modelManager.setCurrEntity("all");
-        } catch (InvalidEntityException e) {
-            throw new AssertionError("InvalidEntityException should not be thrown.");
-        }
-        assertEquals(2, modelManager.getNumberOfEntities());
-        modelManager = new ModelManager();
-    }
 
     @Test
     public void getNumberOfPeople_emptyAddressBook_returnsZero() {

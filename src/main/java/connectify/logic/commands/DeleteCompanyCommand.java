@@ -42,6 +42,9 @@ public class DeleteCompanyCommand extends Command {
 
         Company companyToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteCompany(companyToDelete);
+        for (int i = 0; i < companyToDelete.getPersonList().size(); i++) {
+            model.deletePerson(companyToDelete.getPersonList().get(i));
+        }
         return new CommandResult(String.format(MESSAGE_DELETE_COMPANY_SUCCESS, Messages.format(companyToDelete)));
     }
 

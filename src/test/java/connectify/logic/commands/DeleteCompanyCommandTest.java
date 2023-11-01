@@ -80,6 +80,23 @@ public class DeleteCompanyCommandTest {
     }
 
     @Test
+    public void execute_deleteCompanyandPeople_success() {
+        Company companyToDelete = model.getFilteredCompanyList().get(INDEX_FIRST_COMPANY.getZeroBased());
+        DeleteCompanyCommand deleteCompanyCommand = new DeleteCompanyCommand(INDEX_FIRST_COMPANY);
+
+        String expectedMessage = String.format(DeleteCompanyCommand.MESSAGE_DELETE_COMPANY_SUCCESS,
+                Messages.format(companyToDelete));
+
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.deleteCompany(companyToDelete);
+        for (int i = 0; i < companyToDelete.getPersonList().size(); i++) {
+            expectedModel.deletePerson(companyToDelete.getPersonList().get(i));
+        }
+
+        assertCommandSuccess(deleteCompanyCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
     public void equals() {
         DeleteCompanyCommand deleteFirstCommand = new DeleteCompanyCommand(INDEX_FIRST_COMPANY);
         DeleteCompanyCommand deleteSecondCommand = new DeleteCompanyCommand(INDEX_SECOND_COMPANY);
@@ -108,6 +125,7 @@ public class DeleteCompanyCommandTest {
         String expected = DeleteCompanyCommand.class.getCanonicalName() + "{targetIndex=" + targetIndex + "}";
         assertEquals(expected, deleteCompanyCommand.toString());
     }
+
 
     /**
      * Updates {@code model}'s filtered list to show no one.

@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Comparator;
 
+import connectify.model.InvalidEntityException;
 import connectify.model.Model;
 import connectify.model.person.Person;
 import connectify.model.person.PersonNameComparator;
@@ -23,6 +24,12 @@ public class ListPeopleCommand extends Command {
         Comparator<Person> comparator = new PersonNameComparator();
         model.updateSortedPersonList(comparator);
         Integer size = model.getNumberOfPeople();
+        try {
+            model.setCurrEntity("people");
+        } catch (InvalidEntityException e) {
+            throw new AssertionError("An exception was thrown when setting the current entity to 'people'");
+        }
+
         if (size == 0) {
             return new CommandResult(EMPTY_LIST_MESSAGE);
         }

@@ -51,7 +51,18 @@ public interface Logic {
      */
     void setGuiSettings(GuiSettings guiSettings);
 
+    /**
+     * Returns an unmodifiable view of the filtered list of companies
+     */
     ObservableList<Company> getFilteredCompanyList();
 
+    /**
+     * Returns an unmodifiable view of the filtered list of entities
+     */
     ObservableList<? extends Entity> getFilteredEntityList();
+
+    /**
+     * Return the current entity type
+     */
+    String getCurrEntity();
 }
