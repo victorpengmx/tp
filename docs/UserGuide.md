@@ -12,14 +12,27 @@ Networking is a crucial aspect of your academic and professional life, and Conne
 
 ## Table of Contents
 * [Quick start](#quick-start)
+* [Tutorial: Adding your first connection](#tutorial-adding-your-first-connection)
 * [Features](#features)
-  * [Adding Contacts](#adding-contacts)
-  * [Deleting Contacts](#deleting-contacts)
-  * [Editing Contacts](#editing-people)
-  * [Listing Contacts](#listing-all-entities)
-  * [Listing Companies](#listing-all-companies)
-  * [Listing People](#listing-all-people)
-  * [Exit](#exit)
+  * [Features for managing company details](#features-for-managing-company-details)
+    * [Adding a company: `addCompany`](#adding-a-company-addcompany)
+    * [Deleting a company: `deleteCompany`](#deleting-a-company-deletecompany)
+    * [Editing a company: `editCompany`](#editing-a-company-editcompany)
+    * [Listing all companies: `companies`](#listing-all-companies-companies)
+    * [Adding note to a company: `noteCompany`](#adding-note-to-a-company-notecompany)
+  * [Features for managing people contact details](#features-for-managing-people-contact-details)
+    * [Adding a person: `addPerson`](#adding-a-person-addperson)
+    * [Deleting a person: `deletePerson`](#deleting-a-person-deleteperson)
+    * [Editing a person: `editPerson`](#editing-a-person-editperson)
+    * [Listing all people: `people`](#listing-all-people-people)
+    * [Adding note to a person: `notePerson`](#adding-note-to-a-person-noteperson)
+    * [Ranking people by priority: `rank`](#ranking-people-by-priority-rank)
+  * [General Commands] (#general-commands)
+    * [Listing all entities: `list`](#listing-all-entities-list)
+    * [Finding entities: `find`](#finding-entities-find)
+    * [Clearing the database: `clear`](#clearing-the-database-clear)
+    * [Seeking Help: `help`](#seeking-help-help)
+    * [Exiting Connectify: `exit`](#exiting-connectify-exit)
 * [FAQ](#faq)
 * [Known issues](#known-issues)
 * [Command Summary](#command-summary)
@@ -37,6 +50,61 @@ Getting started with Connectify is extremely simple! Here is a tutorial on how t
   <p style="text-align:center;"><img src="images/ConnectifyStartPage.png" width="500" /></p> <br>
 
 Now that you've successfully installed Connectify, let's take a moment to familiarize ourselves with the application's interface and functionality before diving into its features!
+
+<a href="#table-of-contents" class="return-to-toc-link">
+  <span class="return-to-toc-text">Return to Table of Contents</span>
+  <span class="return-to-toc-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-bar-up" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M3.646 11.854a.5.5 0 0 0 .708 0L8 8.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708zM2.4 5.2c0 .22.18.4.4.4h10.4a.4.4 0 0 0 0-.8H2.8a.4.4 0 0 0-.4.4z">
+      </path>
+    </svg>
+  </span>
+</a>
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Tutorial: Adding your first connection
+
+Now that you've familiarized yourself with the Connectify interface, it's time to start connecting with people. This step-by-step guide will walk you through the process of adding your first connection to Connectify in three simple steps. You can choose to follow the sample instructions verbatim, or you can get creative and use your own details.
+
+The guide begins on the following page!
+
+As a new user, your Connectify database is empty. Let's add your first connection!
+
+1. Firstly, you should input a company into your database. The example that we would be using is `addCompany n/TechCorp i/Technology l/Silicon Valley d/Leading tech company w/www.techcorp.com e/contact@techcorp.com p/12345678 a/123 Tech St, Silicon Valley`. This command adds a company named "TechCorp" to your Connectify database with the relevant details of the company as specified in the command. The output of this command is shown below:
+
+   ```
+   New company added: Apple Inc
+   Phone: 98765432
+   Email: apple@gmail.com
+   Address: 1 Infinite Loop, Cupertino, California
+   Industry: technology
+   Location: Silicon Valley
+   Description: computer and consumer technology
+   Website: www.apple.com
+   ```
+   
+   The company has been successfully added to your Connectify database! You should be able to see the company in your database as shown below:
+   
+   ![Adding First Company](images/tutorial_addingFirstCompany.png)
+
+2. Now that you've added a company to your Connectify database, it's time to add a person to your database. The example that we would be using is `addPerson n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney c/1 pr/1`. This command adds a person named "John Doe" to your Connectify database with the relevant details of the person as specified in the command. The output of this command is shown below:
+
+   ```
+   New person added: John Doe;
+   Phone: 98765432;
+   Email: johnd@example.com;
+   Address: 311, Clementi Ave 2, #02-25;
+   Note: Priority: 1;
+   Company: TechCorp;
+   Tags: [owesMoney][friends]
+   ```
+   
+   The person has been successfully added to your Connectify database! You should be able to see the person in your database as shown below:
+
+    ![Adding First Person](images/tutorial_addingFirstPerson.png)
+
+3. Congratulations! You've successfully added your first connection to Connectify. You can now use Connectify to manage your connections and enhance your networking experience. To learn more about the features and functionalities of Connectify, please refer to the [Features](#features) section of this user guide.
 
 <a href="#table-of-contents" class="return-to-toc-link">
   <span class="return-to-toc-text">Return to Table of Contents</span>
@@ -91,12 +159,28 @@ Description: computer and consumer technology
 Website: www.apple.com
 ```
 
+You should be able to see the company in Connectify as shown below:
+
+![Adding Company](images/tutorial_addingFirstCompany.png)
+
 **Unsuccessful Output:**
 
 - If a person with the same details already exists in the address book:
   ```
   This company already exists in the address book.
   ```
+
+<a href="#table-of-contents" class="return-to-toc-link">
+  <span class="return-to-toc-text">Return to Table of Contents</span>
+  <span class="return-to-toc-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-bar-up" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M3.646 11.854a.5.5 0 0 0 .708 0L8 8.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708zM2.4 5.2c0 .22.18.4.4.4h10.4a.4.4 0 0 0 0-.8H2.8a.4.4 0 0 0-.4.4z">
+      </path>
+    </svg>
+  </span>
+</a>
+
+--------------------------------------------------------------------------------------------------------------------
 
 #### Deleting a company: `deleteCompany`
 
@@ -135,6 +219,18 @@ Address: 123 Tech St, Silicon Valley
 ```
 The company index provided is invalid.
 ```
+
+<a href="#table-of-contents" class="return-to-toc-link">
+  <span class="return-to-toc-text">Return to Table of Contents</span>
+  <span class="return-to-toc-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-bar-up" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M3.646 11.854a.5.5 0 0 0 .708 0L8 8.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708zM2.4 5.2c0 .22.18.4.4.4h10.4a.4.4 0 0 0 0-.8H2.8a.4.4 0 0 0-.4.4z">
+      </path>
+    </svg>
+  </span>
+</a>
+
+--------------------------------------------------------------------------------------------------------------------
 
 #### Editing a company: `editCompany`
 
@@ -188,6 +284,18 @@ At least one field to edit must be provided.
 The company index provided is invalid.
 ```
 
+<a href="#table-of-contents" class="return-to-toc-link">
+  <span class="return-to-toc-text">Return to Table of Contents</span>
+  <span class="return-to-toc-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-bar-up" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M3.646 11.854a.5.5 0 0 0 .708 0L8 8.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708zM2.4 5.2c0 .22.18.4.4.4h10.4a.4.4 0 0 0 0-.8H2.8a.4.4 0 0 0-.4.4z">
+      </path>
+    </svg>
+  </span>
+</a>
+
+--------------------------------------------------------------------------------------------------------------------
+
 ####  Listing all companies: `companies`
 
 The `companies` command allows you to retrieve a list of all companies in Connectify. This command is particularly useful for obtaining an overview of all the companies you have stored. To list all companies, follow the command format below:
@@ -204,12 +312,28 @@ This command has no additional fields.
 Listed all companies.
 ```
 
+You should be able to see all the companies in Connectify as shown below:
+
+![Listing Companies](images/listingCompanies.png)
+
 **Unsuccessful Output**
 
 - If Connectify does not contain any companies, and there are no companies to display, you will receive the following message:
 ```
 There are no companies in Connectify.
 ```
+
+<a href="#table-of-contents" class="return-to-toc-link">
+  <span class="return-to-toc-text">Return to Table of Contents</span>
+  <span class="return-to-toc-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-bar-up" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M3.646 11.854a.5.5 0 0 0 .708 0L8 8.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708zM2.4 5.2c0 .22.18.4.4.4h10.4a.4.4 0 0 0 0-.8H2.8a.4.4 0 0 0-.4.4z">
+      </path>
+    </svg>
+  </span>
+</a>
+
+--------------------------------------------------------------------------------------------------------------------
 
 #### Adding note to a company: `noteCompany`
 
@@ -246,6 +370,18 @@ Added note to Company: connectify.model.company.Company{name=ABC, phone=91234567
 The company index provided is invalid.
 ```
 
+<a href="#table-of-contents" class="return-to-toc-link">
+  <span class="return-to-toc-text">Return to Table of Contents</span>
+  <span class="return-to-toc-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-bar-up" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M3.646 11.854a.5.5 0 0 0 .708 0L8 8.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708zM2.4 5.2c0 .22.18.4.4.4h10.4a.4.4 0 0 0 0-.8H2.8a.4.4 0 0 0-.4.4z">
+      </path>
+    </svg>
+  </span>
+</a>
+
+--------------------------------------------------------------------------------------------------------------------
+
 ### Features for managing people contact details
 
 #### Adding a person: `addPerson`
@@ -264,6 +400,10 @@ The fields are:
 - `c/COMPANY` is the index of the company to which the contact belongs.
 - `pr/PRIORITY` is the priority level of the contact.
 - `[t/TAG]`: (optional) is used to categorize your contacts. Tags help organize connections efficiently.
+
+<div markdown="block" class="alert alert-warning">
+:exclamation: **Warning:** If the company index is not specified, the contact will be automatically added to the first company in the displayed company list.
+</div>
 
 **Example:**
 
@@ -285,6 +425,10 @@ Priority: 1
 Tags: friends, owesMoney
 ```
 
+You should be able to see the person in Connectify as shown below:
+
+![Adding Person](images/tutorial_addingFirstPerson.png)
+
 **Unsuccessful Output:**
 
 - If the provided details are incomplete or invalid:
@@ -301,6 +445,18 @@ Tags: friends, owesMoney
   ```
   The company index provided is invalid.
   ```
+
+<a href="#table-of-contents" class="return-to-toc-link">
+  <span class="return-to-toc-text">Return to Table of Contents</span>
+  <span class="return-to-toc-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-bar-up" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M3.646 11.854a.5.5 0 0 0 .708 0L8 8.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708zM2.4 5.2c0 .22.18.4.4.4h10.4a.4.4 0 0 0 0-.8H2.8a.4.4 0 0 0-.4.4z">
+      </path>
+    </svg>
+  </span>
+</a>
+
+--------------------------------------------------------------------------------------------------------------------
 
 #### Deleting a person: `deletePerson`
 
@@ -349,6 +505,18 @@ The company index provided is invalid.
 ```
 The person index provided is invalid.
 ```
+
+<a href="#table-of-contents" class="return-to-toc-link">
+  <span class="return-to-toc-text">Return to Table of Contents</span>
+  <span class="return-to-toc-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-bar-up" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M3.646 11.854a.5.5 0 0 0 .708 0L8 8.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708zM2.4 5.2c0 .22.18.4.4.4h10.4a.4.4 0 0 0 0-.8H2.8a.4.4 0 0 0-.4.4z">
+      </path>
+    </svg>
+  </span>
+</a>
+
+--------------------------------------------------------------------------------------------------------------------
 
 ####  Editing a person: `editPerson`
 
@@ -415,6 +583,18 @@ Invalid index provided.
 This person already exists in the Connectify.
 ```
 
+<a href="#table-of-contents" class="return-to-toc-link">
+  <span class="return-to-toc-text">Return to Table of Contents</span>
+  <span class="return-to-toc-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-bar-up" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M3.646 11.854a.5.5 0 0 0 .708 0L8 8.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708zM2.4 5.2c0 .22.18.4.4.4h10.4a.4.4 0 0 0 0-.8H2.8a.4.4 0 0 0-.4.4z">
+      </path>
+    </svg>
+  </span>
+</a>
+
+--------------------------------------------------------------------------------------------------------------------
+
 ####  Listing all people: `people`
 
 The `people` command allows you to retrieve a list of all individuals (persons) in the Connectify. This command is especially useful for obtaining an overview of all the individuals you have stored. To list all people, follow the command format below:
@@ -431,12 +611,28 @@ Note: This command has no additional fields.
 Listed all persons.
 ```
 
+You should be able to see all the people in Connectify as shown below:
+
+![Listing People](images/listingPeople.png)
+
 **Unsuccessful Output**
 
 - If Connectify does not contain any individuals (persons), and there are no people to list, you will receive the following message:
 ```
 There are no people in Connectify.
 ```
+
+<a href="#table-of-contents" class="return-to-toc-link">
+  <span class="return-to-toc-text">Return to Table of Contents</span>
+  <span class="return-to-toc-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-bar-up" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M3.646 11.854a.5.5 0 0 0 .708 0L8 8.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708zM2.4 5.2c0 .22.18.4.4.4h10.4a.4.4 0 0 0 0-.8H2.8a.4.4 0 0 0-.4.4z">
+      </path>
+    </svg>
+  </span>
+</a>
+
+--------------------------------------------------------------------------------------------------------------------
 
 #### Adding note to a person: `notePerson`
 
@@ -487,12 +683,24 @@ The company index provided is invalid.
 The person index provided is invalid.
 ```
 
-#### Ranking people by priority: `rankPerson`
+<a href="#table-of-contents" class="return-to-toc-link">
+  <span class="return-to-toc-text">Return to Table of Contents</span>
+  <span class="return-to-toc-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-bar-up" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M3.646 11.854a.5.5 0 0 0 .708 0L8 8.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708zM2.4 5.2c0 .22.18.4.4.4h10.4a.4.4 0 0 0 0-.8H2.8a.4.4 0 0 0-.4.4z">
+      </path>
+    </svg>
+  </span>
+</a>
 
-The `rankPerson` command allows you to rank people by priority in Connectify. This command is particularly useful for ranking people you have stored. To rank people by priority, follow the command format below:
+--------------------------------------------------------------------------------------------------------------------
+
+#### Ranking people by priority: `rank`
+
+The `rank` command allows you to rank people by priority in Connectify. This command is particularly useful for ranking people you have stored. To rank people by priority, follow the command format below:
 
 ```
-rankPerson
+rank
 ```
 
 Note: This command has no additional fields.
@@ -503,6 +711,10 @@ Note: This command has no additional fields.
 Ranked all persons
 ```
 
+You should be able to see the following in Connectify as shown below:
+
+![Ranking People](images/rankingPeople.png)
+
 **Unsuccessful Output**
 
 - If Connectify does not contain any individuals (persons), and there are no people to rank, you will receive the following message:
@@ -510,21 +722,85 @@ Ranked all persons
 There are no people in Connectify.
 ```
 
-### Listing All Entities
-####  Command: `list`
+<a href="#table-of-contents" class="return-to-toc-link">
+  <span class="return-to-toc-text">Return to Table of Contents</span>
+  <span class="return-to-toc-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-bar-up" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M3.646 11.854a.5.5 0 0 0 .708 0L8 8.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708zM2.4 5.2c0 .22.18.4.4.4h10.4a.4.4 0 0 0 0-.8H2.8a.4.4 0 0 0-.4.4z">
+      </path>
+    </svg>
+  </span>
+</a>
+
+--------------------------------------------------------------------------------------------------------------------
+
+### General Commands
+
+####  Listing all entities: `list`
 
 The `list` command allows you to retrieve a list of all entities (both persons and companies) in the Connectify database. This command is useful for obtaining an overview of all the entities you have stored.
 
 Follow the format below to list all entities:
+
 ```
 list
 ```
+
 Note: This command has no additional fields.
 
 **Successful Output**
 
 ```
 Listed all persons and companies.
+```
+
+You should be able to see all your connections in Connectify as shown below:
+
+![Listing All Entities](images/listingAll.png)
+
+**Unsuccessful Output**
+
+- If Connectify is empty, and there are no entities to display, you will receive the following message:
+```
+There are no entities in Connectify.
+```
+
+<a href="#table-of-contents" class="return-to-toc-link">
+  <span class="return-to-toc-text">Return to Table of Contents</span>
+  <span class="return-to-toc-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-bar-up" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M3.646 11.854a.5.5 0 0 0 .708 0L8 8.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708zM2.4 5.2c0 .22.18.4.4.4h10.4a.4.4 0 0 0 0-.8H2.8a.4.4 0 0 0-.4.4z">
+      </path>
+    </svg>
+  </span>
+</a>
+
+--------------------------------------------------------------------------------------------------------------------
+
+#### Finding entities: `find`
+
+The `find` command allows you to retrieve a list of all entities (both persons and companies) in the Connectify database that match the specified keywords. This command is useful for obtaining an overview of all the entities you have stored that match the specified keywords. The command format is as follows:
+
+```
+find KEYWORD [MORE_KEYWORDS]
+```
+
+The fields are:
+- `KEYWORD` is the first keyword to search for.
+- `MORE_KEYWORDS` (optional) is the second keyword to search for.
+
+**Example:**
+
+To find all entities that contain the keywords "John" and "Doe", use the following command:
+
+```
+find John Doe
+```
+
+**Successful Output**
+
+```
+1 people and companies listed!
 ```
 
 **Unsuccessful Output**
@@ -534,9 +810,80 @@ Listed all persons and companies.
 There are no entities in Connectify.
 ```
 
-### Exit
+- If no entities match the specified keywords, you will receive the following message:
+```
+There are no entities that match the specified keywords.
+```
 
-#### Command: `exit`
+<a href="#table-of-contents" class="return-to-toc-link">
+  <span class="return-to-toc-text">Return to Table of Contents</span>
+  <span class="return-to-toc-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-bar-up" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M3.646 11.854a.5.5 0 0 0 .708 0L8 8.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708zM2.4 5.2c0 .22.18.4.4.4h10.4a.4.4 0 0 0 0-.8H2.8a.4.4 0 0 0-.4.4z">
+      </path>
+    </svg>
+  </span>
+</a>
+
+--------------------------------------------------------------------------------------------------------------------
+
+#### Clearing the database: `clear`
+
+The `clear` command allows you to clear all entities (both persons and companies) in the Connectify database. This command is useful for clearing all the entities you have stored. The command format is as follows:
+
+```
+clear
+```
+
+Note: This command has no additional fields.
+
+**Successful Output**
+
+```
+Cleared all persons and companies.
+```
+
+<a href="#table-of-contents" class="return-to-toc-link">
+  <span class="return-to-toc-text">Return to Table of Contents</span>
+  <span class="return-to-toc-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-bar-up" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M3.646 11.854a.5.5 0 0 0 .708 0L8 8.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708zM2.4 5.2c0 .22.18.4.4.4h10.4a.4.4 0 0 0 0-.8H2.8a.4.4 0 0 0-.4.4z">
+      </path>
+    </svg>
+  </span>
+</a>
+
+--------------------------------------------------------------------------------------------------------------------
+
+#### Seeking Help: `help`
+
+The `help` command displays a link to this user guide. This command is useful for obtaining an overview of all the commands available in Connectify. The command format is as follows:
+
+```
+help
+```
+
+Note: This command has no additional fields.
+
+**Successful Output**
+
+A pop-up window will appear with the link to this user guide as shown below:
+
+![Help](images/helpCommand.png)
+
+<a href="#table-of-contents" class="return-to-toc-link">
+  <span class="return-to-toc-text">Return to Table of Contents</span>
+  <span class="return-to-toc-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-bar-up" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M3.646 11.854a.5.5 0 0 0 .708 0L8 8.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708zM2.4 5.2c0 .22.18.4.4.4h10.4a.4.4 0 0 0 0-.8H2.8a.4.4 0 0 0-.4.4z">
+      </path>
+    </svg>
+  </span>
+</a>
+
+--------------------------------------------------------------------------------------------------------------------
+
+#### Exiting Connectify: `exit`
 
 This command exits the program.
 
@@ -552,17 +899,47 @@ Bye. Hope to see you again soon!
 That is not a valid command.
 ```
 
+<a href="#table-of-contents" class="return-to-toc-link">
+  <span class="return-to-toc-text">Return to Table of Contents</span>
+  <span class="return-to-toc-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-bar-up" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M3.646 11.854a.5.5 0 0 0 .708 0L8 8.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708zM2.4 5.2c0 .22.18.4.4.4h10.4a.4.4 0 0 0 0-.8H2.8a.4.4 0 0 0-.4.4z">
+      </path>
+    </svg>
+  </span>
+</a>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
 [Coming Soon]
 
+<a href="#table-of-contents" class="return-to-toc-link">
+  <span class="return-to-toc-text">Return to Table of Contents</span>
+  <span class="return-to-toc-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-bar-up" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M3.646 11.854a.5.5 0 0 0 .708 0L8 8.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708zM2.4 5.2c0 .22.18.4.4.4h10.4a.4.4 0 0 0 0-.8H2.8a.4.4 0 0 0-.4.4z">
+      </path>
+    </svg>
+  </span>
+</a>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Known issues
 
 [Coming Soon]
+
+<a href="#table-of-contents" class="return-to-toc-link">
+  <span class="return-to-toc-text">Return to Table of Contents</span>
+  <span class="return-to-toc-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-bar-up" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M3.646 11.854a.5.5 0 0 0 .708 0L8 8.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708zM2.4 5.2c0 .22.18.4.4.4h10.4a.4.4 0 0 0 0-.8H2.8a.4.4 0 0 0-.4.4z">
+      </path>
+    </svg>
+  </span>
+</a>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -586,7 +963,7 @@ That is not a valid command.
 | **Edit**   | `editPerson INDEX c/COMPANY [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`editPerson 2 c/1 n/John Doe    |
 | **List**   | `people`                                                                                                                 |
 | **Note**   | `notePerson COMPANY_INDEX PERSON_INDEX r/NOTE`<br> e.g., `notePerson 1 1 r/Likes to swim.`                               |
-| **Rank**   | `rankPerson`                                                                                                             |
+| **Rank**   | `rank`                                                                                                                   |
 
 ### General Commands
 | Action    | Format, Examples                                           |
@@ -596,3 +973,13 @@ That is not a valid command.
 | **Clear** | `clear`                                                    |
 | **Help**  | `help`                                                     |
 | **Exit**  | `exit`                                                     |
+
+<a href="#table-of-contents" class="return-to-toc-link">
+  <span class="return-to-toc-text">Return to Table of Contents</span>
+  <span class="return-to-toc-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-bar-up" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M3.646 11.854a.5.5 0 0 0 .708 0L8 8.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708zM2.4 5.2c0 .22.18.4.4.4h10.4a.4.4 0 0 0 0-.8H2.8a.4.4 0 0 0-.4.4z">
+      </path>
+    </svg>
+  </span>
+</a>
