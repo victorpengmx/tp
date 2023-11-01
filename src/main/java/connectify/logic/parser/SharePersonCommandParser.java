@@ -6,19 +6,21 @@ import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.xml.sax.Parser;
+
 import connectify.commons.core.index.Index;
 import connectify.logic.commands.SharePersonCommand;
 import connectify.logic.parser.exceptions.ParseException;
 
 /**
- * Parses a Company object into a ShareCompanyCommand for execution.
+ * Parses a Person object into a SharePersonCommand for execution.
  */
 public class SharePersonCommandParser implements Parser<SharePersonCommand> {
 
     private static final Logger logger = Logger.getLogger(SharePersonCommandParser.class.getName());
 
     /**
-     * Parses the given {@code Company} object and returns a ShareCompanyCommand object for execution.
+     * Parses the given {@code Person} object and returns a SharePersonCommand object for execution.
      * @throws ParseException if the parsing is unsuccessful
      */
     public SharePersonCommand parse(String args) throws ParseException {
