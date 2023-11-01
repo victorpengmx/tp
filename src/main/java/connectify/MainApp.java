@@ -19,7 +19,6 @@ import connectify.model.ModelManager;
 import connectify.model.ReadOnlyAddressBook;
 import connectify.model.ReadOnlyUserPrefs;
 import connectify.model.UserPrefs;
-import connectify.model.util.SampleDataUtil;
 import connectify.storage.AddressBookStorage;
 import connectify.storage.JsonAddressBookStorage;
 import connectify.storage.JsonUserPrefsStorage;
@@ -84,7 +83,7 @@ public class MainApp extends Application {
                         + " populated with a sample AddressBook.");
             }
 
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = addressBookOptional.orElse(new AddressBook());
         } catch (DataLoadingException e) {
             logger.warning("Data file at " + storage.getAddressBookFilePath() + " could not be loaded."
                     + " Will be starting with an empty AddressBook.");
