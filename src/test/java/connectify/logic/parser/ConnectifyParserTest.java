@@ -22,8 +22,6 @@ import connectify.logic.commands.AddPersonCommand;
 import connectify.logic.commands.ClearCommand;
 import connectify.logic.commands.DeleteCompanyCommand;
 import connectify.logic.commands.DeletePersonCommand;
-import connectify.logic.commands.EditCompanyCommand;
-import connectify.logic.commands.EditCompanyCommand.EditCompanyDescriptor;
 import connectify.logic.commands.EditPersonCommand;
 import connectify.logic.commands.EditPersonCommand.EditPersonDescriptor;
 import connectify.logic.commands.ExitCommand;
@@ -47,7 +45,6 @@ import connectify.model.person.Person;
 import connectify.model.person.PersonNote;
 import connectify.testutil.CompanyBuilder;
 import connectify.testutil.CompanyUtil;
-import connectify.testutil.EditCompanyDescriptorBuilder;
 import connectify.testutil.EditPersonDescriptorBuilder;
 import connectify.testutil.PersonBuilder;
 import connectify.testutil.PersonUtil;
@@ -92,9 +89,8 @@ public class ConnectifyParserTest {
         assertEquals(new DeletePersonCommand(INDEX_FIRST_COMPANY, INDEX_FIRST_PERSON), command);
     }
 
-
     @Test
-    public void parseCommand_editPerson() throws Exception {
+    public void parseCommand_edit() throws Exception {
         Person person = new PersonBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
         EditPersonCommand command = (EditPersonCommand) parser.parseCommand(
@@ -103,17 +99,6 @@ public class ConnectifyParserTest {
                 + INDEX_FIRST_COMPANY.getOneBased() + " " + PREFIX_PRIORITY + "1 "
                 + PersonUtil.getEditPersonDescriptorDetails(descriptor));
         assertEquals(new EditPersonCommand(INDEX_FIRST_PERSON, INDEX_FIRST_COMPANY, descriptor), command);
-    }
-
-    @Test
-    public void parseCommand_editCompany() throws Exception {
-        Company company = new CompanyBuilder().build();
-        EditCompanyDescriptor descriptor = new EditCompanyDescriptorBuilder(company).build();
-        EditCompanyCommand command = (EditCompanyCommand) parser.parseCommand(
-                EditCompanyCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_COMPANY.getOneBased() + " "
-                + CompanyUtil.getEditCompanyDescriptorDetails(descriptor));
-        assertEquals(new EditCompanyCommand(INDEX_FIRST_COMPANY, descriptor), command);
     }
 
     @Test
@@ -162,8 +147,10 @@ public class ConnectifyParserTest {
     @Test
     public void parseCommand_sharePerson() throws Exception {
         SharePersonCommand command = (SharePersonCommand) parser.parseCommand(
-                SharePersonCommand.COMMAND_WORD + " " + INDEX_FIRST_COMPANY.getOneBased());
-        assertEquals(new SharePersonCommand(INDEX_FIRST_COMPANY), command);
+                DeletePersonCommand.COMMAND_WORD + " " + INDEX_FIRST_COMPANY.getOneBased()
+                        +
+                        " " + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new SharePersonCommand(INDEX_FIRST_COMPANY, INDEX_FIRST_PERSON), command);
     }
 
     @Test
