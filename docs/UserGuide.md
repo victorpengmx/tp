@@ -382,6 +382,54 @@ The company index provided is invalid.
 
 --------------------------------------------------------------------------------------------------------------------
 
+#### Sharing a company details: `shareCompany`
+
+The `shareCompany` command allows you to share a company's details with another person. This command is particularly useful for sharing companies you have stored. To share a company's details, follow the command format below:
+
+```
+shareCompany INDEX
+```
+
+The fields are:
+- `INDEX` is the index of the company in the displayed company list that you want to share. It must be a positive integer within the company.
+
+**Example:**
+
+To share the company at index 1, use the following command:
+
+```
+shareCompany 1
+```
+
+**Successful Output**
+
+```
+Command to add this Company:
+addCompany n/TechCorp i/Technology l/Silicon Valley d/Leading tech company w/www.techcorp.com e/contact@techcorp.com p/12345678 a/123 Tech St, Silicon Valley
+Do take note that you need to add people on your own.
+```
+
+You should see Connectify display the command to be copied, as shown below. The command can be copied and sent to another person, who can then add the company to their Connectify database by pasting the command into the command box and pressing enter.
+
+![Share Company](images/shareCompany.png)
+
+**Unsuccessful Output**
+
+- If the specified index is missing, you will get the following error message:
+```
+Invalid command format! 
+shareCompany: Shares instructions on how to add a Company to another address book.
+Parameters: INDEX (must be a positive integer)
+Example: shareCompany 1
+```
+
+- If the specified index is invalid (not within the displayed company list or not a positive integer), you will get the following error message:
+```
+The company index provided is invalid.
+```
+
+--------------------------------------------------------------------------------------------------------------------
+
 ### Features for managing people contact details
 
 #### Adding a person: `addPerson`
@@ -401,9 +449,7 @@ The fields are:
 - `pr/PRIORITY` is the priority level of the contact.
 - `[t/TAG]`: (optional) is used to categorize your contacts. Tags help organize connections efficiently.
 
-<div markdown="block" class="alert alert-warning">
-:exclamation: **Warning:** If the company index is not specified, the contact will be automatically added to the first company in the displayed company list.
-</div>
+Note: If the company index is not specified, the contact will be automatically added to the first company in the displayed company list.
 
 **Example:**
 
@@ -720,6 +766,74 @@ You should be able to see the following in Connectify as shown below:
 - If Connectify does not contain any individuals (persons), and there are no people to rank, you will receive the following message:
 ```
 There are no people in Connectify.
+```
+
+<a href="#table-of-contents" class="return-to-toc-link">
+  <span class="return-to-toc-text">Return to Table of Contents</span>
+  <span class="return-to-toc-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-bar-up" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M3.646 11.854a.5.5 0 0 0 .708 0L8 8.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708zM2.4 5.2c0 .22.18.4.4.4h10.4a.4.4 0 0 0 0-.8H2.8a.4.4 0 0 0-.4.4z">
+      </path>
+    </svg>
+  </span>
+</a>
+
+--------------------------------------------------------------------------------------------------------------------
+
+#### Sharing a person's contact details: `sharePerson`
+
+The `sharePerson` command allows you to share a person's contact details with another person. This command is particularly useful for sharing contact details of people you have stored. To share a person's contact details, follow the command format below:
+
+```
+sharePerson COMPANY_INDEX PERSON_INDEX
+```
+
+The fields are:
+- `COMPANY_INDEX` is the index of the company that the person is associated with.
+- `PERSON_INDEX` is the index of the person in the displayed person list of a company that you want to share. It must be a positive integer within the company.
+
+**Example:**
+
+To share the contact details of the person at index 1 in the displayed person list of Company 1, use the following command:
+
+```
+sharePerson 1 1
+```
+
+**Successful Output**
+
+```
+Command to add this Person:
+addPerson n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 n/Note n/Company t/owesMoneyfriends
+Do take note that you need to specify Company and priority on your own.
+``` 
+
+You should see Connectify display the command to be copied, as shown below. The command can be copied and sent to another person, who can then add the company to their Connectify database by pasting the command into the command box and pressing enter.
+
+![Share Person](images/sharePerson.png)
+
+**Unsuccessful Output**
+
+- If the specified company index is missing, you will get the following error message:
+```
+Invalid command format! 
+sharePerson: Shares instructions on how to add a Person, from the specified company, to another address book.
+Parameters: COMPANY_INDEX (must be a positive integer) PERSON_INDEX (must be a positive integer)
+```
+
+- If the specified company index is invalid, you will get the following error message:
+```
+The company index provided is invalid.
+```
+
+- If the specified person index is invalid, you will get the following error message:
+```
+The person index provided is invalid.
+```
+
+- If the specified company index or person index is out of bounds, you will get the following error message:
+```
+The company index provided is invalid.
 ```
 
 <a href="#table-of-contents" class="return-to-toc-link">
