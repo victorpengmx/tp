@@ -97,7 +97,7 @@ public class SharePersonCommand extends Command {
             case "Company":
                 break;
             case "Tags":
-                String[] tags = value.substring(1, value.length() - 1).split("\\]\\[");
+                String[] tags = value.substring(1, value.length() - 1).split("]\\[");
                 for (String tag : tags) {
                     result.append("t/").append(tag).append(" ");
                 }
