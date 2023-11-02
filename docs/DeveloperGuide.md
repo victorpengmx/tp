@@ -432,13 +432,43 @@ notePerson 1 1 r/Likes to swim.
 ```
 Upon execution, the NotePersonCommand appends the note to the person at the specified person index, corresponding to the company at the specified company index. The object diagram above illustrates the final internal state after this example has been parsed.
 
-The behavior of Connectify upon receiving a notePerson command is described in the following activity diagram:
+The behavior of Connectify upon receiving a notePerson command is described in the following activity diagram.
 
 The NotePersonCommand also handles cases where the provided person or company index is not valid. It could be that the index does not correspond to any company or person in the current list view, or it is not a positive integer. Under such circumstances, the command throws a CommandException to inform the user.
 
 <img src="images/addPersonNoteActivityDiagram.png" width="600" />
 
 <div style="page-break-after: always;"></div>
+
+### Share Person's Contact Feature: `sharePerson`
+
+#### Implementation
+
+This feature is enabled by the `SharePersonCommand` and `SharePersonCommandParser` within the `Logic` component.
+
+With valid input, the parser constructs a `SharePersonCommand` which, upon execution, generates a command string for sharing a person's contact details.
+
+The `sharePerson` command takes two parameters, `COMPANY_INDEX` and `PERSON_INDEX`, to identify the specific person within a company's list to be shared.
+
+<img src="images/sharePersonObjectDiagram.png" width="600" />
+
+Consider a scenario where the user wishes to share a person's contact. The command input would be as follows:
+
+```plaintext
+sharePerson 1 1
+```
+
+Upon execution, the SharePersonCommand retrieves the person's details and generates a shareable command string of the person at the specified person index, corresponding to the company at the specified company index. This string is then displayed to the user for copying.
+The object diagram above illustrates the final internal state after this example has been parsed.
+
+The behavior of Connectify upon receiving a sharePerson command is described in the following activity diagram.
+
+The SharePersonCommand also handles cases where the provided person or company index is not valid. It could be that the index does not correspond to any company or person in the current list view, or it is not a positive integer. Under such circumstances, the command throws a CommandException to inform the user.
+
+<img src="images/sharePersonActivityDiagram.png" width="600" />
+
+<div style="page-break-after: always;"></div>
+
 
 ### \[Proposed\] Undo/redo feature
 
@@ -481,7 +511,6 @@ The NoteCompanyCommand also handles cases where the provided index is not valid.
 ```plaintext
 The company index provided is invalid.
 ```
-
 
 
 ### \[Proposed\] Undo/redo feature
