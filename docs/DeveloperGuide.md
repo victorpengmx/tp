@@ -1220,29 +1220,202 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+<div style="page-break-after: always;"></div>
+
+### Adding a person
+
+1. Adding a person with valid inputs
+
+    1. Test cases: refer to UG for examples<br>
+       Expected: The corresponding person is added to Connectify.
+
+1. Adding a person with insufficient information
+
+    1. Test cases: `addPerson n/John Doe p/98765432`, `addPerson n/Jane Tan e/janet@example.com`, etc.<br>
+       Expected: Connectify displays an error. No person is added.
+       Reason: Insufficient information (other compulsory fields not input)
+
+1. Adding a person with invalid inputs
+
+    1. Test cases: `addPerson n/Alice Seah p/phone`, `addPerson n/Bob Lim e/email`, etc.<br>
+       Expected: Connectify displays an error. No person is added.
+       Reason: Phone number must be all numbers, email must be formatted as email@domain
+
+1. Adding a duplicate person
+
+    1. Prerequisites: Have a person named `Alex Yeoh` in the persons list
+
+    1. Test case: `addPerson n/Alex Yeoh ...`<br>
+       Expected: Conectify throws an error informing that there is already an `Alex Yeoh` in the list. No person is added.
+
+<div style="page-break-after: always;"></div>
 
 ### Deleting a person
 
-1. Deleting a person while all persons are being shown
+1. Deleting a person while all persons are displayed
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all persons using the `people` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   1. Test case: `deletePerson 1`<br>
+      Expected: Connectify displays an error. No person is deleted.
+      Reason: User must indicate both COMPANY_INDEX, and PERSON_INDEX to delete.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+   1. Test case: `deletePerson 1 1`<br>
+      Expected: First contact, from the first company, is deleted from the list. Details of the deleted contact shown in the status message.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Test case: `deletePerson 0 1`<br>
+      Expected: Connectify displays an error. No person is deleted.
+      Reason: COMPANY_INDEX must be >= 1, <= number of companies.
+
+   1. Test case: `deletePerson 1 0`<br>
+      Expected: Connectify displays an error. No person is deleted.
+      Reason: PERSON_INDEX must be >= 1, <= number of people.
+
+   1. Other incorrect delete commands to try: `deletePerson`, `deletePerson x y`, `...` (where x and/or y is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+<div style="page-break-after: always;"></div>
+
+### Sharing instructions on how to add a Person
+
+1. Sharing instructions on how to add a Person while all persons are displayed
+
+    1. Prerequisites: List all persons using the `people` command. Multiple persons in the list.
+
+    1. Test case: `sharePerson 1 1`<br>
+       Expected: Connectify converts the person card of the first person in the first company into text format, so that user can add the same Person to another address book.
+
+    1. See "Deleting a person" above for some examples of unsuccessful calls of sharePerson.
+
+<div style="page-break-after: always;"></div>
+
+### Adding a company
+
+1. Adding a company with valid inputs
+
+    1. Test cases: refer to UG for examples<br>
+       Expected: The corresponding company is added to Connectify.
+
+1. Adding a company with insufficient information
+
+    1. Test cases: `addCompany n/TechCorp`, `addCompany n/TechCorp l/Sim Lim Square`, etc.<br>
+       Expected: Connectify displays an error. No company is added.
+       Reason: Insufficient information (other compulsory fields not input)
+
+1. Adding a company with invalid inputs
+
+    1. Test cases: `addCompany n/Alice Pte Ltd p/phone`, `addCompany n/Bob and Co. e/email`, etc.<br>
+       Expected: Connectify displays an error. No company is added.
+       Reason: Phone number must be all numbers, email must be formatted as email@domain
+
+1. Adding a duplicate company
+
+    1. Prerequisites: Have a person named `CorpTech` in the companies list
+
+    1. Test case: `addCompany n/CorpTech ...`<br>
+       Expected: Conectify throws an error informing that there is already an `CorpTech` in the list. No company is added.
+
+<div style="page-break-after: always;"></div>
+
+### Deleting a company
+
+1. Deleting a company while all companies are displayed
+
+    1. Prerequisites: List all companies using the `companies` command. Multiple companies in the list.
+
+    1. Test case: `deleteCompany 1`<br>
+       Expected: First company is deleted from the list. Details of the deleted
+       company shown in the status message. Any persons under that company will also
+       be deleted.
+
+    1. Test case: `deleteCompany 0`<br>
+       Expected: Connectify displays an error. No company is deleted.
+       Reason: COMPANY_INDEX must be >= 1, <= number of companies.
+
+    1. Other incorrect delete commands to try: `deleteCompany`, `deleteCompany x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+<div style="page-break-after: always;"></div>
+
+### Sharing instructions on how to add a Company
+
+1. Sharing instructions on how to add a Company while all companies are displayed
+
+    1. Prerequisites: List all companies using the `companies` command. Multiple companies in the list.
+
+    1. Test case: `shareCompany 1`<br>
+       Expected: Connectify converts the company card of the first company into text format, so that user can add the same Company to another address book.
+
+    1. See "Deleting a company" above for some examples of unsuccessful calls of shareCompany.
+
+<div style="page-break-after: always;"></div>
+
+### Ranking
+
+1. Ranking when all persons are being displayed
+
+    1. Prerequisites: List all persons using the `people` command. Multiple persons in the list.
+
+    1. Test cases: `rank`, `rank ...(any other text following)...`.<br>
+       Expected: All persons are ranked by their corresponding priority. The text following the `rank` command is ignored.
+
+    1. Test cases: `rank1` and other invalid commands.<br>
+       Expected: Persons list is not sorted.
+
+<div style="page-break-after: always;"></div>
+
+### List/Display entities
+
+1. Listing all entities (persons and companies)
+
+    1. Test case: `list`<br>
+       Expected: All entities are listed.
+
+    1. Test case: Clear every entity using `clear`, then enter the command `list`<br>
+       Expected: No entities listed.
+
+1. Listing all people
+
+    1. Test case: `people`<br>
+       Expected: All people are listed.
+
+    1. Test case: Clear every entity using `clear`, then enter the command `people`<br>
+       Expected: No people listed.
+
+1. Listing all companies
+
+    1. Test case: `companies`<br>
+       Expected: All companies are listed.
+
+    1. Test case: Clear every entity using `clear`, then enter the command `companies`<br>
+       Expected: No companies listed.
+
+<div style="page-break-after: always;"></div>
+
+### Find
+
+1. Finding people using single person-related input
+
+    1. Prerequisites: One or more persons has a name containing `david`.
+
+    1. Test cases: `find david`, `find DAVID`, `find DaViD`<br>
+       Expected: All person(s) who have a name containing `david` (ignoring whitespace and capitalisation) are listed.
+
+The expected behaviour of the `find` command is documented in detail in the UG, please refer to it for more example test cases to try.
+
+<div style="page-break-after: always;"></div>
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. Prerequisites: Connectify has been launched at least once and an `addressbook.json` has been created in the `data` folder.
 
-1. _{ more test cases …​ }_
+    1. Test case: delete the `addressbook.json` and launch Connectify.<br>
+       Expected: Connectify launches with an empty list, and the corresponding `addressbook.json` has been created in the `data` folder.
+
+    1. Test case: open `addressbook.json` and delete a few random lines to corrupt the data. Then launch Connectify.<br>
+       Expected: Connectify launches with an empty list, and `addressbook.json` is cleared to show an empty list as well.
+
+    1. Test case: while Connectify is open, delete or modify `addressbook.json`, then execute any valid command in Connectify.<br>
+       Expected: Connectify functions normally and overwrites any corrupted data.
