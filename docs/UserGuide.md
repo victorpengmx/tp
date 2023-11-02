@@ -83,9 +83,9 @@ As a new user, your Connectify database is empty. Let's add your first connectio
    Description: computer and consumer technology
    Website: www.apple.com
    ```
-   
+
    The company has been successfully added to your Connectify database! You should be able to see the company in your database as shown below:
-   
+
    ![Adding First Company](images/tutorial_addingFirstCompany.png)
 
 2. Now that you've added a company to your Connectify database, it's time to add a person to your database. The example that we would be using is `addPerson n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney c/1 pr/1`. This command adds a person named "John Doe" to your Connectify database with the relevant details of the person as specified in the command. The output of this command is shown below:
@@ -99,7 +99,7 @@ As a new user, your Connectify database is empty. Let's add your first connectio
    Company: TechCorp;
    Tags: [owesMoney][friends]
    ```
-   
+
    The person has been successfully added to your Connectify database! You should be able to see the person in your database as shown below:
 
     ![Adding First Person](images/tutorial_addingFirstPerson.png)
@@ -417,7 +417,7 @@ You should see Connectify display the command to be copied, as shown below. The 
 
 - If the specified index is missing, you will get the following error message:
 ```
-Invalid command format! 
+Invalid command format!
 shareCompany: Shares instructions on how to add a Company to another address book.
 Parameters: INDEX (must be a positive integer)
 Example: shareCompany 1
@@ -536,7 +536,7 @@ Email:
 
 - If the specified company index is missing, you will get the following error message:
 ```
-Invalid command format! 
+Invalid command format!
 deletePerson: Deletes the person identified by the index number from the specified company and also removes them from the address book.
 Parameters: COMPANY_INDEX (must be a positive integer) PERSON_INDEX (must be a positive integer)
 Example: deletePerson 2 1
@@ -713,7 +713,7 @@ Added note to Person: connectify.model.person.Person{name=Joe Doe, phone=9876543
 
 - If the specified company index is missing, you will get the following error message:
 ```
-Invalid command format! 
+Invalid command format!
 notePerson: Changes the note of the person identified by the index number used in the displayed person list. Existing note will be overwritten by the input.
 Parameters: COMPANY_INDEX PERSON_INDEX (must be a positive integer) [r/NOTE]
 Example: notePerson 1 1 r/Likes to swim.
@@ -806,7 +806,7 @@ sharePerson 1 1
 Command to add this Person:
 addPerson n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 n/Note n/Company t/owesMoneyfriends
 Do take note that you need to specify Company and priority on your own.
-``` 
+```
 
 You should see Connectify display the command to be copied, as shown below. The command can be copied and sent to another person, who can then add the company to their Connectify database by pasting the command into the command box and pressing enter.
 
@@ -816,7 +816,7 @@ You should see Connectify display the command to be copied, as shown below. The 
 
 - If the specified company index is missing, you will get the following error message:
 ```
-Invalid command format! 
+Invalid command format!
 sharePerson: Shares instructions on how to add a Person, from the specified company, to another address book.
 Parameters: COMPANY_INDEX (must be a positive integer) PERSON_INDEX (must be a positive integer)
 ```
