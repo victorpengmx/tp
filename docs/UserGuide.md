@@ -6,18 +6,33 @@
 
 # Connectify User Guide
 
-Connectify is a networking platform designed to help professionals efficiently manage their connections and enhance their networking experiences. In this version (v1.2), we have focused on delivering the essential features for a Minimum Viable Product (MVP): **adding contacts**, **deleting contacts**, and **listing contacts**. This guide will walk you through the core functionality of Connectify.
+Welcome to Connectify, your all-in-one networking companion designed specifically to empower SOC (School of Communication) students in efficiently managing their connections and enhancing their networking experiences. Whether you're a seasoned professional or just starting your networking journey, Connectify is here to help you build and maintain meaningful connections that can propel your career and personal growth.
+
+Networking is a crucial aspect of your academic and professional life, and Connectify is here to simplify and streamline the process for you. This user guide will walk you through the key features and functionalities of Connectify, ensuring you make the most of this powerful networking platform.
 
 ## Table of Contents
 * [Quick start](#quick-start)
+* [Tutorial: Adding your first connection](#tutorial-adding-your-first-connection)
 * [Features](#features)
-  * [Adding Contacts](#adding-contacts)
-  * [Deleting Contacts](#deleting-contacts)
-  * [Editing Contacts](#editing-people)
-  * [Listing Contacts](#listing-all-entities)
-  * [Listing Companies](#listing-all-companies)
-  * [Listing People](#listing-all-people)
-  * [Exit](#exit)
+  * [Features for managing company details](#features-for-managing-company-details)
+    * [Adding a company: `addCompany`](#adding-a-company-addcompany)
+    * [Deleting a company: `deleteCompany`](#deleting-a-company-deletecompany)
+    * [Editing a company: `editCompany`](#editing-a-company-editcompany)
+    * [Listing all companies: `companies`](#listing-all-companies-companies)
+    * [Adding note to a company: `noteCompany`](#adding-note-to-a-company-notecompany)
+  * [Features for managing people contact details](#features-for-managing-people-contact-details)
+    * [Adding a person: `addPerson`](#adding-a-person-addperson)
+    * [Deleting a person: `deletePerson`](#deleting-a-person-deleteperson)
+    * [Editing a person: `editPerson`](#editing-a-person-editperson)
+    * [Listing all people: `people`](#listing-all-people-people)
+    * [Adding note to a person: `notePerson`](#adding-note-to-a-person-noteperson)
+    * [Ranking people by priority: `rank`](#ranking-people-by-priority-rank)
+  * [General Commands] (#general-commands)
+    * [Listing all entities: `list`](#listing-all-entities-list)
+    * [Finding entities: `find`](#finding-entities-find)
+    * [Clearing the database: `clear`](#clearing-the-database-clear)
+    * [Seeking Help: `help`](#seeking-help-help)
+    * [Exiting Connectify: `exit`](#exiting-connectify-exit)
 * [FAQ](#faq)
 * [Known issues](#known-issues)
 * [Command Summary](#command-summary)
@@ -26,78 +41,94 @@ Connectify is a networking platform designed to help professionals efficiently m
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+Getting started with Connectify is extremely simple! Here is a tutorial on how to set up Connectify in **4 easy steps**.
+
+1. Firstly, ensure that you have *Java `11`* or above [installed](https://www.baeldung.com/java-check-is-installed) in your Computer.
 2. Create a new folder to store Connectify.
-3. Download Connectify from the following link and save the downloaded file in the directory you created in the previous step.
-4. Launch Connectify by double-clicking the file in the directory. After a brief moment, the Connectify application will commence. You'll be greeted by Connectify's primary interface, complete with sample contacts and company profiles already included for your exploration.
+3. Download Connectify from the following [**this link**](https://github.com/AY2324S1-CS2103T-W15-4/tp/releases) and save the downloaded file in the directory you created in the previous step.
+4. Launch Connectify by double-clicking the file in the directory. You'll be greeted by Connectify's primary interface, with an empty database as shown below.
+  <p style="text-align:center;"><img src="images/ConnectifyStartPage.png" width="500" /></p> <br>
 
+Now that you've successfully installed Connectify, let's take a moment to familiarize ourselves with the application's interface and functionality before diving into its features!
 
+<a href="#table-of-contents" class="return-to-toc-link">
+  <span class="return-to-toc-text">Return to Table of Contents</span>
+  <span class="return-to-toc-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-bar-up" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M3.646 11.854a.5.5 0 0 0 .708 0L8 8.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708zM2.4 5.2c0 .22.18.4.4.4h10.4a.4.4 0 0 0 0-.8H2.8a.4.4 0 0 0-.4.4z">
+      </path>
+    </svg>
+  </span>
+</a>
 
-Now that you've successfully installed Connectify, let's take a moment to familiarize ourselves with the application's interface and functionality before diving into its features.
+--------------------------------------------------------------------------------------------------------------------
 
-[More Details Coming Soon]
+## Tutorial: Adding your first connection
+
+Now that you've familiarized yourself with the Connectify interface, it's time to start connecting with people. This step-by-step guide will walk you through the process of adding your first connection to Connectify in three simple steps. You can choose to follow the sample instructions verbatim, or you can get creative and use your own details.
+
+The guide begins on the following page!
+
+As a new user, your Connectify database is empty. Let's add your first connection!
+
+1. Firstly, you should input a company into your database. The example that we would be using is `addCompany n/TechCorp i/Technology l/Silicon Valley d/Leading tech company w/www.techcorp.com e/contact@techcorp.com p/12345678 a/123 Tech St, Silicon Valley`. This command adds a company named "TechCorp" to your Connectify database with the relevant details of the company as specified in the command. The output of this command is shown below:
+
+   ```
+   New company added: Apple Inc
+   Phone: 98765432
+   Email: apple@gmail.com
+   Address: 1 Infinite Loop, Cupertino, California
+   Industry: technology
+   Location: Silicon Valley
+   Description: computer and consumer technology
+   Website: www.apple.com
+   ```
+   
+   The company has been successfully added to your Connectify database! You should be able to see the company in your database as shown below:
+   
+   ![Adding First Company](images/tutorial_addingFirstCompany.png)
+
+2. Now that you've added a company to your Connectify database, it's time to add a person to your database. The example that we would be using is `addPerson n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney c/1 pr/1`. This command adds a person named "John Doe" to your Connectify database with the relevant details of the person as specified in the command. The output of this command is shown below:
+
+   ```
+   New person added: John Doe;
+   Phone: 98765432;
+   Email: johnd@example.com;
+   Address: 311, Clementi Ave 2, #02-25;
+   Note: Priority: 1;
+   Company: TechCorp;
+   Tags: [owesMoney][friends]
+   ```
+   
+   The person has been successfully added to your Connectify database! You should be able to see the person in your database as shown below:
+
+    ![Adding First Person](images/tutorial_addingFirstPerson.png)
+
+3. Congratulations! You've successfully added your first connection to Connectify. You can now use Connectify to manage your connections and enhance your networking experience. To learn more about the features and functionalities of Connectify, please refer to the [Features](#features) section of this user guide.
+
+<a href="#table-of-contents" class="return-to-toc-link">
+  <span class="return-to-toc-text">Return to Table of Contents</span>
+  <span class="return-to-toc-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-bar-up" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M3.646 11.854a.5.5 0 0 0 .708 0L8 8.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708zM2.4 5.2c0 .22.18.4.4.4h10.4a.4.4 0 0 0 0-.8H2.8a.4.4 0 0 0-.4.4z">
+      </path>
+    </svg>
+  </span>
+</a>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
 
-### Adding Contacts
-#### Command: `addPerson`
+### Features for managing company details
 
-The `addPerson` command allows you to add new contacts to your Connectify database. Follow the format below to add contacts:
+#### Adding a company: `addCompany`
 
-```
-addPerson n/NAME p/PHONE e/EMAIL a/ADDRESS c/COMPANY [t/TAG]
-```
-The fields are:
-- `n/NAME` is the name of the contact.
-- `p/PHONE` is the phone number of the contact.
-- `e/EMAIL` is the email address of the contact.
-- `a/ADDRESS` is the address of the contact.
-- `c/COMPANY` is the index of the company to which the contact belongs.
-- `[t/TAG]`: (optional) is used to categorize your contacts. Tags help organize connections efficiently.
-
-**Example:**
-
-To add a contact named John Doe with the phone number 98765432, email address johndoe@example.com, address "311, Clementi Ave 2, #02-25," and associate them with Company 1, use the following command:
-
-```
-addPerson n/John Doe p/98765432 e/johndoe@example.com a/311, Clementi Ave 2, #02-25 c/1 t/friends t/owesMoney
-```
-
-**Successful Output:**
-
-```
-New person added: John Doe
-Phone: 98765432
-Email: johnd@example.com
-Address: 311, Clementi Ave 2, #02-25
-Company: Company 1
-Tags: friends, owesMoney
-```
-
-**Unsuccessful Output:**
-
-- If the provided details are incomplete or invalid:
-  ```
-  Please provide valid contact details including name, phone, email, address, and a valid company index.
-  ```
-
-- If a person with the same details already exists in the address book:
-  ```
-  This person already exists in the address book.
-  ```
-
-- If the company index provided is invalid:
-  ```
-  The company index provided is invalid.
-  ```
-
-#### Command: `addCompany`
-
-The **addCompany** command allows you to add new companies to your Connectify database. Follow the format below to add contacts:
+The **addCompany** command allows you to add new companies to your Connectify database. To add a company's details, follow the format below:
 
 `addCompany n/NAME i/INDUSTRY l/LOCATION d/DESCRIPTION w/WEBSITE e/EMAIL p/PHONE a/ADDRESS`
 
+The fields are:
 - `n/NAME`: Specify the Company name.
 - `i/INDUSTRY`: Add the industry the Company is in.
 - `l/LOCATION`: Add the city/locale Company is at.
@@ -128,6 +159,10 @@ Description: computer and consumer technology
 Website: www.apple.com
 ```
 
+You should be able to see the company in Connectify as shown below:
+
+![Adding Company](images/tutorial_addingFirstCompany.png)
+
 **Unsuccessful Output:**
 
 - If a person with the same details already exists in the address book:
@@ -135,21 +170,356 @@ Website: www.apple.com
   This company already exists in the address book.
   ```
 
-### Deleting Contacts
+<a href="#table-of-contents" class="return-to-toc-link">
+  <span class="return-to-toc-text">Return to Table of Contents</span>
+  <span class="return-to-toc-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-bar-up" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M3.646 11.854a.5.5 0 0 0 .708 0L8 8.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708zM2.4 5.2c0 .22.18.4.4.4h10.4a.4.4 0 0 0 0-.8H2.8a.4.4 0 0 0-.4.4z">
+      </path>
+    </svg>
+  </span>
+</a>
 
-#### Command: `deletePerson`
+--------------------------------------------------------------------------------------------------------------------
 
-The **deletePerson** command allows you to remove people from your Connectify database. To delete a person, you need to specify the person's index.
+#### Deleting a company: `deleteCompany`
+
+The **deleteCompany** command allows you to remove companies from your Connectify database. To delete a company, follow the command format below:
 
 ```
-deletePerson INDEX
+deleteCompany INDEX
 ```
 
-- `INDEX`: Provide the index of the person you want to delete.
+The fields are:
+- `INDEX` is the index of the company you want to delete.
+
+**Example:**
+
+To delete the company named Test Company at index 1, use the following command:
+
+```
+deleteCompany 1
+```
+
+**Successful Output:**
+
+```
+Deleted Company: TechCorp;
+Industry: Technology;
+Location: Silicon Valley;
+Description: Leading tech company;
+Website: www.techcorp.com;
+Email: contact@techcorp.com;
+Phone: 12345678;
+Address: 123 Tech St, Silicon Valley
+```
+
+**Unsuccessful Output:**
+
+```
+The company index provided is invalid.
+```
+
+<a href="#table-of-contents" class="return-to-toc-link">
+  <span class="return-to-toc-text">Return to Table of Contents</span>
+  <span class="return-to-toc-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-bar-up" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M3.646 11.854a.5.5 0 0 0 .708 0L8 8.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708zM2.4 5.2c0 .22.18.4.4.4h10.4a.4.4 0 0 0 0-.8H2.8a.4.4 0 0 0-.4.4z">
+      </path>
+    </svg>
+  </span>
+</a>
+
+--------------------------------------------------------------------------------------------------------------------
+
+#### Editing a company: `editCompany`
+
+The **editCompany** command allows you to modify the details of a company in your Connectify database. To edit a company, follow the command format below:
+
+```
+editCompany INDEX [n/NAME] [i/INDUSTRY] [l/LOCATION] [d/DESCRIPTION] [w/WEBSITE] [e/EMAIL] [p/PHONE] [a/ADDRESS]
+```
+
+The fields are:
+- `INDEX` is the index of the company in the displayed company list that you want to edit. It must be a positive integer within the company.
+- `[n/NAME]` (optional) is the new name of the company.
+- `[i/INDUSTRY]` (optional) is the company's new industry.
+- `[l/LOCATION]` (optional) is the company's new location.
+- `[d/DESCRIPTION]` (optional) is the company's new description.
+- `[w/WEBSITE]` (optional) is the company's new website.
+- `[e/EMAIL]` (optional) is the company's new email.
+- `[p/PHONE]` (optional) is the company's new phone number.
+- `[a/ADDRESS]` (optional) is the company's new address.
+
+**Example:**
+
+To edit the company's name to "TechCorp", their email to techcorp@gmail.com and their address to "123, Jurong West Ave 6, #08-111", use the following command:
+
+```
+editCompany 1 n/TechCorp p/91234567 e/techcorp@gmail.com a/123, Jurong West Ave 6, #08-111
+```
+
+**Successful Output:**
+
+```
+Edited Company: TechCorp;
+Industry: Technology;
+Location: Silicon Valley;
+Description: Leading tech company;
+Website: www.techcorp.com;
+Email: techcorp@gmail.com;
+Phone: 91234567;
+Address: 123, Jurong West Ave 6, #08-111;
+```
+
+**Unsuccessful Output:**
+
+- If you don't provide at least one field to edit, you will receive the following error message:
+```
+At least one field to edit must be provided.
+```
+
+- If the specified index is invalid (not within the displayed company list or not a positive integer), you will get the following error message:
+```
+The company index provided is invalid.
+```
+
+<a href="#table-of-contents" class="return-to-toc-link">
+  <span class="return-to-toc-text">Return to Table of Contents</span>
+  <span class="return-to-toc-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-bar-up" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M3.646 11.854a.5.5 0 0 0 .708 0L8 8.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708zM2.4 5.2c0 .22.18.4.4.4h10.4a.4.4 0 0 0 0-.8H2.8a.4.4 0 0 0-.4.4z">
+      </path>
+    </svg>
+  </span>
+</a>
+
+--------------------------------------------------------------------------------------------------------------------
+
+####  Listing all companies: `companies`
+
+The `companies` command allows you to retrieve a list of all companies in Connectify. This command is particularly useful for obtaining an overview of all the companies you have stored. To list all companies, follow the command format below:
+
+```
+companies
+```
+
+This command has no additional fields.
+
+**Successful Output**
+
+```
+Listed all companies.
+```
+
+You should be able to see all the companies in Connectify as shown below:
+
+![Listing Companies](images/listingCompanies.png)
+
+**Unsuccessful Output**
+
+- If Connectify does not contain any companies, and there are no companies to display, you will receive the following message:
+```
+There are no companies in Connectify.
+```
+
+<a href="#table-of-contents" class="return-to-toc-link">
+  <span class="return-to-toc-text">Return to Table of Contents</span>
+  <span class="return-to-toc-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-bar-up" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M3.646 11.854a.5.5 0 0 0 .708 0L8 8.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708zM2.4 5.2c0 .22.18.4.4.4h10.4a.4.4 0 0 0 0-.8H2.8a.4.4 0 0 0-.4.4z">
+      </path>
+    </svg>
+  </span>
+</a>
+
+--------------------------------------------------------------------------------------------------------------------
+
+#### Adding note to a company: `noteCompany`
+
+The `noteCompany` command allows you to add a note to a company in Connectify. This command is particularly useful for adding notes to companies you have stored. To add a note to a company, follow the command format below:
+
+```
+noteCompany INDEX r/NOTE
+```
+
+The fields are:
+- `INDEX` is the index of the company in the displayed company list that you want to edit. It must be a positive integer within the company.
+- `r/NOTE` is the note you want to add to the company.
+
+Note: This command deletes the existing note if it is inputted without the `r/` placeholder.
+
+**Example:**
+
+To add a note to the company at index 1, use the following command:
+
+```
+noteCompany 1 r/Looking for aspiring frontend developers.
+```
+
+**Successful Output**
+
+```
+Added note to Company: connectify.model.company.Company{name=ABC, phone=91234567, email=techcorp@gmail.com, address=123, Jurong West Ave 6, #08-111, industry=Technology, location=Silicon Valley, description=Leading tech company, website=www.techcorp.com, note=Looking for aspiring frontend developers., people=connectify.model.person.PersonList@d5a9d461}
+```
+
+**Unsuccessful Output**
+
+- If the specified index is invalid (not within the displayed company list or not a positive integer), you will get the following error message:
+```
+The company index provided is invalid.
+```
+
+<a href="#table-of-contents" class="return-to-toc-link">
+  <span class="return-to-toc-text">Return to Table of Contents</span>
+  <span class="return-to-toc-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-bar-up" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M3.646 11.854a.5.5 0 0 0 .708 0L8 8.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708zM2.4 5.2c0 .22.18.4.4.4h10.4a.4.4 0 0 0 0-.8H2.8a.4.4 0 0 0-.4.4z">
+      </path>
+    </svg>
+  </span>
+</a>
+
+--------------------------------------------------------------------------------------------------------------------
+
+#### Sharing a company details: `shareCompany`
+
+The `shareCompany` command allows you to share a company's details with another person. This command is particularly useful for sharing companies you have stored. To share a company's details, follow the command format below:
+
+```
+shareCompany INDEX
+```
+
+The fields are:
+- `INDEX` is the index of the company in the displayed company list that you want to share. It must be a positive integer within the company.
+
+**Example:**
+
+To share the company at index 1, use the following command:
+
+```
+shareCompany 1
+```
+
+**Successful Output**
+
+```
+Command to add this Company:
+addCompany n/TechCorp i/Technology l/Silicon Valley d/Leading tech company w/www.techcorp.com e/contact@techcorp.com p/12345678 a/123 Tech St, Silicon Valley
+Do take note that you need to add people on your own.
+```
+
+You should see Connectify display the command to be copied, as shown below. The command can be copied and sent to another person, who can then add the company to their Connectify database by pasting the command into the command box and pressing enter.
+
+![Share Company](images/shareCompany.png)
+
+**Unsuccessful Output**
+
+- If the specified index is missing, you will get the following error message:
+```
+Invalid command format! 
+shareCompany: Shares instructions on how to add a Company to another address book.
+Parameters: INDEX (must be a positive integer)
+Example: shareCompany 1
+```
+
+- If the specified index is invalid (not within the displayed company list or not a positive integer), you will get the following error message:
+```
+The company index provided is invalid.
+```
+
+--------------------------------------------------------------------------------------------------------------------
+
+### Features for managing people contact details
+
+#### Adding a person: `addPerson`
+
+The `addPerson` command allows you to add new contacts to your Connectify database. Follow the format below to add contacts:
+
+```
+addPerson n/NAME p/PHONE e/EMAIL a/ADDRESS c/COMPANY pr/PRIORITY [t/TAG]
+```
+
+The fields are:
+- `n/NAME` is the name of the contact.
+- `p/PHONE` is the phone number of the contact.
+- `e/EMAIL` is the email address of the contact.
+- `a/ADDRESS` is the address of the contact.
+- `c/COMPANY` is the index of the company to which the contact belongs.
+- `pr/PRIORITY` is the priority level of the contact.
+- `[t/TAG]`: (optional) is used to categorize your contacts. Tags help organize connections efficiently.
+
+Note: If the company index is not specified, the contact will be automatically added to the first company in the displayed company list.
+
+**Example:**
+
+To add a contact named John Doe with the phone number 98765432, email address johndoe@example.com, address "311, Clementi Ave 2, #02-25," and associate them with Company 1, use the following command:
+
+```
+addPerson n/John Doe p/98765432 e/johndoe@example.com a/311, Clementi Ave 2, #02-25 c/1 t/friends pr/1 t/owesMoney
+```
+
+**Successful Output:**
+
+```
+New person added: John Doe
+Phone: 98765432
+Email: johnd@example.com
+Address: 311, Clementi Ave 2, #02-25
+Company: Company 1
+Priority: 1
+Tags: friends, owesMoney
+```
+
+You should be able to see the person in Connectify as shown below:
+
+![Adding Person](images/tutorial_addingFirstPerson.png)
+
+**Unsuccessful Output:**
+
+- If the provided details are incomplete or invalid:
+  ```
+  Please provide valid contact details including name, phone, email, address, and a valid company index.
+  ```
+
+- If a person with the same details already exists in the address book:
+  ```
+  This person already exists in the address book.
+  ```
+
+- If the company index provided is invalid:
+  ```
+  The company index provided is invalid.
+  ```
+
+<a href="#table-of-contents" class="return-to-toc-link">
+  <span class="return-to-toc-text">Return to Table of Contents</span>
+  <span class="return-to-toc-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-bar-up" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M3.646 11.854a.5.5 0 0 0 .708 0L8 8.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708zM2.4 5.2c0 .22.18.4.4.4h10.4a.4.4 0 0 0 0-.8H2.8a.4.4 0 0 0-.4.4z">
+      </path>
+    </svg>
+  </span>
+</a>
+
+--------------------------------------------------------------------------------------------------------------------
+
+#### Deleting a person: `deletePerson`
+
+The **deletePerson** command allows you to remove people from your Connectify database. To delete a person, follow the format below:
+
+```
+deletePerson COMPANY_INDEX PERSON_INDEX
+```
+
+The fields are:
+- `COMPANY_INDEX` is the index of the company that the person is associated with.
+- `PERSON_INDEX` is the index of the person you want to delete.
 
 **Example:**
 
 To delete the person named John Doe at index 1, use the following command:
+
 ```
 deletePerson 1
 ```
@@ -164,51 +534,48 @@ Email:
 
 **Unsuccessful Output:**
 
+- If the specified company index is missing, you will get the following error message:
 ```
-Please provide a valid index.
-```
-
-#### Command: `deleteCompany`
-
-The **deleteCompany** command allows you to remove companies from your Connectify database. To delete a company, you need to specify the company's index.
-
-```
-deleteCompany INDEX
+Invalid command format! 
+deletePerson: Deletes the person identified by the index number from the specified company and also removes them from the address book.
+Parameters: COMPANY_INDEX (must be a positive integer) PERSON_INDEX (must be a positive integer)
+Example: deletePerson 2 1
 ```
 
-- `INDEX`: Provide the index of the company you want to delete.
-
-**Example:**
-
-To delete the company named Test Company at index 1, use the following command:
-```
-deleteCompany 1
-```
-
-**Successful Output:**
-
-```
-Deleted Company: Test Company
-```
-
-**Unsuccessful Output:**
-
+- If the specified company index is invalid, you will get the following error message:
 ```
 The company index provided is invalid.
 ```
 
-### Editing Contacts
-####  Command: `edit`
+- If the specified person index is invalid, you will get the following error message:
+```
+The person index provided is invalid.
+```
 
-The `edit` command allows you to modify the details of a person in your Connectify database. Follow the format below to edit contacts.
+<a href="#table-of-contents" class="return-to-toc-link">
+  <span class="return-to-toc-text">Return to Table of Contents</span>
+  <span class="return-to-toc-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-bar-up" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M3.646 11.854a.5.5 0 0 0 .708 0L8 8.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708zM2.4 5.2c0 .22.18.4.4.4h10.4a.4.4 0 0 0 0-.8H2.8a.4.4 0 0 0-.4.4z">
+      </path>
+    </svg>
+  </span>
+</a>
+
+--------------------------------------------------------------------------------------------------------------------
+
+####  Editing a person: `editPerson`
+
+The `editPerson` command allows you to modify the details of a person in your Connectify database. To edit contacts, follow the format below:
 
 ```
-edit INDEX c/COMPANY [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]
+editPerson INDEX c/COMPANY [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]
 ```
+
 The fields are:
 - `INDEX` is the index of the person in the displayed person list of a company that you want to edit. It must be a positive integer within the company.
 - `c/COMPANY`is the index of the company that the person is associated with.
-- `n/NAME` is the new name of the person.
+- `[n/NAME]` (optional) is the new name of the person.
 - `[p/PHONE]` (optional) is the person's new phone number.
 - `[e/EMAIL]` (optional) is the person's new email.
 - `[a/ADDRESS]` (optional) is the person's new address.
@@ -218,15 +585,22 @@ The fields are:
 **Example:**
 To edit the person's name to "NewName," their phone number to "98765432," and their email to "newemail@example.com." The person is located at index 1 in the displayed person list of Company 1, and the person is associated with Company 1. Use the following command:
 ```
-edit 1 c/1 n/NewName p/98765432 e/newemail@example.com
+editPerson 1 c/1 n/NewName p/98765432 e/newemail@example.com
 ```
 
 **Successful Output**
+
 ```
-Edited Person: NewName
+Edited Person: John Doe;
+Phone: 12345678;
+Email: johndoe@example.com;
+Address: 311, Clementi Ave 2,
+#02-25;
+Tags: [owesMoney][friends]
 ```
 
 **Unsuccessful Output**
+
 - If you don't provide at least one field to edit, you will receive the following error message:
 ```
 At least one field to edit must be provided.
@@ -241,7 +615,6 @@ No company provided.
 ```
 
 - If you try to edit a person's details in a company that does not exist, you will receive:
-
 ```
 The company index provided is invalid.
 ```
@@ -256,75 +629,375 @@ Invalid index provided.
 This person already exists in the Connectify.
 ```
 
-### Listing All Entities
-####  Command: `list`
+<a href="#table-of-contents" class="return-to-toc-link">
+  <span class="return-to-toc-text">Return to Table of Contents</span>
+  <span class="return-to-toc-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-bar-up" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M3.646 11.854a.5.5 0 0 0 .708 0L8 8.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708zM2.4 5.2c0 .22.18.4.4.4h10.4a.4.4 0 0 0 0-.8H2.8a.4.4 0 0 0-.4.4z">
+      </path>
+    </svg>
+  </span>
+</a>
 
-The `list` command allows you to retrieve a list of all entities (both persons and companies) in the Connectify database. This command is useful for obtaining an overview of all the entities you have stored.
+--------------------------------------------------------------------------------------------------------------------
 
-Follow the format below to list all entities:
-```
-list
-```
-This command has no additional fields.
+####  Listing all people: `people`
 
-**Successful Output**
-```
-Listed all persons and companies.
-```
+The `people` command allows you to retrieve a list of all individuals (persons) in the Connectify. This command is especially useful for obtaining an overview of all the individuals you have stored. To list all people, follow the command format below:
 
-**Unsuccessful Output**
-- If Connectify is empty, and there are no entities to display, you will receive the following message:
-```
-There are no entities in Connectify.
-```
-
-
-### Listing All Companies
-####  Command: `companies`
-The `companies` command allows you to retrieve a list of all companies in Connectify. This command is particularly useful for obtaining an overview of all the companies you have stored.
-
-Follow the format below to list all companies:
-```
-companies
-```
-This command has no additional fields.
-
-**Successful Output**
-```
-Listed all companies.
-```
-
-**Unsuccessful Output**
--If Connectify does not contain any companies, and there are no companies to display, you will receive the following message:
-```
-There are no companies in Connectify.
-```
-
-### Listing All People
-####  Command: `people`
-The `people` command allows you to retrieve a list of all individuals (persons) in the Connectify. This command is especially useful for obtaining an overview of all the individuals you have stored.
-
-Follow the format below to list all persons:
 ```
 people
 ```
-This command has no additional fields.
+
+Note: This command has no additional fields.
 
 **Successful Output**
+
 ```
 Listed all persons.
 ```
 
+You should be able to see all the people in Connectify as shown below:
+
+![Listing People](images/listingPeople.png)
+
 **Unsuccessful Output**
+
 - If Connectify does not contain any individuals (persons), and there are no people to list, you will receive the following message:
 ```
 There are no people in Connectify.
 ```
 
+<a href="#table-of-contents" class="return-to-toc-link">
+  <span class="return-to-toc-text">Return to Table of Contents</span>
+  <span class="return-to-toc-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-bar-up" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M3.646 11.854a.5.5 0 0 0 .708 0L8 8.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708zM2.4 5.2c0 .22.18.4.4.4h10.4a.4.4 0 0 0 0-.8H2.8a.4.4 0 0 0-.4.4z">
+      </path>
+    </svg>
+  </span>
+</a>
 
-### Exit
+--------------------------------------------------------------------------------------------------------------------
 
-#### Command: `exit`
+#### Adding note to a person: `notePerson`
+
+The `notePerson` command allows you to add a note to a person in Connectify. This command is particularly useful for adding notes to people you have stored. To add a note to a person, follow the command format below:
+
+```
+notePerson COMPANY_INDEX PERSON_INDEX r/NOTE
+```
+
+The fields are:
+- `COMPANY_INDEX` is the index of the company that the person is associated with.
+- `PERSON_INDEX` is the index of the person in the displayed person list of a company that you want to edit. It must be a positive integer within the company.
+- `r/NOTE` is the note you want to add to the person.
+
+Note: This command deletes the existing note if it is inputted without the `r/` placeholder.
+
+**Example:**
+
+To add a note to the person at index 1 in the displayed person list of Company 1, use the following command:
+
+```
+notePerson 1 1 r/Likes to swim.
+```
+
+**Successful Output**
+
+```
+Added note to Person: connectify.model.person.Person{name=Joe Doe, phone=98765432, email=johnd@example.com, address=311, Clementi Ave 2, #02-25, note=Likes to swim., tags=[[owesMoney], [friends]], priority=1}
+```
+
+**Unsuccessful Output**
+
+- If the specified company index is missing, you will get the following error message:
+```
+Invalid command format! 
+notePerson: Changes the note of the person identified by the index number used in the displayed person list. Existing note will be overwritten by the input.
+Parameters: COMPANY_INDEX PERSON_INDEX (must be a positive integer) [r/NOTE]
+Example: notePerson 1 1 r/Likes to swim.
+```
+
+- If the specified company index is invalid, you will get the following error message:
+```
+The company index provided is invalid.
+```
+
+- If the specified person index is invalid, you will get the following error message:
+```
+The person index provided is invalid.
+```
+
+<a href="#table-of-contents" class="return-to-toc-link">
+  <span class="return-to-toc-text">Return to Table of Contents</span>
+  <span class="return-to-toc-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-bar-up" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M3.646 11.854a.5.5 0 0 0 .708 0L8 8.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708zM2.4 5.2c0 .22.18.4.4.4h10.4a.4.4 0 0 0 0-.8H2.8a.4.4 0 0 0-.4.4z">
+      </path>
+    </svg>
+  </span>
+</a>
+
+--------------------------------------------------------------------------------------------------------------------
+
+#### Ranking people by priority: `rank`
+
+The `rank` command allows you to rank people by priority in Connectify. This command is particularly useful for ranking people you have stored. To rank people by priority, follow the command format below:
+
+```
+rank
+```
+
+Note: This command has no additional fields.
+
+**Successful Output**
+
+```
+Ranked all persons
+```
+
+You should be able to see the following in Connectify as shown below:
+
+![Ranking People](images/rankingPeople.png)
+
+**Unsuccessful Output**
+
+- If Connectify does not contain any individuals (persons), and there are no people to rank, you will receive the following message:
+```
+There are no people in Connectify.
+```
+
+<a href="#table-of-contents" class="return-to-toc-link">
+  <span class="return-to-toc-text">Return to Table of Contents</span>
+  <span class="return-to-toc-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-bar-up" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M3.646 11.854a.5.5 0 0 0 .708 0L8 8.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708zM2.4 5.2c0 .22.18.4.4.4h10.4a.4.4 0 0 0 0-.8H2.8a.4.4 0 0 0-.4.4z">
+      </path>
+    </svg>
+  </span>
+</a>
+
+--------------------------------------------------------------------------------------------------------------------
+
+#### Sharing a person's contact details: `sharePerson`
+
+The `sharePerson` command allows you to share a person's contact details with another person. This command is particularly useful for sharing contact details of people you have stored. To share a person's contact details, follow the command format below:
+
+```
+sharePerson COMPANY_INDEX PERSON_INDEX
+```
+
+The fields are:
+- `COMPANY_INDEX` is the index of the company that the person is associated with.
+- `PERSON_INDEX` is the index of the person in the displayed person list of a company that you want to share. It must be a positive integer within the company.
+
+**Example:**
+
+To share the contact details of the person at index 1 in the displayed person list of Company 1, use the following command:
+
+```
+sharePerson 1 1
+```
+
+**Successful Output**
+
+```
+Command to add this Person:
+addPerson n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 n/Note n/Company t/owesMoneyfriends
+Do take note that you need to specify Company and priority on your own.
+``` 
+
+You should see Connectify display the command to be copied, as shown below. The command can be copied and sent to another person, who can then add the company to their Connectify database by pasting the command into the command box and pressing enter.
+
+![Share Person](images/sharePerson.png)
+
+**Unsuccessful Output**
+
+- If the specified company index is missing, you will get the following error message:
+```
+Invalid command format! 
+sharePerson: Shares instructions on how to add a Person, from the specified company, to another address book.
+Parameters: COMPANY_INDEX (must be a positive integer) PERSON_INDEX (must be a positive integer)
+```
+
+- If the specified company index is invalid, you will get the following error message:
+```
+The company index provided is invalid.
+```
+
+- If the specified person index is invalid, you will get the following error message:
+```
+The person index provided is invalid.
+```
+
+- If the specified company index or person index is out of bounds, you will get the following error message:
+```
+The company index provided is invalid.
+```
+
+<a href="#table-of-contents" class="return-to-toc-link">
+  <span class="return-to-toc-text">Return to Table of Contents</span>
+  <span class="return-to-toc-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-bar-up" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M3.646 11.854a.5.5 0 0 0 .708 0L8 8.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708zM2.4 5.2c0 .22.18.4.4.4h10.4a.4.4 0 0 0 0-.8H2.8a.4.4 0 0 0-.4.4z">
+      </path>
+    </svg>
+  </span>
+</a>
+
+--------------------------------------------------------------------------------------------------------------------
+
+### General Commands
+
+####  Listing all entities: `list`
+
+The `list` command allows you to retrieve a list of all entities (both persons and companies) in the Connectify database. This command is useful for obtaining an overview of all the entities you have stored.
+
+Follow the format below to list all entities:
+
+```
+list
+```
+
+Note: This command has no additional fields.
+
+**Successful Output**
+
+```
+Listed all persons and companies.
+```
+
+You should be able to see all your connections in Connectify as shown below:
+
+![Listing All Entities](images/listingAll.png)
+
+**Unsuccessful Output**
+
+- If Connectify is empty, and there are no entities to display, you will receive the following message:
+```
+There are no entities in Connectify.
+```
+
+<a href="#table-of-contents" class="return-to-toc-link">
+  <span class="return-to-toc-text">Return to Table of Contents</span>
+  <span class="return-to-toc-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-bar-up" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M3.646 11.854a.5.5 0 0 0 .708 0L8 8.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708zM2.4 5.2c0 .22.18.4.4.4h10.4a.4.4 0 0 0 0-.8H2.8a.4.4 0 0 0-.4.4z">
+      </path>
+    </svg>
+  </span>
+</a>
+
+--------------------------------------------------------------------------------------------------------------------
+
+#### Finding entities: `find`
+
+The `find` command allows you to retrieve a list of all entities (both persons and companies) in the Connectify database that match the specified keywords. This command is useful for obtaining an overview of all the entities you have stored that match the specified keywords. The command format is as follows:
+
+```
+find KEYWORD [MORE_KEYWORDS]
+```
+
+The fields are:
+- `KEYWORD` is the first keyword to search for.
+- `MORE_KEYWORDS` (optional) is the second keyword to search for.
+
+**Example:**
+
+To find all entities that contain the keywords "John" and "Doe", use the following command:
+
+```
+find John Doe
+```
+
+**Successful Output**
+
+```
+1 people and companies listed!
+```
+
+**Unsuccessful Output**
+
+- If Connectify is empty, and there are no entities to display, you will receive the following message:
+```
+There are no entities in Connectify.
+```
+
+- If no entities match the specified keywords, you will receive the following message:
+```
+There are no entities that match the specified keywords.
+```
+
+<a href="#table-of-contents" class="return-to-toc-link">
+  <span class="return-to-toc-text">Return to Table of Contents</span>
+  <span class="return-to-toc-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-bar-up" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M3.646 11.854a.5.5 0 0 0 .708 0L8 8.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708zM2.4 5.2c0 .22.18.4.4.4h10.4a.4.4 0 0 0 0-.8H2.8a.4.4 0 0 0-.4.4z">
+      </path>
+    </svg>
+  </span>
+</a>
+
+--------------------------------------------------------------------------------------------------------------------
+
+#### Clearing the database: `clear`
+
+The `clear` command allows you to clear all entities (both persons and companies) in the Connectify database. This command is useful for clearing all the entities you have stored. The command format is as follows:
+
+```
+clear
+```
+
+Note: This command has no additional fields.
+
+**Successful Output**
+
+```
+Cleared all persons and companies.
+```
+
+<a href="#table-of-contents" class="return-to-toc-link">
+  <span class="return-to-toc-text">Return to Table of Contents</span>
+  <span class="return-to-toc-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-bar-up" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M3.646 11.854a.5.5 0 0 0 .708 0L8 8.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708zM2.4 5.2c0 .22.18.4.4.4h10.4a.4.4 0 0 0 0-.8H2.8a.4.4 0 0 0-.4.4z">
+      </path>
+    </svg>
+  </span>
+</a>
+
+--------------------------------------------------------------------------------------------------------------------
+
+#### Seeking Help: `help`
+
+The `help` command displays a link to this user guide. This command is useful for obtaining an overview of all the commands available in Connectify. The command format is as follows:
+
+```
+help
+```
+
+Note: This command has no additional fields.
+
+**Successful Output**
+
+A pop-up window will appear with the link to this user guide as shown below:
+
+![Help](images/helpCommand.png)
+
+<a href="#table-of-contents" class="return-to-toc-link">
+  <span class="return-to-toc-text">Return to Table of Contents</span>
+  <span class="return-to-toc-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-bar-up" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M3.646 11.854a.5.5 0 0 0 .708 0L8 8.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708zM2.4 5.2c0 .22.18.4.4.4h10.4a.4.4 0 0 0 0-.8H2.8a.4.4 0 0 0-.4.4z">
+      </path>
+    </svg>
+  </span>
+</a>
+
+--------------------------------------------------------------------------------------------------------------------
+
+#### Exiting Connectify: `exit`
 
 This command exits the program.
 
@@ -340,12 +1013,31 @@ Bye. Hope to see you again soon!
 That is not a valid command.
 ```
 
-[More Features Coming Soon]
+<a href="#table-of-contents" class="return-to-toc-link">
+  <span class="return-to-toc-text">Return to Table of Contents</span>
+  <span class="return-to-toc-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-bar-up" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M3.646 11.854a.5.5 0 0 0 .708 0L8 8.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708zM2.4 5.2c0 .22.18.4.4.4h10.4a.4.4 0 0 0 0-.8H2.8a.4.4 0 0 0-.4.4z">
+      </path>
+    </svg>
+  </span>
+</a>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
 [Coming Soon]
+
+<a href="#table-of-contents" class="return-to-toc-link">
+  <span class="return-to-toc-text">Return to Table of Contents</span>
+  <span class="return-to-toc-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-bar-up" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M3.646 11.854a.5.5 0 0 0 .708 0L8 8.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708zM2.4 5.2c0 .22.18.4.4.4h10.4a.4.4 0 0 0 0-.8H2.8a.4.4 0 0 0-.4.4z">
+      </path>
+    </svg>
+  </span>
+</a>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -353,17 +1045,55 @@ That is not a valid command.
 
 [Coming Soon]
 
+<a href="#table-of-contents" class="return-to-toc-link">
+  <span class="return-to-toc-text">Return to Table of Contents</span>
+  <span class="return-to-toc-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-bar-up" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M3.646 11.854a.5.5 0 0 0 .708 0L8 8.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708zM2.4 5.2c0 .22.18.4.4.4h10.4a.4.4 0 0 0 0-.8H2.8a.4.4 0 0 0-.4.4z">
+      </path>
+    </svg>
+  </span>
+</a>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command Summary
 
-Action     | Format, Examples
------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear**  | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List**   | `list`
-**Help**   | `help`
+### Managing Companies
 
+| Action     | Format, Examples                                                                                                                                                                                           |
+|------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `addCompany n/NAME i/INDUSTRY l/LOCATION d/DESCRIPTION w/WEBSITE e/EMAIL p/PHONE a/ADDRESS` <br> e.g., `addCompany n/Apple Inc i/technology l/Los Altos d/computer and consumer technology w/www.apple.com |
+| **Delete** | `deleteCompany INDEX`<br> e.g., `deleteCompany 3`                                                                                                                                                          |
+| **Edit**   | `editCompany INDEX [n/NAME] [i/INDUSTRY] [l/LOCATION] [d/DESCRIPTION] [w/WEBSITE] [e/EMAIL] [p/PHONE] [a/ADDRESS]`<br> e.g.,`editCompany 2 n/Apple Inc                                                     |
+| **List**   | `companies`                                                                                                                                                                                                |
+| **Note**   | `noteCompany INDEX r/NOTE`<br> e.g., `noteCompany 1 r/Looking for aspiring frontend developers.`                                                                                                           |
+
+### Manging People Contacts
+| Action     | Format, Examples                                                                                                         |
+|------------|--------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `addPerson n/NAME p/PHONE e/EMAIL a/ADDRESS c/COMPANY pr/PRIORITY [t/TAG]…​` <br> e.g., `addPerson n/John Doe p/98765432 |
+| **Delete** | `deletePerson COMPANY_INDEX PERSON_INDEX`<br> e.g., `deletePerson 1 3`                                                   |
+| **Edit**   | `editPerson INDEX c/COMPANY [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`editPerson 2 c/1 n/John Doe    |
+| **List**   | `people`                                                                                                                 |
+| **Note**   | `notePerson COMPANY_INDEX PERSON_INDEX r/NOTE`<br> e.g., `notePerson 1 1 r/Likes to swim.`                               |
+| **Rank**   | `rank`                                                                                                                   |
+
+### General Commands
+| Action    | Format, Examples                                           |
+|-----------|------------------------------------------------------------|
+| **List**  | `list`                                                     |
+| **Find**  | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake` |
+| **Clear** | `clear`                                                    |
+| **Help**  | `help`                                                     |
+| **Exit**  | `exit`                                                     |
+
+<a href="#table-of-contents" class="return-to-toc-link">
+  <span class="return-to-toc-text">Return to Table of Contents</span>
+  <span class="return-to-toc-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-bar-up" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M3.646 11.854a.5.5 0 0 0 .708 0L8 8.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708zM2.4 5.2c0 .22.18.4.4.4h10.4a.4.4 0 0 0 0-.8H2.8a.4.4 0 0 0-.4.4z">
+      </path>
+    </svg>
+  </span>
+</a>
