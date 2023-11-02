@@ -384,6 +384,32 @@ The EditCompanyCommand also handles scenarios where a company index does not exi
 
 <div style="page-break-after: always;"></div>
 
+### Edit Person Feature: `editPerson`
+
+#### Implementation
+
+This feature is implemented by the `EditPersonCommand` and `EditPersonCommandParser` within the `Logic` component of Connectify.
+
+The process is initiated when the user inputs a valid command to edit a person's details. The `EditPersonCommandParser` analyses the input and constructs an `EditPersonCommand`, which, upon execution, updates the attributes of the specified `Person` object.
+
+The `editPerson` command requires an index to identify the target person within the displayed person list of a company. Optionally, it may include a company index to specify which company the person is associated with, and any combination of fields to be updated for the person.
+
+Here's how the command operates:
+
+1. The user inputs the `editPerson` command with the appropriate indexes and details to be updated.
+2. The parser validates the indexes and parses the fields to be updated.
+3. If the indexes and fields are valid, the `EditPersonCommand` is executed to update the person's details in the address book.
+
+Consider a scenario where the user wants to update the name, phone number, and email of a person listed as the first contact within a company:
+
+```plaintext
+editPerson 1 c/1 n/NewName p/98765432 e/newemail@example.com
+```
+
+Should there be any issues, such as invalid indexes or missing fields, the EditPersonCommand throws a CommandException to notify the user.
+
+<div style="page-break-after: always;"></div>
+
 ### Add Note to Company Feature: `noteCompany`
 
 #### Implementation
