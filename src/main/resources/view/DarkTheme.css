@@ -20,6 +20,10 @@
     -fx-background-color: #383838;
 }
 
+.scroll-pane > .viewport {
+    -fx-background-color: #383838;
+}
+
 .label {
     -fx-font-size: 11pt;
     -fx-font-family: "Segoe UI Semibold";

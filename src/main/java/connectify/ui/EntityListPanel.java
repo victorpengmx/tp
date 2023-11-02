@@ -95,6 +95,10 @@ public class EntityListPanel extends UiPart<Region> {
     }
     private TitledPane createCompanyPane(Company company) {
         TitledPane companyPane = new TitledPane();
+        // Create a ScrollPane to make the content scrollable
+        ScrollPane scrollPane = new ScrollPane();
+        scrollPane.setFitToWidth(true);
+
         companyPane.setText(company.getName().toString() + " (" + company.getPersonList().size() + " people)");
         // Create a VBox to hold the information
         VBox companyPaneContent = new VBox();
@@ -102,7 +106,7 @@ public class EntityListPanel extends UiPart<Region> {
         // Add labels and values for each field
         VBox infoBox = new VBox();
         infoBox.setSpacing(5); // Spacing between each label and value
-        infoBox.setPadding(new Insets(5, 5, 8, 5)); // Padding around the entire infoBox
+        infoBox.setPadding(new Insets(10, 10, 10, 10)); // Padding around the entire infoBox
 
         infoBox.getChildren().add( new Label("Industry: " + company.getIndustry()));
         infoBox.getChildren().add(new Label("Location: " + company.getLocation()));
@@ -121,6 +125,8 @@ public class EntityListPanel extends UiPart<Region> {
         if (company.getPersonList().size() == 0) {
             companyPeopleListView.setPlaceholder(new Label("No person in company"));
         }
+        // Set the preferred width of the ListView to match the ScrollPane's width
+        companyPeopleListView.prefWidthProperty().bind(scrollPane.widthProperty());
 
         // Add the ListView to the VBox to ensure proper layout
         VBox listViewBox = new VBox(companyPeopleListView);
@@ -130,8 +136,10 @@ public class EntityListPanel extends UiPart<Region> {
         companyPaneContent.getChildren().add(infoBox);
         companyPaneContent.getChildren().add(listViewBox);
 
-        // Set the content of the TitledPane to the VBox
-        companyPane.setContent(companyPaneContent);
+        scrollPane.setContent(companyPaneContent);
+
+        // Set the content of the TitledPane to the ScrollPane
+        companyPane.setContent(scrollPane);
         return companyPane;
     }
 
