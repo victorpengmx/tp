@@ -1,7 +1,7 @@
 [![CI Status](https://github.com/AY2324S1-CS2103T-T15-4/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2324S1-CS2103T-T15-4/tp/actions)
 [![codecov](https://codecov.io/gh/AY2324S1-CS2103T-T15-4/tp/graph/badge.svg)](https://codecov.io/gh/AY2324S1-CS2103T-T15-4/tp)
 
-![Ui](docs/images/Ui.png)
+![Ui](docs/images/ConnectifyMainPage.png)
 
 * This is our **team project** for the course **CS2103T** in AY2023/2024 Semester 1.
 * This is based on the `AddressBook-Level3` project created by the [SE-EDU initiative](https://se-education.org).
