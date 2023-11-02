@@ -6,18 +6,60 @@
 
 # Connectify Developer Guide
 
-<!-- * Table of Contents -->
-<page-nav-print />
+--------------------------------------------------------------------------------------------------------------------
+
+## Table Of Contents
+<!-- TOC -->
+* [Introduction](#introduction)
+    * [Acknowledgements](#acknowledgements)
+    * [Setting up, getting started](#setting-up-getting-started)
+* [Design](#design)
+    * [Architecture](#architecture)
+    * [UI component](#ui-component)
+    * [Logic component](#logic-component)
+    * [Model component](#model-component)
+    * [Storage component](#storage-component)
+    * [Common classes](#common-classes)
+* [Implementation](#implementation)
+    * [List Features](#list-features)
+    * [Add Person Feature](#add-person-feature--addperson)
+    * [Delete Person Feature](#delete-person-feature--deleteperson)
+    * [Add Company Feature](#add-company-feature--addcompany)
+    * [Delete Company Feature](#delete-company-feature--deletecompany)
+    * [Edit Company Feature](#edit-company-feature--editcompany)
+    * [Add Note to Company Feature](#add-note-to-company-feature--notecompany)
+    * [Add Note to Person Feature](#add-note-to-person-feature--noteperson)
+    * [Share Person's Contact Feature](#share-persons-contact-feature--shareperson)
+    * [[Proposed] Undo/redo feature](#proposed-undoredo-feature)
+    * [[Proposed] Data archiving](#proposed-data-archiving)
+* [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
+* [Appendix: Requirements](#appendix-requirements)
+    * [Product Scope](#product-scope)
+    * [User Stories](#user-stories)
+    * [Use Cases](#use-cases)
+    * [Non-Funtional Requirements](#non-functional-requirements)
+    * [Glossary](#glossary)
+* [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+    * [Launch and shutdown](#launch-and-shutdown)
+    * [Deleting a person](#deleting-a-person)
+    * [Saving data](#saving-data)
+<!-- TOC -->
+
+--------------------------------------------------------------------------------------------------------------------
+## Introduction
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Acknowledgements**
+### **Acknowledgements**
 
-_{ list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well }_
+* [JavaFX](https://openjfx.io/)
+* [Jackson](https://github.com/FasterXML/jackson)
+* [JUnit5](https://github.com/junit-team/junit5)
+* [AddressBook-Level 3 (AB-3)](https://se-education.org/addressbook-level3/)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+### **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
