@@ -28,7 +28,7 @@ public class SharePersonCommand extends Command {
             + "Example: " + COMMAND_WORD + " 2 1";
 
     public static final String MESSAGE_SHARE_PERSON_SUCCESS = "Command to add this Person:\n%1$s\n"
-            + "Do take note that you need to specify Company, priority,"
+            + "Do take note that you need to specify Company, priority, "
             + "and any additional notes on your own.";
 
     private final Index companyIndex;
