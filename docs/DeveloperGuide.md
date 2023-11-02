@@ -330,7 +330,7 @@ When given valid inputs, `the DeleteCompanyCommandParser` will delete a `Company
 
 Consider a scenario where the user wishes to delete a company.
 
-It requires a `CompanyIndex` parameter. This validates company index to ensure the company is present in the system.
+It requires a `targetIndex` parameter. This validates company index to ensure the company is present in the system.
 
 If valid, the company is removed from the address book.
 
@@ -440,6 +440,32 @@ The NotePersonCommand also handles cases where the provided person or company in
 
 <div style="page-break-after: always;"></div>
 
+## Ranking People by Priority Feature: `rank`
+
+### Implementation
+
+The ranking feature within Connectify is facilitated by the `RankCommand` and associated `RankCommandParser` in the `Logic` component. The `rank` command sorts the list of all persons by their assigned priority, allowing users to manage and view contacts based on importance.
+
+#### Command Usage
+
+To initiate the ranking process, the following command is used:
+
+```plaintext
+rank
+```
+
+This command does not require any additional parameters, simplifying its execution.
+
+Upon successful execution, Connectify outputs the list of people ranked according to their priority.
+
+The sequence of actions undertaken by the rank command is delineated in the activity diagram provided below. This includes the retrieval of all persons, their sorting by priority, and the updating of the user interface to reflect the changes.
+
+The rankCommand also handles cases where there are no people in the address book. The command throws a CommandException to inform the user.
+
+![rankSequenceDiagram.png](images%2FrankSequenceDiagram.png)
+
+<div style="page-break-after: always;"></div>
+
 ### Share Person's Contact Feature: `sharePerson`
 
 #### Implementation
@@ -457,7 +483,6 @@ Consider a scenario where the user wishes to share a person's contact. The comma
 ```plaintext
 sharePerson 1 1
 ```
-
 Upon execution, the SharePersonCommand retrieves the person's details and generates a shareable command string of the person at the specified person index, corresponding to the company at the specified company index. This string is then displayed to the user for copying.
 The object diagram above illustrates the final internal state after this example has been parsed.
 
@@ -470,142 +495,119 @@ The SharePersonCommand also handles cases where the provided person or company i
 <div style="page-break-after: always;"></div>
 
 
-### \[Proposed\] Undo/redo feature
+### Share Person's Contact Feature: `sharePerson`
 
-#### Proposed Implementation
+#### Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+This feature is enabled by the `ShareCompanyCommand` and `ShareCompanyCommandParser` within the `Logic` component.
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+With valid input, the parser constructs a `ShareCompanyCommand` which, upon execution, generates a command string for sharing a company's contact details.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+The `shareCompany` command takes the parameter `COMPANY_INDEX` to identify the specific company to be shared.
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-
-Assume a user wants to add a note to a company's record. The `noteCompany` command requires the index of the company in the displayed list and the note content as parameters.
-
-Consider a scenario where the user wishes to add a note indicating that a company is seeking frontend developers. The command input would be as follows:
+Consider a scenario where the user wishes to share a company's contact. The command input would be as follows:
 
 ```plaintext
-noteCompany 1 r/Looking for aspiring frontend developers.
+shareCompany 1 
 ```
+Upon execution, the ShareCompanyCommand retrieves the company's details and generates a shareable command string of the company at the specified company index. This string is then displayed to the user for copying.
 
-Upon execution, the NoteCompanyCommand appends the note to the company at the specified index.
+The ShareCompanyCommand also handles cases where the provided person or company index is not valid. It could be that the index does not correspond to any company in the current list view, or it is not a positive integer. Under such circumstances, the command throws a CommandException to inform the user.
 
-Object Diagram
-The object diagram below illustrates the Company object before and after the noteCompany command is executed:
+<div style="page-break-after: always;"></div>
 
-Note Company Object Diagram
+### Finding Entities: `find`
 
-Activity Diagram
-The behavior of Connectify upon receiving a noteCompany command is described in the following activity diagram:
+#### Implementation
 
-Note Company Activity Diagram
+The `find` command, provided by the `FindCommand` and `FindCommandParser` within the `Logic` component, searches for and lists all entities that match the specified keywords in the Connectify database.
 
-The NoteCompanyCommand also handles cases where the provided index is not valid. It could be that the index does not correspond to any company in the current list view, or it is not a positive integer. Under such circumstances, the command throws a CommandException with the following error message:
+To look for entities containing "John" and "Doe":
 ```plaintext
-The company index provided is invalid.
+find John Doe
+```
+A count of matched entities is displayed, and each matched entity is listed out.
+
+The FindCommand also handles cases where there are no matches. 
+
+<div style="page-break-after: always;"></div>
+
+
+### Finding Companies: `companies`
+
+#### Implementation
+
+The `companies` command, provided by the `FindCompaniesCommand` and `FindCompaniesCommandParser` within the `Logic` component, searches for and lists all companies that match the specified keywords in the Connectify database.
+
+To look for companies called "Facebook":
+```plaintext
+companies Facebook
+```
+A count of matched companies is displayed, and each matched company is listed out.
+
+The FindCompaniesCommand also handles cases where there are no matches.
+
+<div style="page-break-after: always;"></div>
+
+### Finding People: `people`
+
+#### Implementation
+
+The `people` command, provided by the `FindPeopleCommand` and `FindPeopleCommandParser` within the `Logic` component, searches for and lists all companies that match the specified keywords in the Connectify database.
+
+To look for people containing "John":
+```plaintext
+people john 
+```
+A count of matched people is displayed, and each matched person is listed out.
+
+The FindPeopleCommand also handles cases where there are no matches.
+
+<div style="page-break-after: always;"></div>
+
+
+### Clearing the Database: `clear`
+
+#### Implementation
+
+The `clear` feature is managed by the `ClearCommand` in the `Logic` component. This command is utilized to remove all persons and companies from the Connectify database.
+
+#### Command Usage
+```plaintext
+clear
+```
+After running this command, there will be confirmation that all entities have been removed. Cleared all persons and companies.
+
+<div style="page-break-after: always;"></div>
+
+### Seeking Help: `help`
+
+#### Implementation
+
+The `help` command is executed by the `HelpCommand` which provides users with assistance and information on using Connectify, including a link to the user guide.
+
+#### Command Usage
+```plaintext
+help
+```
+When triggered, it presents a help window or a link to the user guide.
+
+<div style="page-break-after: always;"></div>
+
+## Exiting Connectify: `exit`
+
+### Implementation
+
+Implemented by the `ExitCommand`, this command terminates the Connectify application, closing the session safely.
+
+#### Command Usage
+```plaintext
+exit
 ```
 
+After running this command, the application closes.
 
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-<puml src="diagrams/UndoRedoState0.puml" alt="UndoRedoState0" />
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-<puml src="diagrams/UndoRedoState1.puml" alt="UndoRedoState1" />
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-<puml src="diagrams/UndoRedoState2.puml" alt="UndoRedoState2" />
-
-<box type="info" seamless>
-
-**Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</box>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-<puml src="diagrams/UndoRedoState3.puml" alt="UndoRedoState3" />
-
-
-<box type="info" seamless>
-
-**Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</box>
-
-The following sequence diagram shows how the undo operation works:
-
-<puml src="diagrams/UndoSequenceDiagram.puml" alt="UndoSequenceDiagram" />
-
-<box type="info" seamless>
-
-**Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</box>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<box type="info" seamless>
-
-**Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</box>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-<puml src="diagrams/UndoRedoState4.puml" alt="UndoRedoState4" />
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-<puml src="diagrams/UndoRedoState5.puml" alt="UndoRedoState5" />
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<puml src="diagrams/CommitActivityDiagram.puml" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
