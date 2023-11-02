@@ -4,7 +4,7 @@
   pageNav: 3
 ---
 
-# AB-3 Developer Guide
+# Connectify Developer Guide
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -344,13 +344,145 @@ deleteCompany 1
 
 The new objects in the final internal state after this example has been parsed are shown in the object diagram above.
 
-The following activity diagrams detail the behavior of Connectify when a user inputs an deleteCompany command with valid syntax to be executed.
+The following activity diagrams detail the behavior of Connectify when a user inputs a deleteCompany command with valid syntax to be executed.
 
 The DeleteCompanyCommand also handles scenarios where a company index does not exist in the range of companies. In such cases, the command throws a CommandException with an error message to inform the user.
 
 <img src="images/deleteCompanyActivityDiagram.png" width="600" />
 
 <div style="page-break-after: always;"></div>
+
+### Edit Company Feature: `editCompany`
+
+#### Implementation
+
+This feature is facilitated by the `EditCompanyCommand` and `EditCompanyCommandParser` in the `Logic` component, and works as described below.
+
+When given valid inputs, `the EditCompanyCommandParser` will edit a `Company` object.
+
+Consider a scenario where the user wishes to edit a company.
+
+It requires a `CompanyIndex` parameter. This validates company index to ensure the company is present in the system.
+
+If valid, the company's details will be updated in the address book.
+
+<img src="images/editCompanyObjectDiagram.png" width="600" />
+
+Consider an example of a valid `editCompany` command:
+
+```plaintext
+editCompany 1 n/TechCorp p/91234567 e/techcorp@gmail.com a/123, Jurong West Ave 6, #08-111
+```
+
+The new objects in the final internal state after this example has been parsed are shown in the object diagram above.
+
+The following activity diagrams detail the behavior of Connectify when a user inputs an editCompany command with valid syntax to be executed.
+
+The EditCompanyCommand also handles scenarios where a company index does not exist in the range of companies. In such cases, the command throws a CommandException with an error message to inform the user.
+
+<img src="images/editCompanyActivityDiagram.png" width="600" />
+
+<div style="page-break-after: always;"></div>
+
+### Add Note to Company Feature: `noteCompany`
+
+#### Implementation
+
+This feature is implemented by the `NoteCompanyCommand` and `NoteCompanyCommandParser` within the `Logic` component.
+
+When the user provides valid input, the `NoteCompanyCommandParser` interprets the input to execute an `NoteCompanyCommand`, which in turn adds a note to a specific `Company` object in the address book.
+
+Assume a user wants to add a note to a company's record. The `noteCompany` command requires the index of the company in the displayed list and the note content as parameters.
+
+<img src="images/addCompanyNoteObjectDiagram.png" width="600" />
+
+Consider a scenario where the user wishes to add a note indicating that a company is seeking frontend developers. The command input would be as follows:
+
+```plaintext
+noteCompany 1 r/Looking for aspiring frontend developers.
+```
+Upon execution, the NoteCompanyCommand appends the note to the company at the specified index. The object diagram above illustrates the final internal state after this example has been parsed.
+
+The behavior of Connectify upon receiving a noteCompany command is described in the following activity diagram.
+
+The NoteCompanyCommand also handles cases where the provided company index is not valid. It could be that the index does not correspond to any company in the current list view, or it is not a positive integer. Under such circumstances, the command throws a CommandException to inform the user.
+
+<img src="images/addCompanyNoteActivityDiagram.png" width="600" />
+
+<div style="page-break-after: always;"></div>
+
+### Add Note to Person Feature: `notePerson`
+
+#### Implementation
+
+This feature is implemented by the `NotePersonCommand` and `NotePersonCommandParser` within the `Logic` component.
+
+When the user provides valid input, the `NotePersonCommandParser` interprets the input to execute an `NotePersonCommand`, which in turn adds a note to a specific `Person` object in the address book.
+
+To ensure that a note is added to the person in the correct company, the command also takes an `Index` parameter specifying the company where the person note should be added. This ensures that the person note is associated with the intended company.
+
+Assume a user wants to add a note to a company's record. The `notePerson` command requires the index of the company in the displayed list and the note content as parameters.
+
+<img src="images/addPersonNoteObjectDiagram.png" width="600" />
+
+Consider a scenario where the user wishes to add a note indicating that a person likes to swim. The command input would be as follows:
+
+```plaintext
+notePerson 1 1 r/Likes to swim.
+```
+Upon execution, the NotePersonCommand appends the note to the person at the specified person index, corresponding to the company at the specified company index. The object diagram above illustrates the final internal state after this example has been parsed.
+
+The behavior of Connectify upon receiving a notePerson command is described in the following activity diagram:
+
+The NotePersonCommand also handles cases where the provided person or company index is not valid. It could be that the index does not correspond to any company or person in the current list view, or it is not a positive integer. Under such circumstances, the command throws a CommandException to inform the user.
+
+<img src="images/addPersonNoteActivityDiagram.png" width="600" />
+
+<div style="page-break-after: always;"></div>
+
+### \[Proposed\] Undo/redo feature
+
+#### Proposed Implementation
+
+The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+
+* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
+* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
+* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+
+These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+
+Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+
+
+Assume a user wants to add a note to a company's record. The `noteCompany` command requires the index of the company in the displayed list and the note content as parameters.
+
+Consider a scenario where the user wishes to add a note indicating that a company is seeking frontend developers. The command input would be as follows:
+
+```plaintext
+noteCompany 1 r/Looking for aspiring frontend developers.
+```
+
+Upon execution, the NoteCompanyCommand appends the note to the company at the specified index.
+
+Object Diagram
+The object diagram below illustrates the Company object before and after the noteCompany command is executed:
+
+Note Company Object Diagram
+
+Activity Diagram
+The behavior of Connectify upon receiving a noteCompany command is described in the following activity diagram:
+
+Note Company Activity Diagram
+
+The NoteCompanyCommand also handles cases where the provided index is not valid. It could be that the index does not correspond to any company in the current list view, or it is not a positive integer. Under such circumstances, the command throws a CommandException with the following error message:
+```plaintext
+The company index provided is invalid.
+```
+
+
 
 ### \[Proposed\] Undo/redo feature
 
