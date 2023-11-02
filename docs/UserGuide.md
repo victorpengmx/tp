@@ -20,6 +20,7 @@ Networking is a crucial aspect of your academic and professional life, and Conne
     * [Editing a company: `editCompany`](#editing-a-company-editcompany)
     * [Listing all companies: `companies`](#listing-all-companies-companies)
     * [Adding note to a company: `noteCompany`](#adding-note-to-a-company-notecompany)
+    * [Sharing a company details: `shareCompany`](#sharing-a-company-details-sharecompany)
   * [Features for managing people contact details](#features-for-managing-people-contact-details)
     * [Adding a person: `addPerson`](#adding-a-person-addperson)
     * [Deleting a person: `deletePerson`](#deleting-a-person-deleteperson)
@@ -27,7 +28,8 @@ Networking is a crucial aspect of your academic and professional life, and Conne
     * [Listing all people: `people`](#listing-all-people-people)
     * [Adding note to a person: `notePerson`](#adding-note-to-a-person-noteperson)
     * [Ranking people by priority: `rank`](#ranking-people-by-priority-rank)
-  * [General Commands] (#general-commands)
+    * [Sharing a person's details: `sharePerson`](#sharing-a-persons-details-shareperson)
+  * [General Commands](#general-commands)
     * [Listing all entities: `list`](#listing-all-entities-list)
     * [Finding entities: `find`](#finding-entities-find)
     * [Clearing the database: `clear`](#clearing-the-database-clear)
@@ -165,7 +167,7 @@ You should be able to see the company in Connectify as shown below:
 
 **Unsuccessful Output:**
 
-- If a person with the same details already exists in the address book:
+- If a company with the same details already exists in the address book:
   ```
   This company already exists in the address book.
   ```
@@ -195,7 +197,7 @@ The fields are:
 
 **Example:**
 
-To delete the company named Test Company at index 1, use the following command:
+To delete the company named TechCorp at index 1, use the following command:
 
 ```
 deleteCompany 1
@@ -527,9 +529,13 @@ deletePerson 1
 **Successful Output:**
 
 ```
-Noted. I've removed this contact:
-John Doe
-Email:
+Deleted Person: Joe Doe;
+Phone: 98765432;
+Email: johnd@example.com;
+Address: 311, Clementi Ave 2, #02-25;
+Note: Priority: 1;
+Company: ABC;
+Tags: [owesMoney][friends]
 ```
 
 **Unsuccessful Output:**
@@ -585,17 +591,18 @@ The fields are:
 **Example:**
 To edit the person's name to "NewName," their phone number to "98765432," and their email to "newemail@example.com." The person is located at index 1 in the displayed person list of Company 1, and the person is associated with Company 1. Use the following command:
 ```
-editPerson 1 c/1 n/NewName p/98765432 e/newemail@example.com
+editPerson 1 c/1 p/91234567 e/johndoe@example.com
 ```
 
 **Successful Output**
 
 ```
 Edited Person: John Doe;
-Phone: 12345678;
+Phone: 91234567;
 Email: johndoe@example.com;
-Address: 311, Clementi Ave 2,
-#02-25;
+Address: 311, Clementi Ave 2, #02-25;
+Note: Priority: 1;
+Company: TechCorp;
 Tags: [owesMoney][friends]
 ```
 
@@ -1068,6 +1075,7 @@ That is not a valid command.
 | **Edit**   | `editCompany INDEX [n/NAME] [i/INDUSTRY] [l/LOCATION] [d/DESCRIPTION] [w/WEBSITE] [e/EMAIL] [p/PHONE] [a/ADDRESS]`<br> e.g.,`editCompany 2 n/Apple Inc                                                     |
 | **List**   | `companies`                                                                                                                                                                                                |
 | **Note**   | `noteCompany INDEX r/NOTE`<br> e.g., `noteCompany 1 r/Looking for aspiring frontend developers.`                                                                                                           |
+| **Share**  | `shareCompany INDEX`<br> e.g., `shareCompany 1`                                                                                                                                                            |
 
 ### Manging People Contacts
 | Action     | Format, Examples                                                                                                         |
@@ -1078,6 +1086,7 @@ That is not a valid command.
 | **List**   | `people`                                                                                                                 |
 | **Note**   | `notePerson COMPANY_INDEX PERSON_INDEX r/NOTE`<br> e.g., `notePerson 1 1 r/Likes to swim.`                               |
 | **Rank**   | `rank`                                                                                                                   |
+| **Share**  | `sharePerson COMPANY_INDEX PERSON_INDEX`<br> e.g., `sharePerson 1 1`                                                     |
 
 ### General Commands
 | Action    | Format, Examples                                           |
