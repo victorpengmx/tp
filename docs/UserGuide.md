@@ -20,6 +20,7 @@ Networking is a crucial aspect of your academic and professional life, and Conne
     * [Editing a company: `editCompany`](#editing-a-company-editcompany)
     * [Listing all companies: `companies`](#listing-all-companies-companies)
     * [Adding note to a company: `noteCompany`](#adding-note-to-a-company-notecompany)
+    * [Sharing a company details: `shareCompany`](#sharing-a-company-details-sharecompany)
   * [Features for managing people contact details](#features-for-managing-people-contact-details)
     * [Adding a person: `addPerson`](#adding-a-person-addperson)
     * [Deleting a person: `deletePerson`](#deleting-a-person-deleteperson)
@@ -27,7 +28,8 @@ Networking is a crucial aspect of your academic and professional life, and Conne
     * [Listing all people: `people`](#listing-all-people-people)
     * [Adding note to a person: `notePerson`](#adding-note-to-a-person-noteperson)
     * [Ranking people by priority: `rank`](#ranking-people-by-priority-rank)
-  * [General Commands] (#general-commands)
+    * [Sharing a person's details: `sharePerson`](#sharing-a-persons-details-shareperson)
+  * [General Commands](#general-commands)
     * [Listing all entities: `list`](#listing-all-entities-list)
     * [Finding entities: `find`](#finding-entities-find)
     * [Clearing the database: `clear`](#clearing-the-database-clear)
@@ -72,6 +74,7 @@ The guide begins on the following page!
 As a new user, your Connectify database is empty. Let's add your first connection!
 
 1. Firstly, you should input a company into your database. The example that we would be using is `addCompany n/Apple Inc i/Technology l/Silicon Valley d/computer and consumer technology w/www.apple.com e/apple@gmail.com p/98765432 a/1 Infinite Loop, Cupertino, California`. This command adds a company named "Apple Inc" to your Connectify database with the relevant details of the company as specified in the command. The output of this command is shown below:
+
 
    ```
    New company added: Apple Inc
@@ -129,14 +132,14 @@ The **addCompany** command allows you to add new companies to your Connectify da
 `addCompany n/NAME i/INDUSTRY l/LOCATION d/DESCRIPTION w/WEBSITE e/EMAIL p/PHONE a/ADDRESS`
 
 The fields are:
-- `n/NAME`: Specify the Company name.
-- `i/INDUSTRY`: Add the industry the Company is in.
-- `l/LOCATION`: Add the city/locale Company is at.
-- `d/DESCRIPTION`: Describe the Company.
-- `w/WEBSITE`: Add the Company website.
-- `e/EMAIL`: Add the contact email of the Company.
-- `p/PHONE`: Add the phone number of the Company.
-- `a/ADDRESS`: Include the address of the Company.
+- `n/NAME` is the name of the Company.
+- `i/INDUSTRY` is the industry the Company is in.
+- `l/LOCATION` is the location of the Company.
+- `d/DESCRIPTION` is a description of the Company.
+- `w/WEBSITE` is the website of the Company.
+- `e/EMAIL` is the email address of the Company.
+- `p/PHONE` is the phone number of the Company.
+- `a/ADDRESS` is the address of the Company.
 
 **Example:**
 
@@ -165,7 +168,7 @@ You should be able to see the company in Connectify as shown below:
 
 **Unsuccessful Output:**
 
-- If a person with the same details already exists in the address book:
+- If a company with the same details already exists in the address book:
   ```
   This company already exists in the address book.
   ```
@@ -195,7 +198,7 @@ The fields are:
 
 **Example:**
 
-To delete the company named Test Company at index 1, use the following command:
+To delete the company named TechCorp at index 1, use the following command:
 
 ```
 deleteCompany 1
@@ -463,7 +466,7 @@ The fields are:
 - `a/ADDRESS` is the address of the contact.
 - `c/COMPANY` is the index of the company to which the contact belongs.
 - `pr/PRIORITY` is the priority level of the contact.
-- `[t/TAG]`: (optional) is used to categorize your contacts. Tags help organize connections efficiently.
+- `[t/TAG]` (optional) is used to categorize your contacts. Tags help organize connections efficiently.
 
 Note: If the company index is not specified, the contact will be automatically added to the first company in the displayed company list.
 
@@ -543,9 +546,13 @@ deletePerson 1
 **Successful Output:**
 
 ```
-Noted. I've removed this contact:
-John Doe
-Email:
+Deleted Person: Joe Doe;
+Phone: 98765432;
+Email: johnd@example.com;
+Address: 311, Clementi Ave 2, #02-25;
+Note: Priority: 1;
+Company: ABC;
+Tags: [owesMoney][friends]
 ```
 
 **Unsuccessful Output:**
@@ -599,19 +606,22 @@ The fields are:
 - `[t/TAG]` (optional) is the person's new tags.
 
 **Example:**
-To edit the person's name to "NewName," their phone number to "98765432," and their email to "newemail@example.com." The person is located at index 1 in the displayed person list of Company 1, and the person is associated with Company 1. Use the following command:
+
+To edit the person at index 1 in the displayed person list of the Company at index 1 to change their phone number to 91234567 and their email to johndoe@example.com, use the following command:
+
 ```
-editPerson 1 c/1 n/NewName p/98765432 e/newemail@example.com
+editPerson 1 c/1 p/91234567 e/johndoe@example.com
 ```
 
 **Successful Output**
 
 ```
 Edited Person: John Doe;
-Phone: 12345678;
+Phone: 91234567;
 Email: johndoe@example.com;
-Address: 311, Clementi Ave 2,
-#02-25;
+Address: 311, Clementi Ave 2, #02-25;
+Note: Priority: 1;
+Company: TechCorp;
 Tags: [owesMoney][friends]
 ```
 
@@ -1079,23 +1089,25 @@ That is not a valid command.
 
 ### Managing Companies
 
-| Action     | Format, Examples                                                                                                                                                                                           |
-|------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `addCompany n/NAME i/INDUSTRY l/LOCATION d/DESCRIPTION w/WEBSITE e/EMAIL p/PHONE a/ADDRESS` <br> e.g., `addCompany n/Apple Inc i/technology l/Los Altos d/computer and consumer technology w/www.apple.com |
-| **Delete** | `deleteCompany INDEX`<br> e.g., `deleteCompany 3`                                                                                                                                                          |
-| **Edit**   | `editCompany INDEX [n/NAME] [i/INDUSTRY] [l/LOCATION] [d/DESCRIPTION] [w/WEBSITE] [e/EMAIL] [p/PHONE] [a/ADDRESS]`<br> e.g.,`editCompany 2 n/Apple Inc                                                     |
-| **List**   | `companies`                                                                                                                                                                                                |
-| **Note**   | `noteCompany INDEX r/NOTE`<br> e.g., `noteCompany 1 r/Looking for aspiring frontend developers.`                                                                                                           |
+| Action     | Format, Examples                                                                                                                                                                                            |
+|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `addCompany n/NAME i/INDUSTRY l/LOCATION d/DESCRIPTION w/WEBSITE e/EMAIL p/PHONE a/ADDRESS` <br> e.g., `addCompany n/Apple Inc i/technology l/Los Altos d/computer and consumer technology w/www.apple.com` |
+| **Delete** | `deleteCompany INDEX`<br> e.g., `deleteCompany 3`                                                                                                                                                           |
+| **Edit**   | `editCompany INDEX [n/NAME] [i/INDUSTRY] [l/LOCATION] [d/DESCRIPTION] [w/WEBSITE] [e/EMAIL] [p/PHONE] [a/ADDRESS]`<br> e.g.,`editCompany 2 n/Apple Inc`                                                     |
+| **List**   | `companies`                                                                                                                                                                                                 |
+| **Note**   | `noteCompany INDEX r/NOTE`<br> e.g., `noteCompany 1 r/Looking for aspiring frontend developers.`                                                                                                            |
+| **Share**  | `shareCompany INDEX`<br> e.g., `shareCompany 1`                                                                                                                                                             |
 
 ### Manging People Contacts
-| Action     | Format, Examples                                                                                                         |
-|------------|--------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `addPerson n/NAME p/PHONE e/EMAIL a/ADDRESS c/COMPANY pr/PRIORITY [t/TAG]…​` <br> e.g., `addPerson n/John Doe p/98765432 |
-| **Delete** | `deletePerson COMPANY_INDEX PERSON_INDEX`<br> e.g., `deletePerson 1 3`                                                   |
-| **Edit**   | `editPerson INDEX c/COMPANY [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`editPerson 2 c/1 n/John Doe    |
-| **List**   | `people`                                                                                                                 |
-| **Note**   | `notePerson COMPANY_INDEX PERSON_INDEX r/NOTE`<br> e.g., `notePerson 1 1 r/Likes to swim.`                               |
-| **Rank**   | `rank`                                                                                                                   |
+| Action     | Format, Examples                                                                                                          |
+|------------|---------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `addPerson n/NAME p/PHONE e/EMAIL a/ADDRESS c/COMPANY pr/PRIORITY [t/TAG]…​` <br> e.g., `addPerson n/John Doe p/98765432` |
+| **Delete** | `deletePerson COMPANY_INDEX PERSON_INDEX`<br> e.g., `deletePerson 1 3`                                                    |
+| **Edit**   | `editPerson INDEX c/COMPANY [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`editPerson 2 c/1 n/John Doe`    |
+| **List**   | `people`                                                                                                                  |
+| **Note**   | `notePerson COMPANY_INDEX PERSON_INDEX r/NOTE`<br> e.g., `notePerson 1 1 r/Likes to swim.`                                |
+| **Rank**   | `rank`                                                                                                                    |
+| **Share**  | `sharePerson COMPANY_INDEX PERSON_INDEX`<br> e.g., `sharePerson 1 1`                                                      |
 
 ### General Commands
 | Action    | Format, Examples                                           |
