@@ -282,7 +282,7 @@ Address: 123, Jurong West Ave 6, #08-111;
 At least one field to edit must be provided.
 ```
 
-- If the specified index is invalid (not within the displayed company list), you will get the following error message:
+- If the specified index is invalid (larger than the number of companies in the displayed company list), you will get the following error message:
 ```
 The company index provided is invalid.
 ```
@@ -376,7 +376,7 @@ Added note to Company: connectify.model.company.Company{name=ABC, phone=91234567
 
 **Unsuccessful Output**
 
-- If the specified index is invalid (larger than the index of the displayed company list), you will get the following error message:
+- If the specified index is invalid (larger than the number of companies in the displayed company list), you will get the following error message:
 ```
 The company index provided is invalid.
 ```
@@ -442,7 +442,7 @@ Parameters: INDEX (must be a positive integer)
 Example: shareCompany 1
 ```
 
-- If the specified index is invalid (larger than the index of the displayed company list), you will get the following error message:
+- If the specified index is invalid (larger than the number of companies in the displayed company list), you will get the following error message:
 ```
 The company index provided is invalid.
 ```
@@ -557,7 +557,7 @@ Tags: [owesMoney][friends]
 
 **Unsuccessful Output:**
 
-- If the specified company index is missing, you will get the following error message:
+- If the specified person/company index is missing or is not a positive integer, you will get the following error message:
 ```
 Invalid command format! 
 deletePerson: Deletes the person identified by the index number from the specified company and also removes them from the address book.
@@ -565,12 +565,12 @@ Parameters: COMPANY_INDEX (must be a positive integer) PERSON_INDEX (must be a p
 Example: deletePerson 2 1
 ```
 
-- If the specified company index is invalid, you will get the following error message:
+- If the specified company index is invalid (larger than the number of companies in the displayed company list), you will get the following error message:
 ```
 The company index provided is invalid.
 ```
 
-- If the specified person index is invalid, you will get the following error message:
+- If the specified person index is invalid (larger than the number of people in the displayed person list), you will get the following error message:
 ```
 The person index provided is invalid.
 ```
@@ -638,7 +638,7 @@ editPerson: Edits the details of the person identified by the index number used 
 Parameters: INDEX (must be a positive integer within the company) [c/COMPANY] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/NOTE] [pr/PRIORITY] [t/TAG].
 Example: editPerson 1 c/1 p/91234567 e/johndoe@example.com
 ```
-- If the specified index is invalid (larger than the index of the displayed company list), you will get the following error message:
+- If the specified index is invalid (larger than the number of companies in the displayed company list), you will get the following error message:
 ```
 The person index provided is invalid.
 ```
@@ -652,9 +652,6 @@ No company provided.
 The company index provided is invalid.
 ```
 
-- If the specified company index or person index is out of bounds, you will get the following error message:
-```
-Invalid index provided.
 ```
 
 - If you try to edit a person's details to match another person in the address book, you will receive the following error message:
@@ -752,12 +749,12 @@ Parameters: COMPANY_INDEX PERSON_INDEX (must be a positive integer) [r/NOTE]
 Example: notePerson 1 1 r/Likes to swim.
 ```
 
-- If the specified company index is invalid, you will get the following error message:
+- If the specified company index is invalid (larger than the number of companies in the displayed company list), you will get the following error message:
 ```
 The company index provided is invalid.
 ```
 
-- If the specified person index is invalid, you will get the following error message:
+- If the specified person index is invalid (larger than the number of companies in the displayed person list), you will get the following error message:
 ```
 The person index provided is invalid.
 ```
@@ -854,12 +851,12 @@ sharePerson: Shares instructions on how to add a Person, from the specified comp
 Parameters: COMPANY_INDEX (must be a positive integer) PERSON_INDEX (must be a positive integer)
 ```
 
-- If the specified company index is invalid (larger than the index of the displayed company list), you will get the following error message:
+- If the specified company index is invalid (larger than the number of companies in the displayed company list), you will get the following error message:
 ```
 The company index provided is invalid.
 ```
 
-- If the specified person index is invalid (larger than the index of the displayed person list), you will get the following error message:
+- If the specified person index is invalid (larger than the number of companies in the displayed person list), you will get the following error message:
 ```
 The person index provided is invalid.
 ```
