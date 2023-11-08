@@ -460,7 +460,7 @@ The company index provided is invalid.
 The `addPerson` command allows you to add new contacts to your Connectify database. Follow the format below to add contacts:
 
 ```
-addPerson n/NAME p/PHONE e/EMAIL a/ADDRESS c/COMPANY pr/PRIORITY [t/TAG]
+addPerson n/NAME p/PHONE e/EMAIL a/ADDRESS pr/PRIORITY [c/COMPANY] [t/TAG]
 ```
 
 The fields are:
@@ -468,8 +468,8 @@ The fields are:
 - `p/PHONE` is the phone number of the contact.
 - `e/EMAIL` is the email address of the contact.
 - `a/ADDRESS` is the address of the contact.
-- `c/COMPANY` is the index of the company to which the contact belongs.
 - `pr/PRIORITY` is the priority level of the contact.
+- `[c/COMPANY]` (optional) is the index of the company to which the contact belongs.
 - `[t/TAG]` (optional) is used to categorize your contacts. Tags help organize connections efficiently.
 
 Note: If the company index is not specified, the contact will be automatically added to the first company in the displayed company list.
@@ -500,9 +500,11 @@ You should be able to see the person in Connectify as shown below:
 
 **Unsuccessful Output:**
 
-- If the provided details are incomplete or invalid:
+- If any of the compulsory placeholders such as `n/`, `p/`, `e/`, `a/` or `pr/` are missing:
   ```
-  Please provide valid contact details including name, phone, email, address, and a valid company index.
+  Invalid command format!
+  addPerson: Adds a person to the address book. Parameters: n/NAME p/PHONE e/EMAIL a/ADDRESS pr/PRIORITY [c/COMPANY_INDEX] [t/TAG]...
+  Example: addPerson n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney c/1 pr/1
   ```
 
 - If a person with the same details already exists in the address book:
@@ -577,6 +579,11 @@ The company index provided is invalid.
 - If the specified person index is invalid (larger than the number of people in the displayed person list), you will get the following error message:
 ```
 The person index provided is invalid.
+```
+
+- If both the specified company and person index are invalid (larger than the number of companies and people in the displayed company and person list respectively), you will get the following error message:
+```
+The company index provided is invalid.
 ```
 
 <a href="#table-of-contents" class="return-to-toc-link">

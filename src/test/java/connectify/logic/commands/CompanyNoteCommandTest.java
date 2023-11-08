@@ -24,43 +24,44 @@ public class CompanyNoteCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
-    public void execute_addNoteUnfilteredList_success() {
-        Company firstCompany = model.getFilteredCompanyList().get(INDEX_FIRST_COMPANY.getZeroBased());
-        Company editedCompany = new CompanyBuilder(firstCompany).withNote(NOTE_STUB).build();
+    public void execute_addNote_success() {
+        Company companyWithoutNote = model.getFilteredCompanyList().get(INDEX_FIRST_COMPANY.getZeroBased());
+        Company editedCompanyWithNote = new CompanyBuilder(companyWithoutNote).withNote(NOTE_STUB).build();
 
         CompanyNoteCommand companyNoteCommand = new CompanyNoteCommand(INDEX_FIRST_COMPANY,
-                new CompanyNote(editedCompany.getNote().getContent()));
+                new CompanyNote(editedCompanyWithNote.getNote().getContent()));
 
-        String expectedMessage = String.format(CompanyNoteCommand.MESSAGE_ADD_NOTE_SUCCESS, editedCompany);
+        String expectedMessage = String.format(CompanyNoteCommand.MESSAGE_ADD_NOTE_SUCCESS,
+                Messages.format(editedCompanyWithNote));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setCompany(firstCompany, editedCompany);
+        expectedModel.setCompany(companyWithoutNote, editedCompanyWithNote);
 
         assertCommandSuccess(companyNoteCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
-    public void execute_deleteNoteUnfilteredList_success() {
-        Company firstCompany = model.getFilteredCompanyList().get(INDEX_FIRST_COMPANY.getZeroBased());
-        Company editedCompany = new CompanyBuilder(firstCompany).withNote("").build();
+    public void execute_deleteNote_success() {
+        Company companyWithoutNote = model.getFilteredCompanyList().get(INDEX_FIRST_COMPANY.getZeroBased());
+        Company editedCompanyWithNote = new CompanyBuilder(companyWithoutNote).withNote(NOTE_STUB).build();
 
         CompanyNoteCommand companyNoteCommand = new CompanyNoteCommand(INDEX_FIRST_COMPANY,
-                new CompanyNote(editedCompany.getNote().toString()));
+                new CompanyNote("")); // Empty note to delete note from selected company
 
-        String expectedMessage = String.format(CompanyNoteCommand.MESSAGE_DELETE_NOTE_SUCCESS, editedCompany);
+        String expectedMessage = String.format(CompanyNoteCommand.MESSAGE_DELETE_NOTE_SUCCESS,
+                Messages.format(companyWithoutNote));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setCompany(firstCompany, editedCompany);
+        model.setCompany(companyWithoutNote, editedCompanyWithNote);
 
         assertCommandSuccess(companyNoteCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
-    public void execute_invalidCompanyIndexUnfilteredList_failure() {
+    public void execute_invalidCompanyIndex_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredCompanyList().size() + 1);
         CompanyNoteCommand companyNoteCommand = new CompanyNoteCommand(outOfBoundIndex,
-                new CompanyNote(
-                        ""));
+                new CompanyNote(""));
 
         CommandTestUtil.assertCommandFailure(companyNoteCommand, model,
                 Messages.MESSAGE_INVALID_COMPANY_DISPLAYED_INDEX);
