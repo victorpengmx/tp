@@ -76,7 +76,7 @@ public class CompanyNoteCommand extends Command {
      */
     private String generateSuccessMessage(Company companyToEdit) {
         String message = !note.getContent().isEmpty() ? MESSAGE_ADD_NOTE_SUCCESS : MESSAGE_DELETE_NOTE_SUCCESS;
-        return String.format(message, companyToEdit);
+        return String.format(message, Messages.format(companyToEdit));
     }
     @Override
     public boolean equals(Object other) {
