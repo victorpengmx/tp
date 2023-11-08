@@ -168,6 +168,18 @@ You should be able to see the company in Connectify as shown below:
 
 **Unsuccessful Output:**
 
+- If any of the compulsory placeholders such as `n/`, `i/`, `l/`, `d/`, `w/`, `e/`, `p/` or `a/` are missing, you will receive the following error message:
+  ```
+  Invalid command format! 
+  addCompany: Adds a company to the address book. Parameters: n/NAME i/INDUSTRY l/LOCATION d/DESCRIPTION w/WEBSITE e/EMAIL p/PHONE a/ADDRESS
+  Example: addCompany n/TechCorp i/Technology l/Silicon Valley d/Leading tech company w/www.techcorp.com e/contact@techcorp.com p/12345678 a/123 Tech St, Silicon Valley
+  ```
+  
+- If all compulsory placeholders are present but the details are missing, you will receive the following error message:
+  ```
+  Names should only contain alphanumeric characters and spaces, and it should not be blank
+  ```
+
 - If a company with the same details already exists in the address book:
   ```
   This company already exists in the address book.
@@ -315,7 +327,9 @@ The `companies` command allows you to retrieve a list of all companies in Connec
 companies
 ```
 
-This command has no additional fields.
+Note:
+- This command has no additional fields.
+- This command accepts trailing inputs as long as it is separated from the command by a space.
 
 **Successful Output**
 
@@ -358,7 +372,9 @@ The fields are:
 - `INDEX` is the index of the company in the displayed company list that you want to edit. It must be a positive integer within the company.
 - `r/NOTE` is the note you want to add to the company.
 
-Note: This command deletes the existing note if it is inputted without the `r/` placeholder.
+Note:
+- This command deletes the existing note if it is inputted without the `r/` placeholder.
+- If the `r/` placeholder is specified twice, the note following the second placeholder will be used.
 
 **Example:**
 
@@ -456,7 +472,7 @@ The company index provided is invalid.
 The `addPerson` command allows you to add new contacts to your Connectify database. Follow the format below to add contacts:
 
 ```
-addPerson n/NAME p/PHONE e/EMAIL a/ADDRESS c/COMPANY pr/PRIORITY [t/TAG]
+addPerson n/NAME p/PHONE e/EMAIL a/ADDRESS pr/PRIORITY [c/COMPANY] [t/TAG]
 ```
 
 The fields are:
@@ -464,8 +480,8 @@ The fields are:
 - `p/PHONE` is the phone number of the contact.
 - `e/EMAIL` is the email address of the contact.
 - `a/ADDRESS` is the address of the contact.
-- `c/COMPANY` is the index of the company to which the contact belongs.
 - `pr/PRIORITY` is the priority level of the contact.
+- `[c/COMPANY]` (optional) is the index of the company to which the contact belongs.
 - `[t/TAG]` (optional) is used to categorize your contacts. Tags help organize connections efficiently.
 
 Note: If the company index is not specified, the contact will be automatically added to the first company in the displayed company list.
@@ -496,9 +512,16 @@ You should be able to see the person in Connectify as shown below:
 
 **Unsuccessful Output:**
 
-- If the provided details are incomplete or invalid:
+- If any of the compulsory placeholders such as `n/`, `p/`, `e/`, `a/` or `pr/` are missing:
   ```
-  Please provide valid contact details including name, phone, email, address, and a valid company index.
+  Invalid command format!
+  addPerson: Adds a person to the address book. Parameters: n/NAME p/PHONE e/EMAIL a/ADDRESS pr/PRIORITY [c/COMPANY_INDEX] [t/TAG]...
+  Example: addPerson n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney c/1 pr/1
+  ```
+  
+- If all the compulsory placeholders are present but the details are missing:
+  ```
+  Names should only contain alphanumeric characters and spaces, and it should not be blank
   ```
 
 - If a person with the same details already exists in the address book:
@@ -537,10 +560,10 @@ The fields are:
 
 **Example:**
 
-To delete the person named John Doe at index 1, use the following command:
+To delete the person named John Doe at index 1 from the company at index 1, use the following command:
 
 ```
-deletePerson 1
+deletePerson 1 1
 ```
 
 **Successful Output:**
@@ -573,6 +596,11 @@ The company index provided is invalid.
 - If the specified person index is invalid (larger than the number of people in the displayed person list), you will get the following error message:
 ```
 The person index provided is invalid.
+```
+
+- If both the specified company and person index are invalid (larger than the number of companies and people in the displayed company and person list respectively), you will get the following error message:
+```
+The company index provided is invalid.
 ```
 
 <a href="#table-of-contents" class="return-to-toc-link">
@@ -631,6 +659,7 @@ Tags: [owesMoney][friends]
 ```
 At least one field to edit must be provided.
 ```
+
 - If the specified index is missing or is not a positive integer, you will get the following error message:
 ```
 Invalid command format! 
@@ -638,10 +667,12 @@ editPerson: Edits the details of the person identified by the index number used 
 Parameters: INDEX (must be a positive integer within the company) [c/COMPANY] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/NOTE] [pr/PRIORITY] [t/TAG].
 Example: editPerson 1 c/1 p/91234567 e/johndoe@example.com
 ```
+
 - If the specified index is invalid (larger than the number of companies in the displayed company list), you will get the following error message:
 ```
 The person index provided is invalid.
 ```
+
 - If the specified company index is missing, you will get the following error message:
 ```
 No company provided.
@@ -650,8 +681,6 @@ No company provided.
 - If you try to edit a person's details in a company that does not exist, you will receive:
 ```
 The company index provided is invalid.
-```
-
 ```
 
 - If you try to edit a person's details to match another person in the address book, you will receive the following error message:
@@ -679,7 +708,9 @@ The `people` command allows you to retrieve a list of all individuals (persons) 
 people
 ```
 
-Note: This command has no additional fields.
+Note:
+- This command has no additional fields.
+- This command accepts trailing inputs as long as it is separated from the command by a space.
 
 **Successful Output**
 
@@ -723,7 +754,9 @@ The fields are:
 - `PERSON_INDEX` is the index of the person in the displayed person list of a company that you want to edit. It must be a positive integer within the company.
 - `r/NOTE` is the note you want to add to the person.
 
-Note: This command deletes the existing note if it is inputted without the `r/` placeholder.
+Note:
+- This command deletes the existing note if it is inputted without the `r/` placeholder.
+- If the `r/` placeholder is specified twice, the note following the second placeholder will be used.
 
 **Example:**
 
@@ -885,7 +918,9 @@ Follow the format below to list all entities:
 list
 ```
 
-Note: This command has no additional fields.
+Note:
+- This command has no additional fields.
+- This command accepts trailing inputs as long as it is separated from the command by a space.
 
 **Successful Output**
 
