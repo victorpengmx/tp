@@ -315,7 +315,9 @@ The `companies` command allows you to retrieve a list of all companies in Connec
 companies
 ```
 
-This command has no additional fields.
+Note:
+- This command has no additional fields.
+- This command accepts trailing inputs as long as it is separated from the command by a space.
 
 **Successful Output**
 
@@ -358,7 +360,9 @@ The fields are:
 - `INDEX` is the index of the company in the displayed company list that you want to edit. It must be a positive integer within the company.
 - `r/NOTE` is the note you want to add to the company.
 
-Note: This command deletes the existing note if it is inputted without the `r/` placeholder.
+Note:
+- This command deletes the existing note if it is inputted without the `r/` placeholder.
+- If the `r/` placeholder is specified twice, the note following the second placeholder will be used.
 
 **Example:**
 
@@ -537,10 +541,10 @@ The fields are:
 
 **Example:**
 
-To delete the person named John Doe at index 1, use the following command:
+To delete the person named John Doe at index 1 from the company at index 1, use the following command:
 
 ```
-deletePerson 1
+deletePerson 1 1
 ```
 
 **Successful Output:**
@@ -631,6 +635,7 @@ Tags: [owesMoney][friends]
 ```
 At least one field to edit must be provided.
 ```
+
 - If the specified index is missing or is not a positive integer, you will get the following error message:
 ```
 Invalid command format! 
@@ -638,10 +643,12 @@ editPerson: Edits the details of the person identified by the index number used 
 Parameters: INDEX (must be a positive integer within the company) [c/COMPANY] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/NOTE] [pr/PRIORITY] [t/TAG].
 Example: editPerson 1 c/1 p/91234567 e/johndoe@example.com
 ```
+
 - If the specified index is invalid (larger than the number of companies in the displayed company list), you will get the following error message:
 ```
 The person index provided is invalid.
 ```
+
 - If the specified company index is missing, you will get the following error message:
 ```
 No company provided.
@@ -650,8 +657,6 @@ No company provided.
 - If you try to edit a person's details in a company that does not exist, you will receive:
 ```
 The company index provided is invalid.
-```
-
 ```
 
 - If you try to edit a person's details to match another person in the address book, you will receive the following error message:
@@ -679,7 +684,9 @@ The `people` command allows you to retrieve a list of all individuals (persons) 
 people
 ```
 
-Note: This command has no additional fields.
+Note:
+- This command has no additional fields.
+- This command accepts trailing inputs as long as it is separated from the command by a space.
 
 **Successful Output**
 
@@ -723,7 +730,9 @@ The fields are:
 - `PERSON_INDEX` is the index of the person in the displayed person list of a company that you want to edit. It must be a positive integer within the company.
 - `r/NOTE` is the note you want to add to the person.
 
-Note: This command deletes the existing note if it is inputted without the `r/` placeholder.
+Note:
+- This command deletes the existing note if it is inputted without the `r/` placeholder.
+- If the `r/` placeholder is specified twice, the note following the second placeholder will be used.
 
 **Example:**
 
