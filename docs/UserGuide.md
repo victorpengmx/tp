@@ -71,17 +71,17 @@ The guide begins on the following page!
 
 As a new user, your Connectify database is empty. Let's add your first connection!
 
-1. Firstly, you should input a company into your database. The example that we would be using is `addCompany n/TechCorp i/Technology l/Silicon Valley d/Leading tech company w/www.techcorp.com e/contact@techcorp.com p/12345678 a/123 Tech St, Silicon Valley`. This command adds a company named "TechCorp" to your Connectify database with the relevant details of the company as specified in the command. The output of this command is shown below:
+1. Firstly, you should input a company into your database. The example that we would be using is `addCompany n/Apple Inc i/Technology l/Silicon Valley d/computer and consumer technology w/www.apple.com e/apple@gmail.com p/98765432 a/1 Infinite Loop, Cupertino, California`. This command adds a company named "Apple Inc" to your Connectify database with the relevant details of the company as specified in the command. The output of this command is shown below:
 
    ```
    New company added: Apple Inc
-   Phone: 98765432
-   Email: apple@gmail.com
-   Address: 1 Infinite Loop, Cupertino, California
-   Industry: technology
+   Industry: Technology
    Location: Silicon Valley
    Description: computer and consumer technology
    Website: www.apple.com
+   Email: apple@gmail.com
+   Phone: 98765432
+   Address: 1 Infinite Loop, Cupertino, California
    ```
    
    The company has been successfully added to your Connectify database! You should be able to see the company in your database as shown below:
@@ -96,7 +96,7 @@ As a new user, your Connectify database is empty. Let's add your first connectio
    Email: johnd@example.com;
    Address: 311, Clementi Ave 2, #02-25;
    Note: Priority: 1;
-   Company: TechCorp;
+   Company: Apple Inc;
    Tags: [owesMoney][friends]
    ```
    
@@ -279,9 +279,17 @@ Address: 123, Jurong West Ave 6, #08-111;
 At least one field to edit must be provided.
 ```
 
-- If the specified index is invalid (not within the displayed company list or not a positive integer), you will get the following error message:
+- If the specified index is invalid (not within the displayed company list), you will get the following error message:
 ```
 The company index provided is invalid.
+```
+
+- If the specified index is missing or is not a positive integer, you will get the following error message:
+```
+Invalid command format!
+editCompany: Edits the details of the company identified by the index number used in the displayed company list. Existing values will be overwritten by the input values.
+Parameters: INDEX (must be a positive integer) NAME PHONE EMAIL ADDRESS TAG.
+Example: editCompany 1 n/TechCorp p/91234567 e/techcorp@gmail.com a/123, Jurong West Ave 6, #08-111
 ```
 
 <a href="#table-of-contents" class="return-to-toc-link">
@@ -365,9 +373,17 @@ Added note to Company: connectify.model.company.Company{name=ABC, phone=91234567
 
 **Unsuccessful Output**
 
-- If the specified index is invalid (not within the displayed company list or not a positive integer), you will get the following error message:
+- If the specified index is invalid (larger than the index of the displayed company list), you will get the following error message:
 ```
 The company index provided is invalid.
+```
+
+- If the specified index is missing or is not a positive integer, you will get the following error message:
+```
+Invalid command format! 
+noteCompany: Edits the note of the company identified by the index number used in the last company listing. Existing note will be overwritten by the input.
+Parameters: INDEX (must be a positive integer) r/[NOTE]
+Example: noteCompany 1 r/Looking for aspiring frontend developers.
 ```
 
 <a href="#table-of-contents" class="return-to-toc-link">
@@ -415,7 +431,7 @@ You should see Connectify display the command to be copied, as shown below. The 
 
 **Unsuccessful Output**
 
-- If the specified index is missing, you will get the following error message:
+- If the specified index is missing or is not a positive integer, you will get the following error message:
 ```
 Invalid command format! 
 shareCompany: Shares instructions on how to add a Company to another address book.
@@ -423,7 +439,7 @@ Parameters: INDEX (must be a positive integer)
 Example: shareCompany 1
 ```
 
-- If the specified index is invalid (not within the displayed company list or not a positive integer), you will get the following error message:
+- If the specified index is invalid (larger than the index of the displayed company list), you will get the following error message:
 ```
 The company index provided is invalid.
 ```
@@ -569,7 +585,7 @@ The person index provided is invalid.
 The `editPerson` command allows you to modify the details of a person in your Connectify database. To edit contacts, follow the format below:
 
 ```
-editPerson INDEX c/COMPANY [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]
+editPerson INDEX c/COMPANY [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [pr/PRIORITY] [t/TAG]
 ```
 
 The fields are:
@@ -605,7 +621,14 @@ Tags: [owesMoney][friends]
 ```
 At least one field to edit must be provided.
 ```
-- If the specified index is invalid (not within the displayed person list or not a positive integer), you will get the following error message:
+- If the specified index is missing or is not a positive integer, you will get the following error message:
+```
+Invalid command format! 
+editPerson: Edits the details of the person identified by the index number used in the displayed person list. Existing values will be overwritten by the input values.
+Parameters: INDEX (must be a positive integer within the company) [c/COMPANY] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/NOTE] [pr/PRIORITY] [t/TAG].
+Example: editPerson 1 c/1 p/91234567 e/johndoe@example.com
+```
+- If the specified index is invalid (larger than the index of the displayed company list), you will get the following error message:
 ```
 The person index provided is invalid.
 ```
@@ -814,26 +837,21 @@ You should see Connectify display the command to be copied, as shown below. The 
 
 **Unsuccessful Output**
 
-- If the specified company index is missing, you will get the following error message:
+- If the specified company/person index is missing or is not a positive integer, you will get the following error message:
 ```
 Invalid command format! 
 sharePerson: Shares instructions on how to add a Person, from the specified company, to another address book.
 Parameters: COMPANY_INDEX (must be a positive integer) PERSON_INDEX (must be a positive integer)
 ```
 
-- If the specified company index is invalid, you will get the following error message:
+- If the specified company index is invalid (larger than the index of the displayed company list), you will get the following error message:
 ```
 The company index provided is invalid.
 ```
 
-- If the specified person index is invalid, you will get the following error message:
+- If the specified person index is invalid (larger than the index of the displayed person list), you will get the following error message:
 ```
 The person index provided is invalid.
-```
-
-- If the specified company index or person index is out of bounds, you will get the following error message:
-```
-The company index provided is invalid.
 ```
 
 <a href="#table-of-contents" class="return-to-toc-link">
