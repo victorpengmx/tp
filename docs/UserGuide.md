@@ -47,8 +47,8 @@ Getting started with Connectify is extremely simple! Here is a tutorial on how t
 
 1. Firstly, ensure that you have *Java `11`* or above [installed](https://www.baeldung.com/java-check-is-installed) in your Computer.
 2. Create a new folder to store Connectify.
-3. Download Connectify from the following [**this link**](https://github.com/AY2324S1-CS2103T-W15-4/tp/releases) and save the downloaded file in the directory you created in the previous step.
-4. Launch Connectify by double-clicking the file in the directory. You'll be greeted by Connectify's primary interface, with an empty database as shown below.
+3. Download Connectify from the following [**this link**](https://github.com/AY2324S1-CS2103T-T15-4/tp/releases) and save the downloaded file in the directory you created in the previous step.
+4. Launch Connectify by double-clicking the file in the directory. For MAC users, if an error message popup appears, running `java -jar connectify.jar` instead will open Connectify. You'll be greeted by Connectify's primary interface, with an empty database as shown below.
   <p style="text-align:center;"><img src="images/ConnectifyStartPage.png" width="500" /></p> <br>
 
 Now that you've successfully installed Connectify, let's take a moment to familiarize ourselves with the application's interface and functionality before diving into its features!
@@ -403,7 +403,7 @@ Example: noteCompany 1 r/Looking for aspiring frontend developers.
 
 #### Sharing a company details: `shareCompany`
 
-The `shareCompany` command allows you to share a company's details with another person. This command is particularly useful for sharing companies you have stored. To share a company's details, follow the command format below:
+The `shareCompany` command allows you to share a company's details with another person. This command is particularly useful for sharing companies you have stored. Since notes are personal to each user, shareCompany does not include the sharing of notes. To share a company's details, follow the command format below:
 
 ```
 shareCompany INDEX
@@ -773,7 +773,7 @@ The person index provided is invalid.
 
 #### Ranking people by priority: `rank`
 
-The `rank` command allows you to rank people by priority in Connectify. This command is particularly useful for ranking people you have stored. To rank people by priority, follow the command format below:
+The `rank` command allows you to rank people by priority in Connectify. This command is particularly useful for ranking people you have stored. Since higher priority indicates higher value, rank will sort the people in descending order, with the highest priority displayed at the top. To rank people by priority, follow the command format below:
 
 ```
 rank
@@ -1052,7 +1052,18 @@ That is not a valid command.
 
 ## FAQ
 
-[Coming Soon]
+**Q: How do I navigate around Connectify's UI?**
+A: Connectify's UI consists of 3 tabs. The first tab shows a detailed view of all companies and their associated person. The person tab shows a detailed view of each person and the company that they belong to. The companies tab shows a view of the various companies within Connectify. Since this companies tab aims to only show a simplified view, each company card only shows the basic fields such as name, phone, address, tags and people. The note section comes below the people list. For a more detailed view of each company, you can click on the company card to view the company's details in the first tab.
+
+**Q: What is considered a duplicate in Connectify?**
+A: In Connectify, companies and people are considered duplicates if they share the same name as an existing company or person.
+
+**Q: Why are my names being cut off in the UI?**
+A: Do note that Connectify's UI does not fully support long names and will cut off names that are too long. However, the supported length is likely sufficient for most names. 
+
+**Q: What sort of inputs are not allowed in Connectify?**
+A: Connectify does not impose strict input validation on the fields of companies and people, other than basic ones such as Names needing to be alphanumeric and not blank, while phone numbers must be numeric. Stricter input validation will be implemented in future versions of Connectify.
+
 
 <a href="#table-of-contents" class="return-to-toc-link">
   <span class="return-to-toc-text">Return to Table of Contents</span>
@@ -1088,7 +1099,7 @@ That is not a valid command.
 
 | Action     | Format, Examples                                                                                                                                                                                            |
 |------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `addCompany n/NAME i/INDUSTRY l/LOCATION d/DESCRIPTION w/WEBSITE e/EMAIL p/PHONE a/ADDRESS` <br> e.g., `addCompany n/Apple Inc i/technology l/Los Altos d/computer and consumer technology w/www.apple.com` |
+| **Add**    | `addCompany n/NAME i/INDUSTRY l/LOCATION d/DESCRIPTION w/WEBSITE e/EMAIL p/PHONE a/ADDRESS` <br> e.g., `addCompany n/Apple Inc i/Technology l/Silicon Valley d/computer and consumer technology w/www.apple.com e/apple@gmail.com p/98765432 a/1 Infinite Loop, Cupertino, California` |
 | **Delete** | `deleteCompany INDEX`<br> e.g., `deleteCompany 3`                                                                                                                                                           |
 | **Edit**   | `editCompany INDEX [n/NAME] [i/INDUSTRY] [l/LOCATION] [d/DESCRIPTION] [w/WEBSITE] [e/EMAIL] [p/PHONE] [a/ADDRESS]`<br> e.g.,`editCompany 2 n/Apple Inc`                                                     |
 | **List**   | `companies`                                                                                                                                                                                                 |
