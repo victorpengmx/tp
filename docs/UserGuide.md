@@ -168,6 +168,18 @@ You should be able to see the company in Connectify as shown below:
 
 **Unsuccessful Output:**
 
+- If any of the compulsory placeholders such as `n/`, `i/`, `l/`, `d/`, `w/`, `e/`, `p/` or `a/` are missing, you will receive the following error message:
+  ```
+  Invalid command format! 
+  addCompany: Adds a company to the address book. Parameters: n/NAME i/INDUSTRY l/LOCATION d/DESCRIPTION w/WEBSITE e/EMAIL p/PHONE a/ADDRESS
+  Example: addCompany n/TechCorp i/Technology l/Silicon Valley d/Leading tech company w/www.techcorp.com e/contact@techcorp.com p/12345678 a/123 Tech St, Silicon Valley
+  ```
+  
+- If all compulsory placeholders are present but the details are missing, you will receive the following error message:
+  ```
+  Names should only contain alphanumeric characters and spaces, and it should not be blank
+  ```
+
 - If a company with the same details already exists in the address book:
   ```
   This company already exists in the address book.
@@ -505,6 +517,11 @@ You should be able to see the person in Connectify as shown below:
   Invalid command format!
   addPerson: Adds a person to the address book. Parameters: n/NAME p/PHONE e/EMAIL a/ADDRESS pr/PRIORITY [c/COMPANY_INDEX] [t/TAG]...
   Example: addPerson n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney c/1 pr/1
+  ```
+  
+- If all the compulsory placeholders are present but the details are missing:
+  ```
+  Names should only contain alphanumeric characters and spaces, and it should not be blank
   ```
 
 - If a person with the same details already exists in the address book:
