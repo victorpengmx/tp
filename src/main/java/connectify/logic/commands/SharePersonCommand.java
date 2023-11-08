@@ -28,7 +28,8 @@ public class SharePersonCommand extends Command {
             + "Example: " + COMMAND_WORD + " 2 1";
 
     public static final String MESSAGE_SHARE_PERSON_SUCCESS = "Command to add this Person:\n%1$s\n"
-            + "Do take note that you need to specify Company and priority on your own.";
+            + "Do take note that you need to specify Company, priority, "
+            + "and any additional notes on your own.";
 
     private final Index companyIndex;
     private final Index personIndex;
@@ -92,8 +93,11 @@ public class SharePersonCommand extends Command {
             case "Address":
                 result.append("a/").append(value).append(" ");
                 break;
+            case "Note":
+            case "Company":
+                break;
             case "Tags":
-                String[] tags = value.replace("[", "").replace("]", "").split("]\\[");
+                String[] tags = value.substring(1, value.length() - 1).split("]\\[");
                 for (String tag : tags) {
                     result.append("t/").append(tag).append(" ");
                 }
