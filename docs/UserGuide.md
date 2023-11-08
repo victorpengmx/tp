@@ -918,7 +918,9 @@ Follow the format below to list all entities:
 list
 ```
 
-Note: This command has no additional fields.
+Note:
+- This command has no additional fields.
+- This command accepts trailing inputs as long as it is separated from the command by a space.
 
 **Successful Output**
 
