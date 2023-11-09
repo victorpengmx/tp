@@ -1088,15 +1088,19 @@ That is not a valid command.
 ## FAQ
 
 **Q: How do I navigate around Connectify's UI?**
+
 A: Connectify's UI consists of 3 tabs. The first tab shows a detailed view of all companies and their associated person. The person tab shows a detailed view of each person and the company that they belong to. The companies tab shows a view of the various companies within Connectify. Since this companies tab aims to only show a simplified view, each company card only shows the basic fields such as name, phone, address, tags and people. The note section comes below the people list. For a more detailed view of each company, you can click on the company card to view the company's details in the first tab.
 
 **Q: What is considered a duplicate in Connectify?**
+
 A: In Connectify, companies and people are considered duplicates if they share the same name as an existing company or person.
 
 **Q: Why are my names being cut off in the UI?**
+
 A: Do note that Connectify's UI does not fully support long names and will cut off names that are too long. However, the supported length is likely sufficient for most names. 
 
 **Q: What sort of inputs are not allowed in Connectify?**
+
 A: Connectify does not impose strict input validation on the fields of companies and people, other than basic ones such as Names needing to be alphanumeric and not blank, while phone numbers must be numeric. Stricter input validation will be implemented in future versions of Connectify.
 
 
