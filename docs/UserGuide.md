@@ -142,7 +142,8 @@ The fields are:
 - `a/ADDRESS` is the address of the Company.
 
 Note:
-- Connectify only supports alphanumeric characters and spaces for names.
+- Connectify only supports alphanumeric characters (incl. spaces) for names.
+- Connectify only supports alphanumeric characters for tags.
 - There are no restrictions on the input for the website field as it is for the user's personal reference. This means that websites can be successfully inputted even without the `www` prefix.
 - All fields are case-sensitive. This means that `Apple Inc` and `apple inc` are considered different names.
 
@@ -499,12 +500,14 @@ The fields are:
 - `a/ADDRESS` is the address of the contact.
 - `pr/PRIORITY` is the priority level of the contact.
 - `[c/COMPANY]` (optional) is the index of the company to which the contact belongs.
-- `[t/TAG]…​` (optional) is used to categorize your contacts. Multiple Tags can be added by typing a Tag after each `/t` placeholder. Tags help organize connections efficiently.
+- `[t/TAG]…​` (optional) is used to categorize your contacts. Multiple Tags can be added by typing a Tag after each `t/` placeholder. Tags help organize connections efficiently.
 
 Note:
 - If the company index is not specified, the contact will be automatically added to the first company in the displayed company list.
-- Connectify only supports alphanumeric characters and spaces for names and tags.
+- Connectify only supports alphanumeric characters (incl. spaces) for names.
+- Connectify only supports alphanumeric characters for tags.
 - Connectify does not support the use of `+` or whitespace in phone numbers.
+- Each Person is currently restricted to work in one Company.
 - All fields are case-sensitive. This means that `John Doe` and `john doe` are considered different names, and `friends` and `Friends` are considered different tags.
 
 **Example:**
@@ -654,10 +657,11 @@ The fields are:
 - `[e/EMAIL]` (optional) is the person's new email.
 - `[a/ADDRESS]` (optional) is the person's new address.
 - `[pr/PRIORITY]` (optional) is the person's new priority level.
-- `[t/TAG]…​` (optional) is the person's new tags. Multiple Tags can be added by typing a Tag after each `/t` placeholder. Tags help organize connections efficiently.
+- `[t/TAG]…​` (optional) is the person's new tags. Multiple Tags can be added by typing a Tag after each `t/` placeholder. Tags help organize connections efficiently.
 
 Note:
-- Connectify only supports alphanumeric characters for names and tags.
+- Connectify only supports alphanumeric characters (incl. spaces) for names.
+- Connectify only supports alphanumeric characters for tags.
 - Connectify does not support the use of `+` or whitespace in phone numbers.
 - All fields are case-sensitive. This means that `John Doe` and `john doe` are considered different names, and `friends` and `Friends` are considered different tags.
 
