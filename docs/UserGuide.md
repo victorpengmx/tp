@@ -507,6 +507,7 @@ Note:
 - Connectify only supports alphanumeric characters (incl. spaces) for names.
 - Connectify only supports alphanumeric characters for tags.
 - Connectify does not support the use of `+` or whitespace in phone numbers.
+- Each Person is currently restricted to work in one Company.
 - All fields are case-sensitive. This means that `John Doe` and `john doe` are considered different names, and `friends` and `Friends` are considered different tags.
 
 **Example:**
