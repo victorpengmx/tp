@@ -1143,7 +1143,7 @@ A: Connectify's UI consists of 3 tabs. The first tab shows a detailed view of al
 
 **Q2: What is considered a duplicate in Connectify?**
 
-A: In Connectify, companies and people are considered duplicates if they share the same name as an existing company or person. Note that this condition holds for names that are the same but which have the same case.
+A: In Connectify, companies and people are considered duplicates if they share the same name as an existing company or person. Note that this condition holds for names that have the same letters but different cases. For example, `John` is considered different from `john`.
 
 **Q3: Why are my fields being cut off in the UI?**
 
