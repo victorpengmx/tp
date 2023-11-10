@@ -142,6 +142,9 @@ public class ParserPersonUtil {
     public static PersonPriority parsePersonPriority(String priority) throws ParseException {
         requireNonNull(priority);
         String trimmedPriority = priority.trim();
+        if (!PersonPriority.isValidPriority(trimmedPriority)) {
+            throw new ParseException(PersonPriority.MESSAGE_CONSTRAINTS);
+        }
         return new PersonPriority(trimmedPriority);
     }
 
