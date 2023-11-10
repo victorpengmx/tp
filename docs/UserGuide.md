@@ -482,7 +482,7 @@ The fields are:
 - `a/ADDRESS` is the address of the contact.
 - `pr/PRIORITY` is the priority level of the contact.
 - `[c/COMPANY]` (optional) is the index of the company to which the contact belongs.
-- `[t/TAG]` (optional) is used to categorize your contacts. Tags help organize connections efficiently.
+- `[t/TAG]` (optional) is used to categorize your contacts. Multiple Tags can be added by typing a Tag after each `/t` placeholder. Tags help organize connections efficiently.
 
 Note: If the company index is not specified, the contact will be automatically added to the first company in the displayed company list.
 
@@ -1093,7 +1093,8 @@ A: Connectify's UI consists of 3 tabs. The first tab shows a detailed view of al
 
 **Q: What is considered a duplicate in Connectify?**
 
-A: In Connectify, companies and people are considered duplicates if they share the same name as an existing company or person.
+A: In Connectify, companies and people are considered duplicates if they share the same name as an existing company or person. Note that this condition holds for names that are the same but which have the same case.
+
 
 **Q: Why are my names being cut off in the UI?**
 
@@ -1101,7 +1102,8 @@ A: Do note that Connectify's UI does not fully support long names and will cut o
 
 **Q: What sort of inputs are not allowed in Connectify?**
 
-A: Connectify does not impose strict input validation on the fields of companies and people, other than basic ones such as Names needing to be alphanumeric and not blank, while phone numbers must be numeric. Stricter input validation will be implemented in future versions of Connectify.
+A: Connectify does not impose strict input validation on the fields of companies and people, other than basic ones such as Names needing to be alphanumeric, not blank, and case-sensitive unique, while phone numbers must be numeric. Stricter input validation will be implemented in future versions of Connectify.
+
 
 
 <a href="#table-of-contents" class="return-to-toc-link">
@@ -1117,6 +1119,9 @@ A: Connectify does not impose strict input validation on the fields of companies
 --------------------------------------------------------------------------------------------------------------------
 
 ## Known issues
+
+1. When entering some commands incorrectly, the displayed error message will refer to "address book" instead of 'Connectify'. "address book" in such cases should be interpreted as "Connectify".
+2. Some labels in the Connectify interface refer to "addressbook" instead of "Connectify'. Such occurences do not affect functionality.
 
 [Coming Soon]
 
