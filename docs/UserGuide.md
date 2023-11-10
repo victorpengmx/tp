@@ -141,6 +141,11 @@ The fields are:
 - `p/PHONE` is the phone number of the Company.
 - `a/ADDRESS` is the address of the Company.
 
+Note:
+- Connectify only supports alphanumeric characters and spaces for names.
+- There are no restrictions on the input for the website field as it is for the user's personal reference. This means that websites can be successfully inputted even without the `www` prefix.
+- All fields are case-sensitive. This means that `Apple Inc` and `apple inc` are considered different names.
+
 **Example:**
 
 To add a Company "Apple Inc", a computer and consumer technology company headquartered in Los Altos, with the website "www.apple.com", email address contact@apple.com, the phone number 98765432, address "1 Apple Park Way, Cupertino, California", use the following command:
@@ -266,6 +271,11 @@ The fields are:
 - `[p/PHONE]` (optional) is the company's new phone number.
 - `[a/ADDRESS]` (optional) is the company's new address.
 
+Note:
+- Connectify only supports alphanumeric characters and spaces for names.
+- There are no restrictions on the input for the website field as it is for the user's personal reference. This means that websites can be successfully inputted even without the `www` prefix.
+- All fields are case-sensitive. This means that `Apple Inc` and `apple inc` are considered different names.
+
 **Example:**
 
 To edit the company's name to "TechCorp", their email to techcorp@gmail.com and their address to "123, Jurong West Ave 6, #08-111", use the following command:
@@ -387,7 +397,14 @@ noteCompany 1 r/Looking for aspiring frontend developers.
 **Successful Output**
 
 ```
-Added note to Company: connectify.model.company.Company{name=ABC, phone=91234567, email=techcorp@gmail.com, address=123, Jurong West Ave 6, #08-111, industry=Technology, location=Silicon Valley, description=Leading tech company, website=www.techcorp.com, note=Looking for aspiring frontend developers., people=connectify.model.person.PersonList@d5a9d461}
+Added note to Company: TechCorp;
+Industry: Technology;
+Location: Silicon Valley;
+Description: Leading tech company;
+Website: www.techcorp.com;
+Email: contact@techcorp.com;
+Phone: 12345678;
+Address: 123 Tech St, Silicon Valley
 ```
 
 **Unsuccessful Output**
@@ -472,7 +489,7 @@ The company index provided is invalid.
 The `addPerson` command allows you to add new contacts to your Connectify database. Follow the format below to add contacts:
 
 ```
-addPerson n/NAME p/PHONE e/EMAIL a/ADDRESS pr/PRIORITY [c/COMPANY] [t/TAG]
+addPerson n/NAME p/PHONE e/EMAIL a/ADDRESS pr/PRIORITY [c/COMPANY] [t/TAG]…​
 ```
 
 The fields are:
@@ -482,9 +499,13 @@ The fields are:
 - `a/ADDRESS` is the address of the contact.
 - `pr/PRIORITY` is the priority level of the contact.
 - `[c/COMPANY]` (optional) is the index of the company to which the contact belongs.
-- `[t/TAG]` (optional) is used to categorize your contacts. Multiple Tags can be added by typing a Tag after each `/t` placeholder. Tags help organize connections efficiently.
+- `[t/TAG]…​` (optional) is used to categorize your contacts. Multiple Tags can be added by typing a Tag after each `/t` placeholder. Tags help organize connections efficiently.
 
-Note: If the company index is not specified, the contact will be automatically added to the first company in the displayed company list.
+Note:
+- If the company index is not specified, the contact will be automatically added to the first company in the displayed company list.
+- Connectify only supports alphanumeric characters and spaces for names and tags.
+- Connectify does not support the use of `+` or whitespace in phone numbers.
+- All fields are case-sensitive. This means that `John Doe` and `john doe` are considered different names, and `friends` and `Friends` are considered different tags.
 
 **Example:**
 
@@ -500,10 +521,11 @@ addPerson n/John Doe p/98765432 e/johndoe@example.com a/311, Clementi Ave 2, #02
 New person added: John Doe
 Phone: 98765432
 Email: johnd@example.com
-Address: 311, Clementi Ave 2, #02-25
-Company: Company 1
-Priority: 1
-Tags: friends, owesMoney
+Address: 311, Clementi Ave 2, #02-25;
+Note: ;
+Priority: 1;
+Company: TechCorp;
+Tags: [owesMoney][friends]
 ```
 
 You should be able to see the person in Connectify as shown below:
@@ -573,7 +595,8 @@ Deleted Person: Joe Doe;
 Phone: 98765432;
 Email: johnd@example.com;
 Address: 311, Clementi Ave 2, #02-25;
-Note: Priority: 1;
+Note: ;
+Priority: 1;
 Company: ABC;
 Tags: [owesMoney][friends]
 ```
@@ -620,7 +643,7 @@ The company index provided is invalid.
 The `editPerson` command allows you to modify the details of a person in your Connectify database. To edit contacts, follow the format below:
 
 ```
-editPerson INDEX c/COMPANY [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [pr/PRIORITY] [t/TAG]
+editPerson INDEX c/COMPANY [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [pr/PRIORITY] [t/TAG]…​
 ```
 
 The fields are:
@@ -631,7 +654,12 @@ The fields are:
 - `[e/EMAIL]` (optional) is the person's new email.
 - `[a/ADDRESS]` (optional) is the person's new address.
 - `[pr/PRIORITY]` (optional) is the person's new priority level.
-- `[t/TAG]` (optional) is the person's new tags.
+- `[t/TAG]…​` (optional) is the person's new tags. Multiple Tags can be added by typing a Tag after each `/t` placeholder. Tags help organize connections efficiently.
+
+Note:
+- Connectify only supports alphanumeric characters for names and tags.
+- Connectify does not support the use of `+` or whitespace in phone numbers.
+- All fields are case-sensitive. This means that `John Doe` and `john doe` are considered different names, and `friends` and `Friends` are considered different tags.
 
 **Example:**
 
@@ -648,7 +676,8 @@ Edited Person: John Doe;
 Phone: 91234567;
 Email: johndoe@example.com;
 Address: 311, Clementi Ave 2, #02-25;
-Note: Priority: 1;
+Note: ;
+Priority: 1;
 Company: TechCorp;
 Tags: [owesMoney][friends]
 ```
@@ -769,7 +798,15 @@ notePerson 1 1 r/Likes to swim.
 **Successful Output**
 
 ```
-Added note to Person: connectify.model.person.Person{name=Joe Doe, phone=98765432, email=johnd@example.com, address=311, Clementi Ave 2, #02-25, note=Likes to swim., tags=[[owesMoney], [friends]], priority=1}
+Added note to Person: John Doe;
+Phone: 98765432;
+Email: johnd@example.com;
+Address: 311, Clementi Ave 2, #02-25;
+Note: 
+Likes to swim.;
+Priority: 1;
+Company: TechCorp;
+Tags: [owesMoney][friends]
 ```
 
 **Unsuccessful Output**
@@ -812,7 +849,10 @@ The `rank` command allows you to rank people by priority in Connectify. This com
 rank
 ```
 
-Note: This command has no additional fields.
+Note:
+- This command has no additional fields.
+- This command accepts trailing inputs as long as it is separated from the command by a space.
+- This command ranks people by decreasing numerical values of priority. Hence, a person with priority 10 will be ranked higher (closer to the top of the list) than a person with priority 1.
 
 **Successful Output**
 
@@ -867,7 +907,7 @@ sharePerson 1 1
 
 ```
 Command to add this Person:
-addPerson n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 n/Note n/Company t/owesMoneyfriends
+addPerson n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 n/Priority t/owesMoney t/friends
 Do take note that you need to specify Company and priority on your own.
 ```
 
@@ -1009,7 +1049,9 @@ The `clear` command allows you to clear all entities (both persons and companies
 clear
 ```
 
-Note: This command has no additional fields.
+Note:
+- This command has no additional fields.
+- This command accepts trailing inputs as long as it is separated from the command by a space.
 
 **Successful Output**
 
@@ -1037,7 +1079,9 @@ The `help` command displays a link to this user guide. This command is useful fo
 help
 ```
 
-Note: This command has no additional fields.
+Note:
+- This command has no additional fields.
+- This command accepts trailing inputs as long as it is separated from the command by a space.
 
 **Successful Output**
 
@@ -1061,11 +1105,17 @@ A pop-up window will appear with the link to this user guide as shown below:
 
 This command exits the program.
 
+```
+exit
+```
+
+Note:
+- This command has no additional fields.
+- This command accepts trailing inputs as long as it is separated from the command by a space.
+
 **Successful Output:**
 
-```
-Bye. Hope to see you again soon!
-```
+There will be no output. The program will exit and the application window will close.
 
 **Unsuccessful Output:**
 
@@ -1087,24 +1137,33 @@ That is not a valid command.
 
 ## FAQ
 
-**Q: How do I navigate around Connectify's UI?**
+**Q1: How do I navigate around Connectify's UI?**
 
 A: Connectify's UI consists of 3 tabs. The first tab shows a detailed view of all companies and their associated person. The person tab shows a detailed view of each person and the company that they belong to. The companies tab shows a view of the various companies within Connectify. Since this companies tab aims to only show a simplified view, each company card only shows the basic fields such as name, phone, address, tags and people. The note section comes below the people list. For a more detailed view of each company, you can click on the company card to view the company's details in the first tab.
 
-**Q: What is considered a duplicate in Connectify?**
+**Q2: What is considered a duplicate in Connectify?**
 
 A: In Connectify, companies and people are considered duplicates if they share the same name as an existing company or person. Note that this condition holds for names that are the same but which have the same case.
 
+**Q3: Why are my fields being cut off in the UI?**
 
-**Q: Why are my names being cut off in the UI?**
+A: Do note that Connectify's UI does not fully support long fields and will cut off fields that are too long. However, the supported length is likely sufficient for most fields. 
 
-A: Do note that Connectify's UI does not fully support long names and will cut off names that are too long. However, the supported length is likely sufficient for most names. 
-
-**Q: What sort of inputs are not allowed in Connectify?**
+**Q4: What sort of inputs are not allowed in Connectify?**
 
 A: Connectify does not impose strict input validation on the fields of companies and people, other than basic ones such as Names needing to be alphanumeric, not blank, and case-sensitive unique, while phone numbers must be numeric. Stricter input validation will be implemented in future versions of Connectify.
 
+**Q5: What if one of my contacts belongs to multiple companies?**
 
+A: Connectify does not support the same person being associated with multiple companies at our current version. This is to avoid confusion when sharing contacts with others. However, we are looking to implement this feature in future versions of Connectify.
+
+**Q6: Should a person of higher priority be assigned a higher or lower priority number?**
+
+A: A person of a higher priority should be assigned a higher priority number. This is because Connectify's `rank` command ranks people by decreasing numerical values of priority. Hence, a person with priority 10 will be ranked higher (closer to the top of the list) than a person with priority 1. The numerical range for the priority field is 1 to 10.
+
+**Q7: What is the numerical range for the priority field?**
+
+A: Connectify does not restrict the numerical range for the priority field. However, the numerical range for the priority field is 1 to 10. This is because Connectify's `rank` command ranks people by decreasing numerical values of priority. This is so that a person who has ranked contacts of the highest priority at point in time wouldn't need to re-rank their contacts if they wish to add a new contact of an even higher priority in the future. However, the numerical value for priority should not be a negative number.
 
 <a href="#table-of-contents" class="return-to-toc-link">
   <span class="return-to-toc-text">Return to Table of Contents</span>
