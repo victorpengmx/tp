@@ -17,18 +17,18 @@ Given below are my contributions to the project.
 
 * **New Feature**: Implemented `sharePerson` Command
 * Implemented the `sharePerson` command, enabling users to retrieve instructions on how to add a particular Person.
-* This feature allows users share these details with others, allowing effective network management through creating second- and third-degree connections.
+* This feature allows users to share these people with others, allowing effective network management through creating second- and third-degree connections.
 * Key contributions: Enhanced the platform's utility for managing relationships with other professionals.
 
 * **New Feature**: Implemented `shareCompany` Command
 * Developed the `shareCompany` command, allowing users to add notes to their company contacts.
-* This feature facilitates the storage of critical information about companies, which is invaluable in network management.
+* This feature allows users to share these companies with others, allowing effective network management through disseminating information about companies, gleaned through interaction with their employees.
 * Significance: Enhanced the platform's utility for managing professional relationships with organizations.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=T15-4&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code&since=2023-09-22&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=tayian&tabRepo=AY2324S1-CS2103T-T15-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 * **Project management**:
-    * Managed deliverables consistently from `v1.1` to `v1.4`.
+    * Resolved merge conflicts that arose due to parallel editing of similar features.
 
 * **Enhancements to existing features**:
     * To be added soon.
