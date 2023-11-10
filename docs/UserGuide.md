@@ -845,6 +845,7 @@ rank
 Note:
 - This command has no additional fields.
 - This command accepts trailing inputs as long as it is separated from the command by a space.
+- This command ranks people by decreasing numerical values of priority. Hence, a person with priority 10 will be ranked higher (closer to the top of the list) than a person with priority 1.
 
 **Successful Output**
 
@@ -1129,28 +1130,33 @@ That is not a valid command.
 
 ## FAQ
 
-**Q: How do I navigate around Connectify's UI?**
+**Q1: How do I navigate around Connectify's UI?**
 
 A: Connectify's UI consists of 3 tabs. The first tab shows a detailed view of all companies and their associated person. The person tab shows a detailed view of each person and the company that they belong to. The companies tab shows a view of the various companies within Connectify. Since this companies tab aims to only show a simplified view, each company card only shows the basic fields such as name, phone, address, tags and people. The note section comes below the people list. For a more detailed view of each company, you can click on the company card to view the company's details in the first tab.
 
-**Q: What is considered a duplicate in Connectify?**
+**Q2: What is considered a duplicate in Connectify?**
 
 A: In Connectify, companies and people are considered duplicates if they share the same name as an existing company or person. Note that this condition holds for names that are the same but which have the same case.
 
-
-**Q: Why are my fields being cut off in the UI?**
+**Q3: Why are my fields being cut off in the UI?**
 
 A: Do note that Connectify's UI does not fully support long fields and will cut off fields that are too long. However, the supported length is likely sufficient for most fields. 
 
-**Q: What sort of inputs are not allowed in Connectify?**
+**Q4: What sort of inputs are not allowed in Connectify?**
 
 A: Connectify does not impose strict input validation on the fields of companies and people, other than basic ones such as Names needing to be alphanumeric, not blank, and case-sensitive unique, while phone numbers must be numeric. Stricter input validation will be implemented in future versions of Connectify.
 
-**Q: What if one of my contacts belongs to multiple companies?**
+**Q5: What if one of my contacts belongs to multiple companies?**
 
 A: Connectify does not support the same person being associated with multiple companies at our current version. This is to avoid confusion when sharing contacts with others. However, we are looking to implement this feature in future versions of Connectify.
 
+**Q6: Should a person of higher priority be assigned a higher or lower priority number?**
 
+A: A person of a higher priority should be assigned a higher priority number. This is because Connectify's `rank` command ranks people by decreasing numerical values of priority. Hence, a person with priority 10 will be ranked higher (closer to the top of the list) than a person with priority 1. The numerical range for the priority field is 1 to 10.
+
+**Q7: What is the numerical range for the priority field?**
+
+A: Connectify does not restrict the numerical range for the priority field. However, the numerical range for the priority field is 1 to 10. This is because Connectify's `rank` command ranks people by decreasing numerical values of priority. This is so that a person who has ranked contacts of the highest priority at point in time wouldn't need to re-rank their contacts if they wish to add a new contact of an even higher priority in the future. However, the numerical value for priority should not be a negative number.
 
 <a href="#table-of-contents" class="return-to-toc-link">
   <span class="return-to-toc-text">Return to Table of Contents</span>
