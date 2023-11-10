@@ -397,7 +397,14 @@ noteCompany 1 r/Looking for aspiring frontend developers.
 **Successful Output**
 
 ```
-Added note to Company: connectify.model.company.Company{name=ABC, phone=91234567, email=techcorp@gmail.com, address=123, Jurong West Ave 6, #08-111, industry=Technology, location=Silicon Valley, description=Leading tech company, website=www.techcorp.com, note=Looking for aspiring frontend developers., people=connectify.model.person.PersonList@d5a9d461}
+Added note to Company: TechCorp;
+Industry: Technology;
+Location: Silicon Valley;
+Description: Leading tech company;
+Website: www.techcorp.com;
+Email: contact@techcorp.com;
+Phone: 12345678;
+Address: 123 Tech St, Silicon Valley
 ```
 
 **Unsuccessful Output**
