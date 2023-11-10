@@ -11,7 +11,7 @@ public abstract class Priority {
 
     public static final String VALIDATION_REGEX = "^[0-9]+$";
     public static final String MESSAGE_CONSTRAINTS =
-            "Priority should only contain non-negative numbers, and it should be at least 1 digit long";
+            "Priority should only contain numbers, and it should be at least 1 digit long";
 
     public final Integer value;
 
