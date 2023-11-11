@@ -52,10 +52,30 @@
     * [Use Cases](#use-cases)
     * [Non-Funtional Requirements](#non-functional-requirements)
     * [Glossary](#glossary)
-* [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+  * [**Appendix: Instructions for manual testing**](#appendix-instructions-for-manual-testing)
     * [Launch and shutdown](#launch-and-shutdown)
+    * [Help](#help)
+    * [Adding a person](#adding-a-person)
     * [Deleting a person](#deleting-a-person)
+    * [Editing a Person](#editing-a-person)
+    * [Adding a note to a Person](#adding-a-note-to-a-person)
+    * [Sharing the `addPerson` command with the necessary details to add an existing Contact](#sharing-the-addperson-command-with-the-necessary-details-to-add-an-existing-contact)
+    * [Adding a company](#adding-a-company)
+    * [Deleting a company](#deleting-a-company)
+    * [Editing a Company](#editing-a-company)
+    * [Adding a note to a Company](#adding-a-note-to-a-company)
+    * [Sharing the `addCompany` command with the necessary details to add an existing Company](#sharing-the-addcompany-command-with-the-necessary-details-to-add-an-existing-company)
+    * [Clear](#clear)
+    * [List/Display entities](#listdisplay-entities)
+    * [Ranking](#ranking)
+    * [Find](#find)
+    * [Seeking help](#seeking-help)
     * [Saving data](#saving-data)
+    * [Exit](#exit)
+  * [**Appendix: Improvements**](#appendix-improvements)
+    * [Improvements to Functional Code](#improvements-to-functional-code)
+    * [Improvements to Documentation](#improvements-to-documentation)
+    * [Challenges Overcame](#challenges-overcame)
 <!-- TOC -->
 
 --------------------------------------------------------------------------------------------------------------------
@@ -592,7 +612,7 @@ The sequence of actions undertaken by the rank command is delineated in the acti
 
 The `rankCommand` also handles cases where there are no people in the address book. The command throws a `CommandException` to inform the user.
 
-![rankSequenceDiagram.png](images%2FrankSequenceDiagram.png)
+![rankSequenceDiagram.png](images/rankSequenceDiagram.png)
 
 <div style="page-break-after: always;"></div>
 
@@ -730,7 +750,7 @@ After running this command, the application closes.
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* is a university student who has a need to manage a significant number of contacts
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
@@ -748,10 +768,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | new user                              | see usage instructions              | refer to instructions when I forget how to use the App                  |
 | `* * *`  | user                                  | add a new company                   |                                                                         |
 | `* * *`  | user                                  | add a new person                    |                                                                         |
-| `* * *`  | user                                  | edit a company                      | update the details of the company                                       |
-| `* * *`  | user                                  | edit a person                       | update the details of the person                                        |
+| `* * *`  | user                                  | edit a company                      | update the details of the company easily                                |
+| `* * *`  | user                                  | edit a person                       | update the details of the person easily                                 |
 | `* * *`  | user                                  | delete a company                    | remove a company that I no longer need                                  |
 | `* * *`  | user                                  | delete a person                     | remove a person that I no longer need                                   |
+| `* *`    | user                                  | add notes to a company              | add and view more information on the company                            |
+| `* *`    | user                                  | add notes to a person               | add and view more information on the person                             |
+| `* *`    | user                                  | share a company                     | share the company details with others                                   |
+| `* *`    | user                                  | share a person                      | share the person details with others                                    |
 | `* * *`  | user                                  | find a contact by name              | locate details of contacts without having to go through the entire list |
 | `* * *`  | user                                  | list all contacts                   | know what persons and companies I have contacts of                      |
 | `* * *`  | user                                  | list all companies                  | know what companies I have contacts of                                  |
@@ -759,51 +783,45 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                  | exit the application                |                                                                         |
 | `* * `   | user                                  | assign a priority value to a person | rank persons based on the priority                                      |
 | `* *`    | user with many persons in Connnectify | sort persons by priority            | easily find persons who are more important                              |
-| `* *`    | user                                  | add notes to a company              | add and view more information on the company                            |
-| `* *`    | user                                  | add notes to a person               | add and view more information on the person                             |
 | `* *`    | user                                  | clear all contacts                  | restart with a fresh database                                           |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `Connectify` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `Connectify` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Add a company**
+**UC01: Add a company**
 
 **MSS**
 
-1. User requests to add a new company.
-2. Connectify prompts the user to provide details for the new company, including name, industry, location, description, website, email, phone, address.
-3. User provides the necessary details for the new company.
-4. Connectify creates a new company object with the provided details.
-5. Connectify updates the address book to include the new company.
-6. Connectify confirms the successful addition of the new company.
+1. User requests to add a new company with the necessary details of the company.
+2. Connectify creates a new company object with the provided details.
 
    Use case ends.
 
 **Extensions**
 
-* 3a. User provides incomplete or invalid details.
+* 1a. User provides incomplete or invalid details.
 
-    * 3a1. Connectify shows an error message.
-
-      Use case resumes at step 2.
-
-* 3b. A company with the same details already exists in the address book.
-
-    * 3b1. Connectify shows an error message.
+    * 1a1. Connectify shows an error message.
 
       Use case ends.
 
-**Use case: Delete a company**
+* 1b. A company with the same details already exists in the address book.
+
+    * 1b1. Connectify shows an error message.
+
+      Use case ends.
+
+**UC02: Delete a company**
 
 **MSS**
 
-1.  User requests to list companies
-2.  Connectify shows a list of companies
-3.  User requests to delete a specific company in the list
-4.  Connectify deletes the company
+1.  User requests to list companies.
+2.  Connectify shows a list of companies.
+3.  User requests to delete a specific company in the list based on index.
+4.  Connectify deletes the company.
 
     Use case ends.
 
@@ -817,20 +835,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 3a1. Connectify shows an error message.
 
-      Use case resumes at step 2.
+      Use case resumes at step 3.
 
-**Use case: Edit a Company**
+**UC03: Edit a Company**
 
 **MSS**
 
 1. User requests to list companies.
 2. Connectify shows a list of companies.
-3. User requests to edit a company in the list.
-4. Connectify prompts the user to provide the new details for the company, including name, industry, location, description, website, email, phone, address.
-5. User provides the necessary new details for the company.
-6. Connectify creates a new company object with the provided details.
-7. Connectify updates the address book to and replaces the old company object with the new company object.
-8. Connectify confirms the successful edit of the company.
+3. User requests to edit a company in the list with the new necessary details.
+4. Connectify updates the company object with the new provided details.
 
    Use case ends.
 
@@ -844,21 +858,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 3a1. Connectify shows an error message.
 
-      Use case resumes at step 3. 
+      Use case resumes at step 3.
 
-* 5a. User provides incomplete or invalid details.
+* 3b. User provides incomplete or invalid details.
 
-    * 5a1. Connectify shows an error message.
+    * 3b1. Connectify shows an error message.
 
-      Use case resumes at step 5.
+      Use case resumes at step 3.
 
-* 5b. A company with the same details already exists in the address book.
+* 3c. A company with the same details already exists in the address book.
 
-    * 5b1. Connectify shows an error message.
+    * 3c1. Connectify shows an error message.
 
-      Use case ends.
+      Use case resumes at step 3.
 
-**Use case: List Companies**
+**UC04: List Companies**
 
 **MSS**
 
@@ -873,7 +887,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case: Adding a note to a company**
+**UC05: Adding a note to a company**
 
 **MSS**
 
@@ -894,9 +908,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 3a1. Connectify shows an error message.
 
-      Use case resumes at step 2.
+      Use case resumes at step 3.
 
-**Use case: Deleting a note from a company**
+**UC06: Deleting a note from a company**
 
 **MSS**
 
@@ -917,9 +931,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 3a1. Connectify shows an error message.
 
-      Use case resumes at step 2.
+      Use case resumes at step 3.
 
-**Use case: Share a company**
+**UC07: Share a company**
 
 **MSS**
 
@@ -940,43 +954,39 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 3a1. Connectify shows an error message.
 
-      Use case resumes at step 2.
+      Use case resumes at step 3.
 
-**Use case: Add a Person**
+**UC08: Add a Person**
 
 **MSS**
 
-1. User requests to add a new person.
-2. Connectify prompts the user to provide details for the new person, including name, phone, email, address, company, priority, and an optional tag.
-3. User provides the necessary details for the new person.
-4. Connectify creates a new person object with the provided details and associates it with the specified company.
-5. Connectify updates the address book to include the new person.
-6. Connectify confirms the successful addition of the new person.
+1. User requests to add a new person with the necessary details of the person.
+2. Connectify creates a new person object with the provided details and associates it with the specified company.
 
     Use case ends.
 
 **Extensions**
 
-* 3a. User provides incomplete or invalid details.
+* 1a. User provides incomplete or invalid details.
 
-    * 3a1. Connectify shows an error message.
-
-      Use case resumes at step 2.
-
-* 3b. A person with the same details already exists in the address book.
-
-    * 3b1. Connectify shows an error message.
+    * 1a1. Connectify shows an error message.
 
       Use case ends.
 
-**Use case: Delete a person**
+* 1b. A person with the same details already exists in the address book.
+
+    * 1b1. Connectify shows an error message.
+
+      Use case ends.
+
+**UC09: Delete a person**
 
 **MSS**
 
-1.  User requests to list persons
-2.  Connectify shows a list of contacts
-3.  User requests to delete a specific contact in the list
-4.  Connectify deletes the contact
+1.  User requests to list persons.
+2.  Connectify shows a list of contacts.
+3.  User requests to delete a specific contact in the list by index.
+4.  Connectify deletes the contact.
 
     Use case ends.
 
@@ -992,18 +1002,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 3.
 
-**Use case: Edit a Person**
+**UC10: Edit a Person**
 
 **MSS**
 
 1. User requests to list persons.
 2. Connectify shows a list of persons.
-3. User requests to edit a person in the list.
-4. Connectify prompts the user to provide the new details for the person, including name, phone, email, address, company, priority, and an optional tag.
-5. User provides the necessary new details for the person.
-6. Connectify creates a new person object with the provided details.
-7. Connectify updates the address book to and replaces the old person object with the new person object.
-8. Connectify confirms the successful edit of the person.
+3. User requests to edit a person in the list with the new necessary details.
+4. Connectify updates the person with the new provided details.
 
    Use case ends.
 
@@ -1013,20 +1019,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 4a. User provides incomplete or invalid details.
+* 3a. User provides incomplete or invalid details.
 
-    * 4a1. Connectify shows an error message.
+    * 3a1. Connectify shows an error message.
 
-      Use case resumes at step 4.
+      Use case resumes at step 3.
 
-* 4b. A person with the same details already exists in the address book.
+* 3b. A person with the same details already exists in the address book.
 
-    * 4b1. Connectify shows an error message.
+    * 3b1. Connectify shows an error message.
 
-      Use case ends.
+      Use case resumes at step 3.
 
-
-**Use case: List all persons**
+**UC11: List all persons**
 
 **MSS**
 
@@ -1041,7 +1046,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case: Adding a note to a Person**
+**UC12: Adding a note to a Person**
 
 **MSS**
 
@@ -1070,14 +1075,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 3.
 
-**Use case: Edit a note of a person**
+**UC13: Delete a note of a person**
 
 **MSS**
 
-1.  User requests to list companies
-2.  Connectify shows a list of persons associated with each company
-3.  User requests to edit notes from a specific person in a specific company
-4.  Connectify edits the notes of the specified person
+1.  User requests to list companies.
+2.  Connectify shows a list of persons associated with each company.
+3.  User requests to delete notes from a specific person in a specific company.
+4.  Connectify deletes the notes from the specified person.
 
     Use case ends.
 
@@ -1099,7 +1104,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 3.
 
-**Use case: Share a person**
+**UC14: Share a person**
 
 **MSS**
 
@@ -1128,30 +1133,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 3.
 
-
-**Use case: Sort all persons by their rank**
+**UC15: Sort all persons by their rank**
 
 **MSS**
 
 1.  User requests to sort persons by their rank
 2.  Connectify shows a list of people ranked by their priority
 
-  Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-      
-**Use case: List all contacts**
-
-**MSS**
-
-1.  User requests to list contacts
-2.  Connectify shows a list of contacts
-
-  Use case ends.
+Use case ends.
 
 **Extensions**
 
@@ -1159,9 +1148,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-*{More to be added}*
-
-**Use case: Find a contact**
+**UC16: Find a contact**
 
 **MSS**
 
@@ -1182,7 +1169,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: Clear the database**
+**UC17: Find a company**
+
+**MSS**
+
+1.  User requests to find a specific company by a keyword
+2.  Connectify shows a list of companies that contain the keyword
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 2b. There are no companies that contain the keyword.
+
+    * Connectify displays a message indicating that there are no companies that contain the keyword. 
+
+      Use case ends.
+
+**UC18: Clear the database**
 
 **MSS**
 
@@ -1191,7 +1199,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: Seek help**
+**UC19: Seek help**
 
 **MSS**
 
@@ -1199,8 +1207,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  Connectify shows a list of commands available in Connectify
 
     Use case ends.
-
-*{More to be added}*
 
 ### Non-Functional Requirements
 
@@ -1210,8 +1216,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4.  The application should be highly reliable, with minimal downtime and a low frequency of crashes or failures. It should be able to recover gracefully from unexpected errors and continue functioning without data loss.
 5.  The software should be designed with maintainability in mind, allowing for easy updates, bug fixes, and enhancements. This includes well-organized code, clear documentation, and modular architecture.
 6.  The Graphical User Interface (GUI) should be intuitive and responsive, and easy to use.
-
-*{More to be added}*
+7.  Should maintain consistent performance as the number of concurrent users increases, ensuring efficient scalability.
+8.  The application should be designed with user-friendly error messages, guiding users to troubleshoot issues effectively.
+9.  The application should respond to user inputs within a defined timeframe to maintain a seamless user experience.
+10. Ensure the underlying database is scalable to accommodate a growing amount of configuration data.
 
 ### Glossary
 
@@ -1225,7 +1233,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Extension**: Alternative Scenario
 * **Actor**: A user or another system that interacts with the system under consideration
 * **System**: The software system under consideration
-* **Contact**: An entity that is either a Person or a Company
+* **Contact**: A person that the user wants to keep track of
+* **Priority**: A value that indicates the importance of a contact
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1376,14 +1385,14 @@ testers are expected to do more *exploratory* testing.
 
 <div style="page-break-after: always;"></div>
 
-### Sharing instructions on how to add a Person
+### Sharing the `addPerson` command with the necessary details to add an existing Contact
 
 1. Sharing instructions on how to add a Person while all persons are displayed
 
     1. Prerequisites: List all persons using the `people` command. Multiple persons in the list.
 
     1. Test case: `sharePerson 1 1`<br>
-       Expected: Connectify converts the person card of the first person in the first company into text format, so that user can add the same Person to another address book.
+       Expected: Connectify generates the command to add the first contact, from the first company, to the address book.
 
     1. See "Deleting a person" above for some examples of unsuccessful calls of sharePerson.
 
@@ -1476,14 +1485,14 @@ testers are expected to do more *exploratory* testing.
 
 <div style="page-break-after: always;"></div>
 
-### Sharing instructions on how to add a Company
+### Sharing the `addCompany` command with the necessary details to add an existing Company
 
 1. Sharing instructions on how to add a Company while all companies are displayed
 
     1. Prerequisites: List all companies using the `companies` command. Multiple companies in the list.
 
     1. Test case: `shareCompany 1`<br>
-       Expected: Connectify converts the company card of the first company into text format, so that user can add the same Company to another address book.
+         Expected: Connectify generates the command to add the first company to the address book.
 
     1. See "Deleting a company" above for some examples of unsuccessful calls of shareCompany.
 
@@ -1555,6 +1564,19 @@ The expected behaviour of the `find` command is documented in detail in the UG, 
 
 <div style="page-break-after: always;"></div>
 
+### Seeking help
+
+1. Showing the help window that contains a link to the User Guide.<br>
+   Note: If you minimise the window, using the help command will not do anything. Do look for the minimised window in the taskbar of your computer!
+
+    1. Test case: `help`, `help ...(any other text following)...`<br>
+       Expected: Shows the help window successfully. The text following the `help` command is ignored.
+
+    1. Test case: `help`<br>
+       Expected: Shows the help window successfully.
+
+<div style="page-break-after: always;"></div>
+
 ### Saving data
 
 1. Dealing with missing/corrupted data files
@@ -1578,3 +1600,27 @@ The expected behaviour of the `find` command is documented in detail in the UG, 
 
     1. Test cases: `exit`, `exit ...(any other text following)...`.<br>
        Expected: Program window closes. Data is saved, and can be accessed on the next boot-up of Connectify. The text following the `exit` command is ignored.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Improvements**
+
+### Improvements to Functional Code
+* Introduction of a `model.company` package to allow users to store Company details in Connectify.
+* Implemented new commands to allow users to carry out various operations on Companies, such as `addCompany`, `deleteCompany`, `editCompany`, `noteCompany`, `shareCompany`, `companies`.
+* Added new commands to allow users to carry out various operations on Persons, such as `notePerson`, `sharePerson`, `people`, in addition to existing commands in AB3.
+* Refactoring of existing classes based on OOP principles to allow for easier maintenance and extensibility.
+* Enabled association of Persons with Companies, allowing users to add Persons to Companies, thus allowing for a more structured and organised database.
+* Improvement to the User Interface to allow for a more intuitive and user-friendly experience, especially with the addition of company details in Connectify.
+* Added comprehensive JUnit tests to ensure that the new features in Connectify are working as intended while complementing existing features from AB3.
+
+### Improvements to Documentation
+* Significant improvements to the User Guide to make it more user-friendly by adding detailed tutorials, examples and screenshots.
+* Added new commands in both User Guide and Developer Guide to clearly document the new features in Connectify.
+* Enhanced navigability of the User Guide by adding links to relevant sections and updating the table of contents.
+* Added new user stories and use cases in the Use Cases section of the Developer Guide to document the new features in Connectify.
+* Added new UML diagrams in the Implementation section of the Developer Guide to document the new features in Connectify.
+
+### Challenges Overcame
+* Use of JavaFX to effectively implement the GUI for Connectify.
+* Use of PlantUML to effectively implement the UML diagrams for Connectify.
