@@ -1542,4 +1542,4 @@ The expected behaviour of the `find` command is documented in detail in the UG, 
 1. Exits the program.
 
     1. Test cases: `exit`, `exit ...(any other text following)...`.<br>
-       Expected: Program window closes. Data is saved, and can be accessed ont the next boot-up of Connectify. The text following the `exit` command is ignored.
+       Expected: Program window closes. Data is saved, and can be accessed on the next boot-up of Connectify. The text following the `exit` command is ignored.
