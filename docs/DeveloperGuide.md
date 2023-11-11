@@ -10,28 +10,41 @@
 
 ## Table Of Contents
 <!-- TOC -->
-* [Introduction](#introduction)
-    * [Acknowledgements](#acknowledgements)
-    * [Setting up, getting started](#setting-up-getting-started)
-* [Design](#design)
+* [Connectify Developer Guide](#connectify-developer-guide)
+  * [Table Of Contents](#table-of-contents)
+  * [Introduction](#introduction)
+    * [**Acknowledgements**](#acknowledgements)
+    * [**Setting up, getting started**](#setting-up-getting-started)
+  * [**Design**](#design)
     * [Architecture](#architecture)
     * [UI component](#ui-component)
+      * [Class Structure](#class-structure)
+      * [Interaction with Other Components](#interaction-with-other-components)
+      * [Usage](#usage)
+      * [External Resources](#external-resources)
     * [Logic component](#logic-component)
     * [Model component](#model-component)
     * [Storage component](#storage-component)
     * [Common classes](#common-classes)
-* [Implementation](#implementation)
-    * [List Features](#list-features)
-    * [Add Person Feature](#add-person-feature--addperson)
-    * [Delete Person Feature](#delete-person-feature--deleteperson)
-    * [Add Company Feature](#add-company-feature--addcompany)
-    * [Delete Company Feature](#delete-company-feature--deletecompany)
-    * [Edit Company Feature](#edit-company-feature--editcompany)
-    * [Add Note to Company Feature](#add-note-to-company-feature--notecompany)
-    * [Add Note to Person Feature](#add-note-to-person-feature--noteperson)
-    * [Share Person's Contact Feature](#share-persons-contact-feature--shareperson)
-    * [[Proposed] Undo/redo feature](#proposed-undoredo-feature)
-    * [[Proposed] Data archiving](#proposed-data-archiving)
+  * [**Implementation**](#implementation)
+    * [Add Company Feature: `addCompany`](#add-company-feature--addcompany)
+    * [Delete Company Feature: `deleteCompany`](#delete-company-feature--deletecompany)
+    * [Edit Company Feature: `editCompany`](#edit-company-feature--editcompany)
+    * [List Companies Command: `companies`](#list-companies-command--companies)
+    * [Add Note to Company Feature: `noteCompany`](#add-note-to-company-feature--notecompany)
+    * [Share Company's Contact Feature: `shareCompany`](#share-companys-contact-feature--sharecompany)
+    * [Add Person Feature: `addPerson`](#add-person-feature--addperson)
+    * [Delete Person Feature: `deletePerson`](#delete-person-feature--deleteperson)
+    * [Edit Person Feature: `editPerson`](#edit-person-feature--editperson)
+    * [List People Command: `people`](#list-people-command--people)
+    * [Add Note to Person Feature: `notePerson`](#add-note-to-person-feature--noteperson)
+    * [Ranking People by Priority Feature: `rank`](#ranking-people-by-priority-feature--rank)
+    * [Share Person's Contact Feature: `sharePerson`](#share-persons-contact-feature--shareperson)
+    * [List All Command: `list`](#list-all-command--list)
+    * [Finding Entities: `find`](#finding-entities--find)
+    * [Clearing the Database: `clear`](#clearing-the-database--clear)
+    * [Seeking Help: `help`](#seeking-help--help)
+    * [Exiting Connectify: `exit`](#exiting-connectify--exit)
 * [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 * [Appendix: Requirements](#appendix-requirements)
     * [Product Scope](#product-scope)
@@ -47,15 +60,18 @@
 
 --------------------------------------------------------------------------------------------------------------------
 ## Introduction
+Connectify is a desktop app for managing connections, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Connectify can get your contact management tasks done faster than traditional GUI apps. 
+
+This developer guide describes the implementation details of Connectify. It is intended for software developers who want to contribute to Connectify's development.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ### **Acknowledgements**
 
-* [JavaFX](https://openjfx.io/)
-* [Jackson](https://github.com/FasterXML/jackson)
-* [JUnit5](https://github.com/junit-team/junit5)
-* [AddressBook-Level 3 (AB-3)](https://se-education.org/addressbook-level3/)
+* [JavaFX](https://openjfx.io/) for providing the API for rendering GUI.
+* [Jackson](https://github.com/FasterXML/jackson) for providing the API for parsing JSON files.
+* [JUnit5](https://github.com/junit-team/junit5) for providing a unit testing framework. 
+* Our application is based on the [AddressBook-Level 3 (AB-3)](https://se-education.org/addressbook-level3/). All features present in our application are in addition to those already present in AB-3.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -236,27 +252,168 @@ Classes used by multiple components are in the `connectify.commons` package.
 
 ## **Implementation**
 
-This section describes some noteworthy details on how certain features are implemented.
+This section describes some noteworthy details on how certain features are implemented. The section first discusses the implementation of the features for managing companies, followed by the features for managing persons. Finally, the section discusses general features that are not specific to either companies or persons.
 
-### List Features `list`/`companies`/`people`
+### Add Company Feature: `addCompany`
 
 #### Implementation
 
-The mechanism is facilitated by `ListAllCommand`/`ListCompaniesCommand`/`ListPeopleCommand` and `ConnectifyParser` in the `Logic` component, and works as described below.
+This feature is facilitated by the `AddCompanyCommand` and `AddCompanyCommandParser` in the `Logic` component, and works as described below.
 
-Upon receiving a valid user input for the list command, `ConnectifyParser` returns a new `ListAllCommand`/`ListCompaniesCommand`/`ListPeopleCommand` object.
+When given valid user input, the `AddCompanyCommandParser` will create a new `Company` object to add to the address book.
 
-The `ListAllCommand` object invokes `updateFilteredPersonList` and `updateFilteredCompanyList` in `ModelManager` in the `Model` component with the predicates `PREDICATE_SHOW_ALL_PERSONS` and `PREDICATE_SHOW_ALL_COMPANIES` to communicate to the Model to display all Companies and Persons. Note that this command does not modify the internal list of Companies and Persons in the Model, only the displayed list.
+Consider a scenario where the user wishes to add a new company with various details into Connectify. The `AddCompanyCommand` takes in various parameters, such as `Name`, `Industry`, `Location`, description, `Website`, `Email`, `Phone`, `Address`
+to create a new `Company` object.
 
-The `ListCompaniesCommand` object invokes `updateFilteredCompanyList` in `ModelManager` in the `Model` component with the predicates `PREDICATE_SHOW_ALL_COMPANIES` to communicate to the Model to display all Companies. Note that this command does not modify the internal list of Companies in the Model, only the displayed list.
+<img src="images/addCompanyObjectDiagram.png" width="600" />
 
-The `ListAllPeopleCommand` object invokes `updateFilteredPersonList` in `ModelManager` in the `Model` component with the predicates `PREDICATE_SHOW_ALL_PERSONS` to communicate to the Model to display all Persons. Note that this command does not modify the internal list of Persons in the Model, only the displayed list.
+Consider an example of a valid `addCompany` command:
+
+```plaintext
+addCompany n/TechCorp i/Technology l/Silicon Valley d/Leading tech company w/www.techcorp.com e/contact@techcorp.com p/12345678 a/123 Tech St, Silicon Valley
+```
+
+The new objects in the final internal state after this example has been parsed are shown in the object diagram above.
+
+The following activity diagrams detail the behavior of Connectify when a user inputs an addCompany command with valid syntax to be executed.
+
+The `AddCompanyCommand` also handles scenarios where a company with the same details already exists in the address book. In such cases, the command throws a `CommandException` with an error message to inform the user.
+
+<img src="images/addCompanyActivityDiagram.png" width="600" />
+
+<div style="page-break-after: always;"></div>
+
+### Delete Company Feature: `deleteCompany`
+
+#### Implementation
+
+This feature is facilitated by the `DeleteCompanyCommand` and `DeleteCompanyCommandParser` in the `Logic` component, and works as described below.
+
+When given valid inputs, the `DeleteCompanyCommandParser` will delete a `Company` object at the provided index.
+
+Consider a scenario where the user wishes to delete a company.
+
+It requires a `targetIndex` parameter. This validates company index to ensure the company is present in the system.
+
+If valid, the company is removed from the address book.
+
+<img src="images/deleteCompanyObjectDiagram.png" width="600" />
+
+Consider an example of a valid `deleteCompany` command:
+
+```plaintext
+deleteCompany 1
+```
+
+The new objects in the final internal state after this example has been parsed are shown in the object diagram above.
+
+The following activity diagrams detail the behavior of Connectify when a user inputs a deleteCompany command with valid syntax to be executed.
+
+The `DeleteCompanyCommand` also handles scenarios where a company index does not exist in the range of companies. In such cases, the command throws a `CommandException` with an error message to inform the user.
+
+<img src="images/deleteCompanyActivityDiagram.png" width="600" />
+
+<div style="page-break-after: always;"></div>
+
+### Edit Company Feature: `editCompany`
+
+#### Implementation
+
+This feature is facilitated by the `EditCompanyCommand` and `EditCompanyCommandParser` in the `Logic` component, and works as described below.
+
+When given valid inputs, `the EditCompanyCommandParser` will edit a `Company` object.
+
+Consider a scenario where the user wishes to edit a company.
+
+It requires a `CompanyIndex` parameter. This validates company index to ensure the company is present in the system.
+
+If valid, a new company object is created with the updated details and then set to replace the old company object.
+
+<img src="images/editCompanyObjectDiagram.png" width="600" />
+
+Consider an example of a valid `editCompany` command:
+
+```plaintext
+editCompany 1 n/TechCorp p/91234567 e/techcorp@gmail.com a/123, Jurong West Ave 6, #08-111
+```
+
+The new objects in the final internal state after this example has been parsed are shown in the object diagram above.
+
+The following activity diagrams detail the behavior of Connectify when a user inputs an `editCompany` command with valid syntax to be executed.
+
+The `EditCompanyCommand` also handles scenarios where a company index does not exist in the range of companies. In such cases, the command throws a `CommandException` with an error message to inform the user.
+
+<img src="images/editCompanyActivityDiagram.png" width="600" />
+
+<div style="page-break-after: always;"></div>
+
+### List Companies Command: `companies`
+
+#### Implementation
+
+The mechanism is facilitated by `ListCompaniesCommand` and `ConnectifyParser` in the `Logic` component, and works as described below.
+
+Upon receiving a valid user input for the list companies command, `ConnectifyParser` returns a new `ListCompaniesCommand` object.
+
+The `ListCompaniesCommand` object invokes `updateFilteredCompanyList` in `ModelManager` in the `Model` component with the predicate `PREDICATE_SHOW_ALL_COMPANIES` to communicate to the Model to display all Companies. Note that this command does not modify the internal list of Companies in the Model, only the displayed list.
 
 If the list is empty, `execute` in the list command returns a `CommandResult` with `EMPTY_LIST_MESSAGE` or `MESSAGE_SUCCESS` otherwise.
 
-The sequence diagram below illustrates the events that take place during the execution of `ListALlCommand`. The other two commands are similar.
+The sequence diagram below illustrates the events that take place during the execution of `ListCompaniesCommand`.
 
-![ListAllActivityDiagram.png](images%2FListAllSequenceDiagram.png)
+![ListCompaniesActivityDiagram.png](images/ListCompaniesSequenceDiagram.png)
+
+### Add Note to Company Feature: `noteCompany`
+
+#### Implementation
+
+This feature is implemented by the `NoteCompanyCommand` and `NoteCompanyCommandParser` within the `Logic` component.
+
+When the user provides valid input, the `NoteCompanyCommandParser` interprets the input to execute an `NoteCompanyCommand`, which in turn adds a note to a specific `Company` object in the address book.
+
+Assume a user wants to add a note to a company's record. The `noteCompany` command requires the index of the company in the displayed list and the note content as parameters.
+
+<img src="images/addCompanyNoteObjectDiagram.png" width="600" />
+
+Consider an example where the user wishes to add a note indicating that a company is seeking frontend developers. The command input would be as follows:
+
+```plaintext
+noteCompany 1 r/Looking for aspiring frontend developers.
+```
+Upon execution, the `NoteCompanyCommand` appends the note to the company at the specified index. The object diagram above illustrates the final internal state after this example has been parsed.
+
+The behavior of Connectify upon receiving a noteCompany command is described in the following activity diagram.
+
+The `NoteCompanyCommand` also handles cases where the provided company index is not valid. It could be that the index does not correspond to any company in the current list view, or it is not a positive integer. Under such circumstances, the command throws a `CommandException` to inform the user.
+
+<img src="images/addCompanyNoteActivityDiagram.png" width="600" />
+
+<div style="page-break-after: always;"></div>
+
+### Share Company's Contact Feature: `shareCompany`
+
+#### Implementation
+
+This feature is enabled by the `ShareCompanyCommand` and `ShareCompanyCommandParser` within the `Logic` component.
+
+With valid input, the parser constructs a `ShareCompanyCommand` which, upon execution, generates a command string for sharing a company's contact details.
+
+The `shareCompany` command takes the parameter `COMPANY_INDEX` to identify the specific company to be shared.
+
+<img src="images/shareCompanyObjectDiagram.png" width="600" />
+
+Consider a scenario where the user wishes to share a company's contact. The command input would be as follows:
+
+```plaintext
+shareCompany 1 
+```
+Upon execution, the `ShareCompanyCommand` retrieves the company's details and generates a shareable command string of the company at the specified company index. This string is then displayed to the user for copying.
+
+The `ShareCompanyCommand` also handles cases where the provided person or company index is not valid. It could be that the index does not correspond to any company in the current list view, or it is not a positive integer. Under such circumstances, the command throws a `CommandException` to inform the user.
+
+<img src="images/shareCompanyActivityDiagram.png" width="600" />
+
+<div style="page-break-after: always;"></div>
 
 ### Add Person Feature: `addPerson`
 
@@ -266,7 +423,7 @@ This feature is facilitated by the `AddPersonCommand` and `AddPersonCommandParse
 
 When given valid user input, the `AddPersonCommandParser` will create a new `Person` object to add to the address book in the specified company.
 
-Consider a scenario where the user wishes to add a new contact to a specific company with various details. The `AddPersonCommand` takes in various parameters, such as name, phone, email, address, and optional tags, to create a new `Person` object.
+Consider a scenario where the user wishes to add a new contact to a specific company with various details. The `AddPersonCommand` takes in various parameters, such as `Name`, `Phone`, `Email`, `Address`, and optional tags, to create a new `Person` object.
 
 To ensure that a contact is added to the correct company, the command also takes an `Index` parameter specifying the company where the contact should be added. This ensures that the contact is associated with the intended company.
 
@@ -280,9 +437,9 @@ addPerson n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-2
 
 The new objects in the final internal state after this example has been parsed are shown in the object diagram above.
 
-The following activity diagrams detail the behavior of Connectify when a user inputs an addPerson command with valid syntax to be executed.
+The following activity diagrams detail the behavior of Connectify when a user inputs an `addPerson` command with valid syntax to be executed.
 
-The AddPersonCommand also handles scenarios where a person with the same details already exists in the address book or the company specified via the company index parameter does not exist. In such cases, the command throws a CommandException with an error message to inform the user.
+The `AddPersonCommand` also handles scenarios where a person with the same details already exists in the address book or the company specified via the company index parameter does not exist. In such cases, the command throws a `CommandException` with an error message to inform the user.
 
 <img src="images/addPersonActivityDiagram.png" width="600" />
 
@@ -316,104 +473,11 @@ deletePerson 1 1
 
 The new objects in the final internal state after this example has been parsed are shown in the object diagram above.
 
-The following activity diagrams detail the behavior of Connectify when a user inputs an deletePerson command with valid syntax to be executed.
+The following activity diagrams detail the behavior of Connectify when a user inputs an `deletePerson` command with valid syntax to be executed.
 
-The DeletePersonCommand also handles scenarios where a person is not part of a company or company index does not exist in the range of companies. In such cases, the command throws a CommandException with an error message to inform the user.
+The `DeletePersonCommand` also handles scenarios where a person is not part of a company or company index does not exist in the range of companies. In such cases, the command throws a `CommandException` with an error message to inform the user.
 
 <img src="images/deletePersonActivityDiagram.png" width="600" />
-
-<div style="page-break-after: always;"></div>
-
-### Add Company Feature: `addCompany`
-
-#### Implementation
-
-This feature is facilitated by the `AddCompanyCommand` and `AddCompanyCommandParser` in the `Logic` component, and works as described below.
-
-When given valid user input, the `AddCompanyCommandParser` will create a new `Company` object to add to the address book.
-
-Consider a scenario where the user wishes to add a new company with various details. The `AddCompanyCommand` takes in various parameters, such as name, industry, location, description, website, email, phone, address
-to create a new `Company` object.
-
-<img src="images/addCompanyObjectDiagram.png" width="600" />
-
-Consider an example of a valid `addCompany` command:
-
-```plaintext
-addCompany n/TechCorp i/Technology l/Silicon Valley d/Leading tech company w/www.techcorp.com e/contact@techcorp.com p/12345678 a/123 Tech St, Silicon Valley
-```
-
-The new objects in the final internal state after this example has been parsed are shown in the object diagram above.
-
-The following activity diagrams detail the behavior of Connectify when a user inputs an addCompany command with valid syntax to be executed.
-
-The AddCompanyCommand also handles scenarios where a company with the same details already exists in the address book. In such cases, the command throws a CommandException with an error message to inform the user.
-
-<img src="images/addCompanyActivityDiagram.png" width="600" />
-
-<div style="page-break-after: always;"></div>
-
-### Delete Company Feature: `deleteCompany`
-
-#### Implementation
-
-This feature is facilitated by the `DeleteCompanyCommand` and `DeleteCompanyCommandParser` in the `Logic` component, and works as described below.
-
-When given valid inputs, `the DeleteCompanyCommandParser` will delete a `Company` object.
-
-Consider a scenario where the user wishes to delete a company.
-
-It requires a `targetIndex` parameter. This validates company index to ensure the company is present in the system.
-
-If valid, the company is removed from the address book.
-
-<img src="images/deleteCompanyObjectDiagram.png" width="600" />
-
-Consider an example of a valid `deleteCompany` command:
-
-```plaintext
-deleteCompany 1
-```
-
-The new objects in the final internal state after this example has been parsed are shown in the object diagram above.
-
-The following activity diagrams detail the behavior of Connectify when a user inputs a deleteCompany command with valid syntax to be executed.
-
-The DeleteCompanyCommand also handles scenarios where a company index does not exist in the range of companies. In such cases, the command throws a CommandException with an error message to inform the user.
-
-<img src="images/deleteCompanyActivityDiagram.png" width="600" />
-
-<div style="page-break-after: always;"></div>
-
-### Edit Company Feature: `editCompany`
-
-#### Implementation
-
-This feature is facilitated by the `EditCompanyCommand` and `EditCompanyCommandParser` in the `Logic` component, and works as described below.
-
-When given valid inputs, `the EditCompanyCommandParser` will edit a `Company` object.
-
-Consider a scenario where the user wishes to edit a company.
-
-It requires a `CompanyIndex` parameter. This validates company index to ensure the company is present in the system.
-
-If valid, the company's details will be updated in the address book.
-
-<img src="images/editCompanyObjectDiagram.png" width="600" />
-
-Consider an example of a valid `editCompany` command:
-
-```plaintext
-editCompany 1 n/TechCorp p/91234567 e/techcorp@gmail.com a/123, Jurong West Ave 6, #08-111
-```
-
-The new objects in the final internal state after this example has been parsed are shown in the object diagram above.
-
-The following activity diagrams detail the behavior of Connectify when a user inputs an editCompany command with valid syntax to be executed.
-
-The EditCompanyCommand also handles scenarios where a company index does not exist in the range of companies. In such cases, the command throws a CommandException with an error message to inform the user.
-
-<img src="images/editCompanyActivityDiagram.png" width="600" />
 
 <div style="page-break-after: always;"></div>
 
@@ -425,15 +489,11 @@ This feature is implemented by the `EditPersonCommand` and `EditPersonCommandPar
 
 The process is initiated when the user inputs a valid command to edit a person's details. The `EditPersonCommandParser` analyses the input and constructs an `EditPersonCommand`, which, upon execution, updates the attributes of the specified `Person` object.
 
-The `editPerson` command requires an index to identify the target person within the displayed person list of a company. Optionally, it may include a company index to specify which company the person is associated with, and any combination of fields to be updated for the person.
+The `editPerson` command requires an index to identify the target person within the displayed person list of a company. It also has to include a company index to specify which company the person is associated with, and any combination of fields to be updated for the person.
 
-Here's how the command operates:
+If both the person and company indexes are valid, the `EditPersonCommand` updates the person's attributes with the new values.
 
-1. The user inputs the `editPerson` command with the appropriate indexes and details to be updated.
-2. The parser validates the indexes and parses the fields to be updated.
-3. If the indexes and fields are valid, the `EditPersonCommand` is executed to update the person's details in the address book.
-
-Consider a scenario where the user wants to update the name, phone number, and email of a person listed as the first contact within a company:
+Consider an example where the user wants to update the name, phone number, and email of a person listed as the first contact within a company:
 
 ```plaintext
 editPerson 1 c/1 n/NewName p/98765432 e/newemail@example.com
@@ -443,32 +503,21 @@ Should there be any issues, such as invalid indexes or missing fields, the EditP
 
 <div style="page-break-after: always;"></div>
 
-### Add Note to Company Feature: `noteCompany`
+### List People Command: `people`
 
 #### Implementation
 
-This feature is implemented by the `NoteCompanyCommand` and `NoteCompanyCommandParser` within the `Logic` component.
+The mechanism is facilitated by `ListPeopleCommand` and `ConnectifyParser` in the `Logic` component, and works as described below.
 
-When the user provides valid input, the `NoteCompanyCommandParser` interprets the input to execute an `NoteCompanyCommand`, which in turn adds a note to a specific `Company` object in the address book.
+Upon receiving a valid user input for the list people command, `ConnectifyParser` returns a new `ListPeopleCommand` object.
 
-Assume a user wants to add a note to a company's record. The `noteCompany` command requires the index of the company in the displayed list and the note content as parameters.
+The `ListPeopleCommand` object invokes `updateFilteredPersonList` in `ModelManager` in the `Model` component with the predicate `PREDICATE_SHOW_ALL_PERSONS` to communicate to the Model to display all Persons. Note that this command does not modify the internal list of Persons in the Model, only the displayed list.
 
-<img src="images/addCompanyNoteObjectDiagram.png" width="600" />
+If the list is empty, `execute` in the list command returns a `CommandResult` with `EMPTY_LIST_MESSAGE` or `MESSAGE_SUCCESS` otherwise.
 
-Consider a scenario where the user wishes to add a note indicating that a company is seeking frontend developers. The command input would be as follows:
+The sequence diagram below illustrates the events that take place during the execution of `ListPeopleCommand`.
 
-```plaintext
-noteCompany 1 r/Looking for aspiring frontend developers.
-```
-Upon execution, the NoteCompanyCommand appends the note to the company at the specified index. The object diagram above illustrates the final internal state after this example has been parsed.
-
-The behavior of Connectify upon receiving a noteCompany command is described in the following activity diagram.
-
-The NoteCompanyCommand also handles cases where the provided company index is not valid. It could be that the index does not correspond to any company in the current list view, or it is not a positive integer. Under such circumstances, the command throws a CommandException to inform the user.
-
-<img src="images/addCompanyNoteActivityDiagram.png" width="600" />
-
-<div style="page-break-after: always;"></div>
+![ListPeopleActivityDiagram.png](images/ListPeopleSequenceDiagram.png)
 
 ### Add Note to Person Feature: `notePerson`
 
@@ -484,24 +533,24 @@ Assume a user wants to add a note to a company's record. The `notePerson` comman
 
 <img src="images/addPersonNoteObjectDiagram.png" width="600" />
 
-Consider a scenario where the user wishes to add a note indicating that a person likes to swim. The command input would be as follows:
+Consider an example where the user wishes to add a note indicating that a person likes to swim. The command input would be as follows:
 
 ```plaintext
 notePerson 1 1 r/Likes to swim.
 ```
-Upon execution, the NotePersonCommand appends the note to the person at the specified person index, corresponding to the company at the specified company index. The object diagram above illustrates the final internal state after this example has been parsed.
+Upon execution, the `NotePersonCommand` appends the note to the person at the specified person index, corresponding to the company at the specified company index. The object diagram above illustrates the final internal state after this example has been parsed.
 
 The behavior of Connectify upon receiving a notePerson command is described in the following activity diagram.
 
-The NotePersonCommand also handles cases where the provided person or company index is not valid. It could be that the index does not correspond to any company or person in the current list view, or it is not a positive integer. Under such circumstances, the command throws a CommandException to inform the user.
+The `NotePersonCommand` also handles cases where the provided person or company index is not valid. It could be that the index does not correspond to any company or person in the current list view, or it is not a positive integer. Under such circumstances, the command throws a `CommandException` to inform the user.
 
 <img src="images/addPersonNoteActivityDiagram.png" width="600" />
 
 <div style="page-break-after: always;"></div>
 
-## Ranking People by Priority Feature: `rank`
+### Ranking People by Priority Feature: `rank`
 
-### Implementation
+#### Implementation
 
 The ranking feature within Connectify is facilitated by the `RankCommand` and associated `RankCommandParser` in the `Logic` component. The `rank` command sorts the list of all persons by their assigned priority, allowing users to manage and view contacts based on importance.
 
@@ -519,7 +568,7 @@ Upon successful execution, Connectify outputs the list of people ranked accordin
 
 The sequence of actions undertaken by the rank command is delineated in the activity diagram provided below. This includes the retrieval of all persons, their sorting by priority, and the updating of the user interface to reflect the changes.
 
-The rankCommand also handles cases where there are no people in the address book. The command throws a CommandException to inform the user.
+The `rankCommand` also handles cases where there are no people in the address book. The command throws a `CommandException` to inform the user.
 
 ![rankSequenceDiagram.png](images%2FrankSequenceDiagram.png)
 
@@ -537,43 +586,37 @@ The `sharePerson` command takes two parameters, `COMPANY_INDEX` and `PERSON_INDE
 
 <img src="images/sharePersonObjectDiagram.png" width="600" />
 
-Consider a scenario where the user wishes to share a person's contact. The command input would be as follows:
+Consider an example where the user wishes to share a person's contact. The command input would be as follows:
 
 ```plaintext
 sharePerson 1 1
 ```
-Upon execution, the SharePersonCommand retrieves the person's details and generates a shareable command string of the person at the specified person index, corresponding to the company at the specified company index. This string is then displayed to the user for copying.
+Upon execution, the `SharePersonCommand` retrieves the person's details and generates a shareable command string of the person at the specified person index, corresponding to the company at the specified company index. This string is then displayed to the user for copying.
 The object diagram above illustrates the final internal state after this example has been parsed.
 
 The behavior of Connectify upon receiving a sharePerson command is described in the following activity diagram.
 
-The SharePersonCommand also handles cases where the provided person or company index is not valid. It could be that the index does not correspond to any company or person in the current list view, or it is not a positive integer. Under such circumstances, the command throws a CommandException to inform the user.
+The `SharePersonCommand` also handles cases where the provided person or company index is not valid. It could be that the index does not correspond to any company or person in the current list view, or it is not a positive integer. Under such circumstances, the command throws a `CommandException` to inform the user.
 
 <img src="images/sharePersonActivityDiagram.png" width="600" />
 
 <div style="page-break-after: always;"></div>
 
-
-### Share Person's Contact Feature: `sharePerson`
+### List All Command: `list`
 
 #### Implementation
 
-This feature is enabled by the `ShareCompanyCommand` and `ShareCompanyCommandParser` within the `Logic` component.
+The mechanism is facilitated by `ListAllCommand` and `ConnectifyParser` in the `Logic` component, and works as described below.
 
-With valid input, the parser constructs a `ShareCompanyCommand` which, upon execution, generates a command string for sharing a company's contact details.
+Upon receiving a valid user input for the list command, `ConnectifyParser` returns a new `ListAllCommand` object.
 
-The `shareCompany` command takes the parameter `COMPANY_INDEX` to identify the specific company to be shared.
+The `ListAllCommand` object invokes `updateFilteredPersonList` and `updateFilteredCompanyList` in `ModelManager` in the `Model` component with the predicates `PREDICATE_SHOW_ALL_PERSONS` and `PREDICATE_SHOW_ALL_COMPANIES` to communicate to the Model to display all Companies and Persons. Note that this command does not modify the internal list of Companies and Persons in the Model, only the displayed list.
 
-Consider a scenario where the user wishes to share a company's contact. The command input would be as follows:
+If the list is empty, `execute` in the list command returns a `CommandResult` with `EMPTY_LIST_MESSAGE` or `MESSAGE_SUCCESS` otherwise.
 
-```plaintext
-shareCompany 1 
-```
-Upon execution, the ShareCompanyCommand retrieves the company's details and generates a shareable command string of the company at the specified company index. This string is then displayed to the user for copying.
+The sequence diagram below illustrates the events that take place during the execution of `ListAllCommand`.
 
-The ShareCompanyCommand also handles cases where the provided person or company index is not valid. It could be that the index does not correspond to any company in the current list view, or it is not a positive integer. Under such circumstances, the command throws a CommandException to inform the user.
-
-<div style="page-break-after: always;"></div>
+![ListAllActivityDiagram.png](images/ListAllSequenceDiagram.png)
 
 ### Finding Entities: `find`
 
@@ -587,43 +630,9 @@ find John Doe
 ```
 A count of matched entities is displayed, and each matched entity is listed out.
 
-The FindCommand also handles cases where there are no matches. 
+The `FindCommand` also handles cases where there are no matches.
 
 <div style="page-break-after: always;"></div>
-
-
-### Finding Companies: `companies`
-
-#### Implementation
-
-The `companies` command, provided by the `FindCompaniesCommand` and `FindCompaniesCommandParser` within the `Logic` component, searches for and lists all companies that match the specified keywords in the Connectify database.
-
-To look for companies called "Facebook":
-```plaintext
-companies Facebook
-```
-A count of matched companies is displayed, and each matched company is listed out.
-
-The FindCompaniesCommand also handles cases where there are no matches.
-
-<div style="page-break-after: always;"></div>
-
-### Finding People: `people`
-
-#### Implementation
-
-The `people` command, provided by the `FindPeopleCommand` and `FindPeopleCommandParser` within the `Logic` component, searches for and lists all companies that match the specified keywords in the Connectify database.
-
-To look for people containing "John":
-```plaintext
-people john 
-```
-A count of matched people is displayed, and each matched person is listed out.
-
-The FindPeopleCommand also handles cases where there are no matches.
-
-<div style="page-break-after: always;"></div>
-
 
 ### Clearing the Database: `clear`
 
@@ -653,9 +662,9 @@ When triggered, it presents a help window or a link to the user guide.
 
 <div style="page-break-after: always;"></div>
 
-## Exiting Connectify: `exit`
+### Exiting Connectify: `exit`
 
-### Implementation
+#### Implementation
 
 Implemented by the `ExitCommand`, this command terminates the Connectify application, closing the session safely.
 
@@ -667,8 +676,6 @@ exit
 After running this command, the application closes.
 
 <div style="page-break-after: always;"></div>
-
---------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
