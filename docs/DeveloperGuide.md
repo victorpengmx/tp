@@ -1321,14 +1321,14 @@ testers are expected to do more *exploratory* testing.
 
 <div style="page-break-after: always;"></div>
 
-### Sharing instructions on how to add a Person
+### Sharing the `addPerson` command with the necessary details to add an existing Contact
 
 1. Sharing instructions on how to add a Person while all persons are displayed
 
     1. Prerequisites: List all persons using the `people` command. Multiple persons in the list.
 
     1. Test case: `sharePerson 1 1`<br>
-       Expected: Connectify converts the person card of the first person in the first company into text format, so that user can add the same Person to another address book.
+       Expected: Connectify generates the command to add the first contact, from the first company, to the address book.
 
     1. See "Deleting a person" above for some examples of unsuccessful calls of sharePerson.
 
@@ -1421,14 +1421,14 @@ testers are expected to do more *exploratory* testing.
 
 <div style="page-break-after: always;"></div>
 
-### Sharing instructions on how to add a Company
+### Sharing the `addCompany` command with the necessary details to add an existing Company
 
 1. Sharing instructions on how to add a Company while all companies are displayed
 
     1. Prerequisites: List all companies using the `companies` command. Multiple companies in the list.
 
     1. Test case: `shareCompany 1`<br>
-       Expected: Connectify converts the company card of the first company into text format, so that user can add the same Company to another address book.
+         Expected: Connectify generates the command to add the first company to the address book.
 
     1. See "Deleting a company" above for some examples of unsuccessful calls of shareCompany.
 
@@ -1500,6 +1500,19 @@ The expected behaviour of the `find` command is documented in detail in the UG, 
 
 <div style="page-break-after: always;"></div>
 
+### Seeking help
+
+1. Showing the help window that contains a link to the User Guide.<br>
+   Note: If you minimise the window, using the help command will not do anything. Do look for the minimised window in the taskbar of your computer!
+
+    1. Test case: `help`, `help ...(any other text following)...`<br>
+       Expected: Shows the help window successfully. The text following the `help` command is ignored.
+
+    1. Test case: `help`<br>
+       Expected: Shows the help window successfully.
+
+<div style="page-break-after: always;"></div>
+
 ### Saving data
 
 1. Dealing with missing/corrupted data files
@@ -1523,3 +1536,27 @@ The expected behaviour of the `find` command is documented in detail in the UG, 
 
     1. Test cases: `exit`, `exit ...(any other text following)...`.<br>
        Expected: Program window closes. Data is saved, and can be accessed on the next boot-up of Connectify. The text following the `exit` command is ignored.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Improvements**
+
+### Improvements to Functional Code
+* Introduction of a `model.company` package to allow users to store Company details in Connectify.
+* Implemented new commands to allow users to carry out various operations on Companies, such as `addCompany`, `deleteCompany`, `editCompany`, `noteCompany`, `shareCompany`, `companies`.
+* Added new commands to allow users to carry out various operations on Persons, such as `notePerson`, `sharePerson`, `people`, in addition to existing commands in AB3.
+* Refactoring of existing classes based on OOP principles to allow for easier maintenance and extensibility.
+* Enabled association of Persons with Companies, allowing users to add Persons to Companies, thus allowing for a more structured and organised database.
+* Improvement to the User Interface to allow for a more intuitive and user-friendly experience, especially with the addition of company details in Connectify.
+* Added comprehensive JUnit tests to ensure that the new features in Connectify are working as intended while complementing existing features from AB3.
+
+### Improvements to Documentation
+* Significant improvements to the User Guide to make it more user-friendly by adding detailed tutorials, examples and screenshots.
+* Added new commands in both User Guide and Developer Guide to clearly document the new features in Connectify.
+* Enhanced navigability of the User Guide by adding links to relevant sections and updating the table of contents.
+* Added new user stories and use cases in the Use Cases section of the Developer Guide to document the new features in Connectify.
+* Added new UML diagrams in the Implementation section of the Developer Guide to document the new features in Connectify.
+
+### Challenges Overcame
+* Use of JavaFX to effectively implement the GUI for Connectify.
+* Use of PlantUML to effectively implement the UML diagrams for Connectify.
