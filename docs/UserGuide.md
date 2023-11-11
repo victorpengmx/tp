@@ -1183,40 +1183,7 @@ list
 Note:
 - This command has no additional fields.
 - This command accepts trailing inputs as long as it is separated from the command by a space.
-```
-list
-```
 
-Note:
-- This command has no additional fields.
-- This command accepts trailing inputs as long as it is separated from the command by a space.
-
-**Successful Output**
-
-```
-Listed all persons and companies.
-```
-
-You should be able to see all your connections in Connectify as shown below:
-
-![Listing All Entities](images/listingAll.png)
-
-**Unsuccessful Output**
-
-- If Connectify is empty, and there are no entities to display, you will receive the following message:
-```
-There are no entities in Connectify.
-```
-
-<a href="#table-of-contents" class="return-to-toc-link">
-  <span class="return-to-toc-text">Return to Table of Contents</span>
-  <span class="return-to-toc-icon">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-bar-up" viewBox="0 0 16 16">
-      <path fill-rule="evenodd" d="M3.646 11.854a.5.5 0 0 0 .708 0L8 8.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708zM2.4 5.2c0 .22.18.4.4.4h10.4a.4.4 0 0 0 0-.8H2.8a.4.4 0 0 0-.4.4z">
-      </path>
-    </svg>
-  </span>
-</a>
 **Successful Output**
 
 ```
