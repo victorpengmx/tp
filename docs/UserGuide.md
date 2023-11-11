@@ -14,6 +14,7 @@ Networking is a crucial aspect of your academic and professional life, and Conne
 * [Quick start](#quick-start)
 * [Tutorial: Adding your first connection](#tutorial-adding-your-first-connection)
 * [Features](#features)
+  * [Components of a Command](#components-of-a-command)
   * [How to Read Command Formats](#how-to-read-command-formats)
   * [General Input Guidelines](#general-input-guidelines)
   * [Features for managing company details](#features-for-managing-company-details)
@@ -128,6 +129,39 @@ As a new user, your Connectify database is empty. Let's add your first connectio
 
 ## Features
 
+### Components of a Command
+
+Every command in Connectify is a prompt for action. It's how you command the application to organize your network. Let's understand the different parts of a command!
+
+<img src="images/UGCommandExample.png" width="800"/>
+
+* **Command Name**<br>
+  The **command name** indicates the action you want to perform in Connectify.<br>
+  In the example above, `editCompany` is the command name.
+
+* **Index**<br>
+  The **index** is the **numerical position** of an item in a displayed list within Connectify. <br>
+  In the example above, `1` represents the first company in the company list.
+
+* **Prefixes**<br>
+  Prefixes ending with a `/` help identify the type of information **you provide** in a command. <br>
+  In the example above, `n/`serves as a prefix to indicate that you want to edit a company's name to `Facebook`.
+
+* **Inputs**<br>
+  Inputs are the specific details **you input** for a command to process. <br>
+  In the example above, Facebook is the input that specifies the new name for the company.
+
+
+<a href="#table-of-contents" class="return-to-toc-link">
+  <span class="return-to-toc-text">Return to Table of Contents</span>
+  <span class="return-to-toc-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-bar-up" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M3.646 11.854a.5.5 0 0 0 .708 0L8 8.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708zM2.4 5.2c0 .22.18.4.4.4h10.4a.4.4 0 0 0 0-.8H2.8a.4.4 0 0 0-.4.4z">
+      </path>
+    </svg>
+  </span>
+</a>
+
 ### How to Read Command Formats
 
 Throughout this user guide, you'll encounter various [General Commands](#general-commands) specific to Connectify. Let's explore how to interpret these command formats.
@@ -141,6 +175,16 @@ Throughout this user guide, you'll encounter various [General Commands](#general
   For instance, for the command `editPerson INDEX c/COMPANY [n/NAME]`, you can use it in two ways:  
   `editPerson INDEX c/COMPANY n/Ryan` or simply as `editPerson INDEX c/COMPANY`.
 
+<a href="#table-of-contents" class="return-to-toc-link">
+  <span class="return-to-toc-text">Return to Table of Contents</span>
+  <span class="return-to-toc-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-bar-up" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M3.646 11.854a.5.5 0 0 0 .708 0L8 8.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708zM2.4 5.2c0 .22.18.4.4.4h10.4a.4.4 0 0 0 0-.8H2.8a.4.4 0 0 0-.4.4z">
+      </path>
+    </svg>
+  </span>
+</a>
+
 ### General Input Guidelines
 
 Here are some guidelines when using the [General Commands](#general-commands). Please follow this to ensure that Connectify understands you! 
@@ -153,7 +197,15 @@ Here are some guidelines when using the [General Commands](#general-commands). P
 It's important to avoid including inputs that are not expected by a command. For example, if a `rank` command is designed to accept zero inputs, adding an input like 'p/12345678` might lead to unintended behaviour.
 </div>
 
-[🔝 Return to Table of Contents](#table-of-contents)
+<a href="#table-of-contents" class="return-to-toc-link">
+  <span class="return-to-toc-text">Return to Table of Contents</span>
+  <span class="return-to-toc-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-bar-up" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M3.646 11.854a.5.5 0 0 0 .708 0L8 8.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708zM2.4 5.2c0 .22.18.4.4.4h10.4a.4.4 0 0 0 0-.8H2.8a.4.4 0 0 0-.4.4z">
+      </path>
+    </svg>
+  </span>
+</a>
 
 ### Features for managing company details
 
