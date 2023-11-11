@@ -327,7 +327,7 @@ Consider a scenario where the user wishes to edit a company.
 
 It requires a `CompanyIndex` parameter. This validates company index to ensure the company is present in the system.
 
-If valid, the company's details will be updated in the address book.
+If valid, a new company object is created with the updated details and then set to replace the old company object.
 
 <img src="images/editCompanyObjectDiagram.png" width="600" />
 
@@ -339,9 +339,9 @@ editCompany 1 n/TechCorp p/91234567 e/techcorp@gmail.com a/123, Jurong West Ave 
 
 The new objects in the final internal state after this example has been parsed are shown in the object diagram above.
 
-The following activity diagrams detail the behavior of Connectify when a user inputs an editCompany command with valid syntax to be executed.
+The following activity diagrams detail the behavior of Connectify when a user inputs an `editCompany` command with valid syntax to be executed.
 
-The EditCompanyCommand also handles scenarios where a company index does not exist in the range of companies. In such cases, the command throws a CommandException with an error message to inform the user.
+The `EditCompanyCommand` also handles scenarios where a company index does not exist in the range of companies. In such cases, the command throws a `CommandException` with an error message to inform the user.
 
 <img src="images/editCompanyActivityDiagram.png" width="600" />
 
@@ -475,7 +475,7 @@ The new objects in the final internal state after this example has been parsed a
 
 The following activity diagrams detail the behavior of Connectify when a user inputs an `deletePerson` command with valid syntax to be executed.
 
-The `DeletePersonCommand` also handles scenarios where a person is not part of a company or company index does not exist in the range of companies. In such cases, the command throws a CommandException with an error message to inform the user.
+The `DeletePersonCommand` also handles scenarios where a person is not part of a company or company index does not exist in the range of companies. In such cases, the command throws a `CommandException` with an error message to inform the user.
 
 <img src="images/deletePersonActivityDiagram.png" width="600" />
 
@@ -489,13 +489,9 @@ This feature is implemented by the `EditPersonCommand` and `EditPersonCommandPar
 
 The process is initiated when the user inputs a valid command to edit a person's details. The `EditPersonCommandParser` analyses the input and constructs an `EditPersonCommand`, which, upon execution, updates the attributes of the specified `Person` object.
 
-The `editPerson` command requires an index to identify the target person within the displayed person list of a company. Optionally, it may include a company index to specify which company the person is associated with, and any combination of fields to be updated for the person.
+The `editPerson` command requires an index to identify the target person within the displayed person list of a company. It also has to include a company index to specify which company the person is associated with, and any combination of fields to be updated for the person.
 
-Here's how the command operates:
-
-1. The user inputs the `editPerson` command with the appropriate indexes and details to be updated.
-2. The parser validates the indexes and parses the fields to be updated.
-3. If the indexes and fields are valid, the `EditPersonCommand` is executed to update the person's details in the address book.
+If both the person and company indexes are valid, the `EditPersonCommand` updates the person's attributes with the new values.
 
 Consider an example where the user wants to update the name, phone number, and email of a person listed as the first contact within a company:
 
