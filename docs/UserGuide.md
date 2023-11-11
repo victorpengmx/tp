@@ -14,6 +14,7 @@ Networking is a crucial aspect of your academic and professional life, and Conne
 * [Quick start](#quick-start)
 * [Tutorial: Adding your first connection](#tutorial-adding-your-first-connection)
 * [Features](#features)
+  * [Components of a Command](#components-of-a-command)
   * [How to Read Command Formats](#how-to-read-command-formats)
   * [General Input Guidelines](#general-input-guidelines)
   * [Features for managing company details](#features-for-managing-company-details)
@@ -127,6 +128,39 @@ As a new user, your Connectify database is empty. Let's add your first connectio
 
 ## Features
 
+### Components of a Command
+
+Every command in Connectify is a prompt for action. It's how you command the application to organize your network. Let's understand the different parts of a command!
+
+<img src="images/UGCommandExample.png" width="800"/>
+
+* **Command Name**<br>
+  The **command name** indicates the action you want to perform in Connectify.<br>
+  In the example above, `editCompany` is the command name.
+
+* **Index**<br>
+  The **index** is the **numerical position** of an item in a displayed list within Connectify. <br>
+  In the example above, `1` represents the first company in the company list.
+
+* **Prefixes**<br>
+  Prefixes ending with a `/` help identify the type of information **you provide** in a command. <br>
+  In the example above, `n/`serves as a prefix to indicate that you want to edit a company's name to `Facebook`.
+
+* **Inputs**<br>
+  Inputs are the specific details **you input** for a command to process. <br>
+  In the example above, Facebook is the input that specifies the new name for the company.
+
+
+<a href="#table-of-contents" class="return-to-toc-link">
+  <span class="return-to-toc-text">Return to Table of Contents</span>
+  <span class="return-to-toc-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-bar-up" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M3.646 11.854a.5.5 0 0 0 .708 0L8 8.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708zM2.4 5.2c0 .22.18.4.4.4h10.4a.4.4 0 0 0 0-.8H2.8a.4.4 0 0 0-.4.4z">
+      </path>
+    </svg>
+  </span>
+</a>
+
 ### How to Read Command Formats
 
 Throughout this user guide, you'll encounter various [General Commands](#general-commands) specific to Connectify. Let's explore how to interpret these command formats.
@@ -140,6 +174,16 @@ Throughout this user guide, you'll encounter various [General Commands](#general
   For instance, for the command `editPerson INDEX c/COMPANY [n/NAME]`, you can use it in two ways:  
   `editPerson INDEX c/COMPANY n/Ryan` or simply as `editPerson INDEX c/COMPANY`.
 
+<a href="#table-of-contents" class="return-to-toc-link">
+  <span class="return-to-toc-text">Return to Table of Contents</span>
+  <span class="return-to-toc-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-bar-up" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M3.646 11.854a.5.5 0 0 0 .708 0L8 8.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708zM2.4 5.2c0 .22.18.4.4.4h10.4a.4.4 0 0 0 0-.8H2.8a.4.4 0 0 0-.4.4z">
+      </path>
+    </svg>
+  </span>
+</a>
+
 ### General Input Guidelines
 
 Here are some guidelines when using the [General Commands](#general-commands). Please follow this to ensure that Connectify understands you! 
@@ -148,11 +192,19 @@ Here are some guidelines when using the [General Commands](#general-commands). P
   You can key in inputs in **any order**.<br>
   For example, a command might be structured as `w/WEBSITE e/EMAIL`, but entering `e/EMAIL w/WEBSITE` will work as well.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**  
+<div markdown="block" class="alert alert-warning"><strong>&#x2757; Caution:</strong>
 It's important to avoid including inputs that are not expected by a command. For example, if a `rank` command is designed to accept zero inputs, adding an input like 'p/12345678` might lead to unintended behaviour.
 </div>
 
-[🔝 Return to Table of Contents](#table-of-contents)
+<a href="#table-of-contents" class="return-to-toc-link">
+  <span class="return-to-toc-text">Return to Table of Contents</span>
+  <span class="return-to-toc-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-bar-up" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M3.646 11.854a.5.5 0 0 0 .708 0L8 8.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708zM2.4 5.2c0 .22.18.4.4.4h10.4a.4.4 0 0 0 0-.8H2.8a.4.4 0 0 0-.4.4z">
+      </path>
+    </svg>
+  </span>
+</a>
 
 ### Features for managing company details
 
@@ -245,7 +297,7 @@ deleteCompany INDEX
 The fields are:
 - `INDEX` is the index of the company you want to delete.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="block" class="alert alert-warning"><strong>&#x2757; Caution:</strong>
 Be cautious when deleting a company in Connectify. This action is irreversible and will permanently remove all associated data and persons list with the company.
 </div>
 
@@ -422,7 +474,7 @@ Note:
 - This command deletes the existing note if it is inputted without the `r/` placeholder.
 - If the `r/` placeholder is specified twice, the note following the second placeholder will be used.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary"><strong>💡 Tip:</strong>
 Use the `noteCompany` command in Connectify to add reminders or important details about your interactions with companies.
 </div>
 
@@ -622,7 +674,7 @@ The fields are:
 - `COMPANY_INDEX` is the index of the company that the person is associated with.
 - `PERSON_INDEX` is the index of the person you want to delete.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="block" class="alert alert-warning"><strong>&#x2757; Caution:</strong>
 Deleting a person from Connectify is an irreversible action. Confirm the correct individual is selected before proceeding with this command.
 </div>
 
@@ -708,7 +760,7 @@ Note:
 - Connectify does not support the use of `+` or whitespace in phone numbers.
 - All fields are case-sensitive. This means that `John Doe` and `john doe` are considered different names, and `friends` and `Friends` are considered different tags.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary"><strong>💡 Tip:</strong>
 Keep contact details up-to-date in Connectify. Be sure the check if they have changed their contact details.
 </div>
 
@@ -838,7 +890,7 @@ Note:
 - This command deletes the existing note if it is inputted without the `r/` placeholder.
 - If the `r/` placeholder is specified twice, the note following the second placeholder will be used.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary"><strong>💡 Tip:</strong>
 Use notes in Connectify to record key information about your interactions or important dates related to each contact.
 </div>
 
@@ -910,7 +962,7 @@ Note:
 - This command accepts trailing inputs as long as it is separated from the command by a space.
 - This command ranks people by decreasing numerical values of priority. Hence, a person with priority 10 will be ranked higher (closer to the top of the list) than a person with priority 1.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary"><strong>💡 Tip:</strong>
 Use the `rank` command in Connectify to prioritise your contacts based on current professional needs or project requirements.
 </div>
 
@@ -955,7 +1007,7 @@ The fields are:
 - `COMPANY_INDEX` is the index of the company that the person is associated with.
 - `PERSON_INDEX` is the index of the person in the displayed person list of a company that you want to share. It must be a positive integer within the company.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="block" class="alert alert-warning"><strong>&#x2757; Caution:</strong>
 Be cautious about sharing personal contact details through Connectify. Always respect privacy and share contact information only with consent.
 </div>
 
@@ -1106,7 +1158,7 @@ Note:
 Cleared all persons and companies.
 ```
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**  
+<div markdown="block" class="alert alert-warning"><strong>&#x2757; Caution:</strong>
 Do take note that this `clear` action is irreversible. Your company and people lists will be deleted.
 </div>
 
