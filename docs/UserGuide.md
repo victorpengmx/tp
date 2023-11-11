@@ -8,9 +8,9 @@
 
 Welcome to Connectify!
 
-Connectify is your all-in-one networking companion, designed specifically to empower SoC (School of Computing) students in efficiently managing their connections and enhancing their networking experiences. Whether you're a seasoned professional or just starting your networking journey, Connectify is here to help you build and maintain meaningful connections that can propel your career and personal growth.
+Connectify is your all-in-one networking companion, designed specifically to empower **SoC (School of Computing) students** in efficiently managing their connections and enhancing their networking experiences. Whether you're a seasoned professional or just starting your networking journey, Connectify is here to help you build and maintain meaningful connections that can propel your career and personal growth.
 
-Networking is a crucial aspect of your academic and professional life, and Connectify is here to simplify and streamline the process for you. This user guide will walk you through the key features and functionalities of Connectify, ensuring you make the most of this powerful networking platform.
+Networking is a crucial aspect of your academic and professional life, and Connectify is here to simplify and streamline the process for you. The purpose of this user guide is to **walk you through the key features and functionalities of Connectify**, ensuring you make the most of this powerful networking platform.
 
 ### Using this guide
 If you are a new user looking to get started with Connectify, our User Guide can help you with [the installation process](#tutorial-installing-connectify), guide you through [adding your first connection to Connectify](#tutorial-adding-your-first-connection), and familiarise you with how to use all of [Connectify’s features](#features).
@@ -79,7 +79,7 @@ Getting started with Connectify is extremely simple! Here is a tutorial on how t
 3. Download Connectify from the following [**this link**](https://github.com/AY2324S1-CS2103T-T15-4/tp/releases) and save the downloaded file in the directory you created in the previous step.
 4. Launch Connectify by double-clicking the file in the directory. For MAC users, if an error message popup appears, running `java -jar connectify.jar` instead will open Connectify. You'll be greeted by Connectify's primary interface, with an empty database as shown below.
 
-    ![Connectify Start Page](images/ConnectifyStartPage.png)
+![Connectify Start Page](images/ConnectifyStartPage.png)
 
 Now that you've successfully installed Connectify, let's take a moment to familiarize ourselves with the application's interface and functionality before diving into its features!
 
@@ -101,7 +101,7 @@ Now that you've successfully installed Connectify, let's take a moment to famili
 * Once a command has been successfully carried out, Connectify will display the results accordingly.
 * Refer to the diagrams in the following pages to find out about the different components of Connectify that are responsible for receiving commands, displaying results, and more!
 
-![Ui Details] (images/UiDetails.png)
+![Ui Details](images/UiDetails.png)
 
 Each section is made of several components which will be explained in the following pages.
 
@@ -233,24 +233,23 @@ As a new user, your Connectify database is **empty**. Let's add your first conne
 
 Every command in Connectify is a prompt for action. It's how you command the application to organize your network. Let's understand the different parts of a command!
 
-<img src="images/UGCommandExample.png" width="800"/>
+![UG Command Example](images/UGCommandExample.png)
 
-* **Command Name**<br>
+* Command Name<br>
   The **command name** indicates the action you want to perform in Connectify.<br>
   In the example above, `editCompany` is the command name.
 
-* **Index**<br>
+* Index<br>
   The **index** is the **numerical position** of an item in a displayed list within Connectify. <br>
   In the example above, `1` represents the first company in the company list.
 
-* **Prefixes**<br>
+* Prefixes<br>
   Prefixes ending with a `/` help identify the type of information **you provide** in a command. <br>
   In the example above, `n/`serves as a prefix to indicate that you want to edit a company's name to `Facebook`.
 
-* **Inputs**<br>
+* Inputs<br>
   Inputs are the specific details **you input** for a command to process. <br>
   In the example above, Facebook is the input that specifies the new name for the company.
-
 
 <a href="#table-of-contents" class="return-to-toc-link">
   <span class="return-to-toc-text">Return to Table of Contents</span>
