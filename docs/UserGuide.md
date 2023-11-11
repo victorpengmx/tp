@@ -1173,6 +1173,35 @@ The table on the next page lists the keyboard shortcuts currently available in C
 </a>
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
+### Advanced Data Management Features
+
+#### Saving your data
+
+Connectify will automatically save your data on your hard disk after any command that changes it. There is no need for you to manually save your data.
+
+#### Editing your data file
+
+You can directly modify Connectify's data without opening the application. You can do so by editing the Connectify [JSON file](https://fileinfo.com/extension/json) `[JAR file location]/data/addressbook.json`.
+
+<box type="warning" icon=":fa-solid-triangle-exclamation:">
+
+**Warning**
+If your edited data is not of the correct format, Connectify will **discard all of your data** and start with an empty JSON file the next time you launch Connectify. This is **irreversible**, so please **ensure that you have backed up your data** before editing it.
+</box>
+
+<a href="#table-of-contents" class="return-to-toc-link">
+  <span class="return-to-toc-text">Return to Table of Contents</span>
+  <span class="return-to-toc-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-bar-up" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M3.646 11.854a.5.5 0 0 0 .708 0L8 8.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708zM2.4 5.2c0 .22.18.4.4.4h10.4a.4.4 0 0 0 0-.8H2.8a.4.4 0 0 0-.4.4z">
+      </path>
+    </svg>
+  </span>
+</a>
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
