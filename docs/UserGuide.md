@@ -34,7 +34,6 @@ Networking is a crucial aspect of your academic and professional life, and Conne
     * [Sharing a person's details: `sharePerson`](#sharing-a-persons-details-shareperson)
   * [General Commands](#general-commands)
     * [Listing all entities: `list`](#listing-all-entities-list)
-    * [Finding entities: `find`](#finding-entities-find)
     * [Clearing the database: `clear`](#clearing-the-database-clear)
     * [Seeking Help: `help`](#seeking-help-help)
     * [Exiting Connectify: `exit`](#exiting-connectify-exit)
@@ -193,7 +192,7 @@ Here are some guidelines when using the [General Commands](#general-commands). P
   You can key in inputs in **any order**.<br>
   For example, a command might be structured as `w/WEBSITE e/EMAIL`, but entering `e/EMAIL w/WEBSITE` will work as well.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**  
+<div markdown="block" class="alert alert-warning"><strong>&#x2757; Caution:</strong>
 It's important to avoid including inputs that are not expected by a command. For example, if a `rank` command is designed to accept zero inputs, adding an input like 'p/12345678` might lead to unintended behaviour.
 </div>
 
@@ -298,7 +297,7 @@ deleteCompany INDEX
 The fields are:
 - `INDEX` is the index of the company you want to delete.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="block" class="alert alert-warning"><strong>&#x2757; Caution:</strong>
 Be cautious when deleting a company in Connectify. This action is irreversible and will permanently remove all associated data and persons list with the company.
 </div>
 
@@ -475,7 +474,7 @@ Note:
 - This command deletes the existing note if it is inputted without the `r/` placeholder.
 - If the `r/` placeholder is specified twice, the note following the second placeholder will be used.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary"><strong>💡 Tip:</strong>
 Use the `noteCompany` command in Connectify to add reminders or important details about your interactions with companies.
 </div>
 
@@ -675,7 +674,7 @@ The fields are:
 - `COMPANY_INDEX` is the index of the company that the person is associated with.
 - `PERSON_INDEX` is the index of the person you want to delete.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="block" class="alert alert-warning"><strong>&#x2757; Caution:</strong>
 Deleting a person from Connectify is an irreversible action. Confirm the correct individual is selected before proceeding with this command.
 </div>
 
@@ -761,7 +760,7 @@ Note:
 - Connectify does not support the use of `+` or whitespace in phone numbers.
 - All fields are case-sensitive. This means that `John Doe` and `john doe` are considered different names, and `friends` and `Friends` are considered different tags.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary"><strong>💡 Tip:</strong>
 Keep contact details up-to-date in Connectify. Be sure the check if they have changed their contact details.
 </div>
 
@@ -891,7 +890,7 @@ Note:
 - This command deletes the existing note if it is inputted without the `r/` placeholder.
 - If the `r/` placeholder is specified twice, the note following the second placeholder will be used.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary"><strong>💡 Tip:</strong>
 Use notes in Connectify to record key information about your interactions or important dates related to each contact.
 </div>
 
@@ -963,7 +962,7 @@ Note:
 - This command accepts trailing inputs as long as it is separated from the command by a space.
 - This command ranks people by decreasing numerical values of priority. Hence, a person with priority 10 will be ranked higher (closer to the top of the list) than a person with priority 1.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary"><strong>💡 Tip:</strong>
 Use the `rank` command in Connectify to prioritise your contacts based on current professional needs or project requirements.
 </div>
 
@@ -1008,7 +1007,7 @@ The fields are:
 - `COMPANY_INDEX` is the index of the company that the person is associated with.
 - `PERSON_INDEX` is the index of the person in the displayed person list of a company that you want to share. It must be a positive integer within the company.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="block" class="alert alert-warning"><strong>&#x2757; Caution:</strong>
 Be cautious about sharing personal contact details through Connectify. Always respect privacy and share contact information only with consent.
 </div>
 
@@ -1159,7 +1158,7 @@ Note:
 Cleared all persons and companies.
 ```
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**  
+<div markdown="block" class="alert alert-warning"><strong>&#x2757; Caution:</strong>
 Do take note that this `clear` action is irreversible. Your company and people lists will be deleted.
 </div>
 
@@ -1392,7 +1391,6 @@ A: Connectify does not restrict the numerical range for the priority field. Howe
 | Action    | Format, Examples                                           |
 |-----------|------------------------------------------------------------|
 | **List**  | `list`                                                     |
-| **Find**  | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake` |
 | **Clear** | `clear`                                                    |
 | **Help**  | `help`                                                     |
 | **Exit**  | `exit`                                                     |
