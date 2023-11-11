@@ -14,6 +14,8 @@ Networking is a crucial aspect of your academic and professional life, and Conne
 * [Quick start](#quick-start)
 * [Tutorial: Adding your first connection](#tutorial-adding-your-first-connection)
 * [Features](#features)
+  * [How to Read Command Formats](#how-to-read-command-formats)
+  * [General Input Guidelines](#general-input-guidelines)
   * [Features for managing company details](#features-for-managing-company-details)
     * [Adding a company: `addCompany`](#adding-a-company-addcompany)
     * [Deleting a company: `deleteCompany`](#deleting-a-company-deletecompany)
@@ -123,6 +125,33 @@ As a new user, your Connectify database is empty. Let's add your first connectio
 
 ## Features
 
+### How to Read Command Formats
+
+Throughout this user guide, you'll encounter various [General Commands](#general-commands) specific to Connectify. Let's explore how to interpret these command formats.
+
+* **Providing User Inputs**<br>
+  Any words in **capital letters** are **your supplied inputs**.  
+  For instance, in `editPerson INDEX c/COMPANY`, you can type in `editPerson 1 c/Apple n/Ryan`.
+
+* **Optional Inputs**<br>  
+  Inputs enclosed within square brackets `[]` are **optional**.  
+  For instance, for the command `editPerson INDEX c/COMPANY [n/NAME]`, you can use it in two ways:  
+  `editPerson INDEX c/COMPANY n/Ryan` or simply as `editPerson INDEX c/COMPANY`.
+
+### General Input Guidelines
+
+Here are some guidelines when using the [General Commands](#general-commands). Please follow this to ensure that Connectify understands you! 
+
+* **Flexible Input Order**<br>  
+  You can key in inputs in **any order**.<br>
+  For example, a command might be structured as `w/WEBSITE e/EMAIL`, but entering `e/EMAIL w/WEBSITE` will work as well.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**  
+It's important to avoid including inputs that are not expected by a command. For example, if a `rank` command is designed to accept zero inputs, adding an input like 'p/12345678` might lead to unintended behaviour.
+</div>
+
+[🔝 Return to Table of Contents](#table-of-contents)
+
 ### Features for managing company details
 
 #### Adding a company: `addCompany`
@@ -213,6 +242,10 @@ deleteCompany INDEX
 
 The fields are:
 - `INDEX` is the index of the company you want to delete.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Be cautious when deleting a company in Connectify. This action is irreversible and will permanently remove all associated data and persons list with the company.
+</div>
 
 **Example:**
 
@@ -386,6 +419,10 @@ The fields are:
 Note:
 - This command deletes the existing note if it is inputted without the `r/` placeholder.
 - If the `r/` placeholder is specified twice, the note following the second placeholder will be used.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Use the `noteCompany` command in Connectify to add reminders or important details about your interactions with companies.
+</div>
 
 **Example:**
 
@@ -583,6 +620,10 @@ The fields are:
 - `COMPANY_INDEX` is the index of the company that the person is associated with.
 - `PERSON_INDEX` is the index of the person you want to delete.
 
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Deleting a person from Connectify is an irreversible action. Confirm the correct individual is selected before proceeding with this command.
+</div>
+
 **Example:**
 
 To delete the person named John Doe at index 1 from the company at index 1, use the following command:
@@ -664,6 +705,10 @@ Note:
 - Connectify only supports alphanumeric characters for tags.
 - Connectify does not support the use of `+` or whitespace in phone numbers.
 - All fields are case-sensitive. This means that `John Doe` and `john doe` are considered different names, and `friends` and `Friends` are considered different tags.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Keep contact details up-to-date in Connectify. Be sure the check if they have changed their contact details.
+</div>
 
 **Example:**
 
@@ -791,6 +836,10 @@ Note:
 - This command deletes the existing note if it is inputted without the `r/` placeholder.
 - If the `r/` placeholder is specified twice, the note following the second placeholder will be used.
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Use notes in Connectify to record key information about your interactions or important dates related to each contact.
+</div>
+
 **Example:**
 
 To add a note to the person at index 1 in the displayed person list of Company 1, use the following command:
@@ -833,6 +882,7 @@ The company index provided is invalid.
 The person index provided is invalid.
 ```
 
+
 <a href="#table-of-contents" class="return-to-toc-link">
   <span class="return-to-toc-text">Return to Table of Contents</span>
   <span class="return-to-toc-icon">
@@ -857,6 +907,10 @@ Note:
 - This command has no additional fields.
 - This command accepts trailing inputs as long as it is separated from the command by a space.
 - This command ranks people by decreasing numerical values of priority. Hence, a person with priority 10 will be ranked higher (closer to the top of the list) than a person with priority 1.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Use the `rank` command in Connectify to prioritise your contacts based on current professional needs or project requirements.
+</div>
 
 **Successful Output**
 
@@ -898,6 +952,10 @@ sharePerson COMPANY_INDEX PERSON_INDEX
 The fields are:
 - `COMPANY_INDEX` is the index of the company that the person is associated with.
 - `PERSON_INDEX` is the index of the person in the displayed person list of a company that you want to share. It must be a positive integer within the company.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Be cautious about sharing personal contact details through Connectify. Always respect privacy and share contact information only with consent.
+</div>
 
 **Example:**
 
@@ -965,6 +1023,13 @@ list
 Note:
 - This command has no additional fields.
 - This command accepts trailing inputs as long as it is separated from the command by a space.
+```
+list
+```
+
+Note:
+- This command has no additional fields.
+- This command accepts trailing inputs as long as it is separated from the command by a space.
 
 **Successful Output**
 
@@ -992,45 +1057,21 @@ There are no entities in Connectify.
     </svg>
   </span>
 </a>
-
---------------------------------------------------------------------------------------------------------------------
-
-#### Finding entities: `find`
-
-The `find` command allows you to retrieve a list of all entities (both persons and companies) in the Connectify database that match the specified keywords. This command is useful for obtaining an overview of all the entities you have stored that match the specified keywords. The command format is as follows:
-
-```
-find KEYWORD [MORE_KEYWORDS]
-```
-
-The fields are:
-- `KEYWORD` is the first keyword to search for.
-- `MORE_KEYWORDS` (optional) is the second keyword to search for.
-
-**Example:**
-
-To find all entities that contain the keywords "John" and "Doe", use the following command:
-
-```
-find John Doe
-```
-
 **Successful Output**
 
 ```
-1 people and companies listed!
+Listed all persons and companies.
 ```
+
+You should be able to see all your connections in Connectify as shown below:
+
+![Listing All Entities](images/listingAll.png)
 
 **Unsuccessful Output**
 
 - If Connectify is empty, and there are no entities to display, you will receive the following message:
 ```
 There are no entities in Connectify.
-```
-
-- If no entities match the specified keywords, you will receive the following message:
-```
-There are no entities that match the specified keywords.
 ```
 
 <a href="#table-of-contents" class="return-to-toc-link">
@@ -1062,6 +1103,10 @@ Note:
 ```
 Cleared all persons and companies.
 ```
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**  
+Do take note that this `clear` action is irreversible. Your company and people lists will be deleted.
+</div>
 
 <a href="#table-of-contents" class="return-to-toc-link">
   <span class="return-to-toc-text">Return to Table of Contents</span>
