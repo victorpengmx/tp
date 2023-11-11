@@ -1222,6 +1222,16 @@ testers are expected to do more *exploratory* testing.
 
 <div style="page-break-after: always;"></div>
 
+### Help
+
+1. Showing the help window that contains a link to the User Guide.<br>
+   Note: If you minimise the window, using the help command will not do anything. Do look for the minimised window in the taskbar of your computer!
+
+    1. Test case: `help`, `help ...(any other text following)...`<br>
+       Expected: Shows the help window successfully. The text following the `help` command is ignored.
+
+<div style="page-break-after: always;"></div>
+
 ### Adding a person
 
 1. Adding a person with valid inputs
@@ -1271,8 +1281,63 @@ testers are expected to do more *exploratory* testing.
       Expected: Connectify displays an error. No person is deleted.
       Reason: PERSON_INDEX must be >= 1, <= number of people.
 
-   1. Other incorrect delete commands to try: `deletePerson`, `deletePerson x y`, `...` (where x and/or y is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `deletePerson`, `deletePerson x y` (where x and/or y is larger than the list size)<br>
       Expected: Similar to previous.
+
+<div style="page-break-after: always;"></div>
+
+### Editing a Person
+
+1. Editing a person while all companies are displayed
+
+    1. Prerequisites: List all companies using the `companies` command. One or more companies in the list, with one or more people in each company.
+
+    1. Test case: `editPerson 1 ...(any other text following)...`<br>
+       Expected: Connectify displays an error. No person is edited.
+       Reason: PERSON_INDEX is indicated. However, user must also indicate COMPANY_INDEX, from which to find the Person to edit.
+
+    1. Test case: `editPerson 1 c/1 n/Jane Doe`<br>
+       Expected: Name of first contact, from the first company, is edited to "Jane Doe". Full details of the edited contact shown in the status message.
+
+    1. Test case: `editPerson 1 c/1 p/91820340`<br>
+       Expected: Phone number of first contact, from the first company, is edited to "91820340". Full details of the edited contact shown in the status message.
+
+    1. Test case: `editPerson 0 c/1 ...(any other text following)...`<br>
+       Expected: Connectify displays an error. No person is edited.
+       Reason: PERSON_INDEX must be >= 1, <= number of people within the company.
+
+    1. Test case: `editPerson 1 c/0 ...(any other text following)...`<br>
+       Expected: Connectify displays an error. No person is edited.
+       Reason: COMPANY_INDEX must be >= 1, <= number of companies.
+
+    1. Other incorrect delete commands to try: `editPerson`, `editPerson x c/y` (where x and/or y is larger than the list size)<br>
+       Expected: Similar to previous.
+
+<div style="page-break-after: always;"></div>
+
+### Adding a note to a Person
+
+1. Adding notes to a person while all companies are displayed
+
+    1. Prerequisites: List all companies using the `companies` command. One or more companies in the list, with one or more people in each company.
+
+    1. Test case: `notePerson 1`<br>
+       Expected: Connectify displays an error. No person information is changed.
+       Reason: COMPANY_INDEX is indicated. However, user must also indicate PERSON_INDEX, from which to find the Person to add notes to.
+
+    1. Test case: `notePerson 1 1 r/Likes to swim`<br>
+       Expected: Note is added to first contact, from the first company, that the contact "Likes to swim". Details of the contact shown in the status message.
+
+    1. Test case: `notePerson 0 ...(any other text following)...`<br>
+       Expected: Connectify displays an error. No person information is changed.
+       Reason: COMPANY_INDEX must be >= 1, <= number of companies.
+
+    1. Test case: `notePerson 1 0 ...(any other text following)...`<br>
+       Expected: Connectify displays an error. No person is edited.
+       Reason: PERSON_INDEX must be >= 1, <= number of people within the company.
+
+    1. Other incorrect delete commands to try: `notePerson`, `notePerson x y` (where x and/or y is larger than the list size)<br>
+       Expected: Similar to previous.
 
 <div style="page-break-after: always;"></div>
 
@@ -1332,7 +1397,46 @@ testers are expected to do more *exploratory* testing.
        Expected: Connectify displays an error. No company is deleted.
        Reason: COMPANY_INDEX must be >= 1, <= number of companies.
 
-    1. Other incorrect delete commands to try: `deleteCompany`, `deleteCompany x`, `...` (where x is larger than the list size)<br>
+    1. Other incorrect delete commands to try: `deleteCompany`, `deleteCompany x` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+<div style="page-break-after: always;"></div>
+
+### Editing a Company
+
+1. Editing a company while all companies are displayed
+
+    1. Prerequisites: List all companies using the `companies` command. One or more companies in the list.
+
+    1. Test case: `editCompany 1 n/TechCorp`<br>
+       Expected: Name of first company is edited to "TechCorp". Full details of the edited company card shown in the status message.
+
+    1. Test case: `editCompany 1 p/91820340`<br>
+       Expected: Phone number of first company is edited to "91820340". Full details of the edited company card shown in the status message.
+
+    1. Test case: `editCompany 0 ...(any other text following)...`<br>
+       Expected: Connectify displays an error. No company is edited.
+       Reason: COMPANY_INDEX must be >= 1, <= number of companies.
+
+    1. Other incorrect delete commands to try: `editCompany`, `editCompany x` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+<div style="page-break-after: always;"></div>
+
+### Adding a note to a Company
+
+1. Adding notes to a company while all companies are displayed
+
+    1. Prerequisites: List all companies using the `companies` command. One or more companies in the list.
+
+    1. Test case: `noteCompany 1 r/Looking for aspiring frontend developers`<br>
+       Expected: Note is added to first company, that the company is "Looking for aspiring frontend developers". Full details of the edited company card shown in the status message.
+
+    1. Test case: `noteCompany 0 ...(any other text following)...`<br>
+       Expected: Connectify displays an error. No company information is changed.
+       Reason: COMPANY_INDEX must be >= 1, <= number of companies.
+
+    1. Other incorrect delete commands to try: `noteCompany`, `noteCompany x` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
 <div style="page-break-after: always;"></div>
@@ -1350,17 +1454,14 @@ testers are expected to do more *exploratory* testing.
 
 <div style="page-break-after: always;"></div>
 
-### Ranking
+### Clear
 
-1. Ranking when all persons are being displayed
+1. Clearing all stored data in Connectify.
 
-    1. Prerequisites: List all persons using the `people` command. Multiple persons in the list.
+    1. Prerequisites: Connectify is populated with data.
 
-    1. Test cases: `rank`, `rank ...(any other text following)...`.<br>
-       Expected: All persons are ranked by their corresponding priority. The text following the `rank` command is ignored.
-
-    1. Test cases: `rank1` and other invalid commands.<br>
-       Expected: Persons list is not sorted.
+    1. Test case: `clear`, `clear ...(any other text following)...`<br>
+       Expected: Clears all stored data in Connectify. Clear will be successful even if Connectify has no data. The text following the `clear` command is ignored.
 
 <div style="page-break-after: always;"></div>
 
@@ -1368,27 +1469,41 @@ testers are expected to do more *exploratory* testing.
 
 1. Listing all entities (persons and companies)
 
-    1. Test case: `list`<br>
-       Expected: All entities are listed.
+    1. Test case: `list`, `list ...(any other text following)...`<br>
+       Expected: All entities are listed. The text following the `list` command is ignored.
 
     1. Test case: Clear every entity using `clear`, then enter the command `list`<br>
        Expected: No entities listed.
 
 1. Listing all people
 
-    1. Test case: `people`<br>
-       Expected: All people are listed.
+    1. Test case: `people`, `people ...(any other text following)...`<br>
+       Expected: All people are listed. The text following the `people` command is ignored.
 
     1. Test case: Clear every entity using `clear`, then enter the command `people`<br>
        Expected: No people listed.
 
 1. Listing all companies
 
-    1. Test case: `companies`<br>
-       Expected: All companies are listed.
+    1. Test case: `companies`, `companies ...(any other text following)...`<br>
+       Expected: All companies are listed. The text following the `companies` command is ignored.
 
     1. Test case: Clear every entity using `clear`, then enter the command `companies`<br>
        Expected: No companies listed.
+
+<div style="page-break-after: always;"></div>
+
+### Ranking
+
+1. Ranking when all persons are being displayed
+
+    1. Prerequisites: List all persons using the `people` command. Multiple persons in the list.
+
+    1. Test cases: `rank`, `rank ...(any other text following)...`.<br>
+       Expected: All persons are ranked by their corresponding priority, from highest (up to 10) to smallest (down to 1). The text following the `rank` command is ignored.
+
+    1. Test cases: `rank1` and other invalid commands.<br>
+       Expected: Persons list is not sorted.
 
 <div style="page-break-after: always;"></div>
 
@@ -1419,3 +1534,12 @@ The expected behaviour of the `find` command is documented in detail in the UG, 
 
     1. Test case: while Connectify is open, delete or modify `addressbook.json`, then execute any valid command in Connectify.<br>
        Expected: Connectify functions normally and overwrites any corrupted data.
+
+<div style="page-break-after: always;"></div>
+
+### Exit
+
+1. Exits the program.
+
+    1. Test cases: `exit`, `exit ...(any other text following)...`.<br>
+       Expected: Program window closes. Data is saved, and can be accessed ont the next boot-up of Connectify. The text following the `exit` command is ignored.
