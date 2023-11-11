@@ -27,24 +27,24 @@
     * [Storage component](#storage-component)
     * [Common classes](#common-classes)
   * [**Implementation**](#implementation)
-    * [Add Company Feature: `addCompany`](#add-company-feature--addcompany)
-    * [Delete Company Feature: `deleteCompany`](#delete-company-feature--deletecompany)
-    * [Edit Company Feature: `editCompany`](#edit-company-feature--editcompany)
-    * [List Companies Command: `companies`](#list-companies-command--companies)
-    * [Add Note to Company Feature: `noteCompany`](#add-note-to-company-feature--notecompany)
-    * [Share Company's Contact Feature: `shareCompany`](#share-companys-contact-feature--sharecompany)
-    * [Add Person Feature: `addPerson`](#add-person-feature--addperson)
-    * [Delete Person Feature: `deletePerson`](#delete-person-feature--deleteperson)
-    * [Edit Person Feature: `editPerson`](#edit-person-feature--editperson)
-    * [List People Command: `people`](#list-people-command--people)
-    * [Add Note to Person Feature: `notePerson`](#add-note-to-person-feature--noteperson)
-    * [Ranking People by Priority Feature: `rank`](#ranking-people-by-priority-feature--rank)
-    * [Share Person's Contact Feature: `sharePerson`](#share-persons-contact-feature--shareperson)
-    * [List All Command: `list`](#list-all-command--list)
-    * [Finding Entities: `find`](#finding-entities--find)
-    * [Clearing the Database: `clear`](#clearing-the-database--clear)
-    * [Seeking Help: `help`](#seeking-help--help)
-    * [Exiting Connectify: `exit`](#exiting-connectify--exit)
+    * [Add Company Feature: `addCompany`](#add-company-feature-addcompany)
+    * [Delete Company Feature: `deleteCompany`](#delete-company-feature-deletecompany)
+    * [Edit Company Feature: `editCompany`](#edit-company-feature-editcompany)
+    * [List Companies Command: `companies`](#list-companies-command-companies)
+    * [Add Note to Company Feature: `noteCompany`](#add-note-to-company-feature-notecompany)
+    * [Share Company's Contact Feature: `shareCompany`](#share-companys-contact-feature-sharecompany)
+    * [Add Person Feature: `addPerson`](#add-person-feature-addperson)
+    * [Delete Person Feature: `deletePerson`](#delete-person-feature-deleteperson)
+    * [Edit Person Feature: `editPerson`](#edit-person-feature-editperson)
+    * [List People Command: `people`](#list-people-command-people)
+    * [Add Note to Person Feature: `notePerson`](#add-note-to-person-feature-noteperson)
+    * [Ranking People by Priority Feature: `rank`](#ranking-people-by-priority-feature-rank)
+    * [Share Person's Contact Feature: `sharePerson`](#share-persons-contact-feature-shareperson)
+    * [List All Command: `list`](#list-all-command-list)
+    * [Finding Entities: `find`](#finding-entities-find)
+    * [Clearing the Database: `clear`](#clearing-the-database-clear)
+    * [Seeking Help: `help`](#seeking-help-help)
+    * [Exiting Connectify: `exit`](#exiting-connectify-exit)
 * [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 * [Appendix: Requirements](#appendix-requirements)
     * [Product Scope](#product-scope)
@@ -283,6 +283,8 @@ The `AddCompanyCommand` also handles scenarios where a company with the same det
 
 <div style="page-break-after: always;"></div>
 
+
+
 ### Delete Company Feature: `deleteCompany`
 
 #### Implementation
@@ -314,6 +316,8 @@ The `DeleteCompanyCommand` also handles scenarios where a company index does not
 <img src="images/deleteCompanyActivityDiagram.png" width="600" />
 
 <div style="page-break-after: always;"></div>
+
+
 
 ### Edit Company Feature: `editCompany`
 
@@ -347,6 +351,8 @@ The `EditCompanyCommand` also handles scenarios where a company index does not e
 
 <div style="page-break-after: always;"></div>
 
+
+
 ### List Companies Command: `companies`
 
 #### Implementation
@@ -362,6 +368,8 @@ If the list is empty, `execute` in the list command returns a `CommandResult` wi
 The sequence diagram below illustrates the events that take place during the execution of `ListCompaniesCommand`.
 
 ![ListCompaniesActivityDiagram.png](images/ListCompaniesSequenceDiagram.png)
+
+
 
 ### Add Note to Company Feature: `noteCompany`
 
@@ -390,6 +398,8 @@ The `NoteCompanyCommand` also handles cases where the provided company index is 
 
 <div style="page-break-after: always;"></div>
 
+
+
 ### Share Company's Contact Feature: `shareCompany`
 
 #### Implementation
@@ -414,6 +424,8 @@ The `ShareCompanyCommand` also handles cases where the provided person or compan
 <img src="images/shareCompanyActivityDiagram.png" width="600" />
 
 <div style="page-break-after: always;"></div>
+
+
 
 ### Add Person Feature: `addPerson`
 
@@ -444,6 +456,8 @@ The `AddPersonCommand` also handles scenarios where a person with the same detai
 <img src="images/addPersonActivityDiagram.png" width="600" />
 
 <div style="page-break-after: always;"></div>
+
+
 
 ### Delete Person Feature: `deletePerson`
 
@@ -481,6 +495,8 @@ The `DeletePersonCommand` also handles scenarios where a person is not part of a
 
 <div style="page-break-after: always;"></div>
 
+
+
 ### Edit Person Feature: `editPerson`
 
 #### Implementation
@@ -503,6 +519,8 @@ Should there be any issues, such as invalid indexes or missing fields, the EditP
 
 <div style="page-break-after: always;"></div>
 
+
+
 ### List People Command: `people`
 
 #### Implementation
@@ -518,6 +536,8 @@ If the list is empty, `execute` in the list command returns a `CommandResult` wi
 The sequence diagram below illustrates the events that take place during the execution of `ListPeopleCommand`.
 
 ![ListPeopleActivityDiagram.png](images/ListPeopleSequenceDiagram.png)
+
+
 
 ### Add Note to Person Feature: `notePerson`
 
@@ -548,6 +568,8 @@ The `NotePersonCommand` also handles cases where the provided person or company 
 
 <div style="page-break-after: always;"></div>
 
+
+
 ### Ranking People by Priority Feature: `rank`
 
 #### Implementation
@@ -573,6 +595,8 @@ The `rankCommand` also handles cases where there are no people in the address bo
 ![rankSequenceDiagram.png](images%2FrankSequenceDiagram.png)
 
 <div style="page-break-after: always;"></div>
+
+
 
 ### Share Person's Contact Feature: `sharePerson`
 
@@ -602,6 +626,8 @@ The `SharePersonCommand` also handles cases where the provided person or company
 
 <div style="page-break-after: always;"></div>
 
+
+
 ### List All Command: `list`
 
 #### Implementation
@@ -617,6 +643,8 @@ If the list is empty, `execute` in the list command returns a `CommandResult` wi
 The sequence diagram below illustrates the events that take place during the execution of `ListAllCommand`.
 
 ![ListAllActivityDiagram.png](images/ListAllSequenceDiagram.png)
+
+
 
 ### Finding Entities: `find`
 
@@ -634,6 +662,8 @@ The `FindCommand` also handles cases where there are no matches.
 
 <div style="page-break-after: always;"></div>
 
+
+
 ### Clearing the Database: `clear`
 
 #### Implementation
@@ -647,6 +677,8 @@ clear
 After running this command, there will be confirmation that all entities have been removed. Cleared all persons and companies.
 
 <div style="page-break-after: always;"></div>
+
+
 
 ### Seeking Help: `help`
 
@@ -662,6 +694,8 @@ When triggered, it presents a help window or a link to the user guide.
 
 <div style="page-break-after: always;"></div>
 
+
+
 ### Exiting Connectify: `exit`
 
 #### Implementation
@@ -676,6 +710,9 @@ exit
 After running this command, the application closes.
 
 <div style="page-break-after: always;"></div>
+
+
+
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
