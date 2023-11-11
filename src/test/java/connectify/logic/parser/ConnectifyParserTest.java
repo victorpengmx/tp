@@ -27,7 +27,6 @@ import connectify.logic.commands.EditCompanyCommand.EditCompanyDescriptor;
 import connectify.logic.commands.EditPersonCommand;
 import connectify.logic.commands.EditPersonCommand.EditPersonDescriptor;
 import connectify.logic.commands.ExitCommand;
-import connectify.logic.commands.FindAllCommand;
 import connectify.logic.commands.FindCompaniesCommand;
 import connectify.logic.commands.FindPeopleCommand;
 import connectify.logic.commands.HelpCommand;
@@ -39,7 +38,6 @@ import connectify.logic.commands.RankPersonCommand;
 import connectify.logic.commands.ShareCompanyCommand;
 import connectify.logic.commands.SharePersonCommand;
 import connectify.logic.parser.exceptions.ParseException;
-import connectify.model.EntityNameContainsKeywordsPredicate;
 import connectify.model.company.Company;
 import connectify.model.company.CompanyNameContainsKeywordsPredicate;
 import connectify.model.person.NameContainsKeywordsPredicate;
@@ -129,16 +127,6 @@ public class ConnectifyParserTest {
                         +
                         " " + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindPeopleCommand(new NameContainsKeywordsPredicate(keywords)), command);
-    }
-
-    @Test
-    public void parseCommand_findAll() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindAllCommand command = (FindAllCommand) parser.parseCommand(
-                FindAllCommand.COMMAND_WORD
-                        +
-                        " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindAllCommand(new EntityNameContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test
