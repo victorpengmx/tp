@@ -33,7 +33,6 @@ Networking is a crucial aspect of your academic and professional life, and Conne
     * [Sharing a person's details: `sharePerson`](#sharing-a-persons-details-shareperson)
   * [General Commands](#general-commands)
     * [Listing all entities: `list`](#listing-all-entities-list)
-    * [Finding entities: `find`](#finding-entities-find)
     * [Clearing the database: `clear`](#clearing-the-database-clear)
     * [Seeking Help: `help`](#seeking-help-help)
     * [Exiting Connectify: `exit`](#exiting-connectify-exit)
@@ -1340,7 +1339,6 @@ A: Connectify does not restrict the numerical range for the priority field. Howe
 | Action    | Format, Examples                                           |
 |-----------|------------------------------------------------------------|
 | **List**  | `list`                                                     |
-| **Find**  | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake` |
 | **Clear** | `clear`                                                    |
 | **Help**  | `help`                                                     |
 | **Exit**  | `exit`                                                     |
