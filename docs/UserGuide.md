@@ -6,9 +6,34 @@
 
 # Connectify User Guide
 
-Welcome to Connectify, your all-in-one networking companion designed specifically to empower SOC (School of Communication) students in efficiently managing their connections and enhancing their networking experiences. Whether you're a seasoned professional or just starting your networking journey, Connectify is here to help you build and maintain meaningful connections that can propel your career and personal growth.
+Welcome to Connectify!
+
+Connectify is your all-in-one networking companion, designed specifically to empower SoC (School of Computing) students in efficiently managing their connections and enhancing their networking experiences. Whether you're a seasoned professional or just starting your networking journey, Connectify is here to help you build and maintain meaningful connections that can propel your career and personal growth.
 
 Networking is a crucial aspect of your academic and professional life, and Connectify is here to simplify and streamline the process for you. This user guide will walk you through the key features and functionalities of Connectify, ensuring you make the most of this powerful networking platform.
+
+### Using this guide
+If you are a new user looking to get started with Connectify, our User Guide can help you with [the installation process](#tutorial-installing-connectify), guide you through [adding your first connection to Connectify](#tutorial-adding-your-first-connection), and familiarise you with how to use all of [Connectify’s features](#features).
+
+For a full overview of everything this guide has to offer, do make use of the [Table of Contents](#table-of-contents)!
+
+Finally, here are some of the symbols and text formatting to look out for as you make use of this guide:
+
+<div markdown="block" class="alert alert-primary">
+:bulb: **Tips:** Blue boxes contain additional information that may be useful for enhancing your experience using Connectify.
+</div>
+
+<div markdown="block" class="alert alert-warning">
+:exclamation: **Warnings:** Yellow boxes contain important warnings.
+</div>
+
+|          Text Formatting           | Meaning                                            |
+|:----------------------------------:|----------------------------------------------------|
+| [Hyperlink to Glossary](#glossary) | Clickable hyperlink to navigate to another section |
+|           `command text`           | Text relevant to Connectify user commands          |
+|          <kbd>Enter</kbd>          | A keyboard key                                     |
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## Table of Contents
 * [Quick start](#quick-start)
@@ -37,9 +62,6 @@ Networking is a crucial aspect of your academic and professional life, and Conne
     * [Clearing the database: `clear`](#clearing-the-database-clear)
     * [Seeking Help: `help`](#seeking-help-help)
     * [Exiting Connectify: `exit`](#exiting-connectify-exit)
-* [Advanced Features](#advanced-features)
-    * [Keyboard Shortcuts](#keyboard-shortcuts)
-    * [Advanced Data Management Features](#advanced-data-management-features)
 * [FAQ](#faq)
 * [Known issues](#known-issues)
 * [Command Summary](#command-summary)
@@ -47,6 +69,7 @@ Networking is a crucial aspect of your academic and professional life, and Conne
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
+### Tutorial: Installing Connectify
 
 Getting started with Connectify is extremely simple! Here is a tutorial on how to set up Connectify in **4 easy steps**.
 
@@ -68,9 +91,84 @@ Now that you've successfully installed Connectify, let's take a moment to famili
   </span>
 </a>
 
+### Tutorial: Navigating the application
+
+* Connectify uses a [Command Line Interface (CLI)](#glossary-command-line-interface-cli) - which means that you perform actions by entering [commands](#glossary-command) for Connectify to carry out. If you want to find out more on how to make use of commands, you can jump ahead to learn the [parts of a command](#parts-of-a-command).
+* Once a command has been successfully carried out, Connectify will display the results accordingly.
+* Refer to the diagrams in the following pages to find out about the different components of Connectify that are responsible for receiving commands, displaying results, and more!
+
+<img src="images/UiDetails.png" width="800" />
+
+Each section is made of several components which will be explained in the following pages.
+
+#### Command Line Section
+
+<img src="images/CommandLineSection.png" width="800" />
+
+This is the section where you can **enter [commands](#glossary-command)** for Connectify, and where the **messages from Connectify are displayed**.
+
+| Number | Component Name | Details                                                                                                                                                   |
+|:------:|----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+|   1.   | Command box    | The box where you enter commands for Connectify to carry out.                                                                                             |
+|   2.   | Message box    | The box where a success message will be displayed when Connectify carries out a command successfully, or an error message when Connectify fails to do so. |
+
+#### All Entities Section
+
+<img src="images/AllEntitiesSection.png" width="800" />
+
+This section contains an overview of **all the entities** added to Connectify. **Click a Company's name** to display the **company details**, as well as the **details of persons under that company**.
+
+| Number | Component Name      | Details                                               |
+|:------:|---------------------|-------------------------------------------------------|
+|   1.   | "All" Tab           | Click on this tab to view the "All Entities Section". |
+|   2.   | Name                | The company's name.                                   |
+|   3.   | Company Information | The company’s information.                            |
+|   4.   | Person Card         | A box containing the person's details.                |
+|   5.   | Company Card        | A box containing the company's details.               |
+
+#### Company List Section
+
+<img src="images/CompanyListSection.png" width="800" />
+
+This is the section showing the **list of companies** added to Connectify. Each company contains its **company details**, as well as the **list of persons**.
+
+| Number | Component Name   | Details                                                   |
+|:------:|------------------|-----------------------------------------------------------|
+|   1.   | "Companies" Tab  | Click on this tab to view the "Companies Section".        |
+|   2.   | Name             | The company’s name.                                       |
+|   3.   | Company Index    | The index of the company in the company list.             |
+|   4.   | Industry         | The industry the company is in.                           |
+|   5.   | Phone Number     | The company’s phone number.                               |
+|   7.   | Address          | The person’s address.                                     |
+|   6.   | List of Persons  | A list containing the persons who work for that company.  |
+
+#### Person List Section
+
+<img src="images/PersonListSection.png" width="800" />
+
+This is the section showing the **list of persons** added to Connectify. Each person contains their **person details**.
+
+| Number | Component Name | Details                                         |
+|:------:|----------------|-------------------------------------------------|
+|   1.   | "People" Tab   | Click on this tab to view the "People Section". |
+|   2.   | Name           | The person’s name.                              |
+|   3.   | Person Index   | The index of the person in the person list.     |
+|   4.   | Company        | The company the person is working for.          |
+|   5.   | Phone Number   | The person’s phone number.                      |
+|   6.   | Address        | The person’s address.                           |
+|   7.   | Email          | The person's email.                             |
+|   8.   | Priority       | The person's priority.                          |
+|   9.   | Tags           | The tags attached to the person.                |
+
+<div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
+If your provided inputs are too long, Connectify may not be able to fully display them and cut them off! While this is rare, do try to avoid entering unnecessarily long inputs to Connectify (e.g. save a person's nickname rather than their full name).
+</div>
+
+<a href="#table-of-contents" class="btn btn-outline-light link-primary" style="border: #f1f2f4 solid 1px !important; border-radius: 5px !important; padding: 5px !important; text-decoration: none !important;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-bar-up" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M3.646 11.854a.5.5 0 0 0 .708 0L8 8.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708zM2.4 5.2c0 .22.18.4.4.4h10.4a.4.4 0 0 0 0-.8H2.8a.4.4 0 0 0-.4.4z"/></svg> Return to Table of Contents</a>
+
 --------------------------------------------------------------------------------------------------------------------
 
-## Tutorial: Adding your first connection
+### Tutorial: Adding your first connection
 
 Now that you've familiarized yourself with the Connectify interface, it's time to start connecting with people. This step-by-step guide will walk you through the process of adding your first connection to Connectify in three simple steps. You can choose to follow the sample instructions verbatim, or you can get creative and use your own details.
 
@@ -1187,70 +1285,6 @@ That is not a valid command.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Advanced Features
-
-Note that the information in this section is **optional**.
-
-This section is meant for more advanced users of Connectify who are already familiar with the basic functionality and features and who are looking to increase their efficiency further when using Connectify. If you are still getting used to the features, don't worry about the content in this section yet. You can always revisit this section when you are more comfortable using Connectify.
-
-### Keyboard shortcuts
-
-While you can use a mouse to navigate Connectify, using the keyboard can be a great way to improve your efficiency and productivity as you can **reduce time wasted** switching frequently between your keyboard and mouse.
-
-The table on the next page lists the keyboard shortcuts currently available in Connectify.
-
-<div style="page-break-after: always;"></div>
-
-|                  Keyboard Key                  | Function                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-|:----------------------------------------------:|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|                 <kbd>F1</kbd>                  | **Seeking help:**<br> At anytime, press <kbd>F1</kbd> to bring up the pop-up window with the link to the user guide.                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-|                 <kbd>Tab</kbd>                 | **Scrolling down the list:**<br> When you are in the command box, press <kbd>Tab</kbd> twice to navigate to the 'All' list. If you wish to navigate to the 'People' list or 'Companies' list, please refer to the section on the <kbd>LeftArrow</kbd> and <kbd>RightArrow</kbd> section. Once you are at the title any of the three lists, use <kbd>Tab</kbd> to continue moving down that list. Pressing <kbd>Tab</kbd> again after reaching the end of the list will return you to the command box.                                                                              |
-|       <kbd>Shift</kbd> + <kbd>Tab</kbd>        | **Scrolling up the list:**<br> Similar to <kbd>Tab</kbd> but moves up the list instead.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| <kbd>LeftArrow</kbd> and <kbd>RightArrow</kbd> | **Switching to another list:**<br> When you are at the title of the list section, press <kbd>LeftArrow</kbd> to navigate to the title of the list directly to the current list's left. If you are currently at the title of the 'All' list, pressing <kbd>LeftArrow</kbd> wil navigate you to the title of the 'Companies' list. Press <kbd>RightArrow</kbd> to navigate to the title of the list directly to the current list's right. If you are currently at the title of the 'Companies' list, pressing <kbd>RightArrow</kbd> wil navigate you to the title of the 'All' list. |
-|                <kbd>Space</kbd>                | **Navigating a company card in the 'All' list:**<br> When you are at any company card in the 'All' list, use <kbd>Space</kbd> to expand or close the company card you are currently on.                                                                                                                                                                                                                                                                                                                                                                                            |
-|  <kbd>UpArrow</kbd> and <kbd>DownArrow</kbd>   | **Switching to another person card or company card:**<br> When you are in the 'People' list or 'Companies' list, press <kbd>UpArrow</kbd> or <kbd>DownArrow</kbd> to move up or down the list.                                                                                                                                                                                                                                                                                                                                                                                     |
-
-<a href="#table-of-contents" class="return-to-toc-link">
-  <span class="return-to-toc-text">Return to Table of Contents</span>
-  <span class="return-to-toc-icon">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-bar-up" viewBox="0 0 16 16">
-      <path fill-rule="evenodd" d="M3.646 11.854a.5.5 0 0 0 .708 0L8 8.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708zM2.4 5.2c0 .22.18.4.4.4h10.4a.4.4 0 0 0 0-.8H2.8a.4.4 0 0 0-.4.4z">
-      </path>
-    </svg>
-  </span>
-</a>
-
---------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
-
-### Advanced Data Management Features
-
-#### Saving your data
-
-Connectify will automatically save your data on your hard disk after any command that changes it. There is no need for you to manually save your data.
-
-#### Editing your data file
-
-You can directly modify Connectify's data without opening the application. You can do so by editing the Connectify [JSON file](https://fileinfo.com/extension/json) `[JAR file location]/data/addressbook.json`.
-
-<box type="warning" icon=":fa-solid-triangle-exclamation:">
-
-**Warning**
-If your edited data is not of the correct format, Connectify will **discard all of your data** and start with an empty JSON file the next time you launch Connectify. This is **irreversible**, so please **ensure that you have backed up your data** before editing it.
-</box>
-
-<a href="#table-of-contents" class="return-to-toc-link">
-  <span class="return-to-toc-text">Return to Table of Contents</span>
-  <span class="return-to-toc-icon">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-bar-up" viewBox="0 0 16 16">
-      <path fill-rule="evenodd" d="M3.646 11.854a.5.5 0 0 0 .708 0L8 8.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708zM2.4 5.2c0 .22.18.4.4.4h10.4a.4.4 0 0 0 0-.8H2.8a.4.4 0 0 0-.4.4z">
-      </path>
-    </svg>
-  </span>
-</a>
-
---------------------------------------------------------------------------------------------------------------------
-
 ## FAQ
 
 **Q1: How do I navigate around Connectify's UI?**
@@ -1312,18 +1346,36 @@ A: Connectify does not restrict the numerical range for the priority field. Howe
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Glossary
+
+| Term                                                                                 | Description                                                                                                                                                                           |
+|--------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| <span id="glossary-command">_Command_</span>                                         | An instruction for Connectify to execute. All commands start with a [_command phrase_](#glossary-command-phrase) followed by any [_inputs_](#glossary-input) the command may require. |
+| <span id="glossary-command-line-interface-cli">_Command Line Interface (CLI)_</span> | The method by which you instruct Connectify to perform tasks, which is by entering [_commands_](#glossary-command) into the [_command box_](#command-line-section).                   |
+| <span id="glossary-command-phrase">_Command phrase_</span>                           | The name of the instruction for Connectify to execute. For example, [`list`](#listing-all-persons-list) is the _command phrase_ to show the list of persons added to Connectify.      |
+| <span id="glossary-company-index">_Company index_</span>                             | The number that appears next to each company’s name in the current displayed [_company list_](#company-list-section).                                                                 |
+| <span id="glossary-entering-a-command">_Enter[ing]_ a command</span>                 | Type the [_command_](#glossary-command) into the [_command box_](#command-line-section), and press the <kbd>Enter</kbd> key.                                                          |
+| <span id="glossary-input">_Input_</span>                                             | Additional information supplied by you that is used to run a [_command_](#glossary-command).                                                                                          |
+| <span id="glossary-keyboard-shortcut">_Keyboard shortcut_</span>                     | A key or sequence of keys which you may press to perform actions without your mouse.                                                                                                  |
+| <span id="glossary-person-index">_Person index_</span>                               | The number that appears next to each person’s name in the current displayed [_person list_](#person-list-section).                                                                    |
+| <span id="glossary-prefix">_Prefix_</span>                                           | A short piece of text indicating what type of information follows. For example, `n/` is the prefix that indicates that what follows is a name.                                        |
+
+<a href="#table-of-contents" class="btn btn-outline-light link-primary" style="border: #f1f2f4 solid 1px !important; border-radius: 5px !important; padding: 5px !important; text-decoration: none !important;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-bar-up" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M3.646 11.854a.5.5 0 0 0 .708 0L8 8.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708zM2.4 5.2c0 .22.18.4.4.4h10.4a.4.4 0 0 0 0-.8H2.8a.4.4 0 0 0-.4.4z"/></svg> Return to Table of Contents</a>
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## Command Summary
 
 ### Managing Companies
 
-| Action     | Format, Examples                                                                                                                                                                                            |
-|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Action     | Format, Examples                                                                                                                                                                                                                                                                       |
+|------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**    | `addCompany n/NAME i/INDUSTRY l/LOCATION d/DESCRIPTION w/WEBSITE e/EMAIL p/PHONE a/ADDRESS` <br> e.g., `addCompany n/Apple Inc i/Technology l/Silicon Valley d/computer and consumer technology w/www.apple.com e/apple@gmail.com p/98765432 a/1 Infinite Loop, Cupertino, California` |
-| **Delete** | `deleteCompany INDEX`<br> e.g., `deleteCompany 3`                                                                                                                                                           |
-| **Edit**   | `editCompany INDEX [n/NAME] [i/INDUSTRY] [l/LOCATION] [d/DESCRIPTION] [w/WEBSITE] [e/EMAIL] [p/PHONE] [a/ADDRESS]`<br> e.g.,`editCompany 2 n/Apple Inc`                                                     |
-| **List**   | `companies`                                                                                                                                                                                                 |
-| **Note**   | `noteCompany INDEX r/NOTE`<br> e.g., `noteCompany 1 r/Looking for aspiring frontend developers.`                                                                                                            |
-| **Share**  | `shareCompany INDEX`<br> e.g., `shareCompany 1`                                                                                                                                                             |
+| **Delete** | `deleteCompany INDEX`<br> e.g., `deleteCompany 3`                                                                                                                                                                                                                                      |
+| **Edit**   | `editCompany INDEX [n/NAME] [i/INDUSTRY] [l/LOCATION] [d/DESCRIPTION] [w/WEBSITE] [e/EMAIL] [p/PHONE] [a/ADDRESS]`<br> e.g.,`editCompany 2 n/Apple Inc`                                                                                                                                |
+| **List**   | `companies`                                                                                                                                                                                                                                                                            |
+| **Note**   | `noteCompany INDEX r/NOTE`<br> e.g., `noteCompany 1 r/Looking for aspiring frontend developers.`                                                                                                                                                                                       |
+| **Share**  | `shareCompany INDEX`<br> e.g., `shareCompany 1`                                                                                                                                                                                                                                        |
 
 ### Manging People Contacts
 | Action     | Format, Examples                                                                                                          |
