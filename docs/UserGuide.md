@@ -19,12 +19,12 @@ For a full overview of everything this guide has to offer, do make use of the [T
 
 Finally, here are some of the symbols and text formatting to look out for as you make use of this guide:
 
-<div markdown="block" class="alert alert-primary">
-:bulb: **Tips:** Blue boxes contain additional information that may be useful for enhancing your experience using Connectify.
+<div markdown="span" class="alert alert-primary"><strong>💡 Tip:</strong>
+Blue boxes contain additional information that may be useful for enhancing your experience using Connectify.
 </div>
 
-<div markdown="block" class="alert alert-warning">
-:exclamation: **Warnings:** Yellow boxes contain important warnings.
+<div markdown="block" class="alert alert-warning"><strong>&#x2757; Caution:</strong>
+Yellow boxes contain important warnings.
 </div>
 
 |          Text Formatting           | Meaning                                            |
@@ -69,6 +69,7 @@ Finally, here are some of the symbols and text formatting to look out for as you
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
+
 ### Tutorial: Installing Connectify
 
 Getting started with Connectify is extremely simple! Here is a tutorial on how to set up Connectify in **4 easy steps**.
@@ -77,7 +78,8 @@ Getting started with Connectify is extremely simple! Here is a tutorial on how t
 2. Create a new folder to store Connectify.
 3. Download Connectify from the following [**this link**](https://github.com/AY2324S1-CS2103T-T15-4/tp/releases) and save the downloaded file in the directory you created in the previous step.
 4. Launch Connectify by double-clicking the file in the directory. For MAC users, if an error message popup appears, running `java -jar connectify.jar` instead will open Connectify. You'll be greeted by Connectify's primary interface, with an empty database as shown below.
-  <p style="text-align:center;"><img src="images/ConnectifyStartPage.png" width="500" /></p> <br>
+
+    ![Connectify Start Page](images/ConnectifyStartPage.png)
 
 Now that you've successfully installed Connectify, let's take a moment to familiarize ourselves with the application's interface and functionality before diving into its features!
 
@@ -91,19 +93,21 @@ Now that you've successfully installed Connectify, let's take a moment to famili
   </span>
 </a>
 
+--------------------------------------------------------------------------------------------------------------------
+
 ### Tutorial: Navigating the application
 
 * Connectify uses a [Command Line Interface (CLI)](#glossary-command-line-interface-cli) - which means that you perform actions by entering [commands](#glossary-command) for Connectify to carry out. If you want to find out more on how to make use of commands, you can jump ahead to learn the [parts of a command](#parts-of-a-command).
 * Once a command has been successfully carried out, Connectify will display the results accordingly.
 * Refer to the diagrams in the following pages to find out about the different components of Connectify that are responsible for receiving commands, displaying results, and more!
 
-<img src="images/UiDetails.png" width="800" />
+![Ui Details] (images/UiDetails.png)
 
 Each section is made of several components which will be explained in the following pages.
 
 #### Command Line Section
 
-<img src="images/CommandLineSection.png" width="800" />
+![Command Line Section](images/CommandLineSection.png)
 
 This is the section where you can **enter [commands](#glossary-command)** for Connectify, and where the **messages from Connectify are displayed**.
 
@@ -114,7 +118,7 @@ This is the section where you can **enter [commands](#glossary-command)** for Co
 
 #### All Entities Section
 
-<img src="images/AllEntitiesSection.png" width="800" />
+![All Entities Section](images/AllEntitiesSection.png)
 
 This section contains an overview of **all the entities** added to Connectify. **Click a Company's name** to display the **company details**, as well as the **details of persons under that company**.
 
@@ -128,23 +132,23 @@ This section contains an overview of **all the entities** added to Connectify. *
 
 #### Company List Section
 
-<img src="images/CompanyListSection.png" width="800" />
+![Company List Section](images/CompanyListSection.png)
 
 This is the section showing the **list of companies** added to Connectify. Each company contains its **company details**, as well as the **list of persons**.
 
-| Number | Component Name   | Details                                                   |
-|:------:|------------------|-----------------------------------------------------------|
-|   1.   | "Companies" Tab  | Click on this tab to view the "Companies Section".        |
-|   2.   | Name             | The company’s name.                                       |
-|   3.   | Company Index    | The index of the company in the company list.             |
-|   4.   | Industry         | The industry the company is in.                           |
-|   5.   | Phone Number     | The company’s phone number.                               |
-|   7.   | Address          | The person’s address.                                     |
-|   6.   | List of Persons  | A list containing the persons who work for that company.  |
+| Number | Component Name  | Details                                                             |
+|:------:|-----------------|---------------------------------------------------------------------|
+|   1.   | "Companies" Tab | Click on this tab to view the "Companies Section".                  |
+|   2.   | Name            | The company’s name.                                                 |
+|   3.   | Company Index   | The index of the company in the company list.                       |
+|   4.   | Industry        | The industry the company is in.                                     |
+|   5.   | Phone Number    | The company’s phone number.                                         |
+|   6.   | List of Persons | A list containing the persons who are associated with that company. |
+|   7.   | Address         | The company’s address.                                              |
 
 #### Person List Section
 
-<img src="images/PersonListSection.png" width="800" />
+![Person List Section](images/PersonListSection.png)
 
 This is the section showing the **list of persons** added to Connectify. Each person contains their **person details**.
 
@@ -160,7 +164,7 @@ This is the section showing the **list of persons** added to Connectify. Each pe
 |   8.   | Priority       | The person's priority.                          |
 |   9.   | Tags           | The tags attached to the person.                |
 
-<div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="block" class="alert alert-warning"><strong>&#x2757; Caution:</strong>
 If your provided inputs are too long, Connectify may not be able to fully display them and cut them off! While this is rare, do try to avoid entering unnecessarily long inputs to Connectify (e.g. save a person's nickname rather than their full name).
 </div>
 
@@ -170,14 +174,13 @@ If your provided inputs are too long, Connectify may not be able to fully displa
 
 ### Tutorial: Adding your first connection
 
-Now that you've familiarized yourself with the Connectify interface, it's time to start connecting with people. This step-by-step guide will walk you through the process of adding your first connection to Connectify in three simple steps. You can choose to follow the sample instructions verbatim, or you can get creative and use your own details.
+Now that you've familiarized yourself with the Connectify interface, it's time to start connecting with people. This step-by-step guide will walk you through the process of adding your first connection to Connectify in **three simple steps**. You can choose to follow the sample instructions verbatim, or you can get creative and use your own details.
 
 The guide begins on the following page!
 
-As a new user, your Connectify database is empty. Let's add your first connection!
+As a new user, your Connectify database is **empty**. Let's add your first connection!
 
 1. Firstly, you should input a company into your database. The example that we would be using is `addCompany n/Apple Inc i/Technology l/Silicon Valley d/computer and consumer technology w/www.apple.com e/apple@gmail.com p/98765432 a/1 Infinite Loop, Cupertino, California`. This command adds a company named "Apple Inc" to your Connectify database with the relevant details of the company as specified in the command. The output of this command is shown below:
-
 
    ```
    New company added: Apple Inc
@@ -259,15 +262,17 @@ Every command in Connectify is a prompt for action. It's how you command the app
   </span>
 </a>
 
+--------------------------------------------------------------------------------------------------------------------
+
 ### How to Read Command Formats
 
 Throughout this user guide, you'll encounter various [General Commands](#general-commands) specific to Connectify. Let's explore how to interpret these command formats.
 
-* **Providing User Inputs**<br>
+* Providing User Inputs<br>
   Any words in **capital letters** are **your supplied inputs**.  
   For instance, in `editPerson INDEX c/COMPANY`, you can type in `editPerson 1 c/Apple n/Ryan`.
 
-* **Optional Inputs**<br>  
+* Optional Inputs<br>  
   Inputs enclosed within square brackets `[]` are **optional**.  
   For instance, for the command `editPerson INDEX c/COMPANY [n/NAME]`, you can use it in two ways:  
   `editPerson INDEX c/COMPANY n/Ryan` or simply as `editPerson INDEX c/COMPANY`.
@@ -282,11 +287,13 @@ Throughout this user guide, you'll encounter various [General Commands](#general
   </span>
 </a>
 
+--------------------------------------------------------------------------------------------------------------------
+
 ### General Input Guidelines
 
 Here are some guidelines when using the [General Commands](#general-commands). Please follow this to ensure that Connectify understands you! 
 
-* **Flexible Input Order**<br>  
+* Flexible Input Order<br>  
   You can key in inputs in **any order**.<br>
   For example, a command might be structured as `w/WEBSITE e/EMAIL`, but entering `e/EMAIL w/WEBSITE` will work as well.
 
@@ -303,6 +310,8 @@ It's important to avoid including inputs that are not expected by a command. For
     </svg>
   </span>
 </a>
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### Features for managing company details
 
@@ -573,7 +582,7 @@ Note:
 - If the `r/` placeholder is specified twice, the note following the second placeholder will be used.
 
 <div markdown="span" class="alert alert-primary"><strong>💡 Tip:</strong>
-Use the `noteCompany` command in Connectify to add reminders or important details about your interactions with companies.
+Use the <b>noteCompany</b> command in Connectify to add reminders or important details about your interactions with companies.
 </div>
 
 **Example:**
@@ -1382,8 +1391,7 @@ A: Connectify does not restrict the numerical range for the priority field. Howe
 
 1. When entering some commands incorrectly, the displayed error message will refer to "address book" instead of 'Connectify'. "address book" in such cases should be interpreted as "Connectify".
 2. Some labels in the Connectify interface refer to "addressbook" instead of "Connectify'. Such occurences do not affect functionality.
-
-[Coming Soon]
+3. Some of the company details cannot be seen in the Company Card under the **Company List tab**. This is due to the limited space in the Company Card. However, the details can be seen via the Company Card under the **All tab**.
 
 <a href="#table-of-contents" class="return-to-toc-link">
   <span class="return-to-toc-text">Return to Table of Contents</span>

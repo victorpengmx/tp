@@ -37,11 +37,10 @@
     * [Delete Person Feature: `deletePerson`](#delete-person-feature-deleteperson)
     * [Edit Person Feature: `editPerson`](#edit-person-feature-editperson)
     * [List People Command: `people`](#list-people-command-people)
-    * [Add Note to Person Feature: `notePerson`](#add-note-to-person-feature-noteperson)
     * [Ranking People by Priority Feature: `rank`](#ranking-people-by-priority-feature-rank)
+    * [Add Note to Person Feature: `notePerson`](#add-note-to-person-feature-noteperson)
     * [Share Person's Contact Feature: `sharePerson`](#share-persons-contact-feature-shareperson)
     * [List All Command: `list`](#list-all-command-list)
-    * [Finding Entities: `find`](#finding-entities-find)
     * [Clearing the Database: `clear`](#clearing-the-database-clear)
     * [Seeking Help: `help`](#seeking-help-help)
     * [Exiting Connectify: `exit`](#exiting-connectify-exit)
@@ -557,6 +556,36 @@ The sequence diagram below illustrates the events that take place during the exe
 
 ![ListPeopleActivityDiagram.png](images/ListPeopleSequenceDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
+
+
+### Ranking People by Priority Feature: `rank`
+
+#### Implementation
+
+The ranking feature within Connectify is facilitated by the `RankCommand` and associated `RankCommandParser` in the `Logic` component. The `rank` command sorts the list of all persons by their assigned priority, allowing users to manage and view contacts based on importance.
+
+#### Command Usage
+
+To initiate the ranking process, the following command is used:
+
+```plaintext
+rank
+```
+
+This command does not require any additional parameters, simplifying its execution.
+
+Upon successful execution, Connectify outputs the list of people ranked according to their priority.
+
+The sequence of actions undertaken by the rank command is delineated in the activity diagram provided below. This includes the retrieval of all persons, their sorting by priority, and the updating of the user interface to reflect the changes.
+
+The `rankCommand` also handles cases where there are no people in the address book. The command throws a `CommandException` to inform the user.
+
+![rankSequenceDiagram.png](images/rankSequenceDiagram.png)
+
+<div style="page-break-after: always;"></div>
+
 
 
 ### Add Note to Person Feature: `notePerson`
@@ -585,34 +614,6 @@ The behavior of Connectify upon receiving a notePerson command is described in t
 The `NotePersonCommand` also handles cases where the provided person or company index is not valid. It could be that the index does not correspond to any company or person in the current list view, or it is not a positive integer. Under such circumstances, the command throws a `CommandException` to inform the user.
 
 <img src="images/addPersonNoteActivityDiagram.png" width="600" />
-
-<div style="page-break-after: always;"></div>
-
-
-
-### Ranking People by Priority Feature: `rank`
-
-#### Implementation
-
-The ranking feature within Connectify is facilitated by the `RankCommand` and associated `RankCommandParser` in the `Logic` component. The `rank` command sorts the list of all persons by their assigned priority, allowing users to manage and view contacts based on importance.
-
-#### Command Usage
-
-To initiate the ranking process, the following command is used:
-
-```plaintext
-rank
-```
-
-This command does not require any additional parameters, simplifying its execution.
-
-Upon successful execution, Connectify outputs the list of people ranked according to their priority.
-
-The sequence of actions undertaken by the rank command is delineated in the activity diagram provided below. This includes the retrieval of all persons, their sorting by priority, and the updating of the user interface to reflect the changes.
-
-The `rankCommand` also handles cases where there are no people in the address book. The command throws a `CommandException` to inform the user.
-
-![rankSequenceDiagram.png](images/rankSequenceDiagram.png)
 
 <div style="page-break-after: always;"></div>
 
@@ -666,24 +667,6 @@ The sequence diagram below illustrates the events that take place during the exe
 
 
 
-### Finding Entities: `find`
-
-#### Implementation
-
-The `find` command, provided by the `FindCommand` and `FindCommandParser` within the `Logic` component, searches for and lists all entities that match the specified keywords in the Connectify database.
-
-To look for entities containing "John" and "Doe":
-```plaintext
-find John Doe
-```
-A count of matched entities is displayed, and each matched entity is listed out.
-
-The `FindCommand` also handles cases where there are no matches.
-
-<div style="page-break-after: always;"></div>
-
-
-
 ### Clearing the Database: `clear`
 
 #### Implementation
@@ -730,7 +713,6 @@ exit
 After running this command, the application closes.
 
 <div style="page-break-after: always;"></div>
-
 
 
 
@@ -784,8 +766,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * `   | user                                  | assign a priority value to a person | rank persons based on the priority                                      |
 | `* *`    | user with many persons in Connnectify | sort persons by priority            | easily find persons who are more important                              |
 | `* *`    | user                                  | clear all contacts                  | restart with a fresh database                                           |
-
-*{More to be added}*
 
 ### Use cases
 
