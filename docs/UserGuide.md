@@ -80,7 +80,7 @@ Getting started with Connectify is extremely simple! Here is a tutorial on how t
 
 1. Firstly, ensure that you have *Java 11* or above [installed](https://www.baeldung.com/java-check-is-installed) in your Computer.
 2. Create a new folder to store Connectify.
-3. Download Connectify from the following [**this link**](https://github.com/AY2324S1-CS2103T-T15-4/tp/releases) and save the downloaded file in the directory you created in the previous step.
+3. Download Connectify from following [**this link**](https://github.com/AY2324S1-CS2103T-T15-4/tp/releases) and save the downloaded file in the directory you created in the previous step.
 4. Launch Connectify by double-clicking the file in the directory. You'll be greeted by Connectify's primary interface, with an empty database as shown below.
 
 <div markdown="block" class="alert alert-warning"><strong>&#x2757; Caution:</strong>
@@ -1407,7 +1407,7 @@ A: In Connectify, companies and people are considered duplicates if they share t
 
 A: Do note that Connectify's UI does not fully support long fields and will cut off fields that are too long. However, the supported length is likely sufficient for most fields. 
 
-**Q4: What sort of inputs are not allowed in Connectify?**
+**Q4: What sort of input is not allowed in Connectify?**
 
 A: Connectify does not impose strict input validation on the fields of companies and people, other than basic ones such as Names needing to be alphanumeric, not blank, and case-sensitive unique, while phone numbers must be numeric. Stricter input validation will be implemented in future versions of Connectify.
 
@@ -1440,8 +1440,8 @@ A: Connectify does not restrict the numerical range for the priority field. Howe
 ## Known issues
 
 1. When entering some commands incorrectly, the displayed error message will refer to "address book" instead of 'Connectify'. "address book" in such cases should be interpreted as "Connectify".
-2. Some labels in the Connectify interface refer to "addressbook" instead of "Connectify'. Such occurences do not affect functionality.
-3. Some of the company details cannot be seen in the Company Card under the **Company List tab**. This is due to the limited space in the Company Card. However, the details can be seen via the Company Card under the **All tab**.
+2. Some labels in the Connectify interface refer to "addressbook" instead of "Connectify". Connectify can also be seen as an improved version of an address book and such occurrences do not affect functionality.
+3. Some company details cannot be seen in the Company Card under the **Company List tab**. This is due to the limited space in the Company Card. However, the details can be seen via the Company Card under **All tab**.
 
 <a href="#table-of-contents" class="return-to-toc-link">
   <span class="return-to-toc-text">Return to Table of Contents</span>
