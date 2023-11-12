@@ -38,7 +38,7 @@ Yellow boxes contain important warnings.
 --------------------------------------------------------------------------------------------------------------------
 
 ## Table of Contents
-* [Quick start](#quick-start)
+* [Quick Start](#quick-start)
 * [Tutorial: Adding your first connection](#tutorial-adding-your-first-connection)
 * [Features](#features)
   * [Components of a Command](#components-of-a-command)
@@ -50,7 +50,7 @@ Yellow boxes contain important warnings.
     * [Editing a company: `editCompany`](#editing-a-company-editcompany)
     * [Listing all companies: `companies`](#listing-all-companies-companies)
     * [Adding note to a company: `noteCompany`](#adding-note-to-a-company-notecompany)
-    * [Sharing a company details: `shareCompany`](#sharing-a-company-details-sharecompany)
+    * [Sharing company details: `shareCompany`](#sharing-a-company-details-sharecompany)
   * [Features for managing people contact details](#features-for-managing-people-contact-details)
     * [Adding a person: `addPerson`](#adding-a-person-addperson)
     * [Deleting a person: `deletePerson`](#deleting-a-person-deleteperson)
@@ -188,7 +188,7 @@ If your provided inputs are too long, Connectify may not be able to fully displa
 
 ### Tutorial: Adding your first connection
 
-Now that you've familiarized yourself with the Connectify interface, it's time to start connecting with people. This step-by-step guide will walk you through the process of adding your first connection to Connectify in **three simple steps**. You can choose to follow the sample instructions verbatim, or you can get creative and use your own details.
+Now that you've familiarized yourself with the Connectify interface, it's time to start connecting with people. This step-by-step guide will walk you through the process of adding your first connection to Connectify in **three simple steps**. You can choose to follow the sample instructions verbatim, or you can get creative and use your details.
 
 The guide begins on the following page!
 
@@ -353,7 +353,7 @@ The fields are:
 Note:
 - Connectify only supports alphanumeric characters (incl. spaces) for names.
 - Connectify only supports alphanumeric characters for tags.
-- There are no restrictions on the input for the website field as it is for the user's personal reference. This means that websites can be successfully inputted even without the `www` prefix.
+- There are no restrictions on the input for the website field as it is for the user's preference. This means that websites can be successfully inputted even without the `www` prefix.
 - All fields are case-sensitive. This means that `Apple Inc` and `apple inc` are considered different names.
 
 **Example:**
@@ -491,7 +491,7 @@ The fields are:
 
 Note:
 - Connectify only supports alphanumeric characters and spaces for names.
-- There are no restrictions on the input for the website field as it is for the user's personal reference. This means that websites can be successfully inputted even without the `www` prefix.
+- There are no restrictions on the input for the website field as it is for the user's reference. This means that websites can be successfully inputted even without the `www` prefix.
 - All fields are case-sensitive. This means that `Apple Inc` and `apple inc` are considered different names.
 
 **Example:**
@@ -1320,8 +1320,11 @@ Note:
 - This command accepts trailing inputs as long as it is separated from the command by a space.
 
 **Successful Output**
+```
+Opened help window.
+```
 
-A pop-up window will appear with the link to this user guide as shown below:
+Additionally, a pop-up window will appear with the link to this user guide as shown below:
 
 ![Help](images/helpCommand.png)
 
