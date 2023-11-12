@@ -211,8 +211,6 @@ As a new user, your Connectify database is **empty**. Let's add your first conne
 
    ![Adding First Company](images/tutorial_addingFirstCompany.png)
 
-<div style="page-break-after: always;"></div>
-
 2. Now that you've added a company to your Connectify database, it's time to add a person to your database. The example that we would be using is `addPerson n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney c/1 pr/1`. This command adds a person named "John Doe" to your Connectify database with the relevant details of the person as specified in the command. The output of this command is shown below:
 
    ```
@@ -228,8 +226,6 @@ As a new user, your Connectify database is **empty**. Let's add your first conne
    The person has been successfully added to your Connectify database! You should be able to see the person in your database as shown below:
 
     ![Adding First Person](images/tutorial_addingFirstPerson.png)
-
-<div style="page-break-after: always;"></div>
 
 3. Congratulations! You've successfully added your first connection to Connectify. You can now use Connectify to manage your connections and enhance your networking experience. To learn more about the features and functionalities of Connectify, please refer to the [Features](#features) section of this user guide.
 
