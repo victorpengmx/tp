@@ -107,7 +107,7 @@ Now that you've successfully installed Connectify, let's take a moment to famili
 
 ### Tutorial: Navigating the application
 
-* Connectify uses a [Command Line Interface (CLI)](#glossary-command-line-interface-cli) - which means that you perform actions by entering [commands](#glossary-command) for Connectify to carry out. If you want to find out more on how to make use of commands, you can jump ahead to learn the [parts of a command](#parts-of-a-command).
+* Connectify uses a [Command Line Interface (CLI)](#glossary-command-line-interface-cli) - which means that you perform actions by entering [commands](#glossary-command) for Connectify to carry out. If you want to find out more on how to make use of commands, you can jump ahead to learn the [components of a command](#components-of-a-command).
 * Once a command has been successfully carried out, Connectify will display the results accordingly.
 * Refer to the diagrams in the following pages to find out about the different components of Connectify that are responsible for receiving commands, displaying results, and more!
 
@@ -247,7 +247,7 @@ As a new user, your Connectify database is **empty**. Let's add your first conne
 
 ### Components of a Command
 
-Every command in Connectify is a prompt for action. It's how you command the application to organize your network. Let's understand the different parts of a command!
+Every command in Connectify is a prompt for action. It's how you command the application to organize your network. Let's understand the different components of a command!
 
 ![UG Command Example](images/UGCommandExample.png)
 
@@ -1449,7 +1449,7 @@ A: Connectify does not restrict the numerical range for the priority field. Howe
 | <span id="glossary-command">_Command_</span>                                             | An instruction for Connectify to execute. All commands start with a [_command phrase_](#glossary-command-phrase) followed by any [_inputs_](#glossary-input) the command may require. |
 | <span id="glossary-command-line-interface-cli">_Command Line Interface (CLI)_</span>     | The method by which you instruct Connectify to perform tasks, which is by entering [_commands_](#glossary-command) into the [_command box_](#command-line-section).                   |
 | <span id="glossary-graphical-user-interface-gui">_Graphical User Interface (GUI)_</span> | The method by which you instruct Connectify to perform tasks, which is by clicking on buttons and typing into text boxes.                                                             |
-| <span id="glossary-command-phrase">_Command phrase_</span>                               | The name of the instruction for Connectify to execute. For example, [`list`](#listing-all-persons-list) is the _command phrase_ to show the list of persons added to Connectify.      |
+| <span id="glossary-command-phrase">_Command phrase_</span>                               | The name of the instruction for Connectify to execute. For example, [`people`](#listing-all-entities-list) is the _command phrase_ to show the list of persons added to Connectify.   |
 | <span id="glossary-company-index">_Company index_</span>                                 | The number that appears next to each company’s name in the current displayed [_company list_](#company-list-section).                                                                 |
 | <span id="glossary-person-index">_Person index_</span>                                   | The number that appears next to each person’s in the Person List of each company in the current displayed [_company list_](#company-list-section).                                    |
 | <span id="glossary-entering-a-command">_Enter[ing]_ a command</span>                     | Type the [_command_](#glossary-command) into the [_command box_](#command-line-section), and press the <kbd>Enter</kbd> key.                                                          |
