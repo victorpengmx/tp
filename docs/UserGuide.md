@@ -381,8 +381,6 @@ Description: computer and consumer technology
 Website: www.apple.com
 ```
 
-<div style="page-break-after: always;"></div>
-
 You should be able to see the company in Connectify as shown below:
 
 ![Adding Company](images/tutorial_addingFirstCompany.png)
@@ -699,8 +697,6 @@ You should see Connectify display the command to be copied, as shown below. The 
 
 ![Share Company](images/shareCompany.png)
 
-<div style="page-break-after: always;"></div>
-
 **Unsuccessful Output**
 
 - If the specified index is missing or is not a positive integer, you will get the following error message:
@@ -777,8 +773,6 @@ Priority: 1;
 Company: TechCorp;
 Tags: [owesMoney][friends]
 ```
-
-<div style="page-break-after: always;"></div>
 
 You should be able to see the person in Connectify as shown below:
 
@@ -1014,8 +1008,6 @@ Note:
 Listed all persons.
 ```
 
-<div style="page-break-after: always;"></div>
-
 You should be able to see all the people in Connectify as shown below:
 
 ![Listing People](images/listingPeople.png)
@@ -1142,8 +1134,6 @@ Use the `rank` command in Connectify to prioritise your contacts based on curren
 Ranked all persons
 ```
 
-<div style="page-break-after: always;"></div>
-
 You should be able to see the following in Connectify as shown below:
 
 ![Ranking People](images/rankingPeople.png)
@@ -1200,8 +1190,6 @@ Command to add this Person:
 addPerson n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 n/Priority t/owesMoney t/friends
 Do take note that you need to specify Company and priority on your own.
 ```
-
-<div style="page-break-after: always;"></div>
 
 You should see Connectify display the command to be copied, as shown below. The command can be copied and sent to another person, who can then add the company to their Connectify database by pasting the command into the command box and pressing enter.
 
@@ -1265,8 +1253,6 @@ Listed all persons and companies.
 You should be able to see all your connections in Connectify as shown below:
 
 ![Listing All Entities](images/listingAll.png)
-
-<div style="page-break-after: always;"></div>
 
 **Unsuccessful Output**
 
