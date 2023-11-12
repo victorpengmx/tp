@@ -84,7 +84,7 @@ Getting started with Connectify is extremely simple! Here is a tutorial on how t
 4. Launch Connectify by double-clicking the file in the directory. You'll be greeted by Connectify's primary interface, with an empty database as shown below.
 
 <div markdown="block" class="alert alert-warning"><strong>&#x2757; Caution:</strong>
-For MAC users, if an error message popup appears, running `java -jar connectify.jar` while in the same directory via the MAC command terminal instead will open Connectify. Likewise, you will be greeted by Connectify's primary interface, with an empty database as shown below.
+For MAC users, if an error message popup appears, running 'java -jar connectify.jar' while in the same directory via the MAC command terminal instead will open Connectify. Likewise, you will be greeted by Connectify's primary interface, with an empty database as shown below.
 </div>
 
 ![Connectify Start Page](images/ConnectifyStartPage.png)
@@ -107,7 +107,7 @@ Now that you've successfully installed Connectify, let's take a moment to famili
 
 ### Tutorial: Navigating the application
 
-* Connectify uses a [Command Line Interface (CLI)](#glossary-command-line-interface-cli) - which means that you perform actions by entering [commands](#glossary-command) for Connectify to carry out. If you want to find out more on how to make use of commands, you can jump ahead to learn the [parts of a command](#parts-of-a-command).
+* Connectify uses a [Command Line Interface (CLI)](#glossary-command-line-interface-cli) - which means that you perform actions by entering [commands](#glossary-command) for Connectify to carry out. If you want to find out more on how to make use of commands, you can jump ahead to learn the [components of a command](#components-of-a-command).
 * Once a command has been successfully carried out, Connectify will display the results accordingly.
 * Refer to the diagrams in the following pages to find out about the different components of Connectify that are responsible for receiving commands, displaying results, and more!
 
@@ -247,7 +247,7 @@ As a new user, your Connectify database is **empty**. Let's add your first conne
 
 ### Components of a Command
 
-Every command in Connectify is a prompt for action. It's how you command the application to organize your network. Let's understand the different parts of a command!
+Every command in Connectify is a prompt for action. It's how you command the application to organize your network. Let's understand the different components of a command!
 
 ![UG Command Example](images/UGCommandExample.png)
 
@@ -265,7 +265,7 @@ Every command in Connectify is a prompt for action. It's how you command the app
 
 * Inputs<br>
   Inputs are the specific details **you input** for a command to process. <br>
-  In the example above, Facebook is the input that specifies the new name for the company.
+  In the example above, `Facebook` is the input that specifies the new name for the company.
 
 <a href="#table-of-contents" class="return-to-toc-link">
   <span class="return-to-toc-text">Return to Table of Contents</span>
@@ -315,7 +315,7 @@ Here are some guidelines when using the [General Commands](#general-commands). P
   For example, a command might be structured as `w/WEBSITE e/EMAIL`, but entering `e/EMAIL w/WEBSITE` will work as well.
 
 <div markdown="block" class="alert alert-warning"><strong>&#x2757; Caution:</strong>
-It's important to avoid including inputs that are not expected by a command. For example, if a `rank` command is designed to accept zero inputs, adding an input like 'p/12345678` might lead to unintended behaviour.
+It's important to avoid including inputs that are not expected by a command. For example, if a 'rank' command is designed to accept zero inputs, adding an input like 'p/12345678' might lead to unintended behaviour.
 </div>
 
 <a href="#table-of-contents" class="return-to-toc-link">
@@ -1449,7 +1449,7 @@ A: Connectify does not restrict the numerical range for the priority field. Howe
 | <span id="glossary-command">_Command_</span>                                             | An instruction for Connectify to execute. All commands start with a [_command phrase_](#glossary-command-phrase) followed by any [_inputs_](#glossary-input) the command may require. |
 | <span id="glossary-command-line-interface-cli">_Command Line Interface (CLI)_</span>     | The method by which you instruct Connectify to perform tasks, which is by entering [_commands_](#glossary-command) into the [_command box_](#command-line-section).                   |
 | <span id="glossary-graphical-user-interface-gui">_Graphical User Interface (GUI)_</span> | The method by which you instruct Connectify to perform tasks, which is by clicking on buttons and typing into text boxes.                                                             |
-| <span id="glossary-command-phrase">_Command phrase_</span>                               | The name of the instruction for Connectify to execute. For example, [`list`](#listing-all-persons-list) is the _command phrase_ to show the list of persons added to Connectify.      |
+| <span id="glossary-command-phrase">_Command phrase_</span>                               | The name of the instruction for Connectify to execute. For example, [`people`](#listing-all-people-people) is the _command phrase_ to show the list of persons added to Connectify.   |
 | <span id="glossary-company-index">_Company index_</span>                                 | The number that appears next to each company’s name in the current displayed [_company list_](#company-list-section).                                                                 |
 | <span id="glossary-person-index">_Person index_</span>                                   | The number that appears next to each person’s in the Person List of each company in the current displayed [_company list_](#company-list-section).                                    |
 | <span id="glossary-entering-a-command">_Enter[ing]_ a command</span>                     | Type the [_command_](#glossary-command) into the [_command box_](#command-line-section), and press the <kbd>Enter</kbd> key.                                                          |
