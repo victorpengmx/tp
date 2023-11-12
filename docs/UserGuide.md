@@ -84,7 +84,7 @@ Getting started with Connectify is extremely simple! Here is a tutorial on how t
 4. Launch Connectify by double-clicking the file in the directory. You'll be greeted by Connectify's primary interface, with an empty database as shown below.
 
 <div markdown="block" class="alert alert-warning"><strong>&#x2757; Caution:</strong>
-For MAC users, if an error message popup appears, running `java -jar connectify.jar` while in the same directory via the MAC command terminal instead will open Connectify. Likewise, you will be greeted by Connectify's primary interface, with an empty database as shown below.
+For MAC users, if an error message popup appears, running 'java -jar connectify.jar' while in the same directory via the MAC command terminal instead will open Connectify. Likewise, you will be greeted by Connectify's primary interface, with an empty database as shown below.
 </div>
 
 ![Connectify Start Page](images/ConnectifyStartPage.png)
@@ -315,7 +315,7 @@ Here are some guidelines when using the [General Commands](#general-commands). P
   For example, a command might be structured as `w/WEBSITE e/EMAIL`, but entering `e/EMAIL w/WEBSITE` will work as well.
 
 <div markdown="block" class="alert alert-warning"><strong>&#x2757; Caution:</strong>
-It's important to avoid including inputs that are not expected by a command. For example, if a `rank` command is designed to accept zero inputs, adding an input like 'p/12345678` might lead to unintended behaviour.
+It's important to avoid including inputs that are not expected by a command. For example, if a 'rank' command is designed to accept zero inputs, adding an input like 'p/12345678' might lead to unintended behaviour.
 </div>
 
 <a href="#table-of-contents" class="return-to-toc-link">
