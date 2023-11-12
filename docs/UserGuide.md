@@ -39,7 +39,8 @@ Yellow boxes contain important warnings.
 
 ## Table of Contents
 * [Quick Start](#quick-start)
-* [Tutorial: Adding your first connection](#tutorial-adding-your-first-connection)
+* [Tutorial: Installing Connectify](#tutorial--installing-connectify)
+* [Tutorial: Navigating the application](#tutorial--navigating-the-application)
 * [Features](#features)
   * [Components of a Command](#components-of-a-command)
   * [How to Read Command Formats](#how-to-read-command-formats)
@@ -64,6 +65,9 @@ Yellow boxes contain important warnings.
     * [Clearing the database: `clear`](#clearing-the-database-clear)
     * [Seeking Help: `help`](#seeking-help-help)
     * [Exiting Connectify: `exit`](#exiting-connectify-exit)
+  * [Advanced Features](#advanced-features)
+    * [Keyboard Shortcuts](#keyboard-shortcuts)
+    * [Advanced Data Management Features](#advanced-data-management-features)
 * [FAQ](#faq)
 * [Known issues](#known-issues)
 * [Command Summary](#command-summary)
@@ -72,7 +76,7 @@ Yellow boxes contain important warnings.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## Quick Start
 
 ### Tutorial: Installing Connectify
 
@@ -1363,6 +1367,71 @@ There will be no output. The program will exit and the application window will c
 ```
 That is not a valid command.
 ```
+
+<a href="#table-of-contents" class="return-to-toc-link">
+  <span class="return-to-toc-text">Return to Table of Contents</span>
+  <span class="return-to-toc-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-bar-up" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M3.646 11.854a.5.5 0 0 0 .708 0L8 8.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708zM2.4 5.2c0 .22.18.4.4.4h10.4a.4.4 0 0 0 0-.8H2.8a.4.4 0 0 0-.4.4z">
+      </path>
+    </svg>
+  </span>
+</a>
+
+<div style="page-break-after: always;"></div>
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Advanced Features
+
+Note that the information in this section is **optional**.
+
+This section is meant for more advanced users of Connectify who are already familiar with the basic functionality and features and who are looking to increase their efficiency further when using Connectify. If you are still getting used to the features, don't worry about the content in this section yet. You can always revisit this section when you are more comfortable using Connectify.
+
+### Keyboard shortcuts
+
+While you can use a mouse to navigate Connectify, using the keyboard can be a great way to improve your efficiency and productivity as you can **reduce time wasted** switching frequently between your keyboard and mouse.
+
+The table on the next page lists the keyboard shortcuts currently available in Connectify. You can refer to the [Tutorial: Navigating the Application](#tutorial--navigating-the-application) section to familiarise yourself with the components of Connectify that are used in this section.
+
+<div style="page-break-after: always;"></div>
+
+|                  Keyboard Key                  | Function                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+|:----------------------------------------------:|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|                 <kbd>F1</kbd>                  | **Seeking help:**<br> At anytime, press <kbd>F1</kbd> to bring up the pop-up window with the link to the user guide.                                                                                                                                                                                                                                                                                                                                                                                                       |
+|                 <kbd>Tab</kbd>                 | **Scrolling down the section:**<br> When you are in the Command box, press <kbd>Tab</kbd> twice to navigate to the "All" Tab. If you wish to navigate to the "People" Tab or 'Companies' Tab, please refer to the section on the <kbd>LeftArrow</kbd> and <kbd>RightArrow</kbd> keyboard shortcuts. Once you are at the Tab of any of the three sections, use <kbd>Tab</kbd> to continue moving down that section. Pressing <kbd>Tab</kbd> again after reaching the end of the section will return you to the Command box. |
+|       <kbd>Shift</kbd> + <kbd>Tab</kbd>        | **Scrolling up the section:**<br> Similar to <kbd>Tab</kbd> but moves up the section instead.                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| <kbd>LeftArrow</kbd> and <kbd>RightArrow</kbd> | **Switching to another section:**<br> When you are at any of the three Tabs, press <kbd>LeftArrow</kbd> to navigate to the Tab directly to the current Tab's left. If you are currently at the "All" Tab, pressing <kbd>LeftArrow</kbd> wil navigate you to the "Companies" Tab. Press <kbd>RightArrow</kbd> to navigate to the Tab directly to the current Tab's right. If you are currently at the "Companies" Tab, pressing <kbd>RightArrow</kbd> wil navigate you to the "All" Tab.                                    |
+|                <kbd>Space</kbd>                | **Navigating a Company Card in the All Entities Section:**<br> When you are at any Company Card in the All Entities Section, use <kbd>Space</kbd> to expand or close the Company Card you are currently on.                                                                                                                                                                                                                                                                                                                |
+|  <kbd>UpArrow</kbd> and <kbd>DownArrow</kbd>   | **Switching to another Person card or Company card:**<br> When you are in the Person List Section or Company List Section, press <kbd>UpArrow</kbd> or <kbd>DownArrow</kbd> to move up or down the section.                                                                                                                                                                                                                                                                                                                |
+
+<a href="#table-of-contents" class="return-to-toc-link">
+  <span class="return-to-toc-text">Return to Table of Contents</span>
+  <span class="return-to-toc-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-bar-up" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M3.646 11.854a.5.5 0 0 0 .708 0L8 8.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708zM2.4 5.2c0 .22.18.4.4.4h10.4a.4.4 0 0 0 0-.8H2.8a.4.4 0 0 0-.4.4z">
+      </path>
+    </svg>
+  </span>
+</a>
+
+<div style="page-break-after: always;"></div>
+
+--------------------------------------------------------------------------------------------------------------------
+
+### Advanced Data Management Features
+
+#### Saving your data
+
+Connectify will automatically save your data on your hard disk after any command that changes it. There is no need for you to manually save your data.
+
+#### Editing your data file
+
+You can directly modify Connectify's data without opening the application. You can do so by editing the Connectify [JSON file](https://fileinfo.com/extension/json) `[JAR file location]/data/addressbook.json`.
+
+<div markdown="block" class="alert alert-warning"><strong>&#x2757; Caution:</strong>
+If your edited data is not of the correct format, Connectify will **discard all of your data** and start with an empty JSON file the next time you launch Connectify. This is **irreversible**, so please **ensure that you have backed up your data** before editing it.
+</div>
 
 <a href="#table-of-contents" class="return-to-toc-link">
   <span class="return-to-toc-text">Return to Table of Contents</span>
