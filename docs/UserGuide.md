@@ -8,16 +8,16 @@
 
 Welcome to Connectify!
 
-Connectify is your all-in-one networking companion, designed specifically to empower SoC (School of Computing) students in efficiently managing their connections and enhancing their networking experiences. Whether you're a seasoned professional or just starting your networking journey, Connectify is here to help you build and maintain meaningful connections that can propel your career and personal growth.
+Connectify is your all-in-one networking companion, designed specifically to empower **SoC (School of Computing) students** in efficiently managing their connections and enhancing their networking experiences. Whether you're a seasoned professional or just starting your networking journey, Connectify is here to help you build and maintain meaningful connections that can propel your career and personal growth.
 
-Networking is a crucial aspect of your academic and professional life, and Connectify is here to simplify and streamline the process for you. This user guide will walk you through the key features and functionalities of Connectify, ensuring you make the most of this powerful networking platform.
+Networking is a crucial aspect of your academic and professional life, and Connectify is here to simplify and streamline the process for you. The purpose of this user guide is to **walk you through the key features and functionalities of Connectify**, ensuring you make the most of this powerful networking platform.
 
 ### Using this guide
 If you are a new user looking to get started with Connectify, our User Guide can help you with [the installation process](#tutorial-installing-connectify), guide you through [adding your first connection to Connectify](#tutorial-adding-your-first-connection), and familiarise you with how to use all of [Connectify’s features](#features).
 
 For a full overview of everything this guide has to offer, do make use of the [Table of Contents](#table-of-contents)!
 
-Finally, here are some of the symbols and text formatting to look out for as you make use of this guide:
+Finally, here are some of the **symbols** and **text formatting** to look out for as you make use of this guide:
 
 <div markdown="span" class="alert alert-primary"><strong>💡 Tip:</strong>
 Blue boxes contain additional information that may be useful for enhancing your experience using Connectify.
@@ -32,6 +32,8 @@ Yellow boxes contain important warnings.
 | [Hyperlink to Glossary](#glossary) | Clickable hyperlink to navigate to another section |
 |           `command text`           | Text relevant to Connectify user commands          |
 |          <kbd>Enter</kbd>          | A keyboard key                                     |
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -66,6 +68,8 @@ Yellow boxes contain important warnings.
 * [Known issues](#known-issues)
 * [Command Summary](#command-summary)
 
+<div style="page-break-after: always;"></div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
@@ -74,12 +78,16 @@ Yellow boxes contain important warnings.
 
 Getting started with Connectify is extremely simple! Here is a tutorial on how to set up Connectify in **4 easy steps**.
 
-1. Firstly, ensure that you have *Java `11`* or above [installed](https://www.baeldung.com/java-check-is-installed) in your Computer.
+1. Firstly, ensure that you have *Java 11* or above [installed](https://www.baeldung.com/java-check-is-installed) in your Computer.
 2. Create a new folder to store Connectify.
-3. Download Connectify from the following [**this link**](https://github.com/AY2324S1-CS2103T-T15-4/tp/releases) and save the downloaded file in the directory you created in the previous step.
-4. Launch Connectify by double-clicking the file in the directory. For MAC users, if an error message popup appears, running `java -jar connectify.jar` instead will open Connectify. You'll be greeted by Connectify's primary interface, with an empty database as shown below.
+3. Download Connectify from following [**this link**](https://github.com/AY2324S1-CS2103T-T15-4/tp/releases) and save the downloaded file in the directory you created in the previous step.
+4. Launch Connectify by double-clicking the file in the directory. You'll be greeted by Connectify's primary interface, with an empty database as shown below.
 
-    ![Connectify Start Page](images/ConnectifyStartPage.png)
+<div markdown="block" class="alert alert-warning"><strong>&#x2757; Caution:</strong>
+For MAC users, if an error message popup appears, running `java -jar connectify.jar` while in the same directory via the MAC command terminal instead will open Connectify. Likewise, you will be greeted by Connectify's primary interface, with an empty database as shown below.
+</div>
+
+![Connectify Start Page](images/ConnectifyStartPage.png)
 
 Now that you've successfully installed Connectify, let's take a moment to familiarize ourselves with the application's interface and functionality before diving into its features!
 
@@ -93,6 +101,8 @@ Now that you've successfully installed Connectify, let's take a moment to famili
   </span>
 </a>
 
+<div style="page-break-after: always;"></div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ### Tutorial: Navigating the application
@@ -101,7 +111,7 @@ Now that you've successfully installed Connectify, let's take a moment to famili
 * Once a command has been successfully carried out, Connectify will display the results accordingly.
 * Refer to the diagrams in the following pages to find out about the different components of Connectify that are responsible for receiving commands, displaying results, and more!
 
-![Ui Details] (images/UiDetails.png)
+![Ui Details](images/UiDetails.png)
 
 Each section is made of several components which will be explained in the following pages.
 
@@ -115,6 +125,8 @@ This is the section where you can **enter [commands](#glossary-command)** for Co
 |:------:|----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
 |   1.   | Command box    | The box where you enter commands for Connectify to carry out.                                                                                             |
 |   2.   | Message box    | The box where a success message will be displayed when Connectify carries out a command successfully, or an error message when Connectify fails to do so. |
+
+<div style="page-break-after: always;"></div>
 
 #### All Entities Section
 
@@ -170,6 +182,8 @@ If your provided inputs are too long, Connectify may not be able to fully displa
 
 <a href="#table-of-contents" class="btn btn-outline-light link-primary" style="border: #f1f2f4 solid 1px !important; border-radius: 5px !important; padding: 5px !important; text-decoration: none !important;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-bar-up" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M3.646 11.854a.5.5 0 0 0 .708 0L8 8.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708zM2.4 5.2c0 .22.18.4.4.4h10.4a.4.4 0 0 0 0-.8H2.8a.4.4 0 0 0-.4.4z"/></svg> Return to Table of Contents</a>
 
+<div style="page-break-after: always;"></div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ### Tutorial: Adding your first connection
@@ -197,6 +211,8 @@ As a new user, your Connectify database is **empty**. Let's add your first conne
 
    ![Adding First Company](images/tutorial_addingFirstCompany.png)
 
+<div style="page-break-after: always;"></div>
+
 2. Now that you've added a company to your Connectify database, it's time to add a person to your database. The example that we would be using is `addPerson n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney c/1 pr/1`. This command adds a person named "John Doe" to your Connectify database with the relevant details of the person as specified in the command. The output of this command is shown below:
 
    ```
@@ -213,6 +229,8 @@ As a new user, your Connectify database is **empty**. Let's add your first conne
 
     ![Adding First Person](images/tutorial_addingFirstPerson.png)
 
+<div style="page-break-after: always;"></div>
+
 3. Congratulations! You've successfully added your first connection to Connectify. You can now use Connectify to manage your connections and enhance your networking experience. To learn more about the features and functionalities of Connectify, please refer to the [Features](#features) section of this user guide.
 
 <a href="#table-of-contents" class="return-to-toc-link">
@@ -225,6 +243,8 @@ As a new user, your Connectify database is **empty**. Let's add your first conne
   </span>
 </a>
 
+<div style="page-break-after: always;"></div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
@@ -233,24 +253,23 @@ As a new user, your Connectify database is **empty**. Let's add your first conne
 
 Every command in Connectify is a prompt for action. It's how you command the application to organize your network. Let's understand the different parts of a command!
 
-<img src="images/UGCommandExample.png" width="800"/>
+![UG Command Example](images/UGCommandExample.png)
 
-* **Command Name**<br>
+* Command Name<br>
   The **command name** indicates the action you want to perform in Connectify.<br>
   In the example above, `editCompany` is the command name.
 
-* **Index**<br>
+* Index<br>
   The **index** is the **numerical position** of an item in a displayed list within Connectify. <br>
   In the example above, `1` represents the first company in the company list.
 
-* **Prefixes**<br>
+* Prefixes<br>
   Prefixes ending with a `/` help identify the type of information **you provide** in a command. <br>
   In the example above, `n/`serves as a prefix to indicate that you want to edit a company's name to `Facebook`.
 
-* **Inputs**<br>
+* Inputs<br>
   Inputs are the specific details **you input** for a command to process. <br>
   In the example above, Facebook is the input that specifies the new name for the company.
-
 
 <a href="#table-of-contents" class="return-to-toc-link">
   <span class="return-to-toc-text">Return to Table of Contents</span>
@@ -261,6 +280,8 @@ Every command in Connectify is a prompt for action. It's how you command the app
     </svg>
   </span>
 </a>
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -311,6 +332,8 @@ It's important to avoid including inputs that are not expected by a command. For
   </span>
 </a>
 
+<div style="page-break-after: always;"></div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ### Features for managing company details
@@ -358,6 +381,8 @@ Description: computer and consumer technology
 Website: www.apple.com
 ```
 
+<div style="page-break-after: always;"></div>
+
 You should be able to see the company in Connectify as shown below:
 
 ![Adding Company](images/tutorial_addingFirstCompany.png)
@@ -390,6 +415,8 @@ You should be able to see the company in Connectify as shown below:
     </svg>
   </span>
 </a>
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -444,6 +471,8 @@ The company index provided is invalid.
     </svg>
   </span>
 </a>
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -522,6 +551,8 @@ Example: editCompany 1 n/TechCorp p/91234567 e/techcorp@gmail.com a/123, Jurong 
   </span>
 </a>
 
+<div style="page-break-after: always;"></div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ####  Listing all companies: `companies`
@@ -562,6 +593,8 @@ There are no companies in Connectify.
     </svg>
   </span>
 </a>
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -631,6 +664,8 @@ Example: noteCompany 1 r/Looking for aspiring frontend developers.
   </span>
 </a>
 
+<div style="page-break-after: always;"></div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 #### Sharing a company details: `shareCompany`
@@ -664,6 +699,8 @@ You should see Connectify display the command to be copied, as shown below. The 
 
 ![Share Company](images/shareCompany.png)
 
+<div style="page-break-after: always;"></div>
+
 **Unsuccessful Output**
 
 - If the specified index is missing or is not a positive integer, you will get the following error message:
@@ -678,6 +715,18 @@ Example: shareCompany 1
 ```
 The company index provided is invalid.
 ```
+
+<a href="#table-of-contents" class="return-to-toc-link">
+  <span class="return-to-toc-text">Return to Table of Contents</span>
+  <span class="return-to-toc-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-bar-up" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M3.646 11.854a.5.5 0 0 0 .708 0L8 8.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708zM2.4 5.2c0 .22.18.4.4.4h10.4a.4.4 0 0 0 0-.8H2.8a.4.4 0 0 0-.4.4z">
+      </path>
+    </svg>
+  </span>
+</a>
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -729,6 +778,8 @@ Company: TechCorp;
 Tags: [owesMoney][friends]
 ```
 
+<div style="page-break-after: always;"></div>
+
 You should be able to see the person in Connectify as shown below:
 
 ![Adding Person](images/tutorial_addingFirstPerson.png)
@@ -766,6 +817,8 @@ You should be able to see the person in Connectify as shown below:
     </svg>
   </span>
 </a>
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -840,6 +893,8 @@ The company index provided is invalid.
     </svg>
   </span>
 </a>
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -937,6 +992,8 @@ This person already exists in the Connectify.
   </span>
 </a>
 
+<div style="page-break-after: always;"></div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ####  Listing all people: `people`
@@ -956,6 +1013,8 @@ Note:
 ```
 Listed all persons.
 ```
+
+<div style="page-break-after: always;"></div>
 
 You should be able to see all the people in Connectify as shown below:
 
@@ -977,6 +1036,8 @@ There are no people in Connectify.
     </svg>
   </span>
 </a>
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1054,6 +1115,8 @@ The person index provided is invalid.
   </span>
 </a>
 
+<div style="page-break-after: always;"></div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 #### Ranking people by priority: `rank`
@@ -1079,6 +1142,8 @@ Use the `rank` command in Connectify to prioritise your contacts based on curren
 Ranked all persons
 ```
 
+<div style="page-break-after: always;"></div>
+
 You should be able to see the following in Connectify as shown below:
 
 ![Ranking People](images/rankingPeople.png)
@@ -1099,6 +1164,8 @@ There are no people in Connectify.
     </svg>
   </span>
 </a>
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1134,6 +1201,8 @@ addPerson n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-2
 Do take note that you need to specify Company and priority on your own.
 ```
 
+<div style="page-break-after: always;"></div>
+
 You should see Connectify display the command to be copied, as shown below. The command can be copied and sent to another person, who can then add the company to their Connectify database by pasting the command into the command box and pressing enter.
 
 ![Share Person](images/sharePerson.png)
@@ -1167,6 +1236,8 @@ The person index provided is invalid.
   </span>
 </a>
 
+<div style="page-break-after: always;"></div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ### General Commands
@@ -1184,13 +1255,6 @@ list
 Note:
 - This command has no additional fields.
 - This command accepts trailing inputs as long as it is separated from the command by a space.
-```
-list
-```
-
-Note:
-- This command has no additional fields.
-- This command accepts trailing inputs as long as it is separated from the command by a space.
 
 **Successful Output**
 
@@ -1201,6 +1265,8 @@ Listed all persons and companies.
 You should be able to see all your connections in Connectify as shown below:
 
 ![Listing All Entities](images/listingAll.png)
+
+<div style="page-break-after: always;"></div>
 
 **Unsuccessful Output**
 
@@ -1218,32 +1284,8 @@ There are no entities in Connectify.
     </svg>
   </span>
 </a>
-**Successful Output**
 
-```
-Listed all persons and companies.
-```
-
-You should be able to see all your connections in Connectify as shown below:
-
-![Listing All Entities](images/listingAll.png)
-
-**Unsuccessful Output**
-
-- If Connectify is empty, and there are no entities to display, you will receive the following message:
-```
-There are no entities in Connectify.
-```
-
-<a href="#table-of-contents" class="return-to-toc-link">
-  <span class="return-to-toc-text">Return to Table of Contents</span>
-  <span class="return-to-toc-icon">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-bar-up" viewBox="0 0 16 16">
-      <path fill-rule="evenodd" d="M3.646 11.854a.5.5 0 0 0 .708 0L8 8.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708zM2.4 5.2c0 .22.18.4.4.4h10.4a.4.4 0 0 0 0-.8H2.8a.4.4 0 0 0-.4.4z">
-      </path>
-    </svg>
-  </span>
-</a>
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1279,11 +1321,13 @@ Do take note that this `clear` action is irreversible. Your company and people l
   </span>
 </a>
 
+<div style="page-break-after: always;"></div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 #### Seeking Help: `help`
 
-The `help` command displays a link to this user guide. This command is useful for obtaining an overview of all the commands available in Connectify. The command format is as follows:
+The `help` command displays a link to this user guide. This command is useful for obtaining an overview of all the commands available in Connectify for you. The command format is as follows:
 
 ```
 help
@@ -1308,6 +1352,8 @@ A pop-up window will appear with the link to this user guide as shown below:
     </svg>
   </span>
 </a>
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1343,6 +1389,8 @@ That is not a valid command.
   </span>
 </a>
 
+<div style="page-break-after: always;"></div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -1359,7 +1407,7 @@ A: In Connectify, companies and people are considered duplicates if they share t
 
 A: Do note that Connectify's UI does not fully support long fields and will cut off fields that are too long. However, the supported length is likely sufficient for most fields. 
 
-**Q4: What sort of inputs are not allowed in Connectify?**
+**Q4: What sort of input is not allowed in Connectify?**
 
 A: Connectify does not impose strict input validation on the fields of companies and people, other than basic ones such as Names needing to be alphanumeric, not blank, and case-sensitive unique, while phone numbers must be numeric. Stricter input validation will be implemented in future versions of Connectify.
 
@@ -1385,13 +1433,15 @@ A: Connectify does not restrict the numerical range for the priority field. Howe
   </span>
 </a>
 
+<div style="page-break-after: always;"></div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Known issues
 
 1. When entering some commands incorrectly, the displayed error message will refer to "address book" instead of 'Connectify'. "address book" in such cases should be interpreted as "Connectify".
-2. Some labels in the Connectify interface refer to "addressbook" instead of "Connectify'. Such occurences do not affect functionality.
-3. Some of the company details cannot be seen in the Company Card under the **Company List tab**. This is due to the limited space in the Company Card. However, the details can be seen via the Company Card under the **All tab**.
+2. Some labels in the Connectify interface refer to "addressbook" instead of "Connectify". Connectify can also be seen as an improved version of an address book and such occurrences do not affect functionality.
+3. Some company details cannot be seen in the Company Card under the **Company List tab**. This is due to the limited space in the Company Card. However, the details can be seen via the Company Card under **All tab**.
 
 <a href="#table-of-contents" class="return-to-toc-link">
   <span class="return-to-toc-text">Return to Table of Contents</span>
@@ -1403,23 +1453,30 @@ A: Connectify does not restrict the numerical range for the priority field. Howe
   </span>
 </a>
 
+<div style="page-break-after: always;"></div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Glossary
 
-| Term                                                                                 | Description                                                                                                                                                                           |
-|--------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| <span id="glossary-command">_Command_</span>                                         | An instruction for Connectify to execute. All commands start with a [_command phrase_](#glossary-command-phrase) followed by any [_inputs_](#glossary-input) the command may require. |
-| <span id="glossary-command-line-interface-cli">_Command Line Interface (CLI)_</span> | The method by which you instruct Connectify to perform tasks, which is by entering [_commands_](#glossary-command) into the [_command box_](#command-line-section).                   |
-| <span id="glossary-command-phrase">_Command phrase_</span>                           | The name of the instruction for Connectify to execute. For example, [`list`](#listing-all-persons-list) is the _command phrase_ to show the list of persons added to Connectify.      |
-| <span id="glossary-company-index">_Company index_</span>                             | The number that appears next to each company’s name in the current displayed [_company list_](#company-list-section).                                                                 |
-| <span id="glossary-entering-a-command">_Enter[ing]_ a command</span>                 | Type the [_command_](#glossary-command) into the [_command box_](#command-line-section), and press the <kbd>Enter</kbd> key.                                                          |
-| <span id="glossary-input">_Input_</span>                                             | Additional information supplied by you that is used to run a [_command_](#glossary-command).                                                                                          |
-| <span id="glossary-keyboard-shortcut">_Keyboard shortcut_</span>                     | A key or sequence of keys which you may press to perform actions without your mouse.                                                                                                  |
-| <span id="glossary-person-index">_Person index_</span>                               | The number that appears next to each person’s name in the current displayed [_person list_](#person-list-section).                                                                    |
-| <span id="glossary-prefix">_Prefix_</span>                                           | A short piece of text indicating what type of information follows. For example, `n/` is the prefix that indicates that what follows is a name.                                        |
+| Term                                                                                     | Description                                                                                                                                                                           |
+|------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| <span id="glossary-command">_Command_</span>                                             | An instruction for Connectify to execute. All commands start with a [_command phrase_](#glossary-command-phrase) followed by any [_inputs_](#glossary-input) the command may require. |
+| <span id="glossary-command-line-interface-cli">_Command Line Interface (CLI)_</span>     | The method by which you instruct Connectify to perform tasks, which is by entering [_commands_](#glossary-command) into the [_command box_](#command-line-section).                   |
+| <span id="glossary-graphical-user-interface-gui">_Graphical User Interface (GUI)_</span> | The method by which you instruct Connectify to perform tasks, which is by clicking on buttons and typing into text boxes.                                                             |
+| <span id="glossary-command-phrase">_Command phrase_</span>                               | The name of the instruction for Connectify to execute. For example, [`list`](#listing-all-persons-list) is the _command phrase_ to show the list of persons added to Connectify.      |
+| <span id="glossary-company-index">_Company index_</span>                                 | The number that appears next to each company’s name in the current displayed [_company list_](#company-list-section).                                                                 |
+| <span id="glossary-person-index">_Person index_</span>                                   | The number that appears next to each person’s in the Person List of each company in the current displayed [_company list_](#company-list-section).                                    |
+| <span id="glossary-entering-a-command">_Enter[ing]_ a command</span>                     | Type the [_command_](#glossary-command) into the [_command box_](#command-line-section), and press the <kbd>Enter</kbd> key.                                                          |
+| <span id="glossary-input">_Input_</span>                                                 | Additional information supplied by you that is used to run a [_command_](#glossary-command).                                                                                          |
+| <span id="glossary-keyboard-shortcut">_Keyboard shortcut_</span>                         | A key or sequence of keys which you may press to perform actions without your mouse.                                                                                                  |
+| <span id="glossary-person-index">_Person index_</span>                                   | The number that appears next to each person’s name in the current displayed [_person list_](#person-list-section).                                                                    |
+| <span id="glossary-prefix">_Prefix_</span>                                               | A short piece of text indicating what type of information follows. For example, `n/` is the prefix that indicates that what follows is a name.                                        |
+| <span id="glossary-priority">_Priority_</span>                                           | A numerical value assigned to a person to indicate how important they are.                                                                                                            |
 
 <a href="#table-of-contents" class="btn btn-outline-light link-primary" style="border: #f1f2f4 solid 1px !important; border-radius: 5px !important; padding: 5px !important; text-decoration: none !important;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-bar-up" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M3.646 11.854a.5.5 0 0 0 .708 0L8 8.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708zM2.4 5.2c0 .22.18.4.4.4h10.4a.4.4 0 0 0 0-.8H2.8a.4.4 0 0 0-.4.4z"/></svg> Return to Table of Contents</a>
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1464,3 +1521,5 @@ A: Connectify does not restrict the numerical range for the priority field. Howe
     </svg>
   </span>
 </a>
+
+<div style="page-break-after: always;"></div>
