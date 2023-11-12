@@ -40,7 +40,7 @@ Yellow boxes contain important warnings.
 ## Table of Contents
 * [Quick Start](#quick-start)
 * [Tutorial: Installing Connectify](#tutorial--installing-connectify)
-* [Tutorial: Navigating the Application](#tutorial--navigating-the-application)
+* [Tutorial: Navigating the application](#tutorial--navigating-the-application)
 * [Features](#features)
   * [Components of a Command](#components-of-a-command)
   * [How to Read Command Formats](#how-to-read-command-formats)
@@ -51,7 +51,7 @@ Yellow boxes contain important warnings.
     * [Editing a company: `editCompany`](#editing-a-company-editcompany)
     * [Listing all companies: `companies`](#listing-all-companies-companies)
     * [Adding note to a company: `noteCompany`](#adding-note-to-a-company-notecompany)
-    * [Sharing a company details: `shareCompany`](#sharing-a-company-details-sharecompany)
+    * [Sharing company details: `shareCompany`](#sharing-a-company-details-sharecompany)
   * [Features for managing people contact details](#features-for-managing-people-contact-details)
     * [Adding a person: `addPerson`](#adding-a-person-addperson)
     * [Deleting a person: `deletePerson`](#deleting-a-person-deleteperson)
@@ -88,7 +88,7 @@ Getting started with Connectify is extremely simple! Here is a tutorial on how t
 4. Launch Connectify by double-clicking the file in the directory. You'll be greeted by Connectify's primary interface, with an empty database as shown below.
 
 <div markdown="block" class="alert alert-warning"><strong>&#x2757; Caution:</strong>
-For MAC users, if an error message popup appears, running `java -jar connectify.jar` while in the same directory via the MAC command terminal instead will open Connectify. Likewise, you will be greeted by Connectify's primary interface, with an empty database as shown below.
+For MAC users, if an error message popup appears, running 'java -jar connectify.jar' while in the same directory via the MAC command terminal instead will open Connectify. Likewise, you will be greeted by Connectify's primary interface, with an empty database as shown below.
 </div>
 
 ![Connectify Start Page](images/ConnectifyStartPage.png)
@@ -111,7 +111,7 @@ Now that you've successfully installed Connectify, let's take a moment to famili
 
 ### Tutorial: Navigating the application
 
-* Connectify uses a [Command Line Interface (CLI)](#glossary-command-line-interface-cli) - which means that you perform actions by entering [commands](#glossary-command) for Connectify to carry out. If you want to find out more on how to make use of commands, you can jump ahead to learn the [parts of a command](#parts-of-a-command).
+* Connectify uses a [Command Line Interface (CLI)](#glossary-command-line-interface-cli) - which means that you perform actions by entering [commands](#glossary-command) for Connectify to carry out. If you want to find out more on how to make use of commands, you can jump ahead to learn the [components of a command](#components-of-a-command).
 * Once a command has been successfully carried out, Connectify will display the results accordingly.
 * Refer to the diagrams in the following pages to find out about the different components of Connectify that are responsible for receiving commands, displaying results, and more!
 
@@ -192,7 +192,7 @@ If your provided inputs are too long, Connectify may not be able to fully displa
 
 ### Tutorial: Adding your first connection
 
-Now that you've familiarized yourself with the Connectify interface, it's time to start connecting with people. This step-by-step guide will walk you through the process of adding your first connection to Connectify in **three simple steps**. You can choose to follow the sample instructions verbatim, or you can get creative and use your own details.
+Now that you've familiarized yourself with the Connectify interface, it's time to start connecting with people. This step-by-step guide will walk you through the process of adding your first connection to Connectify in **three simple steps**. You can choose to follow the sample instructions verbatim, or you can get creative and use your details.
 
 The guide begins on the following page!
 
@@ -215,8 +215,6 @@ As a new user, your Connectify database is **empty**. Let's add your first conne
 
    ![Adding First Company](images/tutorial_addingFirstCompany.png)
 
-<div style="page-break-after: always;"></div>
-
 2. Now that you've added a company to your Connectify database, it's time to add a person to your database. The example that we would be using is `addPerson n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney c/1 pr/1`. This command adds a person named "John Doe" to your Connectify database with the relevant details of the person as specified in the command. The output of this command is shown below:
 
    ```
@@ -232,8 +230,6 @@ As a new user, your Connectify database is **empty**. Let's add your first conne
    The person has been successfully added to your Connectify database! You should be able to see the person in your database as shown below:
 
     ![Adding First Person](images/tutorial_addingFirstPerson.png)
-
-<div style="page-break-after: always;"></div>
 
 3. Congratulations! You've successfully added your first connection to Connectify. You can now use Connectify to manage your connections and enhance your networking experience. To learn more about the features and functionalities of Connectify, please refer to the [Features](#features) section of this user guide.
 
@@ -255,7 +251,7 @@ As a new user, your Connectify database is **empty**. Let's add your first conne
 
 ### Components of a Command
 
-Every command in Connectify is a prompt for action. It's how you command the application to organize your network. Let's understand the different parts of a command!
+Every command in Connectify is a prompt for action. It's how you command the application to organize your network. Let's understand the different components of a command!
 
 ![UG Command Example](images/UGCommandExample.png)
 
@@ -273,7 +269,7 @@ Every command in Connectify is a prompt for action. It's how you command the app
 
 * Inputs<br>
   Inputs are the specific details **you input** for a command to process. <br>
-  In the example above, Facebook is the input that specifies the new name for the company.
+  In the example above, `Facebook` is the input that specifies the new name for the company.
 
 <a href="#table-of-contents" class="return-to-toc-link">
   <span class="return-to-toc-text">Return to Table of Contents</span>
@@ -323,7 +319,7 @@ Here are some guidelines when using the [General Commands](#general-commands). P
   For example, a command might be structured as `w/WEBSITE e/EMAIL`, but entering `e/EMAIL w/WEBSITE` will work as well.
 
 <div markdown="block" class="alert alert-warning"><strong>&#x2757; Caution:</strong>
-It's important to avoid including inputs that are not expected by a command. For example, if a `rank` command is designed to accept zero inputs, adding an input like 'p/12345678` might lead to unintended behaviour.
+It's important to avoid including inputs that are not expected by a command. For example, if a 'rank' command is designed to accept zero inputs, adding an input like 'p/12345678' might lead to unintended behaviour.
 </div>
 
 <a href="#table-of-contents" class="return-to-toc-link">
@@ -361,7 +357,7 @@ The fields are:
 Note:
 - Connectify only supports alphanumeric characters (incl. spaces) for names.
 - Connectify only supports alphanumeric characters for tags.
-- There are no restrictions on the input for the website field as it is for the user's personal reference. This means that websites can be successfully inputted even without the `www` prefix.
+- There are no restrictions on the input for the website field as it is for the user's preference. This means that websites can be successfully inputted even without the `www` prefix.
 - All fields are case-sensitive. This means that `Apple Inc` and `apple inc` are considered different names.
 
 **Example:**
@@ -384,8 +380,6 @@ Location: Los Altos
 Description: computer and consumer technology
 Website: www.apple.com
 ```
-
-<div style="page-break-after: always;"></div>
 
 You should be able to see the company in Connectify as shown below:
 
@@ -501,7 +495,7 @@ The fields are:
 
 Note:
 - Connectify only supports alphanumeric characters and spaces for names.
-- There are no restrictions on the input for the website field as it is for the user's personal reference. This means that websites can be successfully inputted even without the `www` prefix.
+- There are no restrictions on the input for the website field as it is for the user's reference. This means that websites can be successfully inputted even without the `www` prefix.
 - All fields are case-sensitive. This means that `Apple Inc` and `apple inc` are considered different names.
 
 **Example:**
@@ -703,8 +697,6 @@ You should see Connectify display the command to be copied, as shown below. The 
 
 ![Share Company](images/shareCompany.png)
 
-<div style="page-break-after: always;"></div>
-
 **Unsuccessful Output**
 
 - If the specified index is missing or is not a positive integer, you will get the following error message:
@@ -781,8 +773,6 @@ Priority: 1;
 Company: TechCorp;
 Tags: [owesMoney][friends]
 ```
-
-<div style="page-break-after: always;"></div>
 
 You should be able to see the person in Connectify as shown below:
 
@@ -1018,8 +1008,6 @@ Note:
 Listed all persons.
 ```
 
-<div style="page-break-after: always;"></div>
-
 You should be able to see all the people in Connectify as shown below:
 
 ![Listing People](images/listingPeople.png)
@@ -1146,8 +1134,6 @@ Use the `rank` command in Connectify to prioritise your contacts based on curren
 Ranked all persons
 ```
 
-<div style="page-break-after: always;"></div>
-
 You should be able to see the following in Connectify as shown below:
 
 ![Ranking People](images/rankingPeople.png)
@@ -1204,8 +1190,6 @@ Command to add this Person:
 addPerson n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 n/Priority t/owesMoney t/friends
 Do take note that you need to specify Company and priority on your own.
 ```
-
-<div style="page-break-after: always;"></div>
 
 You should see Connectify display the command to be copied, as shown below. The command can be copied and sent to another person, who can then add the company to their Connectify database by pasting the command into the command box and pressing enter.
 
@@ -1269,8 +1253,6 @@ Listed all persons and companies.
 You should be able to see all your connections in Connectify as shown below:
 
 ![Listing All Entities](images/listingAll.png)
-
-<div style="page-break-after: always;"></div>
 
 **Unsuccessful Output**
 
@@ -1342,8 +1324,11 @@ Note:
 - This command accepts trailing inputs as long as it is separated from the command by a space.
 
 **Successful Output**
+```
+Opened help window.
+```
 
-A pop-up window will appear with the link to this user guide as shown below:
+Additionally, a pop-up window will appear with the link to this user guide as shown below:
 
 ![Help](images/helpCommand.png)
 
@@ -1533,7 +1518,7 @@ A: Connectify does not restrict the numerical range for the priority field. Howe
 | <span id="glossary-command">_Command_</span>                                             | An instruction for Connectify to execute. All commands start with a [_command phrase_](#glossary-command-phrase) followed by any [_inputs_](#glossary-input) the command may require. |
 | <span id="glossary-command-line-interface-cli">_Command Line Interface (CLI)_</span>     | The method by which you instruct Connectify to perform tasks, which is by entering [_commands_](#glossary-command) into the [_command box_](#command-line-section).                   |
 | <span id="glossary-graphical-user-interface-gui">_Graphical User Interface (GUI)_</span> | The method by which you instruct Connectify to perform tasks, which is by clicking on buttons and typing into text boxes.                                                             |
-| <span id="glossary-command-phrase">_Command phrase_</span>                               | The name of the instruction for Connectify to execute. For example, [`list`](#listing-all-persons-list) is the _command phrase_ to show the list of persons added to Connectify.      |
+| <span id="glossary-command-phrase">_Command phrase_</span>                               | The name of the instruction for Connectify to execute. For example, [`people`](#listing-all-people-people) is the _command phrase_ to show the list of persons added to Connectify.   |
 | <span id="glossary-company-index">_Company index_</span>                                 | The number that appears next to each company’s name in the current displayed [_company list_](#company-list-section).                                                                 |
 | <span id="glossary-person-index">_Person index_</span>                                   | The number that appears next to each person’s in the Person List of each company in the current displayed [_company list_](#company-list-section).                                    |
 | <span id="glossary-entering-a-command">_Enter[ing]_ a command</span>                     | Type the [_command_](#glossary-command) into the [_command box_](#command-line-section), and press the <kbd>Enter</kbd> key.                                                          |
