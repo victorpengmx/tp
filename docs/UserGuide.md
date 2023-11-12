@@ -265,7 +265,7 @@ Every command in Connectify is a prompt for action. It's how you command the app
 
 * Inputs<br>
   Inputs are the specific details **you input** for a command to process. <br>
-  In the example above, Facebook is the input that specifies the new name for the company.
+  In the example above, `Facebook` is the input that specifies the new name for the company.
 
 <a href="#table-of-contents" class="return-to-toc-link">
   <span class="return-to-toc-text">Return to Table of Contents</span>
