@@ -27,29 +27,50 @@
     * [Storage component](#storage-component)
     * [Common classes](#common-classes)
   * [**Implementation**](#implementation)
-    * [Add Company Feature: `addCompany`](#add-company-feature-addcompany)
-    * [Delete Company Feature: `deleteCompany`](#delete-company-feature-deletecompany)
-    * [Edit Company Feature: `editCompany`](#edit-company-feature-editcompany)
-    * [List Companies Command: `companies`](#list-companies-command-companies)
-    * [Add Note to Company Feature: `noteCompany`](#add-note-to-company-feature-notecompany)
-    * [Share Company's Contact Feature: `shareCompany`](#share-companys-contact-feature-sharecompany)
-    * [Add Person Feature: `addPerson`](#add-person-feature-addperson)
-    * [Delete Person Feature: `deletePerson`](#delete-person-feature-deleteperson)
-    * [Edit Person Feature: `editPerson`](#edit-person-feature-editperson)
-    * [List People Command: `people`](#list-people-command-people)
-    * [Add Note to Person Feature: `notePerson`](#add-note-to-person-feature-noteperson)
-    * [Ranking People by Priority Feature: `rank`](#ranking-people-by-priority-feature-rank)
-    * [Share Person's Contact Feature: `sharePerson`](#share-persons-contact-feature-shareperson)
-    * [List All Command: `list`](#list-all-command-list)
-    * [Clearing the Database: `clear`](#clearing-the-database-clear)
-    * [Seeking Help: `help`](#seeking-help-help)
-    * [Exiting Connectify: `exit`](#exiting-connectify-exit)
-* [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
-* [Appendix: Requirements](#appendix-requirements)
-    * [Product Scope](#product-scope)
-    * [User Stories](#user-stories)
-    * [Use Cases](#use-cases)
-    * [Non-Funtional Requirements](#non-functional-requirements)
+    * [Add Company Feature: `addCompany`](#add-company-feature--addcompany)
+      * [Implementation](#implementation-1)
+    * [Delete Company Feature: `deleteCompany`](#delete-company-feature--deletecompany)
+      * [Implementation](#implementation-2)
+    * [Edit Company Feature: `editCompany`](#edit-company-feature--editcompany)
+      * [Implementation](#implementation-3)
+    * [List Companies Command: `companies`](#list-companies-command--companies)
+      * [Implementation](#implementation-4)
+    * [Add Note to Company Feature: `noteCompany`](#add-note-to-company-feature--notecompany)
+      * [Implementation](#implementation-5)
+    * [Share Company's Contact Feature: `shareCompany`](#share-companys-contact-feature--sharecompany)
+      * [Implementation](#implementation-6)
+    * [Add Person Feature: `addPerson`](#add-person-feature--addperson)
+      * [Implementation](#implementation-7)
+    * [Delete Person Feature: `deletePerson`](#delete-person-feature--deleteperson)
+      * [Implementation](#implementation-8)
+    * [Edit Person Feature: `editPerson`](#edit-person-feature--editperson)
+      * [Implementation](#implementation-9)
+    * [List People Command: `people`](#list-people-command--people)
+      * [Implementation](#implementation-10)
+    * [Add Note to Person Feature: `notePerson`](#add-note-to-person-feature--noteperson)
+      * [Implementation](#implementation-11)
+    * [Ranking People by Priority Feature: `rank`](#ranking-people-by-priority-feature--rank)
+      * [Implementation](#implementation-12)
+      * [Command Usage](#command-usage)
+    * [Share Person's Contact Feature: `sharePerson`](#share-persons-contact-feature--shareperson)
+      * [Implementation](#implementation-13)
+    * [List All Command: `list`](#list-all-command--list)
+      * [Implementation](#implementation-14)
+    * [Clearing the Database: `clear`](#clearing-the-database--clear)
+      * [Implementation](#implementation-15)
+      * [Command Usage](#command-usage-1)
+    * [Seeking Help: `help`](#seeking-help--help)
+      * [Implementation](#implementation-16)
+      * [Command Usage](#command-usage-2)
+    * [Exiting Connectify: `exit`](#exiting-connectify--exit)
+      * [Implementation](#implementation-17)
+      * [Command Usage](#command-usage-3)
+  * [**Documentation, logging, testing, configuration, dev-ops**](#documentation-logging-testing-configuration-dev-ops)
+  * [**Appendix: Requirements**](#appendix-requirements)
+    * [Product scope](#product-scope)
+    * [User stories](#user-stories)
+    * [Use cases](#use-cases)
+    * [Non-Functional Requirements](#non-functional-requirements)
     * [Glossary](#glossary)
   * [**Appendix: Instructions for manual testing**](#appendix-instructions-for-manual-testing)
     * [Launch and shutdown](#launch-and-shutdown)
@@ -67,7 +88,6 @@
     * [Clear](#clear)
     * [List/Display entities](#listdisplay-entities)
     * [Ranking](#ranking)
-    * [Find](#find)
     * [Seeking help](#seeking-help)
     * [Saving data](#saving-data)
     * [Exit](#exit)
@@ -757,7 +777,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user                                  | add notes to a person               | add and view more information on the person                             |
 | `* *`    | user                                  | share a company                     | share the company details with others                                   |
 | `* *`    | user                                  | share a person                      | share the person details with others                                    |
-| `* * *`  | user                                  | find a contact by name              | locate details of contacts without having to go through the entire list |
 | `* * *`  | user                                  | list all contacts                   | know what persons and companies I have contacts of                      |
 | `* * *`  | user                                  | list all companies                  | know what companies I have contacts of                                  |
 | `* * *`  | user                                  | list all people                     | know who are the people I have contacts with                            |
@@ -1127,49 +1146,7 @@ Use case ends.
 
   Use case ends.
 
-**UC16: Find a contact**
-
-**MSS**
-
-1.  User requests to find a specific contact by a keyword
-2.  Connectify shows a list of contacts that contain the keyword
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 2b. There are no contacts that contain the keyword.
-
-    * Connectify displays a message indicating that there are no contacts that contain the keyword. 
-
-      Use case ends.
-
-**UC17: Find a company**
-
-**MSS**
-
-1.  User requests to find a specific company by a keyword
-2.  Connectify shows a list of companies that contain the keyword
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 2b. There are no companies that contain the keyword.
-
-    * Connectify displays a message indicating that there are no companies that contain the keyword. 
-
-      Use case ends.
-
-**UC18: Clear the database**
+**UC16: Clear the database**
 
 **MSS**
 
@@ -1178,7 +1155,7 @@ Use case ends.
 
     Use case ends.
 
-**UC19: Seek help**
+**UC17: Seek help**
 
 **MSS**
 
@@ -1527,19 +1504,6 @@ testers are expected to do more *exploratory* testing.
 
     1. Test cases: `rank1` and other invalid commands.<br>
        Expected: Persons list is not sorted.
-
-<div style="page-break-after: always;"></div>
-
-### Find
-
-1. Finding people using single person-related input
-
-    1. Prerequisites: One or more persons has a name containing `david`.
-
-    1. Test cases: `find david`, `find DAVID`, `find DaViD`<br>
-       Expected: All person(s) who have a name containing `david` (ignoring whitespace and capitalisation) are listed.
-
-The expected behaviour of the `find` command is documented in detail in the UG, please refer to it for more example test cases to try.
 
 <div style="page-break-after: always;"></div>
 
