@@ -625,12 +625,18 @@ There are no companies in Connectify.
 
 --------------------------------------------------------------------------------------------------------------------
 
-#### Adding a note to a company: `noteCompany`
+#### Managing notes about a company: `noteCompany`
 
-The `noteCompany` command allows you to add a note to a company in Connectify. This command is particularly useful for adding notes to companies you have stored. To add a note to a company, follow the command format below:
+The `noteCompany` command allows you to add a note to a company or remove an existing note about a company in Connectify. To add a note to a company, follow the command format below:
 
 ```
 noteCompany INDEX r/NOTE
+```
+
+To remove the existing note from a company, simply input the same command without the `r/NOTE` placeholder.
+
+```
+noteCompany INDEX
 ```
 
 The fields are:
@@ -638,7 +644,7 @@ The fields are:
 - `r/NOTE` is the note you want to add to the company.
 
 Note:
-- This command deletes the existing note if it is inputted without the `r/` placeholder.
+- This command deletes the existing note if it is **inputted without the `r/` placeholder**.
 - If the `r/` placeholder is specified twice, the note following the second placeholder will be used.
 
 <div markdown="span" class="alert alert-primary"><strong>💡 Tip:</strong>
@@ -669,6 +675,25 @@ Address: 123 Tech St, Silicon Valley
 You should be able to see the note in Connectify as shown below:
 
 ![Adding Note to Company](images/noteCompany.png)
+
+To remove the note from the company at index 1, use the following command:
+
+```
+noteCompany 1
+```
+
+**Successful Output**
+
+```
+Removed note from Company: TechCorp;
+Industry: Technology;
+Location: Silicon Valley;
+Description: Leading tech company;
+Website: www.techcorp.com;
+Email: contact@techcorp.com;
+Phone: 12345678;
+Address: 123 Tech St, Silicon Valley
+```
 
 **Unsuccessful Output**
 
@@ -1074,12 +1099,18 @@ There are no people in Connectify.
 
 --------------------------------------------------------------------------------------------------------------------
 
-#### Adding note to a person: `notePerson`
+#### Managing notes about a person: `notePerson`
 
-The `notePerson` command allows you to add a note to a person in Connectify. This command is particularly useful for adding notes to people you have stored. To add a note to a person, follow the command format below:
+The `notePerson` command allows you to add a note to a person or remove an existing note about a person in Connectify. To add a note to a person, follow the command format below:
 
 ```
 notePerson COMPANY_INDEX PERSON_INDEX r/NOTE
+```
+
+To remove the existing note from a person, simply input the same command without the `r/NOTE` placeholder.
+
+```
+notePerson COMPANY_INDEX PERSON_INDEX
 ```
 
 The fields are:
@@ -1120,6 +1151,25 @@ Tags: [owesMoney][friends]
 You should be able to see the note in Connectify as shown below:
 
 ![Adding Note to Person](images/notePerson.png)
+
+To remove the note from the person at index 1 in the displayed person list of Company 1, use the following command:
+
+```
+notePerson 1 1
+```
+
+**Successful Output**
+
+```
+Removed note from Person: John Doe;
+Phone: 98765432;
+Email: johnd@example.com;
+Address: 311, Clementi Ave 2, #02-25;
+Note: ;
+Priority: 1;
+Company: TechCorp;
+Tags: [owesMoney][friends]
+```
 
 **Unsuccessful Output**
 

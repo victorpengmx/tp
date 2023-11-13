@@ -97,6 +97,8 @@
     * [Challenges Overcame](#challenges-overcame)
 <!-- TOC -->
 
+<div style="page-break-after: always;"></div>
+
 --------------------------------------------------------------------------------------------------------------------
 ## Introduction
 Connectify is a desktop app for managing connections, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Connectify can get your contact management tasks done faster than traditional GUI apps. 
@@ -221,8 +223,6 @@ To use the UI component effectively, follow these guidelines:
 
 - For specific details about the implementation of the `MainWindow`, refer to [`MainWindow.java`](https://github.com/AY2324S1-CS2103T-T15-4/tp/blob/master/src/main/java/connectify/ui/MainWindow.java).
 
-<div style="page-break-after: always;"></div>
-
 
 
 ### Logic component
@@ -310,7 +310,7 @@ When given valid user input, the `AddCompanyCommandParser` will create a new `Co
 Consider a scenario where the user wishes to add a new company with various details into Connectify. The `AddCompanyCommand` takes in various parameters, such as `Name`, `Industry`, `Location`, description, `Website`, `Email`, `Phone`, `Address`
 to create a new `Company` object.
 
-<img src="images/addCompanyObjectDiagram.png" width="1000" />
+<img src="images/addCompanyObjectDiagram.png" width="700" />
 
 Consider an example of a valid `addCompany` command:
 
@@ -378,7 +378,7 @@ It requires a `CompanyIndex` parameter. This validates company index to ensure t
 
 If valid, a new company object is created with the updated details and then set to replace the old company object.
 
-<img src="images/editCompanyObjectDiagram.png" width="1000" />
+<img src="images/editCompanyObjectDiagram.png" width="700" />
 
 Consider an example of a valid `editCompany` command:
 
@@ -486,7 +486,7 @@ Consider a scenario where the user wishes to add a new contact to a specific com
 
 To ensure that a contact is added to the correct company, the command also takes an `Index` parameter specifying the company where the contact should be added. This ensures that the contact is associated with the intended company.
 
-<img src="images/addPersonObjectDiagram.png" width="1000" />
+<img src="images/addPersonObjectDiagram.png" width="700" />
 
 Consider an example of a valid `addPerson` command:
 
