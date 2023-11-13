@@ -84,7 +84,7 @@ Getting started with Connectify is extremely simple! Here is a tutorial on how t
 4. Launch Connectify by double-clicking the file in the directory. You'll be greeted by Connectify's primary interface, with an empty database as shown below.
 
 <div markdown="block" class="alert alert-warning"><strong>&#x2757; Caution:</strong>
-For MAC users, if an error message popup appears, running 'java -jar connectify.jar' while in the same directory via the MAC command terminal instead will open Connectify. Likewise, you will be greeted by Connectify's primary interface, with an empty database as shown below.
+For MAC users, if an error message popup appears, running 'java -jar connectify.jar' while in the same directory via the MAC command terminal instead will open Connectify.
 </div>
 
 ![Connectify Start Page](images/ConnectifyStartPage.png)
@@ -289,7 +289,7 @@ Throughout this user guide, you'll encounter various [General Commands](#general
   Any words in **capital letters** are **your supplied inputs**.  
   For instance, in `editPerson INDEX c/COMPANY`, you can type in `editPerson 1 c/Apple n/Ryan`.
 
-* Optional Inputs<br>  
+* Optional Inputs<br>
   Inputs enclosed within square brackets `[]` are **optional**.  
   For instance, for the command `editPerson INDEX c/COMPANY [n/NAME]`, you can use it in two ways:  
   `editPerson INDEX c/COMPANY n/Ryan` or simply as `editPerson INDEX c/COMPANY`.
@@ -308,11 +308,17 @@ Throughout this user guide, you'll encounter various [General Commands](#general
 
 ### General Input Guidelines
 
-Here are some guidelines when using the [General Commands](#general-commands). Please follow this to ensure that Connectify understands you! 
+Here are some guidelines when using any of Connectify's commands. Please follow this to ensure that Connectify understands you! 
 
 * Flexible Input Order<br>  
-  You can key in inputs in **any order**.<br>
+  You can key in inputs **that are accompanied by a prefix** in **any order**.<br>
   For example, a command might be structured as `w/WEBSITE e/EMAIL`, but entering `e/EMAIL w/WEBSITE` will work as well.
+
+* Fixed Order for Index Specification<br>
+  When specifying an index, **the index must be the first input**.<br>
+  For example, `1 n/Apple` is valid, but `n/Apple 1` is not.
+  When there are two indexes (PersonIndex and CompanyIndex), **the PersonIndex must come before the CompanyIndex**.<br>
+  For example, `1 2 n/Apple` is  referring to the person with index 1 and company with index 2, but `2 1 n/Apple` is referring to the person with index 2 and company with index 1.
 
 <div markdown="block" class="alert alert-warning"><strong>&#x2757; Caution:</strong>
 It's important to avoid including inputs that are not expected by a command. For example, if a 'rank' command is designed to accept zero inputs, adding an input like 'p/12345678' might lead to unintended behaviour.
@@ -632,6 +638,10 @@ Email: contact@techcorp.com;
 Phone: 12345678;
 Address: 123 Tech St, Silicon Valley
 ```
+
+You should be able to see the note in Connectify as shown below:
+
+![Adding Note to Company](images/noteCompany.png)
 
 **Unsuccessful Output**
 
@@ -1072,6 +1082,10 @@ Company: TechCorp;
 Tags: [owesMoney][friends]
 ```
 
+You should be able to see the note in Connectify as shown below:
+
+![Adding Note to Person](images/notePerson.png)
+
 **Unsuccessful Output**
 
 - If the specified company index is missing, you will get the following error message:
@@ -1506,5 +1520,3 @@ A: Connectify does not restrict the numerical range for the priority field. Howe
     </svg>
   </span>
 </a>
-
-<div style="page-break-after: always;"></div>
