@@ -251,25 +251,44 @@ public class EditPersonCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        /**
+         * Sets {@code personPriority} to this object's {@code personPriority}.
+         */
         public void setPersonPriority(PersonPriority personPriority) {
             this.personPriority = personPriority;
         }
 
+        /**
+         * Returns an {@code Optional} of {@code PersonPriority} describing the priority of the person.
+         */
         public Optional<PersonPriority> getPersonPriority() {
             return Optional.ofNullable(personPriority);
         }
 
+        /**
+         * Sets {@code parentCompany} to this object's {@code parentCompany}.
+         */
         public void setParentCompany(Company parentCompany) {
             this.parentCompany = parentCompany;
         }
 
+        /**
+         * Returns an {@code Optional} of {@code Company} describing the parent company of the person.
+         */
         public Optional<Company> getParentCompany() {
             return Optional.ofNullable(parentCompany);
         }
+
+        /**
+         * Sets {@code note} to this object's {@code note}.
+         */
         public void setNote(PersonNote note) {
             this.note = note;
         }
 
+        /**
+         * Returns an {@code Optional} of {@code PersonNote} describing the note of the person.
+         */
         public Optional<PersonNote> getNote() {
             return Optional.ofNullable(note);
         }
