@@ -256,19 +256,19 @@ Every command in Connectify is a prompt for action. It's how you command the app
 ![UG Command Example](images/UGCommandExample.png)
 
 * Command Name<br>
-  The **command name** indicates the action you want to perform in Connectify.<br>
+  The **Command Name** indicates the action you want to perform in Connectify.<br>
   In the example above, `editCompany` is the command name.
 
 * Index<br>
-  The **index** is the **numerical position** of an item in a displayed list within Connectify. <br>
+  The **Index** is the **numerical position** of an item in a displayed list within Connectify. <br>
   In the example above, `1` represents the first company in the company list.
 
 * Prefixes<br>
-  Prefixes ending with a `/` help identify the type of information **you provide** in a command. <br>
+  **Prefixes** ending with a `/` help identify the type of information **you provide** in a command. <br>
   In the example above, `n/`serves as a prefix to indicate that you want to edit a company's name to `Facebook`.
 
 * Inputs<br>
-  Inputs are the specific details **you input** for a command to process. <br>
+  **Inputs** are the specific details **you input** for a command to process. <br>
   In the example above, `Facebook` is the input that specifies the new name for the company.
 
 <a href="#table-of-contents" class="return-to-toc-link">
@@ -368,8 +368,17 @@ Note:
 
 **Example:**
 
-To add a Company "Apple Inc", a computer and consumer technology company headquartered in Los Altos, with the website "www.apple.com", email address contact@apple.com, the phone number 98765432, address "1 Apple Park Way, Cupertino, California", use the following command:
+To add a Company "Apple Inc", with the following fields:
+- Name: Apple Inc
+- Industry: technology
+- Location: Los Altos
+- Description: computer and consumer technology
+- Website: www.apple.com
+- Email: contact@apple.com
+- Phone: 98765432
+- Address: 1 Apple Park Way, Cupertino, California
 
+Use the following command:
 ```
 addCompany n/Apple Inc i/technology l/Los Altos d/computer and consumer technology w/www.apple.com e/contact@apple.com p/98765432 a/1 Apple Park Way, Cupertino, California
 ```
@@ -506,8 +515,13 @@ Note:
 
 **Example:**
 
-To edit the company's name to "TechCorp", their email to techcorp@gmail.com and their address to "123, Jurong West Ave 6, #08-111", use the following command:
+To edit the company at the first index to the following updated fields:
+- Name: TechCorp
+- Email: techcorp@gmail.com
+- Address: 123, Jurong West Ave 6, #08-111
+- Phone: 91234567
 
+Use the following command:
 ```
 editCompany 1 n/TechCorp p/91234567 e/techcorp@gmail.com a/123, Jurong West Ave 6, #08-111
 ```
@@ -765,8 +779,13 @@ Note:
 
 **Example:**
 
-To add a contact named John Doe with the phone number 98765432, email address johndoe@example.com, address "311, Clementi Ave 2, #02-25," and associate them with Company 1, use the following command:
+To add a contact associated with Company 1 with the following fields:
+- Name: John Doe
+- Phone: 98765432
+- Email: johndoe@example.com
+- Address: 311, Clementi Ave 2, #02-25
 
+Use the following command:
 ```
 addPerson n/John Doe p/98765432 e/johndoe@example.com a/311, Clementi Ave 2, #02-25 c/1 t/friends pr/1 t/owesMoney
 ```
@@ -932,8 +951,11 @@ Keep contact details up-to-date in Connectify. Be sure the check if they have ch
 
 **Example:**
 
-To edit the person at index 1 in the displayed person list of the Company at index 1 to change their phone number to 91234567 and their email to johndoe@example.com, use the following command:
+To edit the person at index 1 in the displayed person list of the Company at index 1 to the following updated fields:
+- Phone: 91234567
+- Email: johndoe@example.com
 
+Use the following command:
 ```
 editPerson 1 c/1 p/91234567 e/johndoe@example.com
 ```
