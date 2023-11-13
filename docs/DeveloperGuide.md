@@ -10,11 +10,11 @@
 
 ## Table Of Contents
 <!-- TOC -->
-* [Connectify Developer Guide](#connectify-developer-guide)
-  * [Table Of Contents](#table-of-contents)
-  * [Introduction](#introduction)
-    * [**Acknowledgements**](#acknowledgements)
-    * [**Setting up, getting started**](#setting-up-getting-started)
+* [**Connectify Developer Guide**](#connectify-developer-guide)
+  * [**Table Of Contents**](#table-of-contents)
+  * [**Introduction**](#introduction)
+    * [Acknowledgements](#acknowledgements)
+    * [Setting up, getting started](#setting-up-getting-started)
   * [**Design**](#design)
     * [Architecture](#architecture)
     * [UI component](#ui-component)
@@ -109,7 +109,7 @@ This developer guide describes the implementation details of Connectify. It is i
 
 * [JavaFX](https://openjfx.io/) for providing the API for rendering GUI.
 * [Jackson](https://github.com/FasterXML/jackson) for providing the API for parsing JSON files.
-* [JUnit5](https://github.com/junit-team/junit5) for providing a unit testing framework. 
+* [JUnit5](https://github.com/junit-team/junit5) for providing a unit testing framework.
 * Our application is based on the [AddressBook-Level 3 (AB-3)](https://se-education.org/addressbook-level3/). All features present in our application are in addition to those already present in AB-3.
 
 --------------------------------------------------------------------------------------------------------------------
