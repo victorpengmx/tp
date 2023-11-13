@@ -8,106 +8,113 @@
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Table Of Contents
-<!-- TOC -->
-* [**Connectify Developer Guide**](#connectify-developer-guide)
-  * [**Table Of Contents**](#table-of-contents)
-  * [**Introduction**](#introduction)
-    * [Acknowledgements](#acknowledgements)
-    * [Setting up, getting started](#setting-up-getting-started)
-  * [**Design**](#design)
-    * [Architecture](#architecture)
-    * [UI component](#ui-component)
-      * [Class Structure](#class-structure)
-      * [Interaction with Other Components](#interaction-with-other-components)
-      * [Usage](#usage)
-      * [External Resources](#external-resources)
-    * [Logic component](#logic-component)
-    * [Model component](#model-component)
-    * [Storage component](#storage-component)
-    * [Common classes](#common-classes)
-  * [**Implementation**](#implementation)
-    * [Add Company Feature: `addCompany`](#add-company-feature-addcompany)
-      * [Implementation](#implementation-1)
-    * [Delete Company Feature: `deleteCompany`](#delete-company-feature-deletecompany)
-      * [Implementation](#implementation-2)
-    * [Edit Company Feature: `editCompany`](#edit-company-feature-editcompany)
-      * [Implementation](#implementation-3)
-    * [List Companies Command: `companies`](#list-companies-command-companies)
-      * [Implementation](#implementation-4)
-    * [Add Note to Company Feature: `noteCompany`](#add-note-to-company-feature-notecompany)
-      * [Implementation](#implementation-5)
-    * [Share Company's Contact Feature: `shareCompany`](#share-companys-contact-feature-sharecompany)
-      * [Implementation](#implementation-6)
-    * [Add Person Feature: `addPerson`](#add-person-feature-addperson)
-      * [Implementation](#implementation-7)
-    * [Delete Person Feature: `deletePerson`](#delete-person-feature-deleteperson)
-      * [Implementation](#implementation-8)
-    * [Edit Person Feature: `editPerson`](#edit-person-feature-editperson)
-      * [Implementation](#implementation-9)
-    * [List People Command: `people`](#list-people-command-people)
-      * [Implementation](#implementation-10)
-    * [Add Note to Person Feature: `notePerson`](#add-note-to-person-feature-noteperson)
-      * [Implementation](#implementation-11)
-    * [Ranking People by Priority Feature: `rank`](#ranking-people-by-priority-feature-rank)
-      * [Implementation](#implementation-12)
-      * [Command Usage](#command-usage)
-    * [Share Person's Contact Feature: `sharePerson`](#share-persons-contact-feature-shareperson)
-      * [Implementation](#implementation-13)
-    * [List All Command: `list`](#list-all-command-list)
-      * [Implementation](#implementation-14)
-    * [Clearing the Database: `clear`](#clearing-the-database-clear)
-      * [Implementation](#implementation-15)
-      * [Command Usage](#command-usage-1)
-    * [Seeking Help: `help`](#seeking-help--help)
-      * [Implementation](#implementation-16)
-      * [Command Usage](#command-usage-2)
-    * [Exiting Connectify: `exit`](#exiting-connectify-exit)
-      * [Implementation](#implementation-17)
-      * [Command Usage](#command-usage-3)
-  * [**Documentation, logging, testing, configuration, dev-ops**](#documentation-logging-testing-configuration-dev-ops)
-  * [**Appendix: Requirements**](#appendix-requirements)
-    * [Product scope](#product-scope)
-    * [User stories](#user-stories)
-    * [Use cases](#use-cases)
-    * [Non-Functional Requirements](#non-functional-requirements)
-    * [Glossary](#glossary)
-  * [**Appendix: Instructions for manual testing**](#appendix-instructions-for-manual-testing)
-    * [Launch and shutdown](#launch-and-shutdown)
-    * [Help](#help)
-    * [Adding a person](#adding-a-person)
-    * [Deleting a person](#deleting-a-person)
-    * [Editing a Person](#editing-a-person)
-    * [Adding a note to a Person](#adding-a-note-to-a-person)
-    * [Sharing the `addPerson` command with the necessary details to add an existing Contact](#sharing-the-addperson-command-with-the-necessary-details-to-add-an-existing-contact)
-    * [Adding a company](#adding-a-company)
-    * [Deleting a company](#deleting-a-company)
-    * [Editing a Company](#editing-a-company)
-    * [Adding a note to a Company](#adding-a-note-to-a-company)
-    * [Sharing the `addCompany` command with the necessary details to add an existing Company](#sharing-the-addcompany-command-with-the-necessary-details-to-add-an-existing-company)
-    * [Clear](#clear)
-    * [List/Display entities](#listdisplay-entities)
-    * [Ranking](#ranking)
-    * [Seeking help](#seeking-help)
-    * [Saving data](#saving-data)
-    * [Exit](#exit)
-  * [**Appendix: Improvements**](#appendix-improvements)
-    * [Improvements to Functional Code](#improvements-to-functional-code)
-    * [Improvements to Documentation](#improvements-to-documentation)
-    * [Challenges Overcame](#challenges-overcame)
-<!-- TOC -->
-
-<div style="page-break-after: always;"></div>
-
---------------------------------------------------------------------------------------------------------------------
 ## Introduction
-Connectify is a desktop app for managing connections, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Connectify can get your contact management tasks done faster than traditional GUI apps. 
+
+Connectify is a desktop app for managing connections, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Connectify can get your contact management tasks done faster than traditional GUI apps.
 
 This developer guide describes the implementation details of Connectify. It is intended for software developers who want to contribute to Connectify's development.
 
 --------------------------------------------------------------------------------------------------------------------
 
-### **Acknowledgements**
+## Table Of Contents
+<!-- TOC -->
+* [**Introduction**](#introduction)
+* [**Table Of Contents**](#table-of-contents)
+* [**Acknowledgements**](#acknowledgements)
+* [**Setting up, getting started**](#setting-up-getting-started)
+* [**Design**](#design)
+  * [Architecture](#architecture)
+  * [UI component](#ui-component)
+    * [Class Structure](#class-structure)
+    * [Interaction with Other Components](#interaction-with-other-components)
+    * [Usage](#usage)
+    * [External Resources](#external-resources)
+  * [Logic component](#logic-component)
+  * [Model component](#model-component)
+  * [Storage component](#storage-component)
+  * [Common classes](#common-classes)
+* [**Implementation**](#implementation)
+  * [Add Company Feature: `addCompany`](#add-company-feature-addcompany)
+    * [Implementation](#implementation-1)
+  * [Delete Company Feature: `deleteCompany`](#delete-company-feature-deletecompany)
+    * [Implementation](#implementation-2)
+  * [Edit Company Feature: `editCompany`](#edit-company-feature-editcompany)
+    * [Implementation](#implementation-3)
+  * [List Companies Command: `companies`](#list-companies-command-companies)
+    * [Implementation](#implementation-4)
+  * [Add Note to Company Feature: `noteCompany`](#add-note-to-company-feature-notecompany)
+    * [Implementation](#implementation-5)
+  * [Share Company's Contact Feature: `shareCompany`](#share-companys-contact-feature-sharecompany)
+    * [Implementation](#implementation-6)
+  * [Add Person Feature: `addPerson`](#add-person-feature-addperson)
+    * [Implementation](#implementation-7)
+  * [Delete Person Feature: `deletePerson`](#delete-person-feature-deleteperson)
+    * [Implementation](#implementation-8)
+  * [Edit Person Feature: `editPerson`](#edit-person-feature-editperson)
+    * [Implementation](#implementation-9)
+  * [List People Command: `people`](#list-people-command-people)
+    * [Implementation](#implementation-10)
+  * [Add Note to Person Feature: `notePerson`](#add-note-to-person-feature-noteperson)
+    * [Implementation](#implementation-11)
+  * [Ranking People by Priority Feature: `rank`](#ranking-people-by-priority-feature-rank)
+    * [Implementation](#implementation-12)
+    * [Command Usage](#command-usage)
+  * [Share Person's Contact Feature: `sharePerson`](#share-persons-contact-feature-shareperson)
+    * [Implementation](#implementation-13)
+  * [List All Command: `list`](#list-all-command-list)
+    * [Implementation](#implementation-14)
+  * [Clearing the Database: `clear`](#clearing-the-database-clear)
+    * [Implementation](#implementation-15)
+    * [Command Usage](#command-usage-1)
+  * [Seeking Help: `help`](#seeking-help--help)
+    * [Implementation](#implementation-16)
+    * [Command Usage](#command-usage-2)
+  * [Exiting Connectify: `exit`](#exiting-connectify-exit)
+    * [Implementation](#implementation-17)
+    * [Command Usage](#command-usage-3)
+* [**Documentation, logging, testing, configuration, dev-ops**](#documentation-logging-testing-configuration-dev-ops)
+* [**Appendix: Requirements**](#appendix-requirements)
+  * [Product scope](#product-scope)
+  * [User stories](#user-stories)
+  * [Use cases](#use-cases)
+  * [Non-Functional Requirements](#non-functional-requirements)
+  * [Glossary](#glossary)
+* [**Appendix: Instructions for manual testing**](#appendix-instructions-for-manual-testing)
+  * [Launch and shutdown](#launch-and-shutdown)
+  * [Help](#help)
+  * [Adding a person](#adding-a-person)
+  * [Deleting a person](#deleting-a-person)
+  * [Editing a Person](#editing-a-person)
+  * [Adding a note to a Person](#adding-a-note-to-a-person)
+  * [Sharing the `addPerson` command with the necessary details to add an existing Contact](#sharing-the-addperson-command-with-the-necessary-details-to-add-an-existing-contact)
+  * [Adding a company](#adding-a-company)
+  * [Deleting a company](#deleting-a-company)
+  * [Editing a Company](#editing-a-company)
+  * [Adding a note to a Company](#adding-a-note-to-a-company)
+  * [Sharing the `addCompany` command with the necessary details to add an existing Company](#sharing-the-addcompany-command-with-the-necessary-details-to-add-an-existing-company)
+  * [Clear](#clear)
+  * [List/Display entities](#listdisplay-entities)
+  * [Ranking](#ranking)
+  * [Seeking help](#seeking-help)
+  * [Saving data](#saving-data)
+  * [Exit](#exit)
+* [**Appendix: Improvements**](#appendix-effort)
+  * [Improvements to Functional Code](#improvements-to-functional-code)
+  * [Improvements to Documentation](#improvements-to-documentation)
+  * [Challenges Overcame](#challenges-overcame)
+* [**Appendix: Planned Enhancements](#appendix-planned-enhancements)
+  * [Allowing a person to be added to multiple companies](#1-allowing-a-person-to-be-added-to-multiple-companies)
+  * [Improving User Interface for Longer Input Data](#2-improving-user-interface-for-longer-input-data)
+  * [Enhancing User-Friendly Error Messages](#3-enhancing-user-friendly-error-messages)
+  * [Strengthening User Input Validation](#4-strengthening-user-input-validation)
+  * [Enhancing User Interface for Clarity and Intuitiveness](#5-enhancing-user-interface-for-clarity-and-intuitiveness)
+<!-- TOC -->
+
+<div style="page-break-after: always;"></div>
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Acknowledgements**
 
 * [JavaFX](https://openjfx.io/) for providing the API for rendering GUI.
 * [Jackson](https://github.com/FasterXML/jackson) for providing the API for parsing JSON files.
@@ -116,7 +123,7 @@ This developer guide describes the implementation details of Connectify. It is i
 
 --------------------------------------------------------------------------------------------------------------------
 
-### **Setting up, getting started**
+## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
@@ -1560,9 +1567,11 @@ testers are expected to do more *exploratory* testing.
     1. Test cases: `exit`, `exit ...(any other text following)...`.<br>
        Expected: Program window closes. Data is saved, and can be accessed on the next boot-up of Connectify. The text following the `exit` command is ignored.
 
+<div style="page-break-after: always;"></div>
+
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Improvements**
+## **Appendix: Effort**
 
 ### Improvements to Functional Code
 * Introduction of a `model.company` package to allow users to store Company details in Connectify.
@@ -1583,3 +1592,48 @@ testers are expected to do more *exploratory* testing.
 ### Challenges Overcame
 * Use of JavaFX to effectively implement the GUI for Connectify.
 * Use of PlantUML to effectively implement the UML diagrams for Connectify.
+
+<div style="page-break-after: always;"></div>
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Planned Enhancements**
+
+### 1. Allowing a Person to be Added to Multiple Companies
+
+**Problem:**
+The current system restricts individuals to be associated with only one company, which proves problematic for management of contact for individuals affiliated with multiple organizations. This limitation hampers effective contact management and fails to represent the diverse professional affiliations of users accurately.
+
+**Proposed Solution:**
+Enhance the system to enable individuals to be associated with multiple companies, providing a more flexible and comprehensive representation of professional relationships. This can be achieved by allowing the Person object to hold a reference to the Company objects that it is associated with. By allowing Persons to be associated with multiple companies, Connectify aims to provide users with a more accurate and comprehensive representation of their professional relationships.
+### 2. Improving User Interface for Longer Input Data
+
+**Problem:**
+The current user interface imposes constraints on the length of user-inputted data, leading to potential truncation and a suboptimal user experience. This limitation may compromise the integrity and completeness of information entered into the system.
+
+**Proposed Solution:**
+Revamp the user interface to overcome limitations on input data length. This involves redesigning input fields, expanding character limits, and optimizing the display to accommodate longer entries. By enhancing the interface's ability to handle extended user input, Connectify aims to improve usability, allowing users to input, view, and manage comprehensive information seamlessly.
+
+### 3. Enhancing User-Friendly Error Messages
+
+**Problem:**
+Current error messages lack user-friendliness, making it challenging for users to understand and address issues within the application effectively. This can lead to user frustration, prolonged problem resolution, and a less-than-optimal overall user experience.
+
+**Proposed Solution:**
+Optimize error messages to be more user-friendly and intuitive. This involves crafting clear, concise, and informative messages that guide users in understanding the issue and taking appropriate corrective actions. Connectify aims to improve communication with users during error scenarios, ensuring a smoother user experience even when challenges arise.
+
+### 4. Strengthening User Input Validation
+
+**Problem:**
+Connectify currently allows extensive flexibility in user inputs without thorough validation, potentially resulting in inaccurate or invalid data entries. This poses risks to data integrity and the reliability of information stored within the system.
+
+**Proposed Solution:**
+Implement a comprehensive user input validation system to ensure the accuracy and correctness of data entered into Connectify. This involves validating input formats, ranges, and constraints, as well as incorporating error feedback mechanisms to guide users towards valid entries. By striking a balance between flexibility and data integrity, Connectify aims to enhance the overall reliability and trustworthiness of the information it manages.
+
+### 5. Enhancing User Interface for Clarity and Intuitiveness
+
+**Problem:**
+The current user interface lacks intuitiveness, hindering users' ability to navigate and comprehend existing data effectively. This can lead to a suboptimal user experience and challenges in utilizing the application to its full potential.
+
+**Proposed Solution:**
+Invest in a comprehensive redesign of the user interface to improve clarity and intuitiveness. This involves refining navigation structures, optimizing data presentation, and incorporating user-friendly design principles. Connectify aims to provide users with an interface that is not only visually appealing but also enhances their ability to understand, interact with, and derive value from the information stored within the application.

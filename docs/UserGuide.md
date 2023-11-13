@@ -19,11 +19,11 @@ For a full overview of everything this guide has to offer, do make use of the [T
 
 Finally, here are some of the **symbols** and **text formatting** to look out for as you make use of this guide:
 
-<div markdown="span" class="alert alert-primary"><strong>💡 Tip:</strong>
+<div markdown="span" class="alert alert-primary"><strong>:bulb: Tip:</strong>
 Blue boxes contain additional information that may be useful for enhancing your experience using Connectify.
 </div>
 
-<div markdown="block" class="alert alert-warning"><strong>&#x2757; Caution:</strong>
+<div markdown="block" class="alert alert-warning"><strong>:exclamation: Caution:</strong>
 Yellow boxes contain important warnings.
 </div>
 
@@ -50,14 +50,14 @@ Yellow boxes contain important warnings.
     * [Deleting a company: `deleteCompany`](#deleting-a-company-deletecompany)
     * [Editing a company: `editCompany`](#editing-a-company-editcompany)
     * [Listing all companies: `companies`](#listing-all-companies-companies)
-    * [Adding note to a company: `noteCompany`](#adding-note-to-a-company-notecompany)
-    * [Sharing company details: `shareCompany`](#sharing-a-company-details-sharecompany)
+    * [Managing notes about a company: `noteCompany`](#managing-notes-about-a-company-notecompany)
+    * [Sharing a company's details: `shareCompany`](#sharing-a-companys-details-sharecompany)
   * [Features for managing people contact details](#features-for-managing-people-contact-details)
     * [Adding a person: `addPerson`](#adding-a-person-addperson)
     * [Deleting a person: `deletePerson`](#deleting-a-person-deleteperson)
     * [Editing a person: `editPerson`](#editing-a-person-editperson)
     * [Listing all people: `people`](#listing-all-people-people)
-    * [Adding note to a person: `notePerson`](#adding-note-to-a-person-noteperson)
+    * [Managing notes about a person: `notePerson`](#managing-notes-about-a-person-noteperson)
     * [Ranking people by priority: `rank`](#ranking-people-by-priority-rank)
     * [Sharing a person's details: `sharePerson`](#sharing-a-persons-details-shareperson)
   * [General Commands](#general-commands)
@@ -728,7 +728,7 @@ The company index provided is invalid.
 
 --------------------------------------------------------------------------------------------------------------------
 
-#### Sharing a company details: `shareCompany`
+#### Sharing a company's details: `shareCompany`
 
 The `shareCompany` command allows you to share a company's details with another person. This command is particularly useful for sharing companies you have stored. Since notes are personal to each user, shareCompany does not include the sharing of notes. To share a company's details, follow the command format below:
 
@@ -1256,9 +1256,9 @@ There are no people in Connectify.
 
 --------------------------------------------------------------------------------------------------------------------
 
-#### Sharing a person's contact details: `sharePerson`
+#### Sharing a person's details: `sharePerson`
 
-The `sharePerson` command allows you to share a person's contact details with another person. This command is particularly useful for sharing contact details of people you have stored. To share a person's contact details, follow the command format below:
+The `sharePerson` command allows you to share a person's details with another person. This command is particularly useful for sharing contact details of people you have stored. To share a person's contact details, follow the command format below:
 
 ```
 sharePerson COMPANY_INDEX PERSON_INDEX
