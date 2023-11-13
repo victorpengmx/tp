@@ -19,8 +19,8 @@ Given below are my contributions to the project.
   * This includes changes to the UI and structure of the CompanyCard class.
   * Significance: This feature is important as it saves time for the user that would otherwise be used to search for each person individually.
 
-* **New Feature**: Implemented `rankPerson` command. [\#107](https://github.com/AY2324S1-CS2103T-T15-4/tp/pull/107)
-  * Implemented the `rankPerson` command, enabling users to rank persons by their priority value.
+* **New Feature**: Implemented `rank` command. [\#107](https://github.com/AY2324S1-CS2103T-T15-4/tp/pull/107)
+  * Implemented the `rank` command, enabling users to rank persons by their priority value.
   * This includes changing existing files to support the Comparator<Person> interface in the Person class, and adding relevant test cases.
   * Significance: This feature enables users to view persons deemed more important at the top of the person list so that they can access their details more easily.
 
@@ -31,10 +31,10 @@ Given below are my contributions to the project.
   * Contributed to pull request reviews.
   * Identified bugs in code and informed team members.
 
-* **Enhancements to existing features**: Fixed bugs in `listAll`, `listPeople`, `rankPerson` commands. [\#118](https://github.com/AY2324S1-CS2103T-T15-4/tp/pull/118)
+* **Enhancements to existing features**: Fixed bugs in `listAll`, `listPeople`, `rank` commands. [\#118](https://github.com/AY2324S1-CS2103T-T15-4/tp/pull/118)
   * Revamped list commands to list entities in a consistent order
-  * Previously, the `rankPerson` command would permanently alter the displayed results of running the `listAll` and `listPeople` commands.
-  * After fixing, the `listAll` and `listPeople` commands display results in a specific order that will not be affected by the `rankPerson` command.
+  * Previously, the `rank` command would permanently alter the displayed results of running the `listAll` and `listPeople` commands.
+  * After fixing, the `listAll` and `listPeople` commands display results in a specific order that will not be affected by the `rank` command.
   * This includes the adding of several comparator classes and modifying existing classes to support the new ordering.
   * Significance: This enhancement ensures that display results of the list commands are consistent.
 
