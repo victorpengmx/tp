@@ -10,7 +10,7 @@ Connectify is a networking platform designed to help professionals efficiently m
 Given below are my contributions to the project.
 
 * **New Feature**: Created Skeleton for Company Class [\#41](https://github.com/AY2324S1-CS2103T-T15-4/tp/issues/41) [(Link to PR)](https://github.com/AY2324S1-CS2103T-T15-4/tp/pull/48)
-  * Created the skeleton code for the Company class, which serves as a fundamental component for managing company-related information. 
+  * Created the skeleton code for the Company class, which serves as a fundamental component for managing company-related information.
   * Added test cases for the Company class to set the project's direction.
   * Significance: Utilized parameters of type String to set the groundwork for future refactoring of the Company class according to OOP principles. Refactoring of the Company class was based off the skeleton code and test cases.
 

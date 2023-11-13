@@ -290,12 +290,12 @@ Every command in Connectify is a prompt for action. It's how you command the app
 Throughout this user guide, you'll encounter various [General Commands](#general-commands) specific to Connectify. Let's explore how to interpret these command formats.
 
 * Providing User Inputs<br>
-  Any words in **capital letters** are **your supplied inputs**.  
+  Any words in **capital letters** are **your supplied inputs**.
   For instance, in `editPerson INDEX c/COMPANY`, you can type in `editPerson 1 c/Apple n/Ryan`.
 
 * Optional Inputs<br>
-  Inputs enclosed within square brackets `[]` are **optional**.  
-  For instance, for the command `editPerson INDEX c/COMPANY [n/NAME]`, you can use it in two ways:  
+  Inputs enclosed within square brackets `[]` are **optional**.
+  For instance, for the command `editPerson INDEX c/COMPANY [n/NAME]`, you can use it in two ways:
   `editPerson INDEX c/COMPANY n/Ryan` or simply as `editPerson INDEX c/COMPANY`.
 
 <a href="#table-of-contents" class="return-to-toc-link">
@@ -312,9 +312,9 @@ Throughout this user guide, you'll encounter various [General Commands](#general
 
 ### General Input Guidelines
 
-Here are some guidelines when using any of Connectify's commands. Please follow this to ensure that Connectify understands you! 
+Here are some guidelines when using any of Connectify's commands. Please follow this to ensure that Connectify understands you!
 
-* Flexible Input Order<br>  
+* Flexible Input Order<br>
   You can key in inputs **that are accompanied by a prefix** in **any order**.<br>
   For example, a command might be structured as `w/WEBSITE e/EMAIL`, but entering `e/EMAIL w/WEBSITE` will work as well.
 
@@ -395,11 +395,11 @@ You should be able to see the company in Connectify as shown below:
 
 - If any of the compulsory placeholders such as `n/`, `i/`, `l/`, `d/`, `w/`, `e/`, `p/` or `a/` are missing, you will receive the following error message:
   ```
-  Invalid command format! 
+  Invalid command format!
   addCompany: Adds a company to the address book. Parameters: n/NAME i/INDUSTRY l/LOCATION d/DESCRIPTION w/WEBSITE e/EMAIL p/PHONE a/ADDRESS
   Example: addCompany n/TechCorp i/Technology l/Silicon Valley d/Leading tech company w/www.techcorp.com e/contact@techcorp.com p/12345678 a/123 Tech St, Silicon Valley
   ```
-  
+
 - If all compulsory placeholders are present but the details are missing, you will receive the following error message:
   ```
   Names should only contain alphanumeric characters and spaces, and it should not be blank
@@ -656,7 +656,7 @@ The company index provided is invalid.
 
 - If the specified index is missing or is not a positive integer, you will get the following error message:
 ```
-Invalid command format! 
+Invalid command format!
 noteCompany: Edits the note of the company identified by the index number used in the last company listing. Existing note will be overwritten by the input.
 Parameters: INDEX (must be a positive integer) r/[NOTE]
 Example: noteCompany 1 r/Looking for aspiring frontend developers.
@@ -796,7 +796,7 @@ You should be able to see the person in Connectify as shown below:
   addPerson: Adds a person to the address book. Parameters: n/NAME p/PHONE e/EMAIL a/ADDRESS pr/PRIORITY [c/COMPANY_INDEX] [t/TAG]...
   Example: addPerson n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney c/1 pr/1
   ```
-  
+
 - If all the compulsory placeholders are present but the details are missing:
   ```
   Names should only contain alphanumeric characters and spaces, and it should not be blank
@@ -960,7 +960,7 @@ At least one field to edit must be provided.
 
 - If the specified index is missing or is not a positive integer, you will get the following error message:
 ```
-Invalid command format! 
+Invalid command format!
 editPerson: Edits the details of the person identified by the index number used in the displayed person list. Existing values will be overwritten by the input values.
 Parameters: INDEX (must be a positive integer within the company) [c/COMPANY] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/NOTE] [pr/PRIORITY] [t/TAG].
 Example: editPerson 1 c/1 p/91234567 e/johndoe@example.com
@@ -1079,7 +1079,7 @@ Added note to Person: John Doe;
 Phone: 98765432;
 Email: johnd@example.com;
 Address: 311, Clementi Ave 2, #02-25;
-Note: 
+Note:
 Likes to swim.;
 Priority: 1;
 Company: TechCorp;
@@ -1473,7 +1473,7 @@ A: In Connectify, companies and people are considered duplicates if they share t
 
 **Q3: Why are my fields being cut off in the UI?**
 
-A: Do note that Connectify's UI does not fully support long fields and will cut off fields that are too long. However, the supported length is likely sufficient for most fields. 
+A: Do note that Connectify's UI does not fully support long fields and will cut off fields that are too long. However, the supported length is likely sufficient for most fields.
 
 **Q4: What sort of input is not allowed in Connectify?**
 

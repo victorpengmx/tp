@@ -22,7 +22,7 @@ Given below are my contributions to the project.
     * Added ability to delete companies
         * What it does: Allows users to delete companies from the Connectify database.
         * Justification: This feature improves the product significantly because users are now able to remove erroneous or outdated data from the database.
-    
+
 * **Code Contributed**: [RepoSense link](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=victorpengmx&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code&since=2023-09-22&tabOpen=true&tabType=authorship&tabAuthor=victorpengmx&tabRepo=AY2324S1-CS2103T-T15-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 * **Project management**:
