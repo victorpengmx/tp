@@ -1127,7 +1127,7 @@ Example: notePerson 1 1 r/Likes to swim.
 The company index provided is invalid.
 ```
 
-- If the specified person index is invalid (larger than the number of companies in the displayed person list), you will get the following error message:
+- If the specified person index is invalid (larger than the number of people in the displayed person list), you will get the following error message:
 ```
 The person index provided is invalid.
 ```
@@ -1245,7 +1245,7 @@ Parameters: COMPANY_INDEX (must be a positive integer) PERSON_INDEX (must be a p
 The company index provided is invalid.
 ```
 
-- If the specified person index is invalid (larger than the number of companies in the displayed person list), you will get the following error message:
+- If the specified person index is invalid (larger than the number of people in the displayed person list), you will get the following error message:
 ```
 The person index provided is invalid.
 ```
@@ -1330,7 +1330,7 @@ Cleared all persons and companies.
 ```
 
 <div markdown="block" class="alert alert-warning"><strong>&#x2757; Caution:</strong>
-Do take note that this `clear` action is irreversible. Your company and people lists will be deleted.
+Do take note that this 'clear' action is irreversible. Your company and people lists will be deleted.
 </div>
 
 <a href="#table-of-contents" class="return-to-toc-link">
