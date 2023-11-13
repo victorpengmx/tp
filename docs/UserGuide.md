@@ -43,8 +43,8 @@ Yellow boxes contain important warnings.
 * [Tutorial: Navigating the application](#tutorial-navigating-the-application)
 * [Features](#features)
   * [Components of a Command](#components-of-a-command)
-  * [How to Read Command Formats](#how-to-read-command-formats)
-  * [General Input Guidelines](#general-input-guidelines)
+  * [Command Format Guidelines](#command-format-guidelines)
+  * [General Command Input Guidelines](#general-command-input-guidelines)
   * [Features for managing company details](#features-for-managing-company-details)
     * [Adding a company: `addCompany`](#adding-a-company-addcompany)
     * [Deleting a company: `deleteCompany`](#deleting-a-company-deletecompany)
@@ -285,7 +285,7 @@ Every command in Connectify is a prompt for action. It's how you command the app
 
 --------------------------------------------------------------------------------------------------------------------
 
-### How to Read Command Formats
+### Command Format Guidelines
 
 Throughout this user guide, you'll encounter various [General Commands](#general-commands) specific to Connectify. Let's explore how to interpret these command formats.
 
@@ -310,7 +310,7 @@ Throughout this user guide, you'll encounter various [General Commands](#general
 
 --------------------------------------------------------------------------------------------------------------------
 
-### General Input Guidelines
+### General Command Input Guidelines
 
 Here are some guidelines when using any of Connectify's commands. Please follow this to ensure that Connectify understands you!
 
