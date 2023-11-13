@@ -7,7 +7,7 @@ title: Lim Wei Hern's Project Portfolio Page
 
 Connectify is a networking platform designed to help professionals efficiently manage their connections and enhance their networking experiences.
 
-Given below are my contributions to the project.
+Given below are my contributions to the project. A full list of the PRs that I have contributed to can be found [here](https://github.com/AY2324S1-CS2103T-T15-4/tp/pulls?q=is%3Apr+is%3Aclosed+author%3AnreHieW).
 
 * **New Feature**: In charge of the entire UI component [\#110](https://github.com/AY2324S1-CS2103T-T15-4/tp/issues/110) [(Link to PR)](https://github.com/AY2324S1-CS2103T-T15-4/tp/pull/119)
 * Created and implemented the UI component for the entire project.
@@ -48,26 +48,29 @@ Given below are my contributions to the project.
 * Cleaned up the entire testing suite, especially the storage tests.
 * Significance: Testing is a fundamental component of the Project and is also a key learning outcome of CS2103T.
 
-* **Documentation**:
-    * User Guide:
-        * Added initial draft version of the User Guide. [(Link to PR)](https://github.com/AY2324S1-CS2103T-T15-4/tp/pull/19)
-        * Contributed to the standardization of the User Guide. [(Link to PR)](https://github.com/AY2324S1-CS2103T-T15-4/tp/pull/99)
-        * Updated the FAQs to handle commonly asked questions as a result of user testing. [(Link to PR)](https://github.com/AY2324S1-CS2103T-T15-4/tp/pull/188)
-        * Add `list`, `people` and `companies` to the User Guide. [(Link to PR)](https://github.com/AY2324S1-CS2103T-T15-4/tp/pull/86)
-    * Developer Guide:
-        * Updated the implementation details of the UI and its various components. [(Link to PR)](https://github.com/AY2324S1-CS2103T-T15-4/tp/pull/86)
-        * Updated the implementation details of the `Entity`, `Person` and `Company` classes. [(Link to PR)](https://github.com/AY2324S1-CS2103T-T15-4/tp/pull/86)
-        * Created the PlantUML diagrams for the `Entity`, `Person` and `Company` classes. [(Link to PR)](https://github.com/AY2324S1-CS2103T-T15-4/tp/pull/86)
-        * Created PlantUML diagrams for `ListCompanies`, `ListPeople` and `shareCompany`. [(Link to PR)](https://github.com/AY2324S1-CS2103T-T15-4/tp/pull/200)
-    * General*
-        * Migrated documentation to Markbind. [(Link to PR)](https://github.com/AY2324S1-CS2103T-T15-4/tp/pull/103)
-
 * **Team-Based Tasks**:
     * **Established the Project Notes Google Drive**: Set up a Google Drive dedicated to Project Notes, facilitating streamlined team collaboration and centralized project documentation. Play a significant role in maintaining the document and made most of the changing including features demo in every iteration.
     * **Enhanced Code Robustness through Gradle Assertions**: Implemented assertions in Gradle to bolster code robustness, contributing to the software's overall reliability.
+
+* **Review and Mentoring Contributions**:
+  * **Provided feedback for team members' PRs**: Provided feedback for team members' PRs, ensuring that the team's codebase is of high quality.
+  * **Provided suggestions on how to improve testing suite**: Provided suggestions on how to improve the testing suite, ensuring that the team's codebase is of high quality and consistent with the project's coding standards.
 
 * **Tools**:
     * **Managed SourceTree, Git, and GitHub for Version Control**: Utilized SourceTree, Git, and GitHub for revision control and code management, ensuring efficient development workflows.
     * **Used PlantUML for Diagram Creation**: Utilized PlantUML to generate diagrams for the Developer Guide so that it is more visually informative.
     * **Used CodeCov for Code Coverage**: Utilized CodeCov to track code coverage and ensure that the project meets the minimum code coverage requirements.
 
+* **Documentation**:
+    * Contributions to User Guide:
+        * Added initial draft version of the User Guide. [(Link to PR)](https://github.com/AY2324S1-CS2103T-T15-4/tp/pull/19)
+        * Contributed to the standardization of the User Guide. [(Link to PR)](https://github.com/AY2324S1-CS2103T-T15-4/tp/pull/99)
+        * Updated the FAQs to handle commonly asked questions as a result of user testing. [(Link to PR)](https://github.com/AY2324S1-CS2103T-T15-4/tp/pull/188)
+        * Add `list`, `people` and `companies` to the User Guide. [(Link to PR)](https://github.com/AY2324S1-CS2103T-T15-4/tp/pull/86)
+    * Contributions to Developer Guide:
+        * Updated the implementation details of the UI and its various components. [(Link to PR)](https://github.com/AY2324S1-CS2103T-T15-4/tp/pull/86)
+        * Updated the implementation details of the `Entity`, `Person` and `Company` classes. [(Link to PR)](https://github.com/AY2324S1-CS2103T-T15-4/tp/pull/86)
+        * Created the PlantUML diagrams for the `Entity`, `Person` and `Company` classes. [(Link to PR)](https://github.com/AY2324S1-CS2103T-T15-4/tp/pull/86)
+        * Created PlantUML diagrams for `ListCompanies`, `ListPeople` and `shareCompany`. [(Link to PR)](https://github.com/AY2324S1-CS2103T-T15-4/tp/pull/200)
+    * General*
+        * Migrated documentation to Markbind. [(Link to PR)](https://github.com/AY2324S1-CS2103T-T15-4/tp/pull/103)
