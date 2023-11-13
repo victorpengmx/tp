@@ -1444,7 +1444,7 @@ Connectify will automatically save your data on your hard disk after any command
 You can directly modify Connectify's data without opening the application. You can do so by editing the Connectify [JSON file](https://fileinfo.com/extension/json) `[JAR file location]/data/addressbook.json`.
 
 <div markdown="block" class="alert alert-warning"><strong>&#x2757; Caution:</strong>
-If your edited data is not of the correct format, Connectify will **discard all of your data** and start with an empty JSON file the next time you launch Connectify. This is **irreversible**, so please **ensure that you have backed up your data** before editing it.
+If your edited data is not of the correct format, Connectify will <b>be unable to read your data</b> and start with an empty JSON file the next time you launch Connectify.
 </div>
 
 <a href="#table-of-contents" class="return-to-toc-link">
@@ -1489,7 +1489,7 @@ A: A person of a higher priority should be assigned a higher priority number. Th
 
 **Q7: What is the numerical range for the priority field?**
 
-A: Connectify does not restrict the numerical range for the priority field. However, the numerical range for the priority field is 1 to 10. This is because Connectify's `rank` command ranks people by decreasing numerical values of priority. This is so that a person who has ranked contacts of the highest priority at point in time wouldn't need to re-rank their contacts if they wish to add a new contact of an even higher priority in the future. However, the numerical value for priority should not be a negative number.
+A: Connectify does not restrict the upper boundary of the numerical range for the priority field. This is so that a person who has ranked contacts of the highest priority at point in time wouldn't need to re-rank their contacts if they wish to add a new contact of an even higher priority in the future. However, the numerical value for priority cannot be a negative number.
 
 <a href="#table-of-contents" class="return-to-toc-link">
   <span class="return-to-toc-text">Return to Table of Contents</span>
