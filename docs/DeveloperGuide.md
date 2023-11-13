@@ -96,6 +96,11 @@
     * [Improvements to Documentation](#improvements-to-documentation)
     * [Challenges Overcame](#challenges-overcame)
   * [**Appendix: Planned Enhancements](#appendix-planned-enhancements)
+    * [Allowing a person to be added to multiple companies](#1-allowing-a-person-to-be-added-to-multiple-companies)
+    * [Improving User Interface for Longer Input Data](#2-improving-user-interface-for-longer-input-data)
+    * [Enhancing User-Friendly Error Messages](#3-enhancing-user-friendly-error-messages)
+    * [Strengthening User Input Validation](#4-strengthening-user-input-validation)
+    * [Enhancing User Interface for Clarity and Intuitiveness](#5-enhancing-user-interface-for-clarity-and-intuitiveness)
 <!-- TOC -->
 
 <div style="page-break-after: always;"></div>
@@ -1593,10 +1598,41 @@ testers are expected to do more *exploratory* testing.
 
 ## **Appendix: Planned Enhancements**
 
-1. Currently, a person is only able to be added to one company to avoid confusion in the management of existing contacts. In the future, we would like to allow a person to be added to multiple companies.
-2. Our user interface has certain limitations at this current point of time such as having a limit to the length of user input that can be displayed in the Graphical User Interface as we hope to focus on the functionality of the application. In the future, we would like to improve the user interface to make it more user-friendly and intuitive. For example, it should be able to support longer user inputted data.
-3. Currently, some error messages displayed to the user may not be very user-friendly as we hope to focus on the core functionality of the application. In the future, we would like to improve the error messages to make them more user-friendly and intuitive.
-4. Connectify does not carry out extensive validation of user inputs as we hope to give the user more flexibility. In the future, we would like to improve the validation of user inputs to ensure that the user inputs are valid and correct.
-5. Currently, Connectify does not have a feature to allow users to search for a specific contact. In the future, we would like to implement a search feature to allow users to search for a specific contact, which is especially important when the number of connections in Connectify increases.
-6. Connectify's user interface is not the most intuitive and user-friendly at this current point of time and existing data may not be displayed very clearly. In the future, we would like to improve the user interface to make it more user-friendly and intuitive.
-7. Connectify's keyboard shortcuts may not work for all users as some users may be using a different operating system. In the future, we would like to allow users to customise their own keyboard shortcuts to make it more convenient for them.
+### 1. Allowing a Person to be Added to Multiple Companies
+
+**Problem:**
+The current system restricts individuals to be associated with only one company, which proves problematic for management of contact for individuals affiliated with multiple organizations. This limitation hampers effective contact management and fails to represent the diverse professional affiliations of users accurately.
+
+**Proposed Solution:**
+Enhance the system to enable individuals to be associated with multiple companies, providing a more flexible and comprehensive representation of professional relationships. This can be achieved by allowing the Person object to hold a reference to the Company objects that it is associated with. By allowing Persons to be associated with multiple companies, Connectify aims to provide users with a more accurate and comprehensive representation of their professional relationships.
+### 2. Improving User Interface for Longer Input Data
+
+**Problem:**
+The current user interface imposes constraints on the length of user-inputted data, leading to potential truncation and a suboptimal user experience. This limitation may compromise the integrity and completeness of information entered into the system.
+
+**Proposed Solution:**
+Revamp the user interface to overcome limitations on input data length. This involves redesigning input fields, expanding character limits, and optimizing the display to accommodate longer entries. By enhancing the interface's ability to handle extended user input, Connectify aims to improve usability, allowing users to input, view, and manage comprehensive information seamlessly.
+
+### 3. Enhancing User-Friendly Error Messages
+
+**Problem:**
+Current error messages lack user-friendliness, making it challenging for users to understand and address issues within the application effectively. This can lead to user frustration, prolonged problem resolution, and a less-than-optimal overall user experience.
+
+**Proposed Solution:**
+Optimize error messages to be more user-friendly and intuitive. This involves crafting clear, concise, and informative messages that guide users in understanding the issue and taking appropriate corrective actions. Connectify aims to improve communication with users during error scenarios, ensuring a smoother user experience even when challenges arise.
+
+### 4. Strengthening User Input Validation
+
+**Problem:**
+Connectify currently allows extensive flexibility in user inputs without thorough validation, potentially resulting in inaccurate or invalid data entries. This poses risks to data integrity and the reliability of information stored within the system.
+
+**Proposed Solution:**
+Implement a comprehensive user input validation system to ensure the accuracy and correctness of data entered into Connectify. This involves validating input formats, ranges, and constraints, as well as incorporating error feedback mechanisms to guide users towards valid entries. By striking a balance between flexibility and data integrity, Connectify aims to enhance the overall reliability and trustworthiness of the information it manages.
+
+### 5. Enhancing User Interface for Clarity and Intuitiveness
+
+**Problem:**
+The current user interface lacks intuitiveness, hindering users' ability to navigate and comprehend existing data effectively. This can lead to a suboptimal user experience and challenges in utilizing the application to its full potential.
+
+**Proposed Solution:**
+Invest in a comprehensive redesign of the user interface to improve clarity and intuitiveness. This involves refining navigation structures, optimizing data presentation, and incorporating user-friendly design principles. Connectify aims to provide users with an interface that is not only visually appealing but also enhances their ability to understand, interact with, and derive value from the information stored within the application.
