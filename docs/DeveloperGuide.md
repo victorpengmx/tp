@@ -91,10 +91,11 @@
     * [Seeking help](#seeking-help)
     * [Saving data](#saving-data)
     * [Exit](#exit)
-  * [**Appendix: Improvements**](#appendix-improvements)
+  * [**Appendix: Improvements**](#appendix-effort)
     * [Improvements to Functional Code](#improvements-to-functional-code)
     * [Improvements to Documentation](#improvements-to-documentation)
     * [Challenges Overcame](#challenges-overcame)
+  * [**Appendix: Planned Enhancements](#appendix-planned-enhancements)
 <!-- TOC -->
 
 <div style="page-break-after: always;"></div>
@@ -1560,6 +1561,8 @@ testers are expected to do more *exploratory* testing.
     1. Test cases: `exit`, `exit ...(any other text following)...`.<br>
        Expected: Program window closes. Data is saved, and can be accessed on the next boot-up of Connectify. The text following the `exit` command is ignored.
 
+<div style="page-break-after: always;"></div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Effort**
@@ -1583,6 +1586,8 @@ testers are expected to do more *exploratory* testing.
 ### Challenges Overcame
 * Use of JavaFX to effectively implement the GUI for Connectify.
 * Use of PlantUML to effectively implement the UML diagrams for Connectify.
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
