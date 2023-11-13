@@ -17,10 +17,17 @@ public class EditCompanyDescriptorBuilder {
 
     private final EditCompanyDescriptor descriptor;
 
+    /**
+     * Creates a {@code EditCompanyDescriptorBuilder} with empty fields.
+     */
     public EditCompanyDescriptorBuilder() {
         descriptor = new EditCompanyDescriptor();
     }
 
+    /**
+     * Creates an {@code EditCompanyDescriptorBuilder} with fields containing {@code company}'s details.
+     * @param descriptor The descriptor to copy from.
+     */
     public EditCompanyDescriptorBuilder(EditCompanyDescriptor descriptor) {
         this.descriptor = new EditCompanyDescriptor(descriptor);
     }
@@ -104,6 +111,10 @@ public class EditCompanyDescriptorBuilder {
         return this;
     }
 
+    /**
+     * Builds the descriptor.
+     * @return The descriptor.
+     */
     public EditCompanyDescriptor build() {
         return descriptor;
     }
