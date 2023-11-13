@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: default.md
 title: Gerald Ng's Project Portfolio Page
 ---
 
