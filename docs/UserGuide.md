@@ -39,12 +39,12 @@ Yellow boxes contain important warnings.
 
 ## Table of Contents
 * [Quick Start](#quick-start)
-* [Tutorial: Installing Connectify](#tutorial--installing-connectify)
-* [Tutorial: Navigating the application](#tutorial--navigating-the-application)
+* [Tutorial: Installing Connectify](#tutorial-installing-connectify)
+* [Tutorial: Navigating the application](#tutorial-navigating-the-application)
 * [Features](#features)
   * [Components of a Command](#components-of-a-command)
-  * [How to Read Command Formats](#how-to-read-command-formats)
-  * [General Input Guidelines](#general-input-guidelines)
+  * [Command Format Guidelines](#command-format-guidelines)
+  * [General Command Input Guidelines](#general-command-input-guidelines)
   * [Features for managing company details](#features-for-managing-company-details)
     * [Adding a company: `addCompany`](#adding-a-company-addcompany)
     * [Deleting a company: `deleteCompany`](#deleting-a-company-deletecompany)
@@ -70,6 +70,7 @@ Yellow boxes contain important warnings.
     * [Advanced Data Management Features](#advanced-data-management-features)
 * [FAQ](#faq)
 * [Known issues](#known-issues)
+* [Glossary](#glossary)
 * [Command Summary](#command-summary)
 
 <div style="page-break-after: always;"></div>
@@ -82,9 +83,12 @@ Yellow boxes contain important warnings.
 
 Getting started with Connectify is extremely simple! Here is a tutorial on how to set up Connectify in **4 easy steps**.
 
-1. Firstly, ensure that you have *Java 11* or above [installed](https://www.baeldung.com/java-check-is-installed) in your Computer.
+1. Firstly, ensure that you have *Java 11* or above [installed](https://www.baeldung.com/java-check-is-installed) in your Computer. If not, follow the [Java Installation Guide](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html) for further instructions on how to download and install Java 11.
 2. Create a new folder to store Connectify.
-3. Download Connectify from following [**this link**](https://github.com/AY2324S1-CS2103T-T15-4/tp/releases) and save the downloaded file in the directory you created in the previous step.
+3. Download Connectify from following [**our "Releases" pages**](https://github.com/AY2324S1-CS2103T-T15-4/tp/releases). our executable file can be found under the “Assets” section of the page as seen in the image below.
+
+![Download Location](images/DownloadLocation.png)
+
 4. Launch Connectify by double-clicking the file in the directory. You'll be greeted by Connectify's primary interface, with an empty database as shown below.
 
 <div markdown="block" class="alert alert-warning"><strong>&#x2757; Caution:</strong>
@@ -256,19 +260,19 @@ Every command in Connectify is a prompt for action. It's how you command the app
 ![UG Command Example](images/UGCommandExample.png)
 
 * Command Name<br>
-  The **command name** indicates the action you want to perform in Connectify.<br>
+  The **Command Name** indicates the action you want to perform in Connectify.<br>
   In the example above, `editCompany` is the command name.
 
 * Index<br>
-  The **index** is the **numerical position** of an item in a displayed list within Connectify. <br>
+  The **Index** is the **numerical position** of an item in a displayed list within Connectify. <br>
   In the example above, `1` represents the first company in the company list.
 
 * Prefixes<br>
-  Prefixes ending with a `/` help identify the type of information **you provide** in a command. <br>
+  **Prefixes** ending with a `/` help identify the type of information **you provide** in a command. <br>
   In the example above, `n/`serves as a prefix to indicate that you want to edit a company's name to `Facebook`.
 
 * Inputs<br>
-  Inputs are the specific details **you input** for a command to process. <br>
+  **Inputs** are the specific details **you input** for a command to process. <br>
   In the example above, `Facebook` is the input that specifies the new name for the company.
 
 <a href="#table-of-contents" class="return-to-toc-link">
@@ -285,7 +289,7 @@ Every command in Connectify is a prompt for action. It's how you command the app
 
 --------------------------------------------------------------------------------------------------------------------
 
-### How to Read Command Formats
+### Command Format Guidelines
 
 Throughout this user guide, you'll encounter various [General Commands](#general-commands) specific to Connectify. Let's explore how to interpret these command formats.
 
@@ -310,7 +314,7 @@ Throughout this user guide, you'll encounter various [General Commands](#general
 
 --------------------------------------------------------------------------------------------------------------------
 
-### General Input Guidelines
+### General Command Input Guidelines
 
 Here are some guidelines when using any of Connectify's commands. Please follow this to ensure that Connectify understands you!
 
@@ -368,8 +372,17 @@ Note:
 
 **Example:**
 
-To add a Company "Apple Inc", a computer and consumer technology company headquartered in Los Altos, with the website "www.apple.com", email address contact@apple.com, the phone number 98765432, address "1 Apple Park Way, Cupertino, California", use the following command:
+To add a Company "Apple Inc", with the following fields:
+- Name: Apple Inc
+- Industry: technology
+- Location: Los Altos
+- Description: computer and consumer technology
+- Website: www.apple.com
+- Email: contact@apple.com
+- Phone: 98765432
+- Address: 1 Apple Park Way, Cupertino, California
 
+Use the following command:
 ```
 addCompany n/Apple Inc i/technology l/Los Altos d/computer and consumer technology w/www.apple.com e/contact@apple.com p/98765432 a/1 Apple Park Way, Cupertino, California
 ```
@@ -515,8 +528,13 @@ Note:
 
 **Example:**
 
-To edit the company's name to "TechCorp", their email to techcorp@gmail.com and their address to "123, Jurong West Ave 6, #08-111", use the following command:
+To edit the company at the first index to the following updated fields:
+- Name: TechCorp
+- Email: techcorp@gmail.com
+- Address: 123, Jurong West Ave 6, #08-111
+- Phone: 91234567
 
+Use the following command:
 ```
 editCompany 1 n/TechCorp p/91234567 e/techcorp@gmail.com a/123, Jurong West Ave 6, #08-111
 ```
@@ -799,8 +817,13 @@ Note:
 
 **Example:**
 
-To add a contact named John Doe with the phone number 98765432, email address johndoe@example.com, address "311, Clementi Ave 2, #02-25," and associate them with Company 1, use the following command:
+To add a contact associated with Company 1 with the following fields:
+- Name: John Doe
+- Phone: 98765432
+- Email: johndoe@example.com
+- Address: 311, Clementi Ave 2, #02-25
 
+Use the following command:
 ```
 addPerson n/John Doe p/98765432 e/johndoe@example.com a/311, Clementi Ave 2, #02-25 c/1 t/friends pr/1 t/owesMoney
 ```
@@ -966,8 +989,11 @@ Keep contact details up-to-date in Connectify. Be sure the check if they have ch
 
 **Example:**
 
-To edit the person at index 1 in the displayed person list of the Company at index 1 to change their phone number to 91234567 and their email to johndoe@example.com, use the following command:
+To edit the person at index 1 in the displayed person list of the Company at index 1 to the following updated fields:
+- Phone: 91234567
+- Email: johndoe@example.com
 
+Use the following command:
 ```
 editPerson 1 c/1 p/91234567 e/johndoe@example.com
 ```
@@ -1163,7 +1189,7 @@ Parameters: COMPANY_INDEX PERSON_INDEX (must be a positive integer) [r/NOTE]
 The company index provided is invalid.
 ```
 
-- If the specified person index is invalid (larger than the number of companies in the displayed person list), you will get the following error message:
+- If the specified person index is invalid (larger than the number of people in the displayed person list), you will get the following error message:
 ```
 The person index provided is invalid.
 ```
@@ -1280,7 +1306,7 @@ Parameters: COMPANY_INDEX (must be a positive integer) PERSON_INDEX (must be a p
 The company index provided is invalid.
 ```
 
-- If the specified person index is invalid (larger than the number of companies in the displayed person list), you will get the following error message:
+- If the specified person index is invalid (larger than the number of people in the displayed person list), you will get the following error message:
 ```
 The person index provided is invalid.
 ```
@@ -1365,7 +1391,7 @@ Cleared all persons and companies.
 ```
 
 <div markdown="block" class="alert alert-warning"><strong>&#x2757; Caution:</strong>
-Do take note that this `clear` action is irreversible. Your company and people lists will be deleted.
+Do take note that this 'clear' action is irreversible. Your company and people lists will be deleted.
 </div>
 
 <a href="#table-of-contents" class="return-to-toc-link">
@@ -1463,18 +1489,18 @@ This section is meant for more advanced users of Connectify who are already fami
 
 While you can use a mouse to navigate Connectify, using the keyboard can be a great way to improve your efficiency and productivity as you can **reduce time wasted** switching frequently between your keyboard and mouse.
 
-The table on the next page lists the keyboard shortcuts currently available in Connectify. You can refer to the [Tutorial: Navigating the Application](#tutorial--navigating-the-application) section to familiarise yourself with the components of Connectify that are used in this section.
+The table on the next page lists the keyboard shortcuts currently available in Connectify. You can refer to the [Tutorial: Navigating the Application](#tutorial-navigating-the-application) section to familiarise yourself with the components of Connectify that are used in this section.
 
 <div style="page-break-after: always;"></div>
 
-|                  Keyboard Key                  | Function                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-|:----------------------------------------------:|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|                 <kbd>F1</kbd>                  | **Seeking help:**<br> At anytime, press <kbd>F1</kbd> to bring up the pop-up window with the link to the user guide.                                                                                                                                                                                                                                                                                                                                                                                                       |
-|                 <kbd>Tab</kbd>                 | **Scrolling down the section:**<br> When you are in the Command box, press <kbd>Tab</kbd> twice to navigate to the "All" Tab. If you wish to navigate to the "People" Tab or 'Companies' Tab, please refer to the section on the <kbd>LeftArrow</kbd> and <kbd>RightArrow</kbd> keyboard shortcuts. Once you are at the Tab of any of the three sections, use <kbd>Tab</kbd> to continue moving down that section. Pressing <kbd>Tab</kbd> again after reaching the end of the section will return you to the Command box. |
-|       <kbd>Shift</kbd> + <kbd>Tab</kbd>        | **Scrolling up the section:**<br> Similar to <kbd>Tab</kbd> but moves up the section instead.                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| <kbd>LeftArrow</kbd> and <kbd>RightArrow</kbd> | **Switching to another section:**<br> When you are at any of the three Tabs, press <kbd>LeftArrow</kbd> to navigate to the Tab directly to the current Tab's left. If you are currently at the "All" Tab, pressing <kbd>LeftArrow</kbd> wil navigate you to the "Companies" Tab. Press <kbd>RightArrow</kbd> to navigate to the Tab directly to the current Tab's right. If you are currently at the "Companies" Tab, pressing <kbd>RightArrow</kbd> wil navigate you to the "All" Tab.                                    |
-|                <kbd>Space</kbd>                | **Navigating a Company Card in the All Entities Section:**<br> When you are at any Company Card in the All Entities Section, use <kbd>Space</kbd> to expand or close the Company Card you are currently on.                                                                                                                                                                                                                                                                                                                |
-|  <kbd>UpArrow</kbd> and <kbd>DownArrow</kbd>   | **Switching to another Person card or Company card:**<br> When you are in the Person List Section or Company List Section, press <kbd>UpArrow</kbd> or <kbd>DownArrow</kbd> to move up or down the section.                                                                                                                                                                                                                                                                                                                |
+|                  Keyboard Key                  | Function                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+|:----------------------------------------------:|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|                 <kbd>F1</kbd>                  | **Seeking help:**<br> At anytime, press <kbd>F1</kbd> to bring up the pop-up window with the link to the user guide.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+|                 <kbd>Tab</kbd>                 | **Moving down the section:**<br> When you are in the Command box, press <kbd>Tab</kbd> twice to navigate to the "All" Tab. <br><br>If you wish to navigate to the "People" Tab or 'Companies' Tab, please refer to the section on the <kbd>LeftArrow</kbd> and <kbd>RightArrow</kbd> keyboard shortcuts. <br><br>Once you are at the All Tab, use <kbd>Tab</kbd> to continue moving down the All Entities Section. Pressing <kbd>Tab</kbd> again after reaching the end of the section will return you to the Command box. When you are at the "People" Tab or "Companies" Tab, pressing <kbd>Tab</kbd> twice will return you to the Command box. <br><br>**Moving down Person Cards in the All Entities Section:**<br> When you are at any Company Card, pressing <kbd>Tab</kbd> will bring you into the list of Person Cards. |
+|       <kbd>Shift</kbd> + <kbd>Tab</kbd>        | **Moving up the section:**<br> Similar to <kbd>Tab</kbd> but moves up the section instead.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| <kbd>LeftArrow</kbd> and <kbd>RightArrow</kbd> | **Switching to another section:**<br> When you are at any of the three Tabs, press <kbd>LeftArrow</kbd> to navigate to the Tab directly to the current Tab's left. If you are currently at the "All" Tab, pressing <kbd>LeftArrow</kbd> wil navigate you to the "Companies" Tab. Press <kbd>RightArrow</kbd> to navigate to the Tab directly to the current Tab's right. If you are currently at the "Companies" Tab, pressing <kbd>RightArrow</kbd> wil navigate you to the "All" Tab.                                                                                                                                                                                                                                                                                                                                         |
+|                <kbd>Space</kbd>                | **Navigating a Company Card in the All Entities Section:**<br> When you are at any Company Card in the All Entities Section, use <kbd>Space</kbd> to expand or close the Company Card you are currently on.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+|  <kbd>UpArrow</kbd> and <kbd>DownArrow</kbd>   | **Switching to another Person card or Company card:**<br> When you are in the Person List Section or Company List Section, press <kbd>UpArrow</kbd> or <kbd>DownArrow</kbd> to move up or down the section. <br><br>**Navigating the list of Person Cards** <br> When you are in the list of Person Cards in any Company Card, press <kbd>UpArrow</kbd> or <kbd>DownArrow</kbd> to move up or down the list of Person Cards.                                                                                                                                                                                                                                                                                                                                                                                                    |
 
 <a href="#table-of-contents" class="return-to-toc-link">
   <span class="return-to-toc-text">Return to Table of Contents</span>
@@ -1587,17 +1613,20 @@ A: Connectify does not restrict the upper boundary of the numerical range for th
 | Term                                                                                     | Description                                                                                                                                                                           |
 |------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | <span id="glossary-command">_Command_</span>                                             | An instruction for Connectify to execute. All commands start with a [_command phrase_](#glossary-command-phrase) followed by any [_inputs_](#glossary-input) the command may require. |
-| <span id="glossary-command-line-interface-cli">_Command Line Interface (CLI)_</span>     | The method by which you instruct Connectify to perform tasks, which is by entering [_commands_](#glossary-command) into the [_command box_](#command-line-section).                   |
-| <span id="glossary-graphical-user-interface-gui">_Graphical User Interface (GUI)_</span> | The method by which you instruct Connectify to perform tasks, which is by clicking on buttons and typing into text boxes.                                                             |
+| <span id="glossary-command-line-interface-cli">_Command Line Interface (CLI)_</span>     | The means by which you instruct Connectify to perform tasks, which is by entering [_commands_](#glossary-command) into the [_command box_](#command-line-section).                    |
+| <span id="glossary-graphical-user-interface-gui">_Graphical User Interface (GUI)_</span> | The means by which you instruct Connectify to perform tasks, which is by clicking on buttons and typing into text boxes.                                                              |
 | <span id="glossary-command-phrase">_Command phrase_</span>                               | The name of the instruction for Connectify to execute. For example, [`people`](#listing-all-people-people) is the _command phrase_ to show the list of persons added to Connectify.   |
 | <span id="glossary-company-index">_Company index_</span>                                 | The number that appears next to each company’s name in the current displayed [_company list_](#company-list-section).                                                                 |
-| <span id="glossary-person-index">_Person index_</span>                                   | The number that appears next to each person’s in the Person List of each company in the current displayed [_company list_](#company-list-section).                                    |
 | <span id="glossary-entering-a-command">_Enter[ing]_ a command</span>                     | Type the [_command_](#glossary-command) into the [_command box_](#command-line-section), and press the <kbd>Enter</kbd> key.                                                          |
+| <span id="glossary-entity">_Entity_</span>                                               | The contacts that you store in Connectify, namely Persons and Companies.                                                                                                              |
 | <span id="glossary-input">_Input_</span>                                                 | Additional information supplied by you that is used to run a [_command_](#glossary-command).                                                                                          |
+| <span id="glossary-json">_JSON_</span>                                                   | A lightweight, text-based, human-readable format of files for transmitting data, also known as [JavaScript Object Notation](https://fileinfo.com/extension/json).                     |
 | <span id="glossary-keyboard-shortcut">_Keyboard shortcut_</span>                         | A key or sequence of keys which you may press to perform actions without your mouse.                                                                                                  |
-| <span id="glossary-person-index">_Person index_</span>                                   | The number that appears next to each person’s name in the current displayed [_person list_](#person-list-section).                                                                    |
+| <span id="glossary-person-index">_Person index_</span>                                   | The number that appears next to each person’s in the Person List of each company in the current displayed [_company list_](#company-list-section).                                    |
 | <span id="glossary-prefix">_Prefix_</span>                                               | A short piece of text indicating what type of information follows. For example, `n/` is the prefix that indicates that what follows is a name.                                        |
 | <span id="glossary-priority">_Priority_</span>                                           | A numerical value assigned to a person to indicate how important they are.                                                                                                            |
+| <span id="glossary-user-interface-ui">_User Interface (UI)_</span>                       | The means by which you interact with Connectify, which includes the CLI and GUI.                                                                                                      |
+
 
 <a href="#table-of-contents" class="btn btn-outline-light link-primary" style="border: #f1f2f4 solid 1px !important; border-radius: 5px !important; padding: 5px !important; text-decoration: none !important;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-bar-up" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M3.646 11.854a.5.5 0 0 0 .708 0L8 8.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708zM2.4 5.2c0 .22.18.4.4.4h10.4a.4.4 0 0 0 0-.8H2.8a.4.4 0 0 0-.4.4z"/></svg> Return to Table of Contents</a>
 

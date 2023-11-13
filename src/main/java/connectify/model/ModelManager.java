@@ -209,6 +209,9 @@ public class ModelManager implements Model {
         currEntity = EntityType.COMPANIES;
     }
 
+    /**
+     * Returns the current entity type that is being filtered.
+     */
     @Override
     public String getCurrEntity() {
         if (currEntity == EntityType.PEOPLE) {
@@ -220,6 +223,9 @@ public class ModelManager implements Model {
         }
     }
 
+    /**
+     * Sets the current entity type that is being filtered.
+     */
     @Override
     public void setCurrEntity(String entityType) throws InvalidEntityException {
         if (entityType.equals("people")) {
@@ -248,21 +254,33 @@ public class ModelManager implements Model {
 
     }
 
+    /**
+     * Returns the number of entities that is currently being filtered.
+     */
     @Override
     public Integer getNumberOfEntities() {
         return getFilteredEntityList().size();
     }
 
+    /**
+     * Returns the number of people that is currently being filtered.
+     */
     @Override
     public Integer getNumberOfPeople() {
         return filteredPersons.size();
     }
 
+    /**
+     * Returns the number of companies that is currently being filtered.
+     */
     @Override
     public Integer getNumberOfCompanies() {
         return filterCompanies.size();
     }
 
+    /**
+     * Returns the number of all entities in the address book.
+     */
     @Override
     public Integer getNumberOfAllEntities() {
         return addressBook.getPersonList().size() + addressBook.getCompanyList().size();

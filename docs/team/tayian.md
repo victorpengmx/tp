@@ -29,9 +29,7 @@ Given below are my contributions to the project.
 
 * **Project management**:
     * Resolved merge conflicts that arose due to parallel editing of similar features.
-
-* **Enhancements to existing features**:
-    * To be added soon.
+    * Identified bugs in code and informed team members.
 
 * **Documentation**:
     * User Guide:
