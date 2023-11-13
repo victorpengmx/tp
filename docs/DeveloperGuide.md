@@ -623,7 +623,7 @@ The `NotePersonCommand` also handles cases where the provided person or company 
 
 #### Implementation
 
-The ranking feature within Connectify is facilitated by the `RankCommand` and associated `RankCommandParser` in the `Logic` component. The `rank` command sorts the list of all persons by their assigned priority, allowing users to manage and view contacts based on importance.
+The ranking feature within Connectify is facilitated by the `RankPersonCommand` in the `Logic` component. The `rank` command sorts the list of all persons by their assigned priority, allowing users to manage and view contacts based on importance.
 
 #### Command Usage
 
@@ -639,7 +639,7 @@ Upon successful execution, Connectify outputs the list of people ranked accordin
 
 The sequence of actions undertaken by the rank command is delineated in the activity diagram provided below. This includes the retrieval of all persons, their sorting by priority, and the updating of the user interface to reflect the changes.
 
-The `rankCommand` also handles cases where there are no people in the address book. The command throws a `CommandException` to inform the user.
+The `rank` command also handles cases where there are no people in the address book. The command throws a `CommandException` to inform the user.
 
 ![rankSequenceDiagram.png](images/rankSequenceDiagram.png)
 
@@ -776,26 +776,26 @@ After running this command, the application closes.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                               | I want to …​                        | So that I can…​                                                         |
-|----------|---------------------------------------|-------------------------------------|-------------------------------------------------------------------------|
-| `* * *`  | new user                              | see usage instructions              | refer to instructions when I forget how to use the App                  |
-| `* * *`  | user                                  | add a new company                   |                                                                         |
-| `* * *`  | user                                  | add a new person                    |                                                                         |
-| `* * *`  | user                                  | edit a company                      | update the details of the company easily                                |
-| `* * *`  | user                                  | edit a person                       | update the details of the person easily                                 |
-| `* * *`  | user                                  | delete a company                    | remove a company that I no longer need                                  |
-| `* * *`  | user                                  | delete a person                     | remove a person that I no longer need                                   |
-| `* *`    | user                                  | add notes to a company              | add and view more information on the company                            |
-| `* *`    | user                                  | add notes to a person               | add and view more information on the person                             |
-| `* *`    | user                                  | share a company                     | share the company details with others                                   |
-| `* *`    | user                                  | share a person                      | share the person details with others                                    |
-| `* * *`  | user                                  | list all contacts                   | know what persons and companies I have contacts of                      |
-| `* * *`  | user                                  | list all companies                  | know what companies I have contacts of                                  |
-| `* * *`  | user                                  | list all people                     | know who are the people I have contacts with                            |
-| `* * *`  | user                                  | exit the application                |                                                                         |
-| `* * `   | user                                  | assign a priority value to a person | rank persons based on the priority                                      |
-| `* *`    | user with many persons in Connnectify | sort persons by priority            | easily find persons who are more important                              |
-| `* *`    | user                                  | clear all contacts                  | restart with a fresh database                                           |
+| Priority | As a …​                                | I want to …​                        | So that I can…​                                                         |
+|----------|----------------------------------------|-------------------------------------|-------------------------------------------------------------------------|
+| `* * *`  | new user                               | see usage instructions              | refer to instructions when I forget how to use the App                  |
+| `* * *`  | user                                   | add a new company                   |                                                                         |
+| `* * *`  | user                                   | add a new person                    |                                                                         |
+| `* * *`  | user                                   | edit a company                      | update the details of the company easily                                |
+| `* * *`  | user                                   | edit a person                       | update the details of the person easily                                 |
+| `* * *`  | user                                   | delete a company                    | remove a company that I no longer need                                  |
+| `* * *`  | user                                   | delete a person                     | remove a person that I no longer need                                   |
+| `* *`    | user                                   | add notes to a company              | add and view more information on the company                            |
+| `* *`    | user                                   | add notes to a person               | add and view more information on the person                             |
+| `* *`    | user                                   | share a company                     | share the company details with others                                   |
+| `* *`    | user                                   | share a person                      | share the person details with others                                    |
+| `* * *`  | user                                   | list all contacts                   | know what persons and companies I have contacts of                      |
+| `* * *`  | user                                   | list all companies                  | know what companies I have contacts of                                  |
+| `* * *`  | user                                   | list all people                     | know who are the people I have contacts with                            |
+| `* * *`  | user                                   | exit the application                |                                                                         |
+| `* * `   | user                                   | assign a priority value to a person | rank persons based on the priority                                      |
+| `* *`    | user with many contacts in Connnectify | sort persons by priority            | easily find persons who are more important                              |
+| `* *`    | user                                   | clear all contacts                  | restart with a fresh database                                           |
 
 ### Use cases
 
@@ -1191,18 +1191,22 @@ Use case ends.
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
-* **CLI**: Command Line Interface
-* **GUI**: Graphical User Interface
-* **UI**: User Interface
-* **API**: Application Programming Interface
-* **MSS**: Main Success Scenario
-* **Extension**: Alternative Scenario
-* **Actor**: A user or another system that interacts with the system under consideration
-* **System**: The software system under consideration
-* **Contact**: A person that the user wants to keep track of
-* **Priority**: A value that indicates the importance of a contact
+| Term                                                                       | Description                                                                                                                                                       |
+|----------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| <span id="glossary-mainstream-os">_Mainstream OS_</span>                   | Windows, Linux, Unix, OS-X                                                                                                                                        |
+| <span id="glossary-private-contact-detail">_Private contact detail_</span> | A contact detail that is not meant to be shared with others                                                                                                       |
+| <span id="glossary-cli">_CLI_</span>                                       | Command Line Interface                                                                                                                                            |
+| <span id="glossary-gui">_GUI_</span>                                       | Graphical User Interface                                                                                                                                          |
+| <span id="glossary-ui">_UI_</span>                                         | User Interface                                                                                                                                                    |
+| <span id="glossary-api">_API_</span>                                       | Application Programming Interface                                                                                                                                 |
+| <span id="glossary-mss">_MSS_</span>                                       | Main Success Scenario                                                                                                                                             |
+| <span id="glossary-extension">_Extension_</span>                           | Alternative Scenario                                                                                                                                              |
+| <span id="glossary-actor">_Actor_</span>                                   | A user or another system that interacts with the system under consideration                                                                                       |
+| <span id="glossary-system">_System_</span>                                 | The software system under consideration                                                                                                                           |
+| <span id="glossary-contact">_Contact_</span>                               | A person that the user wants to keep track of                                                                                                                     |
+| <span id="glossary-priority">_Priority_</span>                             | A value that indicates the importance of a contact                                                                                                                |
+| <span id="glossary-json">_JSON_</span>                                     | A lightweight, text-based, human-readable format of files for transmitting data, also known as [JavaScript Object Notation](https://fileinfo.com/extension/json). |
+
 
 --------------------------------------------------------------------------------------------------------------------
 
