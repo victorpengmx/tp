@@ -51,7 +51,7 @@ Yellow boxes contain important warnings.
     * [Editing a company: `editCompany`](#editing-a-company-editcompany)
     * [Listing all companies: `companies`](#listing-all-companies-companies)
     * [Managing notes about a company: `noteCompany`](#managing-notes-about-a-company-notecompany)
-    * [Sharing a company's details: `shareCompany`](#sharing-a-companys-details-sharecompany)
+    * [Sharing company details: `shareCompany`](#sharing-company-details-sharecompany)
   * [Features for managing people contact details](#features-for-managing-people-contact-details)
     * [Adding a person: `addPerson`](#adding-a-person-addperson)
     * [Deleting a person: `deletePerson`](#deleting-a-person-deleteperson)
@@ -59,7 +59,7 @@ Yellow boxes contain important warnings.
     * [Listing all people: `people`](#listing-all-people-people)
     * [Managing notes about a person: `notePerson`](#managing-notes-about-a-person-noteperson)
     * [Ranking people by priority: `rank`](#ranking-people-by-priority-rank)
-    * [Sharing a person's details: `sharePerson`](#sharing-a-persons-details-shareperson)
+    * [Sharing people details: `sharePerson`](#sharing-people-details-shareperson)
   * [General Commands](#general-commands)
     * [Listing all entities: `list`](#listing-all-entities-list)
     * [Clearing the database: `clear`](#clearing-the-database-clear)
@@ -329,7 +329,7 @@ Here are some guidelines when using any of Connectify's commands. Please follow 
   For example, `1 2 n/Apple` is  referring to the person with index 1 and company with index 2, but `2 1 n/Apple` is referring to the person with index 2 and company with index 1.
 
 <box type="warning" icon=":fa-solid-triangle-exclamation:">
-It's important to avoid including inputs that are not expected by a command. For example, if a 'rank' command is designed to accept zero inputs, adding an input like 'p/12345678' might lead to unintended behaviour.
+It's important to avoid including inputs that are not expected by a command. For example, if a <b>rank<b/> command is designed to accept zero inputs, adding an input like 'p/12345678' might lead to unintended behaviour.
 </box>
 
 <a href="#table-of-contents" class="return-to-toc-link">
@@ -728,7 +728,7 @@ The company index provided is invalid.
 
 --------------------------------------------------------------------------------------------------------------------
 
-#### Sharing a company's details: `shareCompany`
+#### Sharing company details: `shareCompany`
 
 The `shareCompany` command allows you to share a company's details with another person. This command is particularly useful for sharing companies you have stored. Since notes are personal to each user, shareCompany does not include the sharing of notes. To share a company's details, follow the command format below:
 
@@ -1222,7 +1222,7 @@ Note:
 - This command ranks people by decreasing numerical values of priority. Hence, a person with priority 10 will be ranked higher (closer to the top of the list) than a person with priority 1.
 
 <box type="tip">
-Use the `rank` command in Connectify to prioritise your contacts based on current professional needs or project requirements.
+Use the <b>rank<b/> command in Connectify to prioritise your contacts based on current professional needs or project requirements.
 </box>
 
 **Successful Output**
@@ -1256,7 +1256,7 @@ There are no people in Connectify.
 
 --------------------------------------------------------------------------------------------------------------------
 
-#### Sharing a person's details: `sharePerson`
+#### Sharing people details: `sharePerson`
 
 The `sharePerson` command allows you to share a person's details with another person. This command is particularly useful for sharing contact details of people you have stored. To share a person's contact details, follow the command format below:
 
