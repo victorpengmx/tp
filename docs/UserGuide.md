@@ -82,9 +82,12 @@ Yellow boxes contain important warnings.
 
 Getting started with Connectify is extremely simple! Here is a tutorial on how to set up Connectify in **4 easy steps**.
 
-1. Firstly, ensure that you have *Java 11* or above [installed](https://www.baeldung.com/java-check-is-installed) in your Computer.
+1. Firstly, ensure that you have *Java 11* or above [installed](https://www.baeldung.com/java-check-is-installed) in your Computer. If not, follow the [Java Installation Guide](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html) for further instructions on how to download and install Java 11.
 2. Create a new folder to store Connectify.
-3. Download Connectify from following [**this link**](https://github.com/AY2324S1-CS2103T-T15-4/tp/releases) and save the downloaded file in the directory you created in the previous step.
+3. Download Connectify from following [**our "Releases" pages**](https://github.com/AY2324S1-CS2103T-T15-4/tp/releases). our executable file can be found under the “Assets” section of the page as seen in the image below.
+
+![Download Location](images/DownloadLocation.png)
+
 4. Launch Connectify by double-clicking the file in the directory. You'll be greeted by Connectify's primary interface, with an empty database as shown below.
 
 <div markdown="block" class="alert alert-warning"><strong>&#x2757; Caution:</strong>
