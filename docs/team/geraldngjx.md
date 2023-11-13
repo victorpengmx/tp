@@ -10,28 +10,23 @@ Connectify is a networking platform designed to help SOC students efficiently ma
 Given below are my contributions to the project.
 
 * **New Feature**: Created Skeleton for Company Class [\#41](https://github.com/AY2324S1-CS2103T-T15-4/tp/issues/41) [(Link to PR)](https://github.com/AY2324S1-CS2103T-T15-4/tp/pull/48)
-  * Created the skeleton code for the Company class, which serves as a fundamental component for managing company-related information.
-  * Added test cases for the Company class to set the project's direction.
+  * Created the skeleton code and wrote test cases for the Company class, which serves as a fundamental component for managing company-related information.
   * Significance: Utilized parameters of type String to set the groundwork for future refactoring of the Company class according to OOP principles. Refactoring of the Company class was based off the skeleton code and test cases.
 
 * **New Feature**: Implemented PersonList Object [\#44](https://github.com/AY2324S1-CS2103T-T15-4/tp/issues/44) [(Link to PR)](https://github.com/AY2324S1-CS2103T-T15-4/tp/pull/64)
-  * Introduced the PersonList object, following Object-Oriented Programming principles to enable companies to maintain a list of people associated with them.
-  * Added test cases for the PersonList object to set the project's direction.
+  * Introduced the PersonList object, following Object-Oriented Programming principles to enable companies to maintain a list of people associated with them. Also wrote test cases for the PersonList object.
   * Significance: The PersonList object is a fundamental component of the project, as it allows the Company class to store contacts associated with it. The PersonList object is also a key component of the Company class, which is a fundamental component of the project.
 
 * **New Feature**: Implemented `notePerson` Command [\#79](https://github.com/AY2324S1-CS2103T-T15-4/tp/issues/79) [(Link to PR)](https://github.com/AY2324S1-CS2103T-T15-4/tp/pull/94)
-  * Implemented the `notePerson` command, enabling users to add notes to their contacts.
-  * This includes the addition of the notePersonCommandParser file and writing the test cases for the notePerson command.
+  * Implemented the `notePerson` command (including notePersonCommandParser file), enabling users to add notes to their contacts. Also wrote test cases for the `notePerson` command.
   * Key contributions: Enhanced the platform's capabilities for user data organization and personalized interactions.
 
 * **New Feature**: Implemented `noteCompany` Command [\#79](https://github.com/AY2324S1-CS2103T-T15-4/tp/issues/79) [(Link to PR)](https://github.com/AY2324S1-CS2103T-T15-4/tp/pull/94)
-  * Developed the `noteCompany` command, allowing users to add notes to their company contacts.
-  * This includes the noteCompanyCommandParser file and writing the test cases for the noteCompany command.
+  * Developed the `noteCompany` command (including noteCompanyCommandParser file), allowing users to add notes to their company contacts. Also wrote test cases for the `noteCompany` command.
   * Significance: Enhanced the platform's utility for managing professional relationships with organizations.
 
 * **New Feature**: Implemented `editCompany` Command [\#109](https://github.com/AY2324S1-CS2103T-T15-4/tp/issues/109) [(Link to PR)](https://github.com/AY2324S1-CS2103T-T15-4/tp/pull/116)
-  * Implemented the `editCompany` command, enabling users to edit the details of their company contacts.
-  * This includes the addition of the editCompanyCommandParser file and writing the test cases for the editCompany command.
+  * Implemented the `editCompany` command (including editCompanyCommandParser file), enabling users to edit the details of their company contacts. Also wrote test cases for the `editCompany` command.
   * Significance: Enables user to keep their company contacts up-to-date, which is crucial in network management.
 
 
@@ -40,18 +35,15 @@ Given below are my contributions to the project.
 
 * **Project management**:
   * Managed deliverables consistently from `v1.1` to `v1.4`.
-  * Managed releases on Github.
   * Played a major role in managing the issue tracker for the team.
 
 
 * **Enhancements to existing features**: Updated `addPerson` command [\#67](https://github.com/AY2324S1-CS2103T-T15-4/tp/issues/67) [(Link to PR)](https://github.com/AY2324S1-CS2103T-T15-4/tp/pull/70)
   * Update addPerson command to reflect new changes
-  * Add dummy company as sample data to add unassigned Person to Company (Temporary)
   * Update existing test cases
 
 * **Enhancements to existing features**: Updated `editPerson` command [\#111](https://github.com/AY2324S1-CS2103T-T15-4/tp/issues/111) [(Link to PR)](https://github.com/AY2324S1-CS2103T-T15-4/tp/pull/116)
   * Update editPerson command to reflect new changes (to allow editing of Person within the company)
-  * Update existing test cases
 
 
 * **Team-Based Tasks**:
