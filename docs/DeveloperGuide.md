@@ -102,7 +102,7 @@ This developer guide describes the implementation details of Connectify. It is i
   * [Improvements to Functional Code](#improvements-to-functional-code)
   * [Improvements to Documentation](#improvements-to-documentation)
   * [Challenges Overcame](#challenges-overcame)
-* [**Appendix: Planned Enhancements](#appendix-planned-enhancements)
+* [**Appendix: Planned Enhancements**](#appendix-planned-enhancements)
   * [Allowing a person to be added to multiple companies](#1-allowing-a-person-to-be-added-to-multiple-companies)
   * [Improving User Interface for Longer Input Data](#2-improving-user-interface-for-longer-input-data)
   * [Enhancing User-Friendly Error Messages](#3-enhancing-user-friendly-error-messages)
