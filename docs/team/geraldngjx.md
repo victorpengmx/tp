@@ -5,7 +5,7 @@ title: Gerald Ng's Project Portfolio Page
 
 ### Project: Connectify
 
-Connectify is a networking platform designed to help professionals efficiently manage their connections and enhance their networking experiences.
+Connectify is a networking platform designed to help SOC students efficiently manage their connections and enhance their networking experiences.
 
 Given below are my contributions to the project.
 
