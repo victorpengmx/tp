@@ -22,19 +22,16 @@ Given below are my contributions to the project.
 * **New Feature**: Implemented `notePerson` Command [\#79](https://github.com/AY2324S1-CS2103T-T15-4/tp/issues/79) [(Link to PR)](https://github.com/AY2324S1-CS2103T-T15-4/tp/pull/94)
   * Implemented the `notePerson` command, enabling users to add notes to their contacts.
   * This includes the addition of the notePersonCommandParser file and writing the test cases for the notePerson command.
-  * This feature allows users to store additional information about individuals, which is crucial in effective network management.
   * Key contributions: Enhanced the platform's capabilities for user data organization and personalized interactions.
 
 * **New Feature**: Implemented `noteCompany` Command [\#79](https://github.com/AY2324S1-CS2103T-T15-4/tp/issues/79) [(Link to PR)](https://github.com/AY2324S1-CS2103T-T15-4/tp/pull/94)
   * Developed the `noteCompany` command, allowing users to add notes to their company contacts.
   * This includes the noteCompanyCommandParser file and writing the test cases for the noteCompany command.
-  * This feature facilitates the storage of critical information about companies, which is invaluable in network management.
   * Significance: Enhanced the platform's utility for managing professional relationships with organizations.
 
 * **New Feature**: Implemented `editCompany` Command [\#109](https://github.com/AY2324S1-CS2103T-T15-4/tp/issues/109) [(Link to PR)](https://github.com/AY2324S1-CS2103T-T15-4/tp/pull/116)
   * Implemented the `editCompany` command, enabling users to edit the details of their company contacts.
   * This includes the addition of the editCompanyCommandParser file and writing the test cases for the editCompany command.
-  * This feature allows users to update the information of their company contacts, which is crucial in network management.
   * Significance: Enables user to keep their company contacts up-to-date, which is crucial in network management.
 
 
@@ -44,7 +41,7 @@ Given below are my contributions to the project.
 * **Project management**:
   * Managed deliverables consistently from `v1.1` to `v1.4`.
   * Managed releases on Github.
-  * Played a major role in managing the issue tracker, including the addition of labels and milestones.
+  * Played a major role in managing the issue tracker for the team.
 
 
 * **Enhancements to existing features**: Updated `addPerson` command [\#67](https://github.com/AY2324S1-CS2103T-T15-4/tp/issues/67) [(Link to PR)](https://github.com/AY2324S1-CS2103T-T15-4/tp/pull/70)
@@ -56,13 +53,29 @@ Given below are my contributions to the project.
   * Update editPerson command to reflect new changes (to allow editing of Person within the company)
   * Update existing test cases
 
-* **Enhancements to existing features**: Others
-  * Made changes to existing code to ensure that the functionality of the project is not compromised by the addition of new features.
-  * Made changes to existing test code to accommodate the new changes to the project.
 
+* **Team-Based Tasks**:
+  * **Established the Project Notes Google Drive**: Set up a Google Drive dedicated to Project Notes, facilitating streamlined team collaboration and centralized project documentation.
+  * **Updated Team Documentation Regularly**: Ensured that the team documentation is up-to-date, facilitating streamlined team collaboration and centralized project documentation.
+  * **Managed Deliverables Consistently**: Ensured that deliverables are submitted on time, facilitating streamlined team collaboration and centralized project documentation.
+  * **Delegated Tasks**: Delegated tasks to team members, ensuring that the workload is evenly distributed and that the project is completed on time.
+
+
+* **Review and Mentoring Contributions**:
+  * **Enhanced Code Quality through Code Reviews**: Reviewed code to ensure that the code adheres to the project's coding standards, contributing to the software's overall reliability. [Link to PR](https://github.com/AY2324S1-CS2103T-T15-4/tp/pull/76#discussion_r1369009015)
+  * **Provided Suggestions on Feature Implementation**: Provided suggestions on feature implementation, contributing to the software's overall reliability.
+
+
+* **Contributions Beyond The Project Team**:
+  * Participated in the forum, providing technical help to others. [Link to Forum](https://github.com/nus-cs2103-AY2324S1/forum/issues/36#issuecomment-1695275085)
+
+
+* **Tools**:
+  * **Proficiently Managed SourceTree, Git, and GitHub for Version Control**: Skillfully utilized SourceTree, Git, and GitHub for revision control and code management, ensuring efficient and organized development workflows.
+  * **Leveraged PlantUML for Diagram Creation**: Utilized PlantUML to generate diagrams for the Developer Guide, enriching the quality of documentation and making it more visually informative.
 
 * **Documentation**:
-  * User Guide:
+  * Contributions to User Guide:
     * Contributed significantly to the User Guide, covering the Quick-Start, Tutorial: Adding Your First Connection, Table of Contents, and the majority of the User Guide to create the initial draft used in the PE-D practical. [\#113](https://github.com/AY2324S1-CS2103T-T15-4/tp/issues/113) [(Link to PR)](https://github.com/AY2324S1-CS2103T-T15-4/tp/pull/120)
     * Added majority of the screenshots and content for the UG in v1.3.
     * Updated documentation for User Guide to clarify expected behavior for `addPerson`, `deletePerson`, `notePerson`, and `noteCompany` commands in the first iteration of bug fixes after PE-D.
@@ -72,7 +85,7 @@ Given below are my contributions to the project.
     * Fixed broken links, typos, emoji not displaying issues in the User Guide.
     * Responsible for the delegating tasks to team members, ensuring that the User Guide is completed on time.
     * **Note:** Due to numerous PRs, it was difficult to add individual links. Hence, the following [link](https://github.com/AY2324S1-CS2103T-T15-4/tp/pulls?q=is%3Apr+is%3Aclosed+author%3Ageraldngjx) is provided to view all the PRs that I have made, including those for the User Guide.
-  * Developer Guide:
+  * Contributions to Developer Guide:
     * Updated the target user profile, value proposition and user stories. [\#12](https://github.com/AY2324S1-CS2103T-T15-4/tp/issues/12) [(Link to PR)](https://github.com/AY2324S1-CS2103T-T15-4/tp/pull/23)
     * Provide use cases for a few representative features that require multiple steps to complete. [\#14](https://github.com/AY2324S1-CS2103T-T15-4/tp/issues/14) [(Link to PR)](https://github.com/AY2324S1-CS2103T-T15-4/tp/pull/23)
     * Included some non-functional requirements (NFRs). [\#15](https://github.com/AY2324S1-CS2103T-T15-4/tp/issues/15) [(Link to PR)](https://github.com/AY2324S1-CS2103T-T15-4/tp/pull/23)
@@ -81,27 +94,3 @@ Given below are my contributions to the project.
     * Added the activity diagram and object diagram for the addPerson command. [\#83](https://github.com/AY2324S1-CS2103T-T15-4/tp/issues/83) [(Link to PR)](https://github.com/AY2324S1-CS2103T-T15-4/tp/pull/85)
     * Updated the Use Cases section to standardise the documentation and fill in gaps.
     * **Note:** Due to numerous PRs, it was difficult to add individual links. Hence, the following [link](https://github.com/AY2324S1-CS2103T-T15-4/tp/pulls?q=is%3Apr+is%3Aclosed+author%3Ageraldngjx) is provided to view all the PRs that I have made, including those for the Developer Guide.
-
-
-* **Team-Based Tasks**:
-  * **Established the Project Notes Google Drive**: Set up a Google Drive dedicated to Project Notes, facilitating streamlined team collaboration and centralized project documentation. Play a significant role in maintaining the document and made most of the changing including features demo in every iteration.
-  * **Enhanced Code Robustness through Gradle Assertions**: Implemented assertions in Gradle to bolster code robustness, contributing to the software's overall reliability.
-  * **Updated Team Documentation Regularly**: Ensured that the team documentation is up-to-date, facilitating streamlined team collaboration and centralized project documentation.
-  * **Managed Deliverables Consistently**: Ensured that deliverables are submitted on time, facilitating streamlined team collaboration and centralized project documentation.
-  * **Delegated Tasks**: Delegated tasks to team members, ensuring that the workload is evenly distributed and that the project is completed on time.
-
-
-* **Review and Mentoring Contributions**:
-  * **Enhanced Code Quality through Code Reviews**: Reviewed code to ensure that the code adheres to the project's coding standards, contributing to the software's overall reliability. [Link to PR](https://github.com/AY2324S1-CS2103T-T15-4/tp/pull/76#discussion_r1369009015)
-  * **Provided Suggestions on Feature Implementation**: Provided suggestions on feature implementation, contributing to the software's overall reliability.
-  * **Provided Suggestions on Documentation**: Provided suggestions on documentation, contributing to the software's overall reliability.
-
-
-* **Contributions Beyond The Project Team**:
-  * Participated in the forum, providing technical help to others. [Link to Forum](https://github.com/nus-cs2103-AY2324S1/forum/issues/36#issuecomment-1695275085)
-  * Participated in the PE-D practical, providing technical help to others.
-
-
-* **Tools**:
-  * **Proficiently Managed SourceTree, Git, and GitHub for Version Control**: Skillfully utilized SourceTree, Git, and GitHub for revision control and code management, ensuring efficient and organized development workflows.
-  * **Leveraged PlantUML for Diagram Creation**: Utilized PlantUML to generate diagrams for the Developer Guide, enriching the quality of documentation and making it more visually informative.
