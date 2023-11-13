@@ -36,7 +36,7 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=T15-4&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code&since=2023-09-22&tabOpen=true&tabType=authorship&tabAuthor=nreHieW&tabRepo=AY2324S1-CS2103T-T15-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 * **Project management**:
-    * Handled issue creation on GitHub for certain weeks. 
+    * Handled issue creation on GitHub for certain weeks.
     * Conducted prompt and efficient issue resolution and pull request reviews.
 
 * **Enhancements to existing features**:
@@ -62,3 +62,4 @@ Given below are my contributions to the project.
     * **Managed SourceTree, Git, and GitHub for Version Control**: Utilized SourceTree, Git, and GitHub for revision control and code management, ensuring efficient development workflows.
     * **Used PlantUML for Diagram Creation**: Utilized PlantUML to generate diagrams for the Developer Guide so that it is more visually informative.
     * **Used CodeCov for Code Coverage**: Utilized CodeCov to track code coverage and ensure that the project meets the minimum code coverage requirements.
+

@@ -36,10 +36,10 @@ Given below are my contributions to the project.
 * **Documentation**:
     * User Guide:
         * Updated error messages for a few commands that were flagged during mock PE.
-        * Thoroughly tested UG and uncovered 2 potential big issues that we documented after. 
+        * Thoroughly tested UG and uncovered 2 potential big issues that we documented after.
     * Developer Guide:
         * Contributed significantly to the developer guide, making sure that the all the commands are clearly documented.
-        * Created most of the activity and object diagrams for Commands section. 
+        * Created most of the activity and object diagrams for Commands section.
 
 * **Team-Based Tasks**:
     * **Enhanced Code Robustness through Gradle Assertions**: Implemented assertions in Gradle to bolster code robustness, contributing to the software's overall reliability.
@@ -47,4 +47,5 @@ Given below are my contributions to the project.
 * **Tools**:
     * **Proficiently Managed SourceTree, Git, and GitHub for Version Control**: Skillfully utilized Git, and GitHub for revision control and code management, ensuring efficient and organized development workflows.
     * **Leveraged PlantUML for Diagram Creation**: Utilized PlantUML to generate diagrams for the Developer Guide, enriching the quality of documentation and making it more visually informative.
+
 

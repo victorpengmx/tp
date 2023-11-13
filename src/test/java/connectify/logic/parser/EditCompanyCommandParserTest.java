@@ -24,8 +24,6 @@ import connectify.testutil.TypicalIndexes;
 
 public class EditCompanyCommandParserTest {
 
-    private static final String NAME_EMPTY = " " + PREFIX_NAME;
-
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCompanyCommand.MESSAGE_USAGE);
 

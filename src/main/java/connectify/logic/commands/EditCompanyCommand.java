@@ -73,6 +73,7 @@ public class EditCompanyCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        assert model != null : "Model cannot be null";
         requireNonNull(model);
         List<Company> lastShownList = model.getFilteredCompanyList();
 
@@ -156,12 +157,13 @@ public class EditCompanyCommand extends Command {
         private CompanyNote companyNote;
         private PersonList personList;
 
-
+        /**
+         * Constructor for EditCompanyDescriptor.
+         */
         public EditCompanyDescriptor() {}
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
          */
         public EditCompanyDescriptor(EditCompanyDescriptor toCopy) {
             setName(toCopy.companyName);
@@ -184,82 +186,162 @@ public class EditCompanyCommand extends Command {
                     companyWebsite, companyEmail, companyPhone, companyAddress, companyNote);
         }
 
+        /**
+         * Sets {@code companyName} to this object's {@code companyName}.
+         * @param companyName Name of company.
+         */
         public void setName(CompanyName companyName) {
             this.companyName = companyName;
         }
 
+        /**
+         * Returns an optional of {@code companyName}.
+         * @return Optional of {@code companyName}.
+         */
         public Optional<CompanyName> getName() {
             return Optional.ofNullable(companyName);
         }
 
+        /**
+         * Sets {@code companyIndustry} to this object's {@code companyIndustry}.
+         * @param companyIndustry Industry of company.
+         */
         public void setIndustry(CompanyIndustry companyIndustry) {
             this.companyIndustry = companyIndustry;
         }
 
+        /**
+         * Returns an optional of {@code companyIndustry}.
+         * @return Optional of {@code companyIndustry}.
+         */
         public Optional<CompanyIndustry> getIndustry() {
             return Optional.ofNullable(companyIndustry);
         }
 
+        /**
+         * Sets {@code location} to this object's {@code location}.
+         * @param location Location of company.
+         */
         public void setLocation(CompanyLocation location) {
             this.companyLocation = location;
         }
 
+        /**
+         * Returns an optional of {@code location}.
+         * @return Optional of {@code location}.
+         */
         public Optional<CompanyLocation> getLocation() {
             return Optional.ofNullable(companyLocation);
         }
 
+        /**
+         * Sets {@code companyDescription} to this object's {@code companyDescription}.
+         * @param companyDescription Description of company.
+         */
         public void setDescription(String companyDescription) {
             this.companyDescription = companyDescription;
         }
 
+        /**
+         * Returns an optional of {@code companyDescription}.
+         * @return Optional of {@code companyDescription}.
+         */
         public Optional<String> getDescription() {
             return Optional.ofNullable(companyDescription);
         }
 
+        /**
+         * Sets {@code website} to this object's {@code website}.
+         * @param website Website of company.
+         */
         public void setWebsite(CompanyWebsite website) {
             this.companyWebsite = website;
         }
 
+        /**
+         * Returns an optional of {@code website}.
+         * @return Optional of {@code website}.
+         */
         public Optional<CompanyWebsite> getWebsite() {
             return Optional.ofNullable(companyWebsite);
         }
 
+        /**
+         * Sets {@code phone} to this object's {@code phone}.
+         * @param companyPhone Phone number of company.
+         */
         public void setPhone(CompanyPhone companyPhone) {
             this.companyPhone = companyPhone;
         }
 
+        /**
+         * Returns an optional of {@code phone}.
+         * @return Optional of {@code phone}.
+         */
         public Optional<CompanyPhone> getPhone() {
             return Optional.ofNullable(companyPhone);
         }
 
+        /**
+         * Sets {@code email} to this object's {@code email}.
+         * @param companyEmail Email of company.
+         */
         public void setEmail(CompanyEmail companyEmail) {
             this.companyEmail = companyEmail;
         }
 
+        /**
+         * Returns an optional of {@code email}.
+         * @return Optional of {@code email}.
+         */
         public Optional<CompanyEmail> getEmail() {
             return Optional.ofNullable(companyEmail);
         }
 
+        /**
+         * Sets {@code address} to this object's {@code address}.
+         * @param companyAddress Address of company.
+         */
         public void setAddress(CompanyAddress companyAddress) {
             this.companyAddress = companyAddress;
         }
 
+        /**
+         * Returns an optional of {@code address}.
+         * @return Optional of {@code address}.
+         */
         public Optional<CompanyAddress> getAddress() {
             return Optional.ofNullable(companyAddress);
         }
 
+        /**
+         * Sets {@code companyNote} to this object's {@code companyNote}.
+         * @param companyNote Note about the company.
+         */
         public void setCompanyNote(CompanyNote companyNote) {
             this.companyNote = companyNote;
         }
 
+        /**
+         * Returns an optional of {@code companyNote}.
+         * @return Optional of {@code companyNote}.
+         */
         public Optional<CompanyNote> getCompanyNote() {
             return Optional.ofNullable(companyNote);
         }
 
+        /**
+         * Sets {@code personList} to this object's {@code personList}.
+         * @param personList List of persons in the company.
+         */
         public void setPersonList(PersonList personList) {
             this.personList = personList;
         }
 
+        /**
+         * Returns an optional of {@code personList}.
+         * @return Optional of {@code personList}.
+         */
         public Optional<PersonList> getPersonList() {
             return Optional.ofNullable(personList);
         }

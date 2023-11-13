@@ -88,7 +88,7 @@ Getting started with Connectify is extremely simple! Here is a tutorial on how t
 4. Launch Connectify by double-clicking the file in the directory. You'll be greeted by Connectify's primary interface, with an empty database as shown below.
 
 <div markdown="block" class="alert alert-warning"><strong>&#x2757; Caution:</strong>
-For MAC users, if an error message popup appears, running 'java -jar connectify.jar' while in the same directory via the MAC command terminal instead will open Connectify. Likewise, you will be greeted by Connectify's primary interface, with an empty database as shown below.
+For MAC users, if an error message popup appears, running 'java -jar connectify.jar' while in the same directory via the MAC command terminal instead will open Connectify.
 </div>
 
 ![Connectify Start Page](images/ConnectifyStartPage.png)
@@ -290,12 +290,12 @@ Every command in Connectify is a prompt for action. It's how you command the app
 Throughout this user guide, you'll encounter various [General Commands](#general-commands) specific to Connectify. Let's explore how to interpret these command formats.
 
 * Providing User Inputs<br>
-  Any words in **capital letters** are **your supplied inputs**.  
+  Any words in **capital letters** are **your supplied inputs**.
   For instance, in `editPerson INDEX c/COMPANY`, you can type in `editPerson 1 c/Apple n/Ryan`.
 
-* Optional Inputs<br>  
-  Inputs enclosed within square brackets `[]` are **optional**.  
-  For instance, for the command `editPerson INDEX c/COMPANY [n/NAME]`, you can use it in two ways:  
+* Optional Inputs<br>
+  Inputs enclosed within square brackets `[]` are **optional**.
+  For instance, for the command `editPerson INDEX c/COMPANY [n/NAME]`, you can use it in two ways:
   `editPerson INDEX c/COMPANY n/Ryan` or simply as `editPerson INDEX c/COMPANY`.
 
 <a href="#table-of-contents" class="return-to-toc-link">
@@ -312,11 +312,17 @@ Throughout this user guide, you'll encounter various [General Commands](#general
 
 ### General Input Guidelines
 
-Here are some guidelines when using the [General Commands](#general-commands). Please follow this to ensure that Connectify understands you! 
+Here are some guidelines when using any of Connectify's commands. Please follow this to ensure that Connectify understands you!
 
-* Flexible Input Order<br>  
-  You can key in inputs in **any order**.<br>
+* Flexible Input Order<br>
+  You can key in inputs **that are accompanied by a prefix** in **any order**.<br>
   For example, a command might be structured as `w/WEBSITE e/EMAIL`, but entering `e/EMAIL w/WEBSITE` will work as well.
+
+* Fixed Order for Index Specification<br>
+  When specifying an index, **the index must be the first input**.<br>
+  For example, `1 n/Apple` is valid, but `n/Apple 1` is not.
+  When there are two indexes (PersonIndex and CompanyIndex), **the PersonIndex must come before the CompanyIndex**.<br>
+  For example, `1 2 n/Apple` is  referring to the person with index 1 and company with index 2, but `2 1 n/Apple` is referring to the person with index 2 and company with index 1.
 
 <div markdown="block" class="alert alert-warning"><strong>&#x2757; Caution:</strong>
 It's important to avoid including inputs that are not expected by a command. For example, if a 'rank' command is designed to accept zero inputs, adding an input like 'p/12345678' might lead to unintended behaviour.
@@ -389,11 +395,11 @@ You should be able to see the company in Connectify as shown below:
 
 - If any of the compulsory placeholders such as `n/`, `i/`, `l/`, `d/`, `w/`, `e/`, `p/` or `a/` are missing, you will receive the following error message:
   ```
-  Invalid command format! 
+  Invalid command format!
   addCompany: Adds a company to the address book. Parameters: n/NAME i/INDUSTRY l/LOCATION d/DESCRIPTION w/WEBSITE e/EMAIL p/PHONE a/ADDRESS
   Example: addCompany n/TechCorp i/Technology l/Silicon Valley d/Leading tech company w/www.techcorp.com e/contact@techcorp.com p/12345678 a/123 Tech St, Silicon Valley
   ```
-  
+
 - If all compulsory placeholders are present but the details are missing, you will receive the following error message:
   ```
   Names should only contain alphanumeric characters and spaces, and it should not be blank
@@ -637,6 +643,10 @@ Phone: 12345678;
 Address: 123 Tech St, Silicon Valley
 ```
 
+You should be able to see the note in Connectify as shown below:
+
+![Adding Note to Company](images/noteCompany.png)
+
 **Unsuccessful Output**
 
 - If the specified index is invalid (larger than the number of companies in the displayed company list), you will get the following error message:
@@ -646,7 +656,7 @@ The company index provided is invalid.
 
 - If the specified index is missing or is not a positive integer, you will get the following error message:
 ```
-Invalid command format! 
+Invalid command format!
 noteCompany: Edits the note of the company identified by the index number used in the last company listing. Existing note will be overwritten by the input.
 Parameters: INDEX (must be a positive integer) r/[NOTE]
 Example: noteCompany 1 r/Looking for aspiring frontend developers.
@@ -786,7 +796,7 @@ You should be able to see the person in Connectify as shown below:
   addPerson: Adds a person to the address book. Parameters: n/NAME p/PHONE e/EMAIL a/ADDRESS pr/PRIORITY [c/COMPANY_INDEX] [t/TAG]...
   Example: addPerson n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney c/1 pr/1
   ```
-  
+
 - If all the compulsory placeholders are present but the details are missing:
   ```
   Names should only contain alphanumeric characters and spaces, and it should not be blank
@@ -950,7 +960,7 @@ At least one field to edit must be provided.
 
 - If the specified index is missing or is not a positive integer, you will get the following error message:
 ```
-Invalid command format! 
+Invalid command format!
 editPerson: Edits the details of the person identified by the index number used in the displayed person list. Existing values will be overwritten by the input values.
 Parameters: INDEX (must be a positive integer within the company) [c/COMPANY] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/NOTE] [pr/PRIORITY] [t/TAG].
 Example: editPerson 1 c/1 p/91234567 e/johndoe@example.com
@@ -1069,12 +1079,16 @@ Added note to Person: John Doe;
 Phone: 98765432;
 Email: johnd@example.com;
 Address: 311, Clementi Ave 2, #02-25;
-Note: 
+Note:
 Likes to swim.;
 Priority: 1;
 Company: TechCorp;
 Tags: [owesMoney][friends]
 ```
+
+You should be able to see the note in Connectify as shown below:
+
+![Adding Note to Person](images/notePerson.png)
 
 **Unsuccessful Output**
 
@@ -1430,7 +1444,7 @@ Connectify will automatically save your data on your hard disk after any command
 You can directly modify Connectify's data without opening the application. You can do so by editing the Connectify [JSON file](https://fileinfo.com/extension/json) `[JAR file location]/data/addressbook.json`.
 
 <div markdown="block" class="alert alert-warning"><strong>&#x2757; Caution:</strong>
-If your edited data is not of the correct format, Connectify will **discard all of your data** and start with an empty JSON file the next time you launch Connectify. This is **irreversible**, so please **ensure that you have backed up your data** before editing it.
+If your edited data is not of the correct format, Connectify will <b>be unable to read your data</b> and start with an empty JSON file the next time you launch Connectify.
 </div>
 
 <a href="#table-of-contents" class="return-to-toc-link">
@@ -1459,7 +1473,7 @@ A: In Connectify, companies and people are considered duplicates if they share t
 
 **Q3: Why are my fields being cut off in the UI?**
 
-A: Do note that Connectify's UI does not fully support long fields and will cut off fields that are too long. However, the supported length is likely sufficient for most fields. 
+A: Do note that Connectify's UI does not fully support long fields and will cut off fields that are too long. However, the supported length is likely sufficient for most fields.
 
 **Q4: What sort of input is not allowed in Connectify?**
 
@@ -1475,7 +1489,7 @@ A: A person of a higher priority should be assigned a higher priority number. Th
 
 **Q7: What is the numerical range for the priority field?**
 
-A: Connectify does not restrict the numerical range for the priority field. However, the numerical range for the priority field is 1 to 10. This is because Connectify's `rank` command ranks people by decreasing numerical values of priority. This is so that a person who has ranked contacts of the highest priority at point in time wouldn't need to re-rank their contacts if they wish to add a new contact of an even higher priority in the future. However, the numerical value for priority should not be a negative number.
+A: Connectify does not restrict the upper boundary of the numerical range for the priority field. This is so that a person who has ranked contacts of the highest priority at point in time wouldn't need to re-rank their contacts if they wish to add a new contact of an even higher priority in the future. However, the numerical value for priority cannot be a negative number.
 
 <a href="#table-of-contents" class="return-to-toc-link">
   <span class="return-to-toc-text">Return to Table of Contents</span>
@@ -1575,5 +1589,3 @@ A: Connectify does not restrict the numerical range for the priority field. Howe
     </svg>
   </span>
 </a>
-
-<div style="page-break-after: always;"></div>

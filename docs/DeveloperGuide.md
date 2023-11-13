@@ -10,11 +10,11 @@
 
 ## Table Of Contents
 <!-- TOC -->
-* [Connectify Developer Guide](#connectify-developer-guide)
-  * [Table Of Contents](#table-of-contents)
-  * [Introduction](#introduction)
-    * [**Acknowledgements**](#acknowledgements)
-    * [**Setting up, getting started**](#setting-up-getting-started)
+* [**Connectify Developer Guide**](#connectify-developer-guide)
+  * [**Table Of Contents**](#table-of-contents)
+  * [**Introduction**](#introduction)
+    * [Acknowledgements](#acknowledgements)
+    * [Setting up, getting started](#setting-up-getting-started)
   * [**Design**](#design)
     * [Architecture](#architecture)
     * [UI component](#ui-component)
@@ -109,7 +109,7 @@ This developer guide describes the implementation details of Connectify. It is i
 
 * [JavaFX](https://openjfx.io/) for providing the API for rendering GUI.
 * [Jackson](https://github.com/FasterXML/jackson) for providing the API for parsing JSON files.
-* [JUnit5](https://github.com/junit-team/junit5) for providing a unit testing framework. 
+* [JUnit5](https://github.com/junit-team/junit5) for providing a unit testing framework.
 * Our application is based on the [AddressBook-Level 3 (AB-3)](https://se-education.org/addressbook-level3/). All features present in our application are in addition to those already present in AB-3.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -193,6 +193,7 @@ The UI component interacts with other components in the application to fulfill i
 
 - **Dependencies**: The UI component has dependencies on various classes within the Model component to display data effectively.
 
+
 #### Usage
 
 To use the UI component effectively, follow these guidelines:
@@ -219,6 +220,8 @@ To use the UI component effectively, follow these guidelines:
 - The layouts of UI parts are defined in matching `.fxml` files in the `src/main/resources/view` folder.
 
 - For specific details about the implementation of the `MainWindow`, refer to [`MainWindow.java`](https://github.com/AY2324S1-CS2103T-T15-4/tp/blob/master/src/main/java/connectify/ui/MainWindow.java).
+
+<div style="page-break-after: always;"></div>
 
 
 
@@ -287,6 +290,9 @@ The `Storage` component,
 
 Classes used by multiple components are in the `connectify.commons` package.
 
+<div style="page-break-after: always;"></div>
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Implementation**
@@ -304,7 +310,7 @@ When given valid user input, the `AddCompanyCommandParser` will create a new `Co
 Consider a scenario where the user wishes to add a new company with various details into Connectify. The `AddCompanyCommand` takes in various parameters, such as `Name`, `Industry`, `Location`, description, `Website`, `Email`, `Phone`, `Address`
 to create a new `Company` object.
 
-<img src="images/addCompanyObjectDiagram.png" width="600" />
+<img src="images/addCompanyObjectDiagram.png" width="1000" />
 
 Consider an example of a valid `addCompany` command:
 
@@ -338,7 +344,7 @@ It requires a `targetIndex` parameter. This validates company index to ensure th
 
 If valid, the company is removed from the address book.
 
-<img src="images/deleteCompanyObjectDiagram.png" width="600" />
+<img src="images/deleteCompanyObjectDiagram.png" width="450" />
 
 Consider an example of a valid `deleteCompany` command:
 
@@ -372,7 +378,7 @@ It requires a `CompanyIndex` parameter. This validates company index to ensure t
 
 If valid, a new company object is created with the updated details and then set to replace the old company object.
 
-<img src="images/editCompanyObjectDiagram.png" width="600" />
+<img src="images/editCompanyObjectDiagram.png" width="1000" />
 
 Consider an example of a valid `editCompany` command:
 
@@ -408,6 +414,8 @@ The sequence diagram below illustrates the events that take place during the exe
 
 ![ListCompaniesActivityDiagram.png](images/ListCompaniesSequenceDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 
 
 ### Add Note to Company Feature: `noteCompany`
@@ -420,7 +428,7 @@ When the user provides valid input, the `NoteCompanyCommandParser` interprets th
 
 Assume a user wants to add a note to a company's record. The `noteCompany` command requires the index of the company in the displayed list and the note content as parameters.
 
-<img src="images/addCompanyNoteObjectDiagram.png" width="600" />
+<img src="images/addCompanyNoteObjectDiagram.png" width="450" />
 
 Consider an example where the user wishes to add a note indicating that a company is seeking frontend developers. The command input would be as follows:
 
@@ -478,7 +486,7 @@ Consider a scenario where the user wishes to add a new contact to a specific com
 
 To ensure that a contact is added to the correct company, the command also takes an `Index` parameter specifying the company where the contact should be added. This ensures that the contact is associated with the intended company.
 
-<img src="images/addPersonObjectDiagram.png" width="600" />
+<img src="images/addPersonObjectDiagram.png" width="1000" />
 
 Consider an example of a valid `addPerson` command:
 
@@ -492,7 +500,7 @@ The following activity diagrams detail the behavior of Connectify when a user in
 
 The `AddPersonCommand` also handles scenarios where a person with the same details already exists in the address book or the company specified via the company index parameter does not exist. In such cases, the command throws a `CommandException` with an error message to inform the user.
 
-<img src="images/addPersonActivityDiagram.png" width="600" />
+<img src="images/addPersonActivityDiagram.png" width="700" />
 
 <div style="page-break-after: always;"></div>
 
@@ -530,7 +538,7 @@ The following activity diagrams detail the behavior of Connectify when a user in
 
 The `DeletePersonCommand` also handles scenarios where a person is not part of a company or company index does not exist in the range of companies. In such cases, the command throws a `CommandException` with an error message to inform the user.
 
-<img src="images/deletePersonActivityDiagram.png" width="600" />
+<img src="images/deletePersonActivityDiagram.png" width="700" />
 
 <div style="page-break-after: always;"></div>
 
@@ -576,6 +584,8 @@ The sequence diagram below illustrates the events that take place during the exe
 
 ![ListPeopleActivityDiagram.png](images/ListPeopleSequenceDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 
 
 ### Add Note to Person Feature: `notePerson`
@@ -603,7 +613,7 @@ The behavior of Connectify upon receiving a notePerson command is described in t
 
 The `NotePersonCommand` also handles cases where the provided person or company index is not valid. It could be that the index does not correspond to any company or person in the current list view, or it is not a positive integer. Under such circumstances, the command throws a `CommandException` to inform the user.
 
-<img src="images/addPersonNoteActivityDiagram.png" width="600" />
+<img src="images/addPersonNoteActivityDiagram.png" width="700" />
 
 <div style="page-break-after: always;"></div>
 
@@ -647,7 +657,7 @@ With valid input, the parser constructs a `SharePersonCommand` which, upon execu
 
 The `sharePerson` command takes two parameters, `COMPANY_INDEX` and `PERSON_INDEX`, to identify the specific person within a company's list to be shared.
 
-<img src="images/sharePersonObjectDiagram.png" width="600" />
+<img src="images/sharePersonObjectDiagram.png" width="300" />
 
 Consider an example where the user wishes to share a person's contact. The command input would be as follows:
 
@@ -682,6 +692,8 @@ If the list is empty, `execute` in the list command returns a `CommandResult` wi
 The sequence diagram below illustrates the events that take place during the execution of `ListAllCommand`.
 
 ![ListAllActivityDiagram.png](images/ListAllSequenceDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 
 
@@ -733,7 +745,7 @@ After running this command, the application closes.
 <div style="page-break-after: always;"></div>
 
 
-
+--------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
