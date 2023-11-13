@@ -39,8 +39,8 @@ Yellow boxes contain important warnings.
 
 ## Table of Contents
 * [Quick Start](#quick-start)
-* [Tutorial: Installing Connectify](#tutorial--installing-connectify)
-* [Tutorial: Navigating the application](#tutorial--navigating-the-application)
+* [Tutorial: Installing Connectify](#tutorial-installing-connectify)
+* [Tutorial: Navigating the application](#tutorial-navigating-the-application)
 * [Features](#features)
   * [Components of a Command](#components-of-a-command)
   * [How to Read Command Formats](#how-to-read-command-formats)
@@ -1135,7 +1135,7 @@ Parameters: COMPANY_INDEX PERSON_INDEX (must be a positive integer) [r/NOTE]
 The company index provided is invalid.
 ```
 
-- If the specified person index is invalid (larger than the number of companies in the displayed person list), you will get the following error message:
+- If the specified person index is invalid (larger than the number of people in the displayed person list), you will get the following error message:
 ```
 The person index provided is invalid.
 ```
@@ -1252,7 +1252,7 @@ Parameters: COMPANY_INDEX (must be a positive integer) PERSON_INDEX (must be a p
 The company index provided is invalid.
 ```
 
-- If the specified person index is invalid (larger than the number of companies in the displayed person list), you will get the following error message:
+- If the specified person index is invalid (larger than the number of people in the displayed person list), you will get the following error message:
 ```
 The person index provided is invalid.
 ```
@@ -1337,7 +1337,7 @@ Cleared all persons and companies.
 ```
 
 <div markdown="block" class="alert alert-warning"><strong>&#x2757; Caution:</strong>
-Do take note that this `clear` action is irreversible. Your company and people lists will be deleted.
+Do take note that this 'clear' action is irreversible. Your company and people lists will be deleted.
 </div>
 
 <a href="#table-of-contents" class="return-to-toc-link">
@@ -1435,7 +1435,7 @@ This section is meant for more advanced users of Connectify who are already fami
 
 While you can use a mouse to navigate Connectify, using the keyboard can be a great way to improve your efficiency and productivity as you can **reduce time wasted** switching frequently between your keyboard and mouse.
 
-The table on the next page lists the keyboard shortcuts currently available in Connectify. You can refer to the [Tutorial: Navigating the Application](#tutorial--navigating-the-application) section to familiarise yourself with the components of Connectify that are used in this section.
+The table on the next page lists the keyboard shortcuts currently available in Connectify. You can refer to the [Tutorial: Navigating the Application](#tutorial-navigating-the-application) section to familiarise yourself with the components of Connectify that are used in this section.
 
 <div style="page-break-after: always;"></div>
 
