@@ -19,11 +19,11 @@ For a full overview of everything this guide has to offer, do make use of the [T
 
 Finally, here are some of the **symbols** and **text formatting** to look out for as you make use of this guide:
 
-<div markdown="span" class="alert alert-primary">:bulb: <strong>Tip:</strong>
+<div markdown="span" class="alert alert-primary"><strong>💡 Tip:</strong>
 Blue boxes contain additional information that may be useful for enhancing your experience using Connectify.
 </div>
 
-<div markdown="block" class="alert alert-warning">:exclamation: <strong>Caution:</strong>
+<div markdown="block" class="alert alert-warning"><strong>&#x2757; Caution:</strong>
 Yellow boxes contain important warnings.
 </div>
 
