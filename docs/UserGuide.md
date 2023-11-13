@@ -70,6 +70,7 @@ Yellow boxes contain important warnings.
     * [Advanced Data Management Features](#advanced-data-management-features)
 * [FAQ](#faq)
 * [Known issues](#known-issues)
+* [Glossary](#glossary)
 * [Command Summary](#command-summary)
 
 <div style="page-break-after: always;"></div>
