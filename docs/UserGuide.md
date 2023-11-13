@@ -39,8 +39,8 @@ Yellow boxes contain important warnings.
 
 ## Table of Contents
 * [Quick Start](#quick-start)
-* [Tutorial: Installing Connectify](#tutorial--installing-connectify)
-* [Tutorial: Navigating the application](#tutorial--navigating-the-application)
+* [Tutorial: Installing Connectify](#tutorial-installing-connectify)
+* [Tutorial: Navigating the application](#tutorial-navigating-the-application)
 * [Features](#features)
   * [Components of a Command](#components-of-a-command)
   * [How to Read Command Formats](#how-to-read-command-formats)
@@ -1428,7 +1428,7 @@ This section is meant for more advanced users of Connectify who are already fami
 
 While you can use a mouse to navigate Connectify, using the keyboard can be a great way to improve your efficiency and productivity as you can **reduce time wasted** switching frequently between your keyboard and mouse.
 
-The table on the next page lists the keyboard shortcuts currently available in Connectify. You can refer to the [Tutorial: Navigating the Application](#tutorial--navigating-the-application) section to familiarise yourself with the components of Connectify that are used in this section.
+The table on the next page lists the keyboard shortcuts currently available in Connectify. You can refer to the [Tutorial: Navigating the Application](#tutorial-navigating-the-application) section to familiarise yourself with the components of Connectify that are used in this section.
 
 <div style="page-break-after: always;"></div>
 
