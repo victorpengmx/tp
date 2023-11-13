@@ -405,7 +405,7 @@ You should be able to see the company in Connectify as shown below:
   Names should only contain alphanumeric characters and spaces, and it should not be blank
   ```
 
-- If a company with the same details already exists in the address book:
+- If a company with the same name already exists in the address book:
   ```
   This company already exists in the address book.
   ```
@@ -462,6 +462,15 @@ Address: 123 Tech St, Silicon Valley
 
 **Unsuccessful Output:**
 
+- If the specified index is missing or is not a positive integer, you will get the following error message:
+```
+Invalid command format! 
+deleteCompany: Deletes the company identified by the index number used in the displayed company list.
+Parameters: INDEX (must be a positive integer)
+Example: deleteCompany 1
+```
+
+- If the specified index is invalid (larger than the number of companies in the displayed company list), you will get the following error message:
 ```
 The company index provided is invalid.
 ```
@@ -527,7 +536,15 @@ Address: 123, Jurong West Ave 6, #08-111;
 
 **Unsuccessful Output:**
 
-- If you don't provide at least one field to edit, you will receive the following error message:
+- If the specified index is missing or is not a positive integer, you will get the following error message:
+```
+Invalid command format!
+editCompany: Edits the details of the company identified by the index number used in the displayed company list. Existing values will be overwritten by the input values.
+Parameters: INDEX (must be a positive integer) NAME PHONE EMAIL ADDRESS TAG.
+Example: editCompany 1 n/TechCorp p/91234567 e/techcorp@gmail.com a/123, Jurong West Ave 6, #08-111
+```
+
+- If you have specified a valid index but don't provide at least one field to edit, you will receive the following error message:
 ```
 At least one field to edit must be provided.
 ```
@@ -535,14 +552,6 @@ At least one field to edit must be provided.
 - If the specified index is invalid (larger than the number of companies in the displayed company list), you will get the following error message:
 ```
 The company index provided is invalid.
-```
-
-- If the specified index is missing or is not a positive integer, you will get the following error message:
-```
-Invalid command format!
-editCompany: Edits the details of the company identified by the index number used in the displayed company list. Existing values will be overwritten by the input values.
-Parameters: INDEX (must be a positive integer) NAME PHONE EMAIL ADDRESS TAG.
-Example: editCompany 1 n/TechCorp p/91234567 e/techcorp@gmail.com a/123, Jurong West Ave 6, #08-111
 ```
 
 <a href="#table-of-contents" class="return-to-toc-link">
@@ -602,7 +611,7 @@ There are no companies in Connectify.
 
 --------------------------------------------------------------------------------------------------------------------
 
-#### Adding note to a company: `noteCompany`
+#### Adding a note to a company: `noteCompany`
 
 The `noteCompany` command allows you to add a note to a company in Connectify. This command is particularly useful for adding notes to companies you have stored. To add a note to a company, follow the command format below:
 
@@ -649,17 +658,17 @@ You should be able to see the note in Connectify as shown below:
 
 **Unsuccessful Output**
 
-- If the specified index is invalid (larger than the number of companies in the displayed company list), you will get the following error message:
-```
-The company index provided is invalid.
-```
-
 - If the specified index is missing or is not a positive integer, you will get the following error message:
 ```
 Invalid command format!
 noteCompany: Edits the note of the company identified by the index number used in the last company listing. Existing note will be overwritten by the input.
 Parameters: INDEX (must be a positive integer) r/[NOTE]
 Example: noteCompany 1 r/Looking for aspiring frontend developers.
+```
+
+- If the specified index is invalid (larger than the number of companies in the displayed company list), you will get the following error message:
+```
+The company index provided is invalid.
 ```
 
 <a href="#table-of-contents" class="return-to-toc-link">
@@ -802,7 +811,7 @@ You should be able to see the person in Connectify as shown below:
   Names should only contain alphanumeric characters and spaces, and it should not be blank
   ```
 
-- If a person with the same details already exists in the address book:
+- If a person with the same name already exists in the address book:
   ```
   This person already exists in the address book.
   ```
@@ -966,19 +975,19 @@ Parameters: INDEX (must be a positive integer within the company) [c/COMPANY] [n
 Example: editPerson 1 c/1 p/91234567 e/johndoe@example.com
 ```
 
-- If the specified index is invalid (larger than the number of companies in the displayed company list), you will get the following error message:
+- If the specified person index is invalid (larger than the number of people in the displayed person list within the company), you will get the following error message:
 ```
 The person index provided is invalid.
+```
+
+- If the specified company index is 0 or a negative number, you will get the following error message:
+```
+Index is not a non-zero unsigned integer.
 ```
 
 - If the specified company index is missing, you will get the following error message:
 ```
 No company provided.
-```
-
-- If you try to edit a person's details in a company that does not exist, you will receive:
-```
-The company index provided is invalid.
 ```
 
 - If you try to edit a person's details to match another person in the address book, you will receive the following error message:
@@ -1092,12 +1101,11 @@ You should be able to see the note in Connectify as shown below:
 
 **Unsuccessful Output**
 
-- If the specified company index is missing, you will get the following error message:
+- If the specified company/person index is missing or not a positive integer, you will get the following error message:
 ```
-Invalid command format!
+Invalid command format! 
 notePerson: Changes the note of the person identified by the index number used in the displayed person list. Existing note will be overwritten by the input.
 Parameters: COMPANY_INDEX PERSON_INDEX (must be a positive integer) [r/NOTE]
-Example: notePerson 1 1 r/Likes to swim.
 ```
 
 - If the specified company index is invalid (larger than the number of companies in the displayed company list), you will get the following error message:
@@ -1109,7 +1117,6 @@ The company index provided is invalid.
 ```
 The person index provided is invalid.
 ```
-
 
 <a href="#table-of-contents" class="return-to-toc-link">
   <span class="return-to-toc-text">Return to Table of Contents</span>
@@ -1377,7 +1384,7 @@ Note:
 There will be no output. The program will exit and the application window will close.
 
 **Unsuccessful Output:**
-
+- If the command is spelt wrongly, you will get the following error message:
 ```
 That is not a valid command.
 ```
