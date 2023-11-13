@@ -1558,7 +1558,7 @@ testers are expected to do more *exploratory* testing.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Improvements**
+## **Appendix: Effort**
 
 ### Improvements to Functional Code
 * Introduction of a `model.company` package to allow users to store Company details in Connectify.
@@ -1579,3 +1579,15 @@ testers are expected to do more *exploratory* testing.
 ### Challenges Overcame
 * Use of JavaFX to effectively implement the GUI for Connectify.
 * Use of PlantUML to effectively implement the UML diagrams for Connectify.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Planned Enhancements**
+
+1. Currently, a person is only able to be added to one company to avoid confusion in the management of existing contacts. In the future, we would like to allow a person to be added to multiple companies.
+2. Our user interface has certain limitations at this current point of time such as having a limit to the length of user input that can be displayed in the Graphical User Interface as we hope to focus on the functionality of the application. In the future, we would like to improve the user interface to make it more user-friendly and intuitive. For example, it should be able to support longer user inputted data.
+3. Currently, some error messages displayed to the user may not be very user-friendly as we hope to focus on the core functionality of the application. In the future, we would like to improve the error messages to make them more user-friendly and intuitive.
+4. Connectify does not carry out extensive validation of user inputs as we hope to give the user more flexibility. In the future, we would like to improve the validation of user inputs to ensure that the user inputs are valid and correct.
+5. Currently, Connectify does not have a feature to allow users to search for a specific contact. In the future, we would like to implement a search feature to allow users to search for a specific contact, which is especially important when the number of connections in Connectify increases.
+6. Connectify's user interface is not the most intuitive and user-friendly at this current point of time and existing data may not be displayed very clearly. In the future, we would like to improve the user interface to make it more user-friendly and intuitive.
+7. Connectify's keyboard shortcuts may not work for all users as some users may be using a different operating system. In the future, we would like to allow users to customise their own keyboard shortcuts to make it more convenient for them.
