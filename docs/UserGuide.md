@@ -20,7 +20,7 @@ For a full overview of everything this guide has to offer, do make use of the [T
 Finally, here are some of the **symbols** and **text formatting** to look out for as you make use of this guide:
 
 <box type="tip">
-Blue boxes contain additional information that may be useful for enhancing your experience using Connectify.
+Green boxes contain additional information that may be useful for enhancing your experience using Connectify.
 </box>
 
 <box type="warning" icon=":fa-solid-triangle-exclamation:">
@@ -91,9 +91,9 @@ Getting started with Connectify is extremely simple! Here is a tutorial on how t
 
 4. Launch Connectify by double-clicking the file in the directory. You'll be greeted by Connectify's primary interface, with an empty database as shown below.
 
-<div markdown="block" class="alert alert-warning"><strong>&#x2757; Caution:</strong>
+<box type="warning" icon=":fa-solid-triangle-exclamation:">
 For MAC users, if an error message popup appears, running 'java -jar connectify.jar' while in the same directory via the MAC command terminal instead will open Connectify.
-</div>
+</box>
 
 ![Connectify Start Page](images/ConnectifyStartPage.png)
 
@@ -184,9 +184,9 @@ This is the section showing the **list of persons** added to Connectify. Each pe
 |   8.   | Priority       | The person's priority.                          |
 |   9.   | Tags           | The tags attached to the person.                |
 
-<div markdown="block" class="alert alert-warning"><strong>&#x2757; Caution:</strong>
+<box type="warning" icon=":fa-solid-triangle-exclamation:">
 If your provided inputs are too long, Connectify may not be able to fully display them and cut them off! While this is rare, do try to avoid entering unnecessarily long inputs to Connectify (e.g. save a person's nickname rather than their full name).
-</div>
+</box>
 
 <a href="#table-of-contents" class="btn btn-outline-light link-primary" style="border: #f1f2f4 solid 1px !important; border-radius: 5px !important; padding: 5px !important; text-decoration: none !important;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-bar-up" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M3.646 11.854a.5.5 0 0 0 .708 0L8 8.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708zM2.4 5.2c0 .22.18.4.4.4h10.4a.4.4 0 0 0 0-.8H2.8a.4.4 0 0 0-.4.4z"/></svg> Return to Table of Contents</a>
 
@@ -328,9 +328,9 @@ Here are some guidelines when using any of Connectify's commands. Please follow 
   When there are two indexes (PersonIndex and CompanyIndex), **the PersonIndex must come before the CompanyIndex**.<br>
   For example, `1 2 n/Apple` is  referring to the person with index 1 and company with index 2, but `2 1 n/Apple` is referring to the person with index 2 and company with index 1.
 
-<div markdown="block" class="alert alert-warning"><strong>&#x2757; Caution:</strong>
+<box type="warning" icon=":fa-solid-triangle-exclamation:">
 It's important to avoid including inputs that are not expected by a command. For example, if a 'rank' command is designed to accept zero inputs, adding an input like 'p/12345678' might lead to unintended behaviour.
-</div>
+</box>
 
 <a href="#table-of-contents" class="return-to-toc-link">
   <span class="return-to-toc-text">Return to Table of Contents</span>
@@ -448,9 +448,9 @@ deleteCompany INDEX
 The fields are:
 - `INDEX` is the index of the company you want to delete.
 
-<div markdown="block" class="alert alert-warning"><strong>&#x2757; Caution:</strong>
+<box type="warning" icon=":fa-solid-triangle-exclamation:">
 Be cautious when deleting a company in Connectify. This action is irreversible and will permanently remove all associated data and persons list with the company.
-</div>
+</box>
 
 **Example:**
 
@@ -651,9 +651,9 @@ Note:
 - This command deletes the existing note if it is **inputted without the `r/` placeholder**.
 - If the `r/` placeholder is specified twice, the note following the second placeholder will be used.
 
-<div markdown="span" class="alert alert-primary"><strong>💡 Tip:</strong>
+<box type="tip">
 Use the <b>noteCompany</b> command in Connectify to add reminders or important details about your interactions with companies.
-</div>
+</box>
 
 **Example:**
 
@@ -895,9 +895,9 @@ The fields are:
 - `COMPANY_INDEX` is the index of the company that the person is associated with.
 - `PERSON_INDEX` is the index of the person you want to delete.
 
-<div markdown="block" class="alert alert-warning"><strong>&#x2757; Caution:</strong>
+<box type="warning" icon=":fa-solid-triangle-exclamation:">
 Deleting a person from Connectify is an irreversible action. Confirm the correct individual is selected before proceeding with this command.
-</div>
+</box>
 
 **Example:**
 
@@ -983,9 +983,9 @@ Note:
 - Connectify does not support the use of `+` or whitespace in phone numbers.
 - All fields are case-sensitive. This means that `John Doe` and `john doe` are considered different names, and `friends` and `Friends` are considered different tags.
 
-<div markdown="span" class="alert alert-primary"><strong>💡 Tip:</strong>
+<box type="tip">
 Keep contact details up-to-date in Connectify. Be sure the check if they have changed their contact details.
-</div>
+</box>
 
 **Example:**
 
@@ -1126,9 +1126,9 @@ Note:
 - This command deletes the existing note if it is inputted without the `r/` placeholder.
 - If the `r/` placeholder is specified twice, the note following the second placeholder will be used.
 
-<div markdown="span" class="alert alert-primary"><strong>💡 Tip:</strong>
+<box type="tip">
 Use notes in Connectify to record key information about your interactions or important dates related to each contact.
-</div>
+</box>
 
 **Example:**
 
@@ -1221,9 +1221,9 @@ Note:
 - This command accepts trailing inputs as long as it is separated from the command by a space.
 - This command ranks people by decreasing numerical values of priority. Hence, a person with priority 10 will be ranked higher (closer to the top of the list) than a person with priority 1.
 
-<div markdown="span" class="alert alert-primary"><strong>💡 Tip:</strong>
+<box type="tip">
 Use the `rank` command in Connectify to prioritise your contacts based on current professional needs or project requirements.
-</div>
+</box>
 
 **Successful Output**
 
@@ -1268,9 +1268,9 @@ The fields are:
 - `COMPANY_INDEX` is the index of the company that the person is associated with.
 - `PERSON_INDEX` is the index of the person in the displayed person list of a company that you want to share. It must be a positive integer within the company.
 
-<div markdown="block" class="alert alert-warning"><strong>&#x2757; Caution:</strong>
+<box type="warning" icon=":fa-solid-triangle-exclamation:">
 Be cautious about sharing personal contact details through Connectify. Always respect privacy and share contact information only with consent.
-</div>
+</box>
 
 **Example:**
 
@@ -1390,9 +1390,9 @@ Note:
 Cleared all persons and companies.
 ```
 
-<div markdown="block" class="alert alert-warning"><strong>&#x2757; Caution:</strong>
+<box type="warning" icon=":fa-solid-triangle-exclamation:">
 Do take note that this 'clear' action is irreversible. Your company and people lists will be deleted.
-</div>
+</box>
 
 <a href="#table-of-contents" class="return-to-toc-link">
   <span class="return-to-toc-text">Return to Table of Contents</span>
@@ -1526,9 +1526,9 @@ Connectify will automatically save your data on your hard disk after any command
 
 You can directly modify Connectify's data without opening the application. You can do so by editing the Connectify [JSON file](https://fileinfo.com/extension/json) `[JAR file location]/data/addressbook.json`.
 
-<div markdown="block" class="alert alert-warning"><strong>&#x2757; Caution:</strong>
+<box type="warning" icon=":fa-solid-triangle-exclamation:">
 If your edited data is not of the correct format, Connectify will <b>be unable to read your data</b> and start with an empty JSON file the next time you launch Connectify.
-</div>
+</box>
 
 <a href="#table-of-contents" class="return-to-toc-link">
   <span class="return-to-toc-text">Return to Table of Contents</span>
