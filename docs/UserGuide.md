@@ -235,7 +235,7 @@ As a new user, your Connectify database is **empty**. Let's add your first conne
 
     ![Adding First Person](images/tutorial_addingFirstPerson.png)
 
-3. Congratulations! You've successfully added your first connection to Connectify. You can now use Connectify to manage your connections and enhance your networking experience. To learn more about the features and functionalities of Connectify, please refer to the [Features](#features) section of this user guide.
+3. Congratulations! You've successfully added your first connection (first contact and company details) to Connectify. You can now use Connectify to manage your connections and enhance your networking experience. To learn more about the features and functionalities of Connectify, please refer to the [Features](#features) section of this user guide.
 
 <a href="#table-of-contents" class="return-to-toc-link">
   <span class="return-to-toc-text">Return to Table of Contents</span>
@@ -329,7 +329,7 @@ Here are some guidelines when using any of Connectify's commands. Please follow 
   For example, `1 2 n/Apple` is  referring to the person with index 1 and company with index 2, but `2 1 n/Apple` is referring to the person with index 2 and company with index 1.
 
 <box type="warning" icon=":fa-solid-triangle-exclamation:">
-It's important to avoid including inputs that are not expected by a command. For example, if a <b>rank<b/> command is designed to accept zero inputs, adding an input like 'p/12345678' might lead to unintended behaviour.
+It's important to avoid including inputs that are not expected by a command. For example, if a <b>rank</b> command is designed to accept zero inputs, adding an input like 'p/12345678' might lead to unintended behaviour.
 </box>
 
 <a href="#table-of-contents" class="return-to-toc-link">
@@ -506,9 +506,9 @@ The company index provided is invalid.
 
 The **editCompany** command allows you to modify the details of a company in your Connectify database. To edit a company, follow the command format below:
 
-```
-editCompany INDEX [n/NAME] [i/INDUSTRY] [l/LOCATION] [d/DESCRIPTION] [w/WEBSITE] [e/EMAIL] [p/PHONE] [a/ADDRESS]
-```
+
+`editCompany INDEX [n/NAME] [i/INDUSTRY] [l/LOCATION] [d/DESCRIPTION] [w/WEBSITE] [e/EMAIL] [p/PHONE] [a/ADDRESS]`
+
 
 The fields are:
 - `INDEX` is the index of the company in the displayed company list that you want to edit. It must be a positive integer within the company.
@@ -1222,7 +1222,7 @@ Note:
 - This command ranks people by decreasing numerical values of priority. Hence, a person with priority 10 will be ranked higher (closer to the top of the list) than a person with priority 1.
 
 <box type="tip">
-Use the <b>rank<b/> command in Connectify to prioritise your contacts based on current professional needs or project requirements.
+Use the <b>rank</b> command in Connectify to prioritise your contacts based on current professional needs or project requirements.
 </box>
 
 **Successful Output**
@@ -1391,7 +1391,7 @@ Cleared all persons and companies.
 ```
 
 <box type="warning" icon=":fa-solid-triangle-exclamation:">
-Do take note that this 'clear' action is irreversible. Your company and people lists will be deleted.
+Do take note that this act of deletion by the <b>clear</b> command is irreversible. Your company and people lists will be deleted.
 </box>
 
 <a href="#table-of-contents" class="return-to-toc-link">
