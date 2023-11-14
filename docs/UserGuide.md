@@ -383,9 +383,8 @@ To add a Company "Apple Inc", with the following fields:
 - Address: 1 Apple Park Way, Cupertino, California
 
 Use the following command:
-```
-addCompany n/Apple Inc i/technology l/Los Altos d/computer and consumer technology w/www.apple.com e/contact@apple.com p/98765432 a/1 Apple Park Way, Cupertino, California
-```
+
+`addCompany n/Apple Inc i/technology l/Los Altos d/computer and consumer technology w/www.apple.com e/contact@apple.com p/98765432 a/1 Apple Park Way, Cupertino, California`
 
 **Successful Output:**
 
@@ -409,8 +408,11 @@ You should be able to see the company in Connectify as shown below:
 - If any of the compulsory placeholders such as `n/`, `i/`, `l/`, `d/`, `w/`, `e/`, `p/` or `a/` are missing, you will receive the following error message:
   ```
   Invalid command format!
-  addCompany: Adds a company to the address book. Parameters: n/NAME i/INDUSTRY l/LOCATION d/DESCRIPTION w/WEBSITE e/EMAIL p/PHONE a/ADDRESS
-  Example: addCompany n/TechCorp i/Technology l/Silicon Valley d/Leading tech company w/www.techcorp.com e/contact@techcorp.com p/12345678 a/123 Tech St, Silicon Valley
+  addCompany: Adds a company to the address book.
+  Parameters: n/NAME i/INDUSTRY l/LOCATION d/DESCRIPTION
+  w/WEBSITE e/EMAIL p/PHONE a/ADDRESS
+  Example: addCompany n/TechCorp i/Technology l/Silicon Valley d/Leading tech company
+  w/www.techcorp.com e/contact@techcorp.com p/12345678 a/123 Tech St, Silicon Valley
   ```
 
 - If all compulsory placeholders are present but the details are missing, you will receive the following error message:
@@ -441,9 +443,7 @@ You should be able to see the company in Connectify as shown below:
 
 The **deleteCompany** command allows you to remove companies from your Connectify database. To delete a company, follow the command format below:
 
-```
-deleteCompany INDEX
-```
+`deleteCompany INDEX`
 
 The fields are:
 - `INDEX` is the index of the company you want to delete.
@@ -456,9 +456,7 @@ Be cautious when deleting a company in Connectify. This action is irreversible a
 
 To delete the company named TechCorp at index 1, use the following command:
 
-```
-deleteCompany 1
-```
+`deleteCompany 1`
 
 **Successful Output:**
 
@@ -478,7 +476,8 @@ Address: 123 Tech St, Silicon Valley
 - If the specified index is missing or is not a positive integer, you will get the following error message:
 ```
 Invalid command format! 
-deleteCompany: Deletes the company identified by the index number used in the displayed company list.
+deleteCompany: Deletes the company identified by the
+index number used in the displayed company list.
 Parameters: INDEX (must be a positive integer)
 Example: deleteCompany 1
 ```
@@ -506,9 +505,7 @@ The company index provided is invalid.
 
 The **editCompany** command allows you to modify the details of a company in your Connectify database. To edit a company, follow the command format below:
 
-
 `editCompany INDEX [n/NAME] [i/INDUSTRY] [l/LOCATION] [d/DESCRIPTION] [w/WEBSITE] [e/EMAIL] [p/PHONE] [a/ADDRESS]`
-
 
 The fields are:
 - `INDEX` is the index of the company in the displayed company list that you want to edit. It must be a positive integer within the company.
@@ -535,9 +532,8 @@ To edit the company at the first index to the following updated fields:
 - Phone: 91234567
 
 Use the following command:
-```
-editCompany 1 n/TechCorp p/91234567 e/techcorp@gmail.com a/123, Jurong West Ave 6, #08-111
-```
+
+`editCompany 1 n/TechCorp p/91234567 e/techcorp@gmail.com a/123, Jurong West Ave 6, #08-111`
 
 **Successful Output:**
 
@@ -557,9 +553,13 @@ Address: 123, Jurong West Ave 6, #08-111;
 - If the specified index is missing or is not a positive integer, you will get the following error message:
 ```
 Invalid command format!
-editCompany: Edits the details of the company identified by the index number used in the displayed company list. Existing values will be overwritten by the input values.
-Parameters: INDEX (must be a positive integer) NAME PHONE EMAIL ADDRESS TAG.
-Example: editCompany 1 n/TechCorp p/91234567 e/techcorp@gmail.com a/123, Jurong West Ave 6, #08-111
+editCompany: Edits the details of the company identified by
+the index number used in the displayed company list.
+Existing values will be overwritten by the input values.
+Parameters: INDEX (must be a positive integer) NAME PHONE
+EMAIL ADDRESS TAG.
+Example: editCompany 1 n/TechCorp p/91234567
+e/techcorp@gmail.com a/123, Jurong West Ave 6, #08-111
 ```
 
 - If you have specified a valid index but don't provide at least one field to edit, you will receive the following error message:
@@ -590,9 +590,7 @@ The company index provided is invalid.
 
 The `companies` command allows you to retrieve a list of all companies in Connectify. This command is particularly useful for obtaining an overview of all the companies you have stored. To list all companies, follow the command format below:
 
-```
-companies
-```
+`companies`
 
 Note:
 - This command has no additional fields.
@@ -633,15 +631,11 @@ There are no companies in Connectify.
 
 The `noteCompany` command allows you to add a note to a company or remove an existing note about a company in Connectify. To add a note to a company, follow the command format below:
 
-```
-noteCompany INDEX r/NOTE
-```
+`noteCompany INDEX r/NOTE`
 
 To remove the existing note from a company, simply input the same command without the `r/NOTE` placeholder.
 
-```
-noteCompany INDEX
-```
+`noteCompany INDEX`
 
 The fields are:
 - `INDEX` is the index of the company in the displayed company list that you want to edit. It must be a positive integer within the company.
@@ -659,9 +653,7 @@ Use the <b>noteCompany</b> command in Connectify to add reminders or important d
 
 To add a note to the company at index 1, use the following command:
 
-```
-noteCompany 1 r/Looking for aspiring frontend developers.
-```
+`noteCompany 1 r/Looking for aspiring frontend developers.`
 
 **Successful Output**
 
@@ -682,9 +674,7 @@ You should be able to see the note in Connectify as shown below:
 
 To remove the note from the company at index 1, use the following command:
 
-```
-noteCompany 1
-```
+`noteCompany 1`
 
 **Successful Output**
 
@@ -704,7 +694,9 @@ Address: 123 Tech St, Silicon Valley
 - If the specified index is missing or is not a positive integer, you will get the following error message:
 ```
 Invalid command format!
-noteCompany: Edits the note of the company identified by the index number used in the last company listing. Existing note will be overwritten by the input.
+noteCompany: Edits the note of the company identified by
+the index number used in the last company listing.
+Existing note will be overwritten by the input.
 Parameters: INDEX (must be a positive integer) r/[NOTE]
 Example: noteCompany 1 r/Looking for aspiring frontend developers.
 ```
@@ -732,9 +724,7 @@ The company index provided is invalid.
 
 The `shareCompany` command allows you to share a company's details with another person. This command is particularly useful for sharing companies you have stored. Since notes are personal to each user, shareCompany does not include the sharing of notes. To share a company's details, follow the command format below:
 
-```
-shareCompany INDEX
-```
+`shareCompany INDEX`
 
 The fields are:
 - `INDEX` is the index of the company in the displayed company list that you want to share. It must be a positive integer within the company.
@@ -743,15 +733,14 @@ The fields are:
 
 To share the company at index 1, use the following command:
 
-```
-shareCompany 1
-```
+`shareCompany 1`
 
 **Successful Output**
 
 ```
 Command to add this Company:
-addCompany n/TechCorp i/Technology l/Silicon Valley d/Leading tech company w/www.techcorp.com e/contact@techcorp.com p/12345678 a/123 Tech St, Silicon Valley
+addCompany n/TechCorp i/Technology l/Silicon Valley d/Leading tech company
+w/www.techcorp.com e/contact@techcorp.com p/12345678 a/123 Tech St, Silicon Valley
 Do take note that you need to add people on your own.
 ```
 
@@ -794,9 +783,7 @@ The company index provided is invalid.
 
 The `addPerson` command allows you to add new contacts to your Connectify database. Follow the format below to add contacts:
 
-```
-addPerson n/NAME p/PHONE e/EMAIL a/ADDRESS pr/PRIORITY [c/COMPANY] [t/TAG]…​
-```
+`addPerson n/NAME p/PHONE e/EMAIL a/ADDRESS pr/PRIORITY [c/COMPANY] [t/TAG]…​`
 
 The fields are:
 - `n/NAME` is the name of the contact.
@@ -824,9 +811,8 @@ To add a contact associated with Company 1 with the following fields:
 - Address: 311, Clementi Ave 2, #02-25
 
 Use the following command:
-```
-addPerson n/John Doe p/98765432 e/johndoe@example.com a/311, Clementi Ave 2, #02-25 c/1 t/friends pr/1 t/owesMoney
-```
+
+`addPerson n/John Doe p/98765432 e/johndoe@example.com a/311, Clementi Ave 2, #02-25 c/1 t/friends pr/1 t/owesMoney`
 
 **Successful Output:**
 
@@ -850,8 +836,11 @@ You should be able to see the person in Connectify as shown below:
 - If any of the compulsory placeholders such as `n/`, `p/`, `e/`, `a/` or `pr/` are missing:
   ```
   Invalid command format!
-  addPerson: Adds a person to the address book. Parameters: n/NAME p/PHONE e/EMAIL a/ADDRESS pr/PRIORITY [c/COMPANY_INDEX] [t/TAG]...
-  Example: addPerson n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney c/1 pr/1
+  addPerson: Adds a person to the address book.
+  Parameters: n/NAME p/PHONE e/EMAIL a/ADDRESS pr/PRIORITY
+  [c/COMPANY_INDEX] [t/TAG]...
+  Example: addPerson n/John Doe p/98765432 e/johnd@example.com
+  a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney c/1 pr/1
   ```
 
 - If all the compulsory placeholders are present but the details are missing:
@@ -887,9 +876,7 @@ You should be able to see the person in Connectify as shown below:
 
 The **deletePerson** command allows you to remove people from your Connectify database. To delete a person, follow the format below:
 
-```
-deletePerson COMPANY_INDEX PERSON_INDEX
-```
+`deletePerson COMPANY_INDEX PERSON_INDEX`
 
 The fields are:
 - `COMPANY_INDEX` is the index of the company that the person is associated with.
@@ -903,9 +890,7 @@ Deleting a person from Connectify is an irreversible action. Confirm the correct
 
 To delete the person named John Doe at index 1 from the company at index 1, use the following command:
 
-```
-deletePerson 1 1
-```
+`deletePerson 1 1`
 
 **Successful Output:**
 
@@ -925,8 +910,10 @@ Tags: [owesMoney][friends]
 - If the specified person/company index is missing or is not a positive integer, you will get the following error message:
 ```
 Invalid command format!
-deletePerson: Deletes the person identified by the index number from the specified company and also removes them from the address book.
-Parameters: COMPANY_INDEX (must be a positive integer) PERSON_INDEX (must be a positive integer)
+deletePerson: Deletes the person identified by the index number from
+the specified company and also removes them from the address book.
+Parameters: COMPANY_INDEX (must be a positive integer)
+PERSON_INDEX (must be a positive integer)
 Example: deletePerson 2 1
 ```
 
@@ -963,9 +950,7 @@ The company index provided is invalid.
 
 The `editPerson` command allows you to modify the details of a person in your Connectify database. To edit contacts, follow the format below:
 
-```
-editPerson INDEX c/COMPANY [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [pr/PRIORITY] [t/TAG]…​
-```
+`editPerson INDEX c/COMPANY [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [pr/PRIORITY] [t/TAG]…​`
 
 The fields are:
 - `INDEX` is the index of the person in the displayed person list of a company that you want to edit. It must be a positive integer within the company.
@@ -994,9 +979,8 @@ To edit the person at index 1 in the displayed person list of the Company at ind
 - Email: johndoe@example.com
 
 Use the following command:
-```
-editPerson 1 c/1 p/91234567 e/johndoe@example.com
-```
+
+`editPerson 1 c/1 p/91234567 e/johndoe@example.com`
 
 **Successful Output**
 
@@ -1021,8 +1005,11 @@ At least one field to edit must be provided.
 - If the specified index is missing or is not a positive integer, you will get the following error message:
 ```
 Invalid command format!
-editPerson: Edits the details of the person identified by the index number used in the displayed person list. Existing values will be overwritten by the input values.
-Parameters: INDEX (must be a positive integer within the company) [c/COMPANY] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/NOTE] [pr/PRIORITY] [t/TAG].
+editPerson: Edits the details of the person identified by
+the index number used in the displayed person list.
+Existing values will be overwritten by the input values.
+Parameters: INDEX (must be a positive integer within the company) [c/COMPANY]
+[n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/NOTE] [pr/PRIORITY] [t/TAG].
 Example: editPerson 1 c/1 p/91234567 e/johndoe@example.com
 ```
 
@@ -1064,9 +1051,7 @@ This person already exists in the Connectify.
 
 The `people` command allows you to retrieve a list of all individuals (persons) in the Connectify. This command is especially useful for obtaining an overview of all the individuals you have stored. To list all people, follow the command format below:
 
-```
-people
-```
+`people`
 
 Note:
 - This command has no additional fields.
@@ -1107,15 +1092,11 @@ There are no people in Connectify.
 
 The `notePerson` command allows you to add a note to a person or remove an existing note about a person in Connectify. To add a note to a person, follow the command format below:
 
-```
-notePerson COMPANY_INDEX PERSON_INDEX r/NOTE
-```
+`notePerson COMPANY_INDEX PERSON_INDEX r/NOTE`
 
 To remove the existing note from a person, simply input the same command without the `r/NOTE` placeholder.
 
-```
-notePerson COMPANY_INDEX PERSON_INDEX
-```
+`notePerson COMPANY_INDEX PERSON_INDEX`
 
 The fields are:
 - `COMPANY_INDEX` is the index of the company that the person is associated with.
@@ -1134,9 +1115,7 @@ Use notes in Connectify to record key information about your interactions or imp
 
 To add a note to the person at index 1 in the displayed person list of Company 1, use the following command:
 
-```
-notePerson 1 1 r/Likes to swim.
-```
+`notePerson 1 1 r/Likes to swim.`
 
 **Successful Output**
 
@@ -1158,9 +1137,7 @@ You should be able to see the note in Connectify as shown below:
 
 To remove the note from the person at index 1 in the displayed person list of Company 1, use the following command:
 
-```
-notePerson 1 1
-```
+`notePerson 1 1`
 
 **Successful Output**
 
@@ -1180,8 +1157,11 @@ Tags: [owesMoney][friends]
 - If the specified company/person index is missing or not a positive integer, you will get the following error message:
 ```
 Invalid command format! 
-notePerson: Changes the note of the person identified by the index number used in the displayed person list. Existing note will be overwritten by the input.
-Parameters: COMPANY_INDEX PERSON_INDEX (must be a positive integer) [r/NOTE]
+notePerson: Changes the note of the person identified by
+the index number used in the displayed person list.
+Existing note will be overwritten by the input.
+Parameters: COMPANY_INDEX PERSON_INDEX
+(must be a positive integer) [r/NOTE]
 ```
 
 - If the specified company index is invalid (larger than the number of companies in the displayed company list), you will get the following error message:
@@ -1212,9 +1192,7 @@ The person index provided is invalid.
 
 The `rank` command allows you to rank people by priority in Connectify. This command is particularly useful for ranking people you have stored. Since higher priority indicates higher value, rank will sort the people in descending order, with the highest priority displayed at the top. To rank people by priority, follow the command format below:
 
-```
-rank
-```
+`rank`
 
 Note:
 - This command has no additional fields.
@@ -1260,9 +1238,7 @@ There are no people in Connectify.
 
 The `sharePerson` command allows you to share a person's details with another person. This command is particularly useful for sharing contact details of people you have stored. To share a person's contact details, follow the command format below:
 
-```
-sharePerson COMPANY_INDEX PERSON_INDEX
-```
+`sharePerson COMPANY_INDEX PERSON_INDEX`
 
 The fields are:
 - `COMPANY_INDEX` is the index of the company that the person is associated with.
@@ -1276,15 +1252,14 @@ Be cautious about sharing personal contact details through Connectify. Always re
 
 To share the contact details of the person at index 1 in the displayed person list of Company 1, use the following command:
 
-```
-sharePerson 1 1
-```
+`sharePerson 1 1`
 
 **Successful Output**
 
 ```
 Command to add this Person:
-addPerson n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 n/Priority t/owesMoney t/friends
+addPerson n/John Doe p/98765432 e/johnd@example.com
+a/311, Clementi Ave 2, #02-25 n/Priority t/owesMoney t/friends
 Do take note that you need to specify Company and priority on your own.
 ```
 
@@ -1297,8 +1272,10 @@ You should see Connectify display the command to be copied, as shown below. The 
 - If the specified company/person index is missing or is not a positive integer, you will get the following error message:
 ```
 Invalid command format!
-sharePerson: Shares instructions on how to add a Person, from the specified company, to another address book.
-Parameters: COMPANY_INDEX (must be a positive integer) PERSON_INDEX (must be a positive integer)
+sharePerson: Shares instructions on how to add a Person,
+from the specified company, to another address book.
+Parameters: COMPANY_INDEX (must be a positive integer)
+PERSON_INDEX (must be a positive integer)
 ```
 
 - If the specified company index is invalid (larger than the number of companies in the displayed company list), you will get the following error message:
@@ -1333,9 +1310,7 @@ The `list` command allows you to retrieve a list of all entities (both persons a
 
 Follow the format below to list all entities:
 
-```
-list
-```
+`list`
 
 Note:
 - This command has no additional fields.
@@ -1376,9 +1351,7 @@ There are no entities in Connectify.
 
 The `clear` command allows you to clear all entities (both persons and companies) in the Connectify database. This command is useful for clearing all the entities you have stored. The command format is as follows:
 
-```
-clear
-```
+`clear`
 
 Note:
 - This command has no additional fields.
@@ -1412,9 +1385,7 @@ Do take note that this act of deletion by the <b>clear</b> command is irreversib
 
 The `help` command displays a link to this user guide. This command is useful for obtaining an overview of all the commands available in Connectify for you. The command format is as follows:
 
-```
-help
-```
+`help`
 
 Note:
 - This command has no additional fields.
@@ -1447,9 +1418,7 @@ Additionally, a pop-up window will appear with the link to this user guide as sh
 
 This command exits the program.
 
-```
-exit
-```
+`exit`
 
 Note:
 - This command has no additional fields.
