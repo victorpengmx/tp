@@ -506,9 +506,9 @@ The company index provided is invalid.
 
 The **editCompany** command allows you to modify the details of a company in your Connectify database. To edit a company, follow the command format below:
 
-```
-editCompany INDEX [n/NAME] [i/INDUSTRY] [l/LOCATION] [d/DESCRIPTION] [w/WEBSITE] [e/EMAIL] [p/PHONE] [a/ADDRESS]
-```
+
+`editCompany INDEX [n/NAME] [i/INDUSTRY] [l/LOCATION] [d/DESCRIPTION] [w/WEBSITE] [e/EMAIL] [p/PHONE] [a/ADDRESS]`
+
 
 The fields are:
 - `INDEX` is the index of the company in the displayed company list that you want to edit. It must be a positive integer within the company.
