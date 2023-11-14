@@ -69,7 +69,7 @@ Yellow boxes contain important warnings.
     * [Keyboard Shortcuts](#keyboard-shortcuts)
     * [Advanced Data Management Features](#advanced-data-management-features)
 * [FAQ](#faq)
-* [Known issues](#known-issues)
+* [Known Issues](#known-issues)
 * [Glossary](#glossary)
 * [Command Summary](#command-summary)
 
@@ -1471,6 +1471,10 @@ The table on the next page lists the keyboard shortcuts currently available in C
 |                <kbd>Space</kbd>                | **Navigating a Company Card in the All Entities Section:**<br> When you are at any Company Card in the All Entities Section, use <kbd>Space</kbd> to expand or close the Company Card you are currently on.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 |  <kbd>UpArrow</kbd> and <kbd>DownArrow</kbd>   | **Switching to another Person card or Company card:**<br> When you are in the Person List Section or Company List Section, press <kbd>UpArrow</kbd> or <kbd>DownArrow</kbd> to move up or down the section. <br><br>**Navigating the list of Person Cards** <br> When you are in the list of Person Cards in any Company Card, press <kbd>UpArrow</kbd> or <kbd>DownArrow</kbd> to move up or down the list of Person Cards.                                                                                                                                                                                                                                                                                                                                                                                                    |
 
+<box type="warning" icon=":fa-solid-triangle-exclamation:">
+The keyboard shortcuts may not work if you are using a browser that does not support them or have pre-defined keyboard shortcuts that conflict with the ones in Connectify. . For example, the keyboard shortcuts will not work if you are using Internet Explorer. However, we are working to allow customisation of keyboard shortcuts in future versions of Connectify to make it more accessible to all users.
+</box>
+
 <a href="#table-of-contents" class="return-to-toc-link">
   <span class="return-to-toc-text">Return to Table of Contents</span>
   <span class="return-to-toc-icon">
@@ -1557,7 +1561,7 @@ A: Connectify does not restrict the upper boundary of the numerical range for th
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Known issues
+## Known Issues
 
 1. When entering some commands incorrectly, the displayed error message will refer to "address book" instead of 'Connectify'. "address book" in such cases should be interpreted as "Connectify".
 2. Some labels in the Connectify interface refer to "addressbook" instead of "Connectify". Connectify can also be seen as an improved version of an address book and such occurrences do not affect functionality.
@@ -1595,6 +1599,7 @@ A: Connectify does not restrict the upper boundary of the numerical range for th
 | <span id="glossary-prefix">_Prefix_</span>                                               | A short piece of text indicating what type of information follows. For example, `n/` is the prefix that indicates that what follows is a name.                                        |
 | <span id="glossary-priority">_Priority_</span>                                           | A numerical value assigned to a person to indicate how important they are.                                                                                                            |
 | <span id="glossary-user-interface-ui">_User Interface (UI)_</span>                       | The means by which you interact with Connectify, which includes the CLI and GUI.                                                                                                      |
+| <span id="glossary-fields">_Fields_</span>                                               | The different types of information that can be stored for each [_entity_](#glossary-entity).                                                                                          |
 
 
 <a href="#table-of-contents" class="btn btn-outline-light link-primary" style="border: #f1f2f4 solid 1px !important; border-radius: 5px !important; padding: 5px !important; text-decoration: none !important;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-bar-up" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M3.646 11.854a.5.5 0 0 0 .708 0L8 8.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708zM2.4 5.2c0 .22.18.4.4.4h10.4a.4.4 0 0 0 0-.8H2.8a.4.4 0 0 0-.4.4z"/></svg> Return to Table of Contents</a>
@@ -1616,7 +1621,7 @@ A: Connectify does not restrict the upper boundary of the numerical range for th
 | **Note**   | `noteCompany INDEX r/NOTE`<br> e.g., `noteCompany 1 r/Looking for aspiring frontend developers.`                                                                                                                                                                                       |
 | **Share**  | `shareCompany INDEX`<br> e.g., `shareCompany 1`                                                                                                                                                                                                                                        |
 
-### Manging People Contacts
+### Managing People
 | Action     | Format, Examples                                                                                                          |
 |------------|---------------------------------------------------------------------------------------------------------------------------|
 | **Add**    | `addPerson n/NAME p/PHONE e/EMAIL a/ADDRESS c/COMPANY pr/PRIORITY [t/TAG]…​` <br> e.g., `addPerson n/John Doe p/98765432` |
